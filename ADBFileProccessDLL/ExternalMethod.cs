@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using SharpAdbClient;
 using System.IO;
 
-namespace ADBFileProccessDLL
+namespace ADBProccessDLL
 {
     public static class ExternalMethod
     {
@@ -79,6 +79,32 @@ namespace ADBFileProccessDLL
             return result;
         }
 
+        public static string getStringTime(this int time_seconds)
+        {
+            int sec = 1;
+            int min = 60 * sec;
+            int hou = min * 60;
+            int day = hou * 24;
+
+            if (time_seconds> day)
+            {
+                return string.Format("{0} Days And {1} Hours",time_seconds/day,time_seconds%day);
+            }
+            else if (time_seconds > hou)
+            {
+                return string.Format("{0} Hours And {1} Minutes", time_seconds / hou, time_seconds % hou);
+            }
+            else if (time_seconds > min)
+            {
+                return string.Format("{0} Minutes And {1} Seconds", time_seconds / min, time_seconds % min);
+            }
+            else
+            {
+                return string.Format("{0} Seconds", time_seconds);
+            }
+
+        }
+
         public static bool isDigits(this string txt)
         {
             try
@@ -117,13 +143,132 @@ namespace ADBFileProccessDLL
             return false;
         }
 
-        private static string resultCommand(string Command,DeviceData device)
+        public static string resultCommand(string Command,DeviceData device)
         {
-            var receiver = new ConsoleOutputReceiver();
-            AdbClient.Instance.ExecuteRemoteCommand(Command, device, receiver);
-            return receiver.ToString();
+            try
+            {
+                var receiver = new ConsoleOutputReceiver();
+                AdbClient.Instance.ExecuteRemoteCommand(Command, device, receiver);
+                return receiver.ToString();
+            }
+            catch (Exception)
+            {
+                return "•••";
+            }
         }
-        public static void test() { }
-        
+
+        public static string AndroidVersion(this DeviceData myDevice)
+        {
+            return resultCommand(@"getprop ro.build.version.release",myDevice);
+        }
+        public static int AndroidSDK(this DeviceData myDevice)
+        {
+            return Convert.ToInt32(resultCommand(@"getprop ro.build.version.sdk", myDevice));
+        }
+        public static string BatteryPercentage(this DeviceData myDevice)
+        {
+            StringReader sr = new StringReader(resultCommand(@"dumpsys battery", myDevice));
+            string tmp;
+            while (sr.Peek() >= 0)
+            {
+                tmp = sr.ReadLine();
+                if (tmp.Contains("level"))
+                {
+                    return tmp.Remove(0, tmp.IndexOf(':')+1);
+                }
+            }
+            return " - ";
+
+        }
+        public static int GetCountOfFilesAndDirectoriesInSystem(this string FileOrDirectory)
+        {
+            int counter = 0;
+            if (Directory.Exists(FileOrDirectory))
+            {
+                counter++;
+                DirectoryInfo di = new DirectoryInfo(FileOrDirectory);
+                counter += di.GetFiles().Count();
+                counter += di.GetDirectories().Count();
+                foreach (DirectoryInfo item in di.GetDirectories())
+                {
+                    counter+= GetCountOfFilesAndDirectoriesInSystem(item.FullName);
+                }
+            }
+            else
+            {
+                counter += 1;
+            }
+            return counter;
+        }
+
+        public static double GetSizeOfFilesAndDirectoriesInSystem(this string FileOrDirectory)
+        {
+            double sizeCount = 0;
+            if (Directory.Exists(FileOrDirectory))
+            {
+                List<string> fileAndDirS = new List<string>();
+                DirectoryInfo di = new DirectoryInfo(FileOrDirectory);
+
+                foreach (DirectoryInfo item in di.GetDirectories())
+                {
+                    fileAndDirS.Add(item.FullName);
+                }
+                foreach (FileInfo item in di.GetFiles())
+                {
+                    fileAndDirS.Add(item.FullName);
+                }
+                foreach (string item in fileAndDirS)
+                {
+                    sizeCount += GetSizeOfFilesAndDirectoriesInSystem(item);
+                }
+            }
+            else
+            {
+                FileInfo fi = new FileInfo(FileOrDirectory);
+                sizeCount += fi.Length;
+            }
+            return sizeCount;
+        }
+
+
+        public static string AdbCommand(string command)
+        {
+
+            System.Diagnostics.Process process = new System.Diagnostics.Process();
+            process.StartInfo.FileName = @".\platform-tools\adb.exe";
+            process.StartInfo.Arguments = command;
+
+            process.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
+            process.StartInfo.CreateNoWindow = true;
+            process.StartInfo.UseShellExecute = false;
+            process.StartInfo.RedirectStandardOutput = true;
+            //process.StartInfo.WorkingDirectory = @"C:\Windows\System32";
+            process.Start();
+            return process.StandardOutput.ReadToEnd();
+        }
+
+        /// <summary>
+        /// remove soon...
+        /// </summary>
+        /// <param name="unicodeString"></param>
+        /// <returns></returns>
+
+        public static string DecodingText(this string forDecodText)
+        {
+            return Encoding.UTF8.GetString(Encoding.GetEncoding("iso-8859-1").GetBytes(forDecodText));
+        }
+        public static string EncodingText(this string forEncodText)
+        {
+            return Encoding.GetEncoding("iso-8859-1").GetString(Encoding.UTF8.GetBytes(forEncodText));
+        }
+        public static string fixDecodePatch(this string forDecodeText)
+        {
+            string tmp = forDecodeText.DecodingText();
+            if (tmp.Contains("?"))
+            {
+                return forDecodeText;
+            }
+            return tmp;
+        }
     }
 }

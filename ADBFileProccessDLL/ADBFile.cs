@@ -7,7 +7,7 @@ using SharpAdbClient;
 using System.IO;
 using System.Text.RegularExpressions;
 
-namespace ADBFileProccessDLL
+namespace ADBProccessDLL
 {
     public class ADBFile
     {
@@ -128,12 +128,21 @@ namespace ADBFileProccessDLL
             {
                 //in byte
                 cmd = resultCommand(@"du -s " + FullName);
-                result = Convert.ToDouble(resultDu(cmd));
+                try
+                {
+                    result = Convert.ToDouble(resultDu(cmd));
+                }
+                catch
+                {
+                    result = 000;
+                }
 
             }
 
             return Convert.ToDouble(result);
         } 
+
+
         private string resultCommand(string Command)
         {
 
@@ -143,7 +152,16 @@ namespace ADBFileProccessDLL
 
         }
 
-
+        public bool Rename(string NewName)
+        {
+            if (string.IsNullOrEmpty(resultCommand(string.Format(@"mv {0} {1}", FullName.fixBracketInTerminal(), (this.DirectoryName + "/" + NewName).fixBracketInTerminal()))))
+            {
+                this.FullName = this.ParentDirectory + "/" + NewName;
+                this.Name = NewName;
+                return true;
+            }
+            return false;
+        }
         private string GetExtension(string nameFile)
         {
             return "." + nameFile.Split('.').LastOrDefault();
@@ -241,7 +259,6 @@ namespace ADBFileProccessDLL
             string temp;
             string size = "0";
             StringReader sr = new StringReader(result);
-            //Regex rgx = new Regex(@"[1-9]{1,12}");
 
             while (sr.Peek() >= 0)
             {
@@ -274,43 +291,6 @@ namespace ADBFileProccessDLL
 
             return new string[] { tmp.LastOrDefault()[0].ToString(), size };
         }
-
-        //private string fixSpaceName(string mytext)
-        //{
-        //    string temp = string.Empty;
-        //    if (mytext.Contains(' '))
-        //    {
-        //        foreach (var item in mytext.ToList())
-        //        {
-        //            if (item == ' ')
-        //            {
-        //                temp = temp + @"\ ";
-        //            }
-        //            else
-        //            {
-        //                temp = temp + item;
-        //            }
-        //        }
-        //        return temp;
-        //    }
-        //    else
-        //    {
-        //        return mytext;
-        //    }
-        //}
-
-        //public bool isDirectory()
-        //{
-        //    char tempchar=resultCommand(string.Format("ls -l {0}|grep {1}", this.DirectoryName, this.Name)).FirstOrDefault();
-        //    if (tempchar=='d')
-        //    {
-        //        return true;
-        //    }
-        //    else
-        //    {
-        //        return false;
-        //    }
-        //}
 
     }
 }

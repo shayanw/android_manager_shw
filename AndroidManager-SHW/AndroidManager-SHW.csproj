@@ -12,6 +12,23 @@
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -32,13 +49,17 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>if_android_1220337.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="SharpAdbClient, Version=2.2.0.0, Culture=neutral, PublicKeyToken=d728076f5d82a2e8, processorArchitecture=MSIL">
-      <HintPath>..\packages\SharpAdbClient.2.2.0-beta469\lib\net451\SharpAdbClient.dll</HintPath>
+      <HintPath>..\packages\SharpAdbClient.2.2.5\lib\net451\SharpAdbClient.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -50,11 +71,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FileManagerForm.cs">
+    <Compile Include="FileManager\FileManagerForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FileManagerForm.Designer.cs">
+    <Compile Include="FileManager\FileManagerForm.Designer.cs">
       <DependentUpon>FileManagerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FileManager\FileManager_CreateNewDir.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FileManager\FileManager_CreateNewDir.Designer.cs">
+      <DependentUpon>FileManager_CreateNewDir.cs</DependentUpon>
     </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -62,19 +89,48 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TransferForm.cs">
+    <Compile Include="Form_networkADB.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TransferForm.Designer.cs">
+    <Compile Include="Form_networkADB.Designer.cs">
+      <DependentUpon>Form_networkADB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PackageManager\PMForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PackageManager\PMForm.Designer.cs">
+      <DependentUpon>PMForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="FileManager\PropertiesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FileManager\PropertiesForm.Designer.cs">
+      <DependentUpon>PropertiesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FileManager\TransferForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FileManager\TransferForm.Designer.cs">
       <DependentUpon>TransferForm.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="FileManagerForm.resx">
+    <EmbeddedResource Include="FileManager\FileManagerForm.resx">
       <DependentUpon>FileManagerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FileManager\FileManager_CreateNewDir.resx">
+      <DependentUpon>FileManager_CreateNewDir.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FileManager\PropertiesForm.resx">
+      <DependentUpon>PropertiesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_networkADB.resx">
+      <DependentUpon>Form_networkADB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PackageManager\PMForm.resx">
+      <DependentUpon>PMForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -86,7 +142,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="TransferForm.resx">
+    <EmbeddedResource Include="FileManager\TransferForm.resx">
       <DependentUpon>TransferForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
@@ -99,14 +155,15 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="version.json" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ADBFileProccessDLL\ADBFileProccessDLL.csproj">
+    <ProjectReference Include="..\ADBFileProccessDLL\ADBProccessDLL.csproj">
       <Project>{b689e80b-9e1b-439d-a9fb-9722ffe1df84}</Project>
-      <Name>ADBFileProccessDLL</Name>
+      <Name>ADBProccessDLL</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -124,7 +181,78 @@
   <ItemGroup>
     <None Include="Resources\expand.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\file8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\soft8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\code8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sett8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\code8h.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\file8h.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sett8h.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\soft8h.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\info8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\about8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\about8h.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\info8h.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="if_android_1220337.ico" />
+    <None Include="Resources\mobilebw.png" />
+    <None Include="Resources\mobile.png" />
+    <None Include="Resources\soft8bw.png" />
+    <None Include="Resources\sett8bw.png" />
+    <None Include="Resources\info8bw.png" />
+    <None Include="Resources\file8bw.png" />
+    <None Include="Resources\code8bw.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\Nerdbank.GitVersioning.2.1.23\build\Nerdbank.GitVersioning.targets" Condition="Exists('..\packages\Nerdbank.GitVersioning.2.1.23\build\Nerdbank.GitVersioning.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Nerdbank.GitVersioning.2.1.23\build\Nerdbank.GitVersioning.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Nerdbank.GitVersioning.2.1.23\build\Nerdbank.GitVersioning.targets'))" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
