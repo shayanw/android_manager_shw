@@ -113,9 +113,29 @@ namespace AndroidManager_SHW.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap backup8h {
+            get {
+                object obj = ResourceManager.GetObject("backup8h", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap backup8Orange {
             get {
                 object obj = ResourceManager.GetObject("backup8Orange", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap backup8Orangeh {
+            get {
+                object obj = ResourceManager.GetObject("backup8Orangeh", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

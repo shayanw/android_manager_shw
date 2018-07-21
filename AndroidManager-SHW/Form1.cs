@@ -320,6 +320,31 @@ namespace AndroidManager_SHW
             // pictureBox_setting.Size = new Size(55, 55);
         }
 
+
+        private void button_backupDirectory_MouseHover(object sender, EventArgs e)
+        {
+            if (currentDevice!=null)
+            {
+                button_backupDirectory.BackgroundImage = AndroidManager_SHW.Properties.Resources.backup8h;
+            }
+            else
+            {
+                button_backupDirectory.BackgroundImage = AndroidManager_SHW.Properties.Resources.backup8Orangeh;
+            }
+        }
+
+        private void button_backupDirectory_MouseLeave(object sender, EventArgs e)
+        {
+            if (currentDevice != null)
+            {
+                button_backupDirectory.BackgroundImage = AndroidManager_SHW.Properties.Resources.backup8;
+            }
+            else
+            {
+                button_backupDirectory.BackgroundImage = AndroidManager_SHW.Properties.Resources.backup8Orange;
+            }
+        }
+
         private void pictureBox_about_MouseHover(object sender, EventArgs e)
         {
             pictureBox_about.Image = AndroidManager_SHW.Properties.Resources.about8h;
@@ -384,6 +409,8 @@ namespace AndroidManager_SHW
             MessageBox.Show("Create By ShayanW" + "\n\n" + "shayan.worthy@msn.com" + "\n\n" + "CopyRight 2018-2019" + "\n\n" + "Version: 0.75 Beta", "About Me", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
+
+
         /// <summary>
         /// az Form_networkADB nemune sakhte mishe va ShowDialog mishe 
         /// </summary>
@@ -421,6 +448,8 @@ namespace AndroidManager_SHW
                 }
             }
         }
+
+
 
         private void comboBox_devices_SelectedIndexChanged(object sender, EventArgs e)
         {
