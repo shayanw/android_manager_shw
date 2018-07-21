@@ -226,12 +226,12 @@ namespace AndroidManager_SHW
         /// </summary>
         private void currentDeviceIsNullIcon()
         {
-            button_fileManager.Enabled = button_software.Enabled = button_code.Enabled = button_setting.Enabled = button_infoSystem.Enabled = false;
+            button_fileManager.Enabled = button_software.Enabled = button_code.Enabled = button_setting.Enabled = false;
             button_fileManager.BackgroundImage= AndroidManager_SHW.Properties.Resources.file8bw;
             button_software.BackgroundImage = AndroidManager_SHW.Properties.Resources.soft8bw;
             button_code.BackgroundImage= AndroidManager_SHW.Properties.Resources.code8bw;
             button_setting.BackgroundImage = AndroidManager_SHW.Properties.Resources.sett8bw;
-            button_infoSystem.BackgroundImage = AndroidManager_SHW.Properties.Resources.info8bw;
+
             pictureBox1.Image= AndroidManager_SHW.Properties.Resources.mobilebw;
             panel_upLeftSide.BackColor = Color.LightGray;
         }
@@ -330,15 +330,6 @@ namespace AndroidManager_SHW
             pictureBox_about.Image = AndroidManager_SHW.Properties.Resources.about8;
         }
 
-        private void pictureBox_infoSystem_MouseHover(object sender, EventArgs e)
-        {
-            button_infoSystem.BackgroundImage = AndroidManager_SHW.Properties.Resources.info8;
-        }
-
-        private void pictureBox_infoSystem_MouseLeave(object sender, EventArgs e)
-        {
-            button_infoSystem.BackgroundImage = AndroidManager_SHW.Properties.Resources.info8h;
-        }
 
         #endregion
 

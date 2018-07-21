@@ -206,16 +206,10 @@
     <None Include="Resources\soft8h.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\info8.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\about8.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\about8h.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\info8h.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\search.png" />
@@ -229,7 +223,6 @@
     <None Include="Resources\mobile.png" />
     <None Include="Resources\soft8bw.png" />
     <None Include="Resources\sett8bw.png" />
-    <None Include="Resources\info8bw.png" />
     <None Include="Resources\file8bw.png" />
     <None Include="Resources\code8bw.png" />
   </ItemGroup>

@@ -39,26 +39,25 @@
             this.button_check = new System.Windows.Forms.Button();
             this.panel_leftSide = new System.Windows.Forms.Panel();
             this.panel_upLeftSide = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label_serial = new System.Windows.Forms.Label();
             this.button_network = new System.Windows.Forms.Button();
             this.panel_downLeftSide = new System.Windows.Forms.Panel();
             this.toolTip_fileManager = new System.Windows.Forms.ToolTip(this.components);
             this.panel_rightSide = new System.Windows.Forms.Panel();
+            this.backgroundWorker_refreshCombo = new System.ComponentModel.BackgroundWorker();
+            this.timer_event = new System.Windows.Forms.Timer(this.components);
             this.button_setting = new System.Windows.Forms.Button();
-            this.button_infoSystem = new System.Windows.Forms.Button();
             this.button_code = new System.Windows.Forms.Button();
             this.button_software = new System.Windows.Forms.Button();
             this.button_fileManager = new System.Windows.Forms.Button();
             this.pictureBox_about = new System.Windows.Forms.PictureBox();
-            this.backgroundWorker_refreshCombo = new System.ComponentModel.BackgroundWorker();
-            this.timer_event = new System.Windows.Forms.Timer(this.components);
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel_leftSide.SuspendLayout();
             this.panel_upLeftSide.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel_downLeftSide.SuspendLayout();
             this.panel_rightSide.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_about)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // label_model
@@ -171,17 +170,6 @@
             this.panel_upLeftSide.Size = new System.Drawing.Size(301, 568);
             this.panel_upLeftSide.TabIndex = 5;
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.Image = global::AndroidManager_SHW.Properties.Resources.mobile;
-            this.pictureBox1.Location = new System.Drawing.Point(34, 288);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(238, 274);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
-            // 
             // label_serial
             // 
             this.label_serial.BackColor = System.Drawing.Color.Transparent;
@@ -229,7 +217,6 @@
             // 
             this.panel_rightSide.BackColor = System.Drawing.Color.White;
             this.panel_rightSide.Controls.Add(this.button_setting);
-            this.panel_rightSide.Controls.Add(this.button_infoSystem);
             this.panel_rightSide.Controls.Add(this.button_code);
             this.panel_rightSide.Controls.Add(this.button_software);
             this.panel_rightSide.Controls.Add(this.button_fileManager);
@@ -241,6 +228,17 @@
             this.panel_rightSide.Size = new System.Drawing.Size(81, 603);
             this.panel_rightSide.TabIndex = 5;
             // 
+            // backgroundWorker_refreshCombo
+            // 
+            this.backgroundWorker_refreshCombo.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker_refreshCombo_DoWork);
+            this.backgroundWorker_refreshCombo.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker_refreshCombo_RunWorkerCompleted);
+            // 
+            // timer_event
+            // 
+            this.timer_event.Enabled = true;
+            this.timer_event.Interval = 1000;
+            this.timer_event.Tick += new System.EventHandler(this.timer_event_Tick);
+            // 
             // button_setting
             // 
             this.button_setting.BackgroundImage = global::AndroidManager_SHW.Properties.Resources.sett8h;
@@ -249,7 +247,7 @@
             this.button_setting.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.button_setting.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.button_setting.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_setting.Location = new System.Drawing.Point(15, 334);
+            this.button_setting.Location = new System.Drawing.Point(15, 266);
             this.button_setting.Name = "button_setting";
             this.button_setting.Size = new System.Drawing.Size(55, 55);
             this.button_setting.TabIndex = 8;
@@ -257,23 +255,6 @@
             this.button_setting.Click += new System.EventHandler(this.pictureBox_software_Click);
             this.button_setting.MouseLeave += new System.EventHandler(this.pictureBox_setting_MouseLeave);
             this.button_setting.MouseHover += new System.EventHandler(this.pictureBox_setting_MouseHover);
-            // 
-            // button_infoSystem
-            // 
-            this.button_infoSystem.BackgroundImage = global::AndroidManager_SHW.Properties.Resources.info8h;
-            this.button_infoSystem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button_infoSystem.FlatAppearance.BorderSize = 0;
-            this.button_infoSystem.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.button_infoSystem.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.button_infoSystem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_infoSystem.Location = new System.Drawing.Point(15, 257);
-            this.button_infoSystem.Name = "button_infoSystem";
-            this.button_infoSystem.Size = new System.Drawing.Size(55, 55);
-            this.button_infoSystem.TabIndex = 7;
-            this.button_infoSystem.UseVisualStyleBackColor = true;
-            this.button_infoSystem.Click += new System.EventHandler(this.pictureBox_software_Click);
-            this.button_infoSystem.MouseLeave += new System.EventHandler(this.pictureBox_infoSystem_MouseLeave);
-            this.button_infoSystem.MouseHover += new System.EventHandler(this.pictureBox_infoSystem_MouseHover);
             // 
             // button_code
             // 
@@ -283,7 +264,7 @@
             this.button_code.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.button_code.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.button_code.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_code.Location = new System.Drawing.Point(15, 180);
+            this.button_code.Location = new System.Drawing.Point(15, 186);
             this.button_code.Name = "button_code";
             this.button_code.Size = new System.Drawing.Size(55, 55);
             this.button_code.TabIndex = 6;
@@ -300,7 +281,7 @@
             this.button_software.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.button_software.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.button_software.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_software.Location = new System.Drawing.Point(15, 103);
+            this.button_software.Location = new System.Drawing.Point(15, 106);
             this.button_software.Name = "button_software";
             this.button_software.Size = new System.Drawing.Size(55, 55);
             this.button_software.TabIndex = 5;
@@ -343,16 +324,16 @@
             this.pictureBox_about.MouseLeave += new System.EventHandler(this.pictureBox_about_MouseLeave);
             this.pictureBox_about.MouseHover += new System.EventHandler(this.pictureBox_about_MouseHover);
             // 
-            // backgroundWorker_refreshCombo
+            // pictureBox1
             // 
-            this.backgroundWorker_refreshCombo.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker_refreshCombo_DoWork);
-            this.backgroundWorker_refreshCombo.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker_refreshCombo_RunWorkerCompleted);
-            // 
-            // timer_event
-            // 
-            this.timer_event.Enabled = true;
-            this.timer_event.Interval = 1000;
-            this.timer_event.Tick += new System.EventHandler(this.timer_event_Tick);
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.Image = global::AndroidManager_SHW.Properties.Resources.mobile;
+            this.pictureBox1.Location = new System.Drawing.Point(34, 288);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(238, 274);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
             // 
             // HomeForm
             // 
@@ -370,10 +351,10 @@
             this.Load += new System.EventHandler(this.HomeForm_Load);
             this.panel_leftSide.ResumeLayout(false);
             this.panel_upLeftSide.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel_downLeftSide.ResumeLayout(false);
             this.panel_rightSide.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_about)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -398,7 +379,6 @@
         private System.Windows.Forms.Button button_fileManager;
         private System.Windows.Forms.Button button_software;
         private System.Windows.Forms.Button button_code;
-        private System.Windows.Forms.Button button_infoSystem;
         private System.Windows.Forms.Button button_setting;
         private System.Windows.Forms.Label label_serial;
         private System.Windows.Forms.Button button_network;
