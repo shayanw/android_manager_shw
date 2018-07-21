@@ -99,6 +99,7 @@ namespace AndroidManager_SHW
                     label_model.Text = "Please Allow USB Debuging";
                     label_serial.Text= "Serial:  " + currentDevice.Serial;
                     label_state.Text = "State: Away";
+                    button_mobileState.BackgroundImage = AndroidManager_SHW.Properties.Resources.mobileDebugging;
                     panel_downLeftSide.BackColor = Color.Yellow;
                     IsDebuging = true;
                     currentDevice = null;
@@ -233,6 +234,7 @@ namespace AndroidManager_SHW
             button_setting.BackgroundImage = AndroidManager_SHW.Properties.Resources.sett8bw;
 
             //pictureBox1.Image= AndroidManager_SHW.Properties.Resources.mobilebw;
+            button_mobileState.BackgroundImage = AndroidManager_SHW.Properties.Resources.mobileOffline;
             panel_upLeftSide.BackColor = Color.LightGray;
         }
 
@@ -248,6 +250,7 @@ namespace AndroidManager_SHW
             //button_code.BackgroundImage = AndroidManager_SHW.Properties.Resources.code8h;
             //button_setting.BackgroundImage = AndroidManager_SHW.Properties.Resources.sett8h;
             //pictureBox1.Image = AndroidManager_SHW.Properties.Resources.mobile;
+            button_mobileState.BackgroundImage = AndroidManager_SHW.Properties.Resources.mobileOnline;
             panel_upLeftSide.BackColor = Color.FromArgb(178, 230, 213/*168, 220, 203*/);
         }
 
