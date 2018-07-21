@@ -235,6 +235,7 @@ namespace AndroidManager_SHW
 
             //pictureBox1.Image= AndroidManager_SHW.Properties.Resources.mobilebw;
             button_mobileState.BackgroundImage = AndroidManager_SHW.Properties.Resources.mobileOffline;
+            button_backupDirectory.BackgroundImage = AndroidManager_SHW.Properties.Resources.backup8Orange;
             panel_upLeftSide.BackColor = Color.LightGray;
         }
 
@@ -251,6 +252,7 @@ namespace AndroidManager_SHW
             //button_setting.BackgroundImage = AndroidManager_SHW.Properties.Resources.sett8h;
             //pictureBox1.Image = AndroidManager_SHW.Properties.Resources.mobile;
             button_mobileState.BackgroundImage = AndroidManager_SHW.Properties.Resources.mobileOnline;
+            button_backupDirectory.BackgroundImage = AndroidManager_SHW.Properties.Resources.backup8;
             panel_upLeftSide.BackColor = Color.FromArgb(178, 230, 213/*168, 220, 203*/);
         }
 
@@ -391,6 +393,33 @@ namespace AndroidManager_SHW
         {
             Form_networkADB fnadb = new Form_networkADB();
             fnadb.ShowDialog();
+        }
+
+        private void button_backupDirectory_Click(object sender, EventArgs e)
+        {
+            if (currentDevice == null)
+            {
+                try
+                {
+                    System.Diagnostics.Process.Start(Option.MainPath + "\\" + Option.MainLabelDirectoryName);
+                }
+                catch
+                {
+
+                }
+            }
+            else
+            {
+                Option opt = new Option(currentDevice);
+                try
+                {
+                    System.Diagnostics.Process.Start(opt.MainPathBackupProp);
+                }
+                catch
+                {
+
+                }
+            }
         }
 
         private void comboBox_devices_SelectedIndexChanged(object sender, EventArgs e)

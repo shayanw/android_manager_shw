@@ -46,6 +46,7 @@
             this.panel_rightSide = new System.Windows.Forms.Panel();
             this.backgroundWorker_refreshCombo = new System.ComponentModel.BackgroundWorker();
             this.timer_event = new System.Windows.Forms.Timer(this.components);
+            this.button_backupDirectory = new System.Windows.Forms.Button();
             this.button_setting = new System.Windows.Forms.Button();
             this.button_code = new System.Windows.Forms.Button();
             this.button_software = new System.Windows.Forms.Button();
@@ -215,6 +216,7 @@
             // panel_rightSide
             // 
             this.panel_rightSide.BackColor = System.Drawing.Color.White;
+            this.panel_rightSide.Controls.Add(this.button_backupDirectory);
             this.panel_rightSide.Controls.Add(this.button_setting);
             this.panel_rightSide.Controls.Add(this.button_code);
             this.panel_rightSide.Controls.Add(this.button_software);
@@ -237,6 +239,21 @@
             this.timer_event.Enabled = true;
             this.timer_event.Interval = 1000;
             this.timer_event.Tick += new System.EventHandler(this.timer_event_Tick);
+            // 
+            // button_backupDirectory
+            // 
+            this.button_backupDirectory.BackgroundImage = global::AndroidManager_SHW.Properties.Resources.backup8bw;
+            this.button_backupDirectory.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button_backupDirectory.FlatAppearance.BorderSize = 0;
+            this.button_backupDirectory.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.button_backupDirectory.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.button_backupDirectory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_backupDirectory.Location = new System.Drawing.Point(15, 456);
+            this.button_backupDirectory.Name = "button_backupDirectory";
+            this.button_backupDirectory.Size = new System.Drawing.Size(55, 55);
+            this.button_backupDirectory.TabIndex = 8;
+            this.button_backupDirectory.UseVisualStyleBackColor = true;
+            this.button_backupDirectory.Click += new System.EventHandler(this.button_backupDirectory_Click);
             // 
             // button_setting
             // 
@@ -382,6 +399,7 @@
         private System.Windows.Forms.Label label_serial;
         private System.Windows.Forms.Button button_network;
         private System.Windows.Forms.Button button_mobileState;
+        private System.Windows.Forms.Button button_backupDirectory;
     }
 }
 
