@@ -242,19 +242,18 @@ namespace AndroidManager_SHW
         /// 
         private void currentDeviceIsOn()
         {
-            button_fileManager.Enabled = button_software.Enabled = /*button_code.Enabled = button_setting.Enabled = button_infoSystem.Enabled =*/ true;
-            button_fileManager.BackgroundImage = AndroidManager_SHW.Properties.Resources.file8h;
-            button_software.BackgroundImage = AndroidManager_SHW.Properties.Resources.soft8h;
+            button_fileManager.Enabled = button_software.Enabled = /*button_code.Enabled = button_setting.Enabled=*/ true;
+            button_fileManager.BackgroundImage = AndroidManager_SHW.Properties.Resources.file8;
+            button_software.BackgroundImage = AndroidManager_SHW.Properties.Resources.soft8;
             //button_code.BackgroundImage = AndroidManager_SHW.Properties.Resources.code8h;
             //button_setting.BackgroundImage = AndroidManager_SHW.Properties.Resources.sett8h;
-            //button_infoSystem.BackgroundImage = AndroidManager_SHW.Properties.Resources.info8h;
             pictureBox1.Image = AndroidManager_SHW.Properties.Resources.mobile;
             panel_upLeftSide.BackColor = Color.FromArgb(178, 230, 213/*168, 220, 203*/);
         }
 
         private void pictureBox_fileManager_MouseHover(object sender, EventArgs e)
         {
-            button_fileManager.BackgroundImage = AndroidManager_SHW.Properties.Resources.file8;
+            button_fileManager.BackgroundImage = AndroidManager_SHW.Properties.Resources.file8h;
             //  pictureBox_fileManager.Size = new Size(60, 60);
         }
 
@@ -264,13 +263,13 @@ namespace AndroidManager_SHW
             {
                 return;
             }
-            button_fileManager.BackgroundImage = AndroidManager_SHW.Properties.Resources.file8h;
+            button_fileManager.BackgroundImage = AndroidManager_SHW.Properties.Resources.file8;
             // pictureBox_fileManager.Size = new Size(55, 55);
         }
 
         private void pictureBox_software_MouseHover(object sender, EventArgs e)
         {
-            button_software.BackgroundImage = AndroidManager_SHW.Properties.Resources.soft8;
+            button_software.BackgroundImage = AndroidManager_SHW.Properties.Resources.soft8h;
             // pictureBox_software.Size = new Size(60, 60);
         }
 
@@ -280,13 +279,13 @@ namespace AndroidManager_SHW
             {
                 return;
             }
-            button_software.BackgroundImage = AndroidManager_SHW.Properties.Resources.soft8h;
+            button_software.BackgroundImage = AndroidManager_SHW.Properties.Resources.soft8;
             //pictureBox_software.Size = new Size(55, 55);
         }
 
         private void pictureBox_code_MouseHover(object sender, EventArgs e)
         {
-            button_code.BackgroundImage = AndroidManager_SHW.Properties.Resources.code8;
+            button_code.BackgroundImage = AndroidManager_SHW.Properties.Resources.code8h;
             //pictureBox_code.Size = new Size(60, 60);
         }
 
@@ -296,13 +295,13 @@ namespace AndroidManager_SHW
             {
                 return;
             }
-            button_code.BackgroundImage = AndroidManager_SHW.Properties.Resources.code8h;
+            button_code.BackgroundImage = AndroidManager_SHW.Properties.Resources.code8;
             //  pictureBox_code.Size = new Size(55, 55);
         }
 
         private void pictureBox_setting_MouseHover(object sender, EventArgs e)
         {
-            button_setting.BackgroundImage = AndroidManager_SHW.Properties.Resources.sett8;
+            button_setting.BackgroundImage = AndroidManager_SHW.Properties.Resources.sett8h;
             // pictureBox_setting.Size = new Size(60, 60);
         }
 
@@ -312,7 +311,7 @@ namespace AndroidManager_SHW
             {
                 return;
             }
-            button_setting.BackgroundImage = AndroidManager_SHW.Properties.Resources.sett8h;
+            button_setting.BackgroundImage = AndroidManager_SHW.Properties.Resources.sett8;
             // pictureBox_setting.Size = new Size(55, 55);
         }
 
