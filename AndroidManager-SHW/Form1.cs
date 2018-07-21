@@ -232,7 +232,7 @@ namespace AndroidManager_SHW
             button_code.BackgroundImage= AndroidManager_SHW.Properties.Resources.code8bw;
             button_setting.BackgroundImage = AndroidManager_SHW.Properties.Resources.sett8bw;
 
-            pictureBox1.Image= AndroidManager_SHW.Properties.Resources.mobilebw;
+            //pictureBox1.Image= AndroidManager_SHW.Properties.Resources.mobilebw;
             panel_upLeftSide.BackColor = Color.LightGray;
         }
 
@@ -247,7 +247,7 @@ namespace AndroidManager_SHW
             button_software.BackgroundImage = AndroidManager_SHW.Properties.Resources.soft8;
             //button_code.BackgroundImage = AndroidManager_SHW.Properties.Resources.code8h;
             //button_setting.BackgroundImage = AndroidManager_SHW.Properties.Resources.sett8h;
-            pictureBox1.Image = AndroidManager_SHW.Properties.Resources.mobile;
+            //pictureBox1.Image = AndroidManager_SHW.Properties.Resources.mobile;
             panel_upLeftSide.BackColor = Color.FromArgb(178, 230, 213/*168, 220, 203*/);
         }
 

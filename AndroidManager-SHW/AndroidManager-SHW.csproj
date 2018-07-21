@@ -219,8 +219,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="if_android_1220337.ico" />
-    <None Include="Resources\mobilebw.png" />
-    <None Include="Resources\mobile.png" />
     <None Include="Resources\soft8bw.png" />
     <None Include="Resources\sett8bw.png" />
     <None Include="Resources\file8bw.png" />
