@@ -75,7 +75,6 @@ namespace AndroidManager_SHW.PackageManager
                 oneRow.Clear();
                 oneRow.Add(item.Key);
                 oneRow.Add(PM.GetVersionInfo(item.Key).VersionName);
-
                 c++;
                 backgroundWorker_setDataGridView.ReportProgress(c, oneRow.ToArray());
             }
@@ -86,7 +85,30 @@ namespace AndroidManager_SHW.PackageManager
             progressBar_statePackage.Value = e.ProgressPercentage;
             label_statePackage.Text = "Proccess " + e.ProgressPercentage + "/" + TotalPackage + " Packages";
             string[] tmpList = (string[])e.UserState;
-            dataGridView_devicePackages.Rows.Add(tmpList[0], tmpList[1]);
+
+            int indexRow= dataGridView_devicePackages.Rows.Add(tmpList[0], tmpList[1]);
+            int stateExistBackup = am.ExistBackup(tmpList[1], tmpList[0]);
+            if (stateExistBackup == 0)
+            {
+                foreach (DataGridViewCell cell in dataGridView_devicePackages.Rows[indexRow].Cells)
+                {
+                    cell.Style.BackColor = Color.GreenYellow;
+                }
+            }
+            else if (stateExistBackup == 1)
+            {
+                foreach (DataGridViewCell cell in dataGridView_devicePackages.Rows[indexRow].Cells)
+                {
+                    cell.Style.BackColor = Color.LightSkyBlue;
+                }
+            }
+            else
+            {
+
+            }
+
+            
+
         }
         private void backgroundWorker_setDataGridView_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
@@ -353,7 +375,7 @@ namespace AndroidManager_SHW.PackageManager
                 string k = oneRow.Cells["Name"].Value.ToString();
                 string addressPackage = MyPackages.Where(a => a.Key == k).FirstOrDefault().Value;
                 string namePackage = MyPackages.Where(a => a.Key == k).FirstOrDefault().Key;
-
+      
                 if (am.BackupApk(addressPackage, versionPackage, namePackage))
                 {
                     success++;
@@ -401,19 +423,7 @@ namespace AndroidManager_SHW.PackageManager
         {
             string[] files = (string[])e.Data.GetData(DataFormats.FileDrop, false);
             foreach (string itemFile in files)
-            {
-                //if (Directory.Exists(itemFile))
-                //{
-                //    foreach (var item in returnAddressFilesInDirectory(itemFile))
-                //    {
-                //        addToListBox_TempPackages(itemFile);
-                //    }
-                //}
-                //else
-                //{
-                //    addToListBox_TempPackages(itemFile);
-                //}
-
+            { 
                 if (File.Exists(itemFile))
                 {
                     addToListBox_TempPackages(itemFile);

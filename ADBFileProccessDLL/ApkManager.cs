@@ -121,6 +121,29 @@ namespace ADBProccessDLL
             }
         }
 
+        public int ExistBackup(string version = "0V", string packageName = "oneApp.apk")
+        {
+            string fullnamebackup = option.intoApkBackupDirectory() + @"\" + apkVersion(packageName, version);
+            packageName = packageName.Replace(".apk", string.Empty);
+            if (File.Exists(fullnamebackup))
+            {
+                return 0;
+            }
+            else if (Directory.GetFiles(option.intoApkBackupDirectory(), "*"+packageName+"*").Count()>0)
+            {
+                return 1; 
+            }
+            else
+            {
+                return 2;
+            }
+
+            
+
+
+        }
+
+
         private string apkVersion(string apk,string version)
         {
             apk=apk.ToLower();
