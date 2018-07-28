@@ -138,14 +138,6 @@ namespace AndroidManager_SHW.PackageManager
                 foreach (DataGridViewRow oneRow in dataGridView_devicePackages.SelectedRows)
                 {
                     SelectedItemsForUnistall.Add(oneRow.Cells["Name"].Value.ToString());
-                    //if (am.UnistallApk(oneRow.Cells["Name"].Value.ToString()))
-                    //{
-                    //    MessageBox.Show("Done!", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    //}
-                    //else
-                    //{
-                    //    MessageBox.Show("Failed.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    //}
                 }
                 label_statePackage.Text = "Unistalling ";
                 progressBar_statePackage.Value = 0;
@@ -380,6 +372,10 @@ namespace AndroidManager_SHW.PackageManager
                 {
                     success++;
                     fail = 0;
+                    foreach (DataGridViewCell cell in oneRow.Cells)
+                    {
+                        cell.Style.BackColor = Color.GreenYellow;
+                    }
                 }
                 else
                 {
