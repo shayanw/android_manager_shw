@@ -213,6 +213,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="if_android_1220337.ico" />
+    <None Include="Resources\fm_con_upload.png" />
+    <None Include="Resources\fm_con_refresh.png" />
+    <None Include="Resources\fm_con_paste.png" />
+    <None Include="Resources\fm_con_newdr.png" />
+    <None Include="Resources\fm_con_details.png" />
+    <None Include="Resources\fm_con_delete.png" />
+    <None Include="Resources\fm_con_cut.png" />
+    <None Include="Resources\fm_con_copy.png" />
+    <None Include="Resources\fm_con_backup.png" />
     <None Include="Resources\pm_backup.png" />
     <None Include="Resources\pm_unistall.png" />
     <None Include="Resources\pm_install.png" />
