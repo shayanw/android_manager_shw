@@ -148,6 +148,9 @@
   <data name="con_reboot" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\con_reboot.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="con_bootloader" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\con_bootloader.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="con_shutdown" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\con_shutdown.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -180,6 +183,9 @@
   </data>
   <data name="backup8Orangeh" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\backup8Orangeh.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="refresh_shield8" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\refresh_shield8.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="soft8h" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\soft8h.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -217,7 +223,7 @@
   <data name="sett8" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\sett8.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="con_bootloader" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\con_bootloader.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="refresh_shield8h" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\refresh_shield8h.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

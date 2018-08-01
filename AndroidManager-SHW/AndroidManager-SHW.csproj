@@ -213,6 +213,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="if_android_1220337.ico" />
+    <None Include="Resources\refresh_shield8h.png" />
+    <None Include="Resources\refresh_shield8.png" />
     <None Include="Resources\con_bootloader.png" />
     <None Include="Resources\con_shutdown.png" />
     <None Include="Resources\con_recovery.png" />

@@ -36,7 +36,6 @@
             this.label_state = new System.Windows.Forms.Label();
             this.label_battery = new System.Windows.Forms.Label();
             this.comboBox_devices = new System.Windows.Forms.ComboBox();
-            this.button_check = new System.Windows.Forms.Button();
             this.panel_leftSide = new System.Windows.Forms.Panel();
             this.panel_upLeftSide = new System.Windows.Forms.Panel();
             this.label_serial = new System.Windows.Forms.Label();
@@ -55,10 +54,11 @@
             this.button_fileManager = new System.Windows.Forms.Button();
             this.pictureBox_about = new System.Windows.Forms.PictureBox();
             this.button_mobileState = new System.Windows.Forms.Button();
+            this.button_check = new System.Windows.Forms.Button();
             this.rebootToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.recoveryToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.shutdownToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.bootloaderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.shutdownToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.panel_leftSide.SuspendLayout();
             this.panel_upLeftSide.SuspendLayout();
             this.panel_downLeftSide.SuspendLayout();
@@ -130,24 +130,9 @@
             this.comboBox_devices.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox_devices.Location = new System.Drawing.Point(75, 38);
             this.comboBox_devices.Name = "comboBox_devices";
-            this.comboBox_devices.Size = new System.Drawing.Size(174, 28);
+            this.comboBox_devices.Size = new System.Drawing.Size(183, 28);
             this.comboBox_devices.TabIndex = 2;
             this.comboBox_devices.SelectedIndexChanged += new System.EventHandler(this.comboBox_devices_SelectedIndexChanged);
-            // 
-            // button_check
-            // 
-            this.button_check.BackColor = System.Drawing.SystemColors.Control;
-            this.button_check.FlatAppearance.BorderColor = System.Drawing.Color.DimGray;
-            this.button_check.FlatAppearance.BorderSize = 0;
-            this.button_check.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_check.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_check.Location = new System.Drawing.Point(255, 38);
-            this.button_check.Name = "button_check";
-            this.button_check.Size = new System.Drawing.Size(37, 28);
-            this.button_check.TabIndex = 1;
-            this.button_check.Text = "R";
-            this.button_check.UseVisualStyleBackColor = false;
-            this.button_check.Click += new System.EventHandler(this.button_check_Click);
             // 
             // panel_leftSide
             // 
@@ -274,7 +259,7 @@
             this.shutdownToolStripMenuItem1});
             this.contextMenuStrip_reboot.Name = "contextMenuStrip_reboot";
             this.contextMenuStrip_reboot.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.contextMenuStrip_reboot.Size = new System.Drawing.Size(215, 136);
+            this.contextMenuStrip_reboot.Size = new System.Drawing.Size(158, 108);
             // 
             // button_backupDirectory
             // 
@@ -391,11 +376,29 @@
             this.button_mobileState.TabIndex = 3;
             this.button_mobileState.UseVisualStyleBackColor = true;
             // 
+            // button_check
+            // 
+            this.button_check.BackColor = System.Drawing.Color.Transparent;
+            this.button_check.BackgroundImage = global::AndroidManager_SHW.Properties.Resources.refresh_shield8;
+            this.button_check.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button_check.FlatAppearance.BorderColor = System.Drawing.Color.DimGray;
+            this.button_check.FlatAppearance.BorderSize = 0;
+            this.button_check.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_check.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_check.Location = new System.Drawing.Point(264, 38);
+            this.button_check.Name = "button_check";
+            this.button_check.Size = new System.Drawing.Size(28, 28);
+            this.button_check.TabIndex = 1;
+            this.button_check.UseVisualStyleBackColor = false;
+            this.button_check.Click += new System.EventHandler(this.button_check_Click);
+            this.button_check.MouseLeave += new System.EventHandler(this.button_check_MouseLeave);
+            this.button_check.MouseHover += new System.EventHandler(this.button_check_MouseHover);
+            // 
             // rebootToolStripMenuItem1
             // 
             this.rebootToolStripMenuItem1.Image = global::AndroidManager_SHW.Properties.Resources.con_reboot;
             this.rebootToolStripMenuItem1.Name = "rebootToolStripMenuItem1";
-            this.rebootToolStripMenuItem1.Size = new System.Drawing.Size(214, 26);
+            this.rebootToolStripMenuItem1.Size = new System.Drawing.Size(157, 26);
             this.rebootToolStripMenuItem1.Text = "Reboot";
             this.rebootToolStripMenuItem1.Click += new System.EventHandler(this.rebootToolStripMenuItem_Click);
             // 
@@ -403,25 +406,25 @@
             // 
             this.recoveryToolStripMenuItem1.Image = global::AndroidManager_SHW.Properties.Resources.con_recovery;
             this.recoveryToolStripMenuItem1.Name = "recoveryToolStripMenuItem1";
-            this.recoveryToolStripMenuItem1.Size = new System.Drawing.Size(214, 26);
+            this.recoveryToolStripMenuItem1.Size = new System.Drawing.Size(157, 26);
             this.recoveryToolStripMenuItem1.Text = "Recovery";
             this.recoveryToolStripMenuItem1.Click += new System.EventHandler(this.recoveryToolStripMenuItem_Click);
-            // 
-            // shutdownToolStripMenuItem1
-            // 
-            this.shutdownToolStripMenuItem1.Image = global::AndroidManager_SHW.Properties.Resources.con_shutdown;
-            this.shutdownToolStripMenuItem1.Name = "shutdownToolStripMenuItem1";
-            this.shutdownToolStripMenuItem1.Size = new System.Drawing.Size(214, 26);
-            this.shutdownToolStripMenuItem1.Text = "Shutdown";
-            this.shutdownToolStripMenuItem1.Click += new System.EventHandler(this.shutdownToolStripMenuItem_Click);
             // 
             // bootloaderToolStripMenuItem
             // 
             this.bootloaderToolStripMenuItem.Image = global::AndroidManager_SHW.Properties.Resources.con_bootloader;
             this.bootloaderToolStripMenuItem.Name = "bootloaderToolStripMenuItem";
-            this.bootloaderToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
+            this.bootloaderToolStripMenuItem.Size = new System.Drawing.Size(157, 26);
             this.bootloaderToolStripMenuItem.Text = "Bootloader";
             this.bootloaderToolStripMenuItem.Click += new System.EventHandler(this.bootloaderToolStripMenuItem_Click);
+            // 
+            // shutdownToolStripMenuItem1
+            // 
+            this.shutdownToolStripMenuItem1.Image = global::AndroidManager_SHW.Properties.Resources.con_shutdown;
+            this.shutdownToolStripMenuItem1.Name = "shutdownToolStripMenuItem1";
+            this.shutdownToolStripMenuItem1.Size = new System.Drawing.Size(157, 26);
+            this.shutdownToolStripMenuItem1.Text = "Shutdown";
+            this.shutdownToolStripMenuItem1.Click += new System.EventHandler(this.shutdownToolStripMenuItem_Click);
             // 
             // HomeForm
             // 

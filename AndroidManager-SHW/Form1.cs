@@ -246,7 +246,15 @@ namespace AndroidManager_SHW
 
 
         #region Animation_Icons
+        private void button_check_MouseHover(object sender, EventArgs e)
+        {
+            button_check.BackgroundImage = AndroidManager_SHW.Properties.Resources.refresh_shield8h;
+        }
 
+        private void button_check_MouseLeave(object sender, EventArgs e)
+        {
+            button_check.BackgroundImage = AndroidManager_SHW.Properties.Resources.refresh_shield8;
+        }
         /// <summary>
         /// hameye icon ha black And white mishe
         /// </summary>
@@ -431,7 +439,7 @@ namespace AndroidManager_SHW
 
         private void pictureBox_about_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Create By ShayanW" + "\n\n" + "shayan.worthy@msn.com" + "\n\n" + "CopyRight 2018-2019" + "\n\n" + "Version: 0.79 Beta", "About Me", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Create By ShayanW" + "\n\n" + "shayan.worthy@msn.com" + "\n\n" + "CopyRight 2018-2019" + "\n\n" + "Version: 0.79.4 Beta", "About Me", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
 
@@ -505,6 +513,8 @@ namespace AndroidManager_SHW
             ExternalMethod.AdbCommand(cmdadb);
             RefreshDevices();
         }
+
+
 
         private void comboBox_devices_SelectedIndexChanged(object sender, EventArgs e)
         {
