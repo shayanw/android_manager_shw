@@ -269,7 +269,8 @@ namespace AndroidManager_SHW
             //pictureBox1.Image= AndroidManager_SHW.Properties.Resources.mobilebw;
             button_mobileState.BackgroundImage = AndroidManager_SHW.Properties.Resources.mobileOffline;
             button_backupDirectory.BackgroundImage = AndroidManager_SHW.Properties.Resources.backup8Orange;
-            panel_upLeftSide.BackColor = Color.LightGray;
+            //panel_upLeftSide.BackColor = Color.LightGray;
+            panel_upLeftSide.BackgroundImage = AndroidManager_SHW.Properties.Resources.walpaperbw;
         }
 
         /// <summary>
@@ -286,7 +287,8 @@ namespace AndroidManager_SHW
             //pictureBox1.Image = AndroidManager_SHW.Properties.Resources.mobile;
             button_mobileState.BackgroundImage = AndroidManager_SHW.Properties.Resources.mobileOnline;
             button_backupDirectory.BackgroundImage = AndroidManager_SHW.Properties.Resources.backup8;
-            panel_upLeftSide.BackColor = Color.FromArgb(178, 230, 213/*168, 220, 203*/);
+            //panel_upLeftSide.BackColor = Color.FromArgb(178, 230, 213/*168, 220, 203*/);
+            panel_upLeftSide.BackgroundImage = AndroidManager_SHW.Properties.Resources.walpapernew6;
         }
 
         private void pictureBox_fileManager_MouseHover(object sender, EventArgs e)
