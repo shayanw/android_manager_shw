@@ -63,7 +63,10 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.pictureBox_searchIcon = new System.Windows.Forms.PictureBox();
             this.panel_leftFooter = new System.Windows.Forms.Panel();
+            this.panel_leftButton = new System.Windows.Forms.Panel();
             this.button_unistallDevicePackages = new System.Windows.Forms.Button();
+            this.panel_righteButton = new System.Windows.Forms.Panel();
+            this.button_backupDevicePackages = new System.Windows.Forms.Button();
             this.panel_leftHeader = new System.Windows.Forms.Panel();
             this.backgroundWorker_setDataGridView = new System.ComponentModel.BackgroundWorker();
             this.openFileDialog_apk = new System.Windows.Forms.OpenFileDialog();
@@ -86,13 +89,14 @@
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_searchIcon)).BeginInit();
             this.panel_leftFooter.SuspendLayout();
+            this.panel_leftButton.SuspendLayout();
+            this.panel_righteButton.SuspendLayout();
             this.panel_leftHeader.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel_details
             // 
             this.panel_details.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(190)))), ((int)(((byte)(195)))));
-            this.panel_details.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel_details.Controls.Add(this.pictureBox2);
             this.panel_details.Controls.Add(this.label_statePackage);
             this.panel_details.Controls.Add(this.label_namePackage);
@@ -108,9 +112,9 @@
             // 
             this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Right;
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(656, 13);
+            this.pictureBox2.Location = new System.Drawing.Point(660, 13);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(50, 54);
+            this.pictureBox2.Size = new System.Drawing.Size(50, 58);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 7;
             this.pictureBox2.TabStop = false;
@@ -119,7 +123,7 @@
             // 
             this.label_statePackage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label_statePackage.Font = new System.Drawing.Font("Segoe UI Semibold", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_statePackage.Location = new System.Drawing.Point(364, 13);
+            this.label_statePackage.Location = new System.Drawing.Point(368, 13);
             this.label_statePackage.Name = "label_statePackage";
             this.label_statePackage.Size = new System.Drawing.Size(288, 20);
             this.label_statePackage.TabIndex = 2;
@@ -149,7 +153,7 @@
             this.progressBar_statePackage.Dock = System.Windows.Forms.DockStyle.Top;
             this.progressBar_statePackage.Location = new System.Drawing.Point(0, 0);
             this.progressBar_statePackage.Name = "progressBar_statePackage";
-            this.progressBar_statePackage.Size = new System.Drawing.Size(706, 13);
+            this.progressBar_statePackage.Size = new System.Drawing.Size(710, 13);
             this.progressBar_statePackage.TabIndex = 0;
             this.progressBar_statePackage.Visible = false;
             // 
@@ -196,6 +200,7 @@
             // 
             this.listBox_tempPackages.AllowDrop = true;
             this.listBox_tempPackages.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(230)))), ((int)(((byte)(233)))));
+            this.listBox_tempPackages.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.listBox_tempPackages.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listBox_tempPackages.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBox_tempPackages.FormattingEnabled = true;
@@ -279,13 +284,15 @@
             this.button_installTempPackages.Dock = System.Windows.Forms.DockStyle.Fill;
             this.button_installTempPackages.FlatAppearance.BorderColor = System.Drawing.Color.DimGray;
             this.button_installTempPackages.FlatAppearance.BorderSize = 0;
-            this.button_installTempPackages.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_installTempPackages.Font = new System.Drawing.Font("Segoe UI Semibold", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_installTempPackages.Image = global::AndroidManager_SHW.Properties.Resources.pm_install;
+            this.button_installTempPackages.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.button_installTempPackages.Location = new System.Drawing.Point(0, 0);
             this.button_installTempPackages.Name = "button_installTempPackages";
             this.button_installTempPackages.Size = new System.Drawing.Size(173, 59);
             this.button_installTempPackages.TabIndex = 8;
             this.button_installTempPackages.Text = "Install";
+            this.button_installTempPackages.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button_installTempPackages.UseVisualStyleBackColor = false;
             this.button_installTempPackages.Click += new System.EventHandler(this.button_installTempPackages_Click);
             // 
@@ -304,10 +311,11 @@
             // 
             this.radioButton_externalMemory.AutoSize = true;
             this.radioButton_externalMemory.BackColor = System.Drawing.Color.Transparent;
+            this.radioButton_externalMemory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.radioButton_externalMemory.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radioButton_externalMemory.Location = new System.Drawing.Point(11, 30);
             this.radioButton_externalMemory.Name = "radioButton_externalMemory";
-            this.radioButton_externalMemory.Size = new System.Drawing.Size(95, 23);
+            this.radioButton_externalMemory.Size = new System.Drawing.Size(94, 23);
             this.radioButton_externalMemory.TabIndex = 7;
             this.radioButton_externalMemory.Text = "External M";
             this.radioButton_externalMemory.UseVisualStyleBackColor = false;
@@ -317,10 +325,11 @@
             this.radioButton_internalMemory.AutoSize = true;
             this.radioButton_internalMemory.BackColor = System.Drawing.Color.Transparent;
             this.radioButton_internalMemory.Checked = true;
+            this.radioButton_internalMemory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.radioButton_internalMemory.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radioButton_internalMemory.Location = new System.Drawing.Point(11, 6);
             this.radioButton_internalMemory.Name = "radioButton_internalMemory";
-            this.radioButton_internalMemory.Size = new System.Drawing.Size(94, 23);
+            this.radioButton_internalMemory.Size = new System.Drawing.Size(93, 23);
             this.radioButton_internalMemory.TabIndex = 6;
             this.radioButton_internalMemory.TabStop = true;
             this.radioButton_internalMemory.Text = "Internal M";
@@ -357,6 +366,7 @@
             this.dataGridView_devicePackages.AllowUserToResizeColumns = false;
             this.dataGridView_devicePackages.AllowUserToResizeRows = false;
             this.dataGridView_devicePackages.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(230)))), ((int)(((byte)(233)))));
+            this.dataGridView_devicePackages.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridView_devicePackages.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.RaisedHorizontal;
             this.dataGridView_devicePackages.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.dataGridView_devicePackages.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -396,26 +406,27 @@
             this.backupToolStripMenuItem,
             this.unistallToolStripMenuItem});
             this.contextMenuStrip_dataGridView.Name = "contextMenuStrip_dataGridView";
-            this.contextMenuStrip_dataGridView.Size = new System.Drawing.Size(128, 52);
+            this.contextMenuStrip_dataGridView.Size = new System.Drawing.Size(132, 56);
             // 
             // backupToolStripMenuItem
             // 
+            this.backupToolStripMenuItem.Image = global::AndroidManager_SHW.Properties.Resources.pm_backup;
             this.backupToolStripMenuItem.Name = "backupToolStripMenuItem";
-            this.backupToolStripMenuItem.Size = new System.Drawing.Size(127, 24);
+            this.backupToolStripMenuItem.Size = new System.Drawing.Size(131, 26);
             this.backupToolStripMenuItem.Text = "Backup";
             this.backupToolStripMenuItem.Click += new System.EventHandler(this.backupToolStripMenuItem_Click);
             // 
             // unistallToolStripMenuItem
             // 
+            this.unistallToolStripMenuItem.Image = global::AndroidManager_SHW.Properties.Resources.pm_unistall;
             this.unistallToolStripMenuItem.Name = "unistallToolStripMenuItem";
-            this.unistallToolStripMenuItem.Size = new System.Drawing.Size(127, 24);
+            this.unistallToolStripMenuItem.Size = new System.Drawing.Size(131, 26);
             this.unistallToolStripMenuItem.Text = "Unistall";
             this.unistallToolStripMenuItem.Click += new System.EventHandler(this.button_unistallDevicePackages_Click);
             // 
             // panel_leftSearch
             // 
             this.panel_leftSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(230)))), ((int)(((byte)(233)))));
-            this.panel_leftSearch.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel_leftSearch.Controls.Add(this.panel4);
             this.panel_leftSearch.Controls.Add(this.panel3);
             this.panel_leftSearch.Dock = System.Windows.Forms.DockStyle.Top;
@@ -431,7 +442,7 @@
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel4.Location = new System.Drawing.Point(0, 0);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(366, 24);
+            this.panel4.Size = new System.Drawing.Size(370, 28);
             this.panel4.TabIndex = 9;
             // 
             // textBox_search
@@ -443,7 +454,7 @@
             this.textBox_search.ForeColor = System.Drawing.Color.Black;
             this.textBox_search.Location = new System.Drawing.Point(0, 0);
             this.textBox_search.Name = "textBox_search";
-            this.textBox_search.Size = new System.Drawing.Size(366, 20);
+            this.textBox_search.Size = new System.Drawing.Size(370, 20);
             this.textBox_search.TabIndex = 3;
             this.textBox_search.Text = "Search Now •••";
             this.textBox_search.Enter += new System.EventHandler(this.textBox_search_Enter);
@@ -454,9 +465,9 @@
             // 
             this.panel3.Controls.Add(this.pictureBox_searchIcon);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel3.Location = new System.Drawing.Point(366, 0);
+            this.panel3.Location = new System.Drawing.Point(370, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(48, 24);
+            this.panel3.Size = new System.Drawing.Size(48, 28);
             this.panel3.TabIndex = 8;
             // 
             // pictureBox_searchIcon
@@ -466,19 +477,30 @@
             this.pictureBox_searchIcon.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_searchIcon.Image")));
             this.pictureBox_searchIcon.Location = new System.Drawing.Point(0, 0);
             this.pictureBox_searchIcon.Name = "pictureBox_searchIcon";
-            this.pictureBox_searchIcon.Size = new System.Drawing.Size(48, 24);
+            this.pictureBox_searchIcon.Size = new System.Drawing.Size(48, 28);
             this.pictureBox_searchIcon.TabIndex = 7;
             this.pictureBox_searchIcon.TabStop = false;
             this.pictureBox_searchIcon.Click += new System.EventHandler(this.pictureBox_searchIcon_Click);
             // 
             // panel_leftFooter
             // 
-            this.panel_leftFooter.Controls.Add(this.button_unistallDevicePackages);
+            this.panel_leftFooter.BackColor = System.Drawing.Color.Transparent;
+            this.panel_leftFooter.Controls.Add(this.panel_leftButton);
+            this.panel_leftFooter.Controls.Add(this.panel_righteButton);
             this.panel_leftFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel_leftFooter.Location = new System.Drawing.Point(0, 601);
             this.panel_leftFooter.Name = "panel_leftFooter";
             this.panel_leftFooter.Size = new System.Drawing.Size(418, 59);
             this.panel_leftFooter.TabIndex = 2;
+            // 
+            // panel_leftButton
+            // 
+            this.panel_leftButton.Controls.Add(this.button_unistallDevicePackages);
+            this.panel_leftButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel_leftButton.Location = new System.Drawing.Point(0, 0);
+            this.panel_leftButton.Name = "panel_leftButton";
+            this.panel_leftButton.Size = new System.Drawing.Size(245, 59);
+            this.panel_leftButton.TabIndex = 4;
             // 
             // button_unistallDevicePackages
             // 
@@ -486,15 +508,44 @@
             this.button_unistallDevicePackages.Dock = System.Windows.Forms.DockStyle.Fill;
             this.button_unistallDevicePackages.FlatAppearance.BorderColor = System.Drawing.Color.DimGray;
             this.button_unistallDevicePackages.FlatAppearance.BorderSize = 0;
-            this.button_unistallDevicePackages.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_unistallDevicePackages.Font = new System.Drawing.Font("Segoe UI Semibold", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_unistallDevicePackages.Image = global::AndroidManager_SHW.Properties.Resources.pm_unistall;
+            this.button_unistallDevicePackages.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.button_unistallDevicePackages.Location = new System.Drawing.Point(0, 0);
             this.button_unistallDevicePackages.Name = "button_unistallDevicePackages";
-            this.button_unistallDevicePackages.Size = new System.Drawing.Size(418, 59);
+            this.button_unistallDevicePackages.Size = new System.Drawing.Size(245, 59);
             this.button_unistallDevicePackages.TabIndex = 2;
             this.button_unistallDevicePackages.Text = "Unistall";
+            this.button_unistallDevicePackages.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button_unistallDevicePackages.UseVisualStyleBackColor = false;
             this.button_unistallDevicePackages.Click += new System.EventHandler(this.button_unistallDevicePackages_Click);
+            // 
+            // panel_righteButton
+            // 
+            this.panel_righteButton.Controls.Add(this.button_backupDevicePackages);
+            this.panel_righteButton.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel_righteButton.Location = new System.Drawing.Point(245, 0);
+            this.panel_righteButton.Name = "panel_righteButton";
+            this.panel_righteButton.Size = new System.Drawing.Size(173, 59);
+            this.panel_righteButton.TabIndex = 3;
+            // 
+            // button_backupDevicePackages
+            // 
+            this.button_backupDevicePackages.BackColor = System.Drawing.Color.Aquamarine;
+            this.button_backupDevicePackages.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button_backupDevicePackages.FlatAppearance.BorderColor = System.Drawing.Color.DimGray;
+            this.button_backupDevicePackages.FlatAppearance.BorderSize = 0;
+            this.button_backupDevicePackages.Font = new System.Drawing.Font("Segoe UI Semibold", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_backupDevicePackages.Image = global::AndroidManager_SHW.Properties.Resources.pm_backup;
+            this.button_backupDevicePackages.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button_backupDevicePackages.Location = new System.Drawing.Point(0, 0);
+            this.button_backupDevicePackages.Name = "button_backupDevicePackages";
+            this.button_backupDevicePackages.Size = new System.Drawing.Size(173, 59);
+            this.button_backupDevicePackages.TabIndex = 2;
+            this.button_backupDevicePackages.Text = "Backup";
+            this.button_backupDevicePackages.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button_backupDevicePackages.UseVisualStyleBackColor = false;
+            this.button_backupDevicePackages.Click += new System.EventHandler(this.backupToolStripMenuItem_Click);
             // 
             // panel_leftHeader
             // 
@@ -573,6 +624,8 @@
             this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_searchIcon)).EndInit();
             this.panel_leftFooter.ResumeLayout(false);
+            this.panel_leftButton.ResumeLayout(false);
+            this.panel_righteButton.ResumeLayout(false);
             this.panel_leftHeader.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -620,5 +673,8 @@
         private System.Windows.Forms.ToolStripMenuItem backupToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem unistallToolStripMenuItem;
         private System.ComponentModel.BackgroundWorker backgroundWorker_backupPackages;
+        private System.Windows.Forms.Button button_backupDevicePackages;
+        private System.Windows.Forms.Panel panel_leftButton;
+        private System.Windows.Forms.Panel panel_righteButton;
     }
 }

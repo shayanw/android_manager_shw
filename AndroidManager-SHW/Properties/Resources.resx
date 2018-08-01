@@ -118,9 +118,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="backup8" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\backup8.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="power8" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\power8.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -130,8 +127,14 @@
   <data name="search4" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\search4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="con_recovery" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\con_recovery.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="backup8h" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\backup8h.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="file8bw" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\file8bw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Next" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Next.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -139,11 +142,11 @@
   <data name="mobileOffline" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\mobileOffline.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="mobileOnline" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\mobileOnline.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="monitor_CodeForm" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\monitor_CodeForm.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="collapse" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\collapse.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="con_reboot" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\con_reboot.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -175,8 +178,8 @@
   <data name="about8h" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\about8h.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="con_recovery" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\con_recovery.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="refresh_shield8h" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\refresh_shield8h.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="file8" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\file8.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -196,8 +199,11 @@
   <data name="soft8bw" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\soft8bw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="collapse" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\collapse.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="pm_unistall" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pm_unistall.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="backup8" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\backup8.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="file8h" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\file8h.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -208,8 +214,8 @@
   <data name="power8h" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\power8h.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="file8bw" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\file8bw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="mobileOnline" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mobileOnline.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="mobileDebugging" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\mobileDebugging.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -223,7 +229,10 @@
   <data name="sett8" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\sett8.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="refresh_shield8h" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\refresh_shield8h.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="pm_install" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pm_install.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pm_backup" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pm_backup.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
