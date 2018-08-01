@@ -188,13 +188,7 @@
     <None Include="Resources\soft8.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\code8.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\sett8.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\code8h.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\file8h.png" />
@@ -219,6 +213,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="if_android_1220337.ico" />
+    <None Include="Resources\con_bootloader.png" />
+    <None Include="Resources\con_shutdown.png" />
+    <None Include="Resources\con_recovery.png" />
+    <None Include="Resources\con_reboot.png" />
+    <None Include="Resources\power8h.png" />
+    <None Include="Resources\power8bw.png" />
+    <None Include="Resources\power8.png" />
+    <None Include="Resources\monitor_CodeForm.png" />
     <None Include="Resources\backup8Orangeh.png" />
     <None Include="Resources\backup8h.png" />
     <None Include="Resources\backup8Orange.png" />
@@ -230,7 +232,6 @@
     <None Include="Resources\soft8bw.png" />
     <None Include="Resources\sett8bw.png" />
     <None Include="Resources\file8bw.png" />
-    <None Include="Resources\code8bw.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">

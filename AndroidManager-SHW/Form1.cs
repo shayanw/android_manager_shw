@@ -187,6 +187,31 @@ namespace AndroidManager_SHW
             childForms.Add(pmrf);
 
         }
+
+        private void rebootToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ExternalMethod.resultCommand("reboot sideload-auto-reboot", currentDevice);
+            RefreshDevices();
+        }
+        private void recoveryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ExternalMethod.resultCommand("reboot recovery", currentDevice);
+            RefreshDevices();
+        }
+        private void bootloaderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ExternalMethod.resultCommand("reboot bootloader", currentDevice);
+            RefreshDevices();
+        }
+        private void shutdownToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ExternalMethod.resultCommand("reboot -p", currentDevice);
+            //ExternalMethod.AdbCommand(string.Format("adb -s {0} shell reboot -p",currentDevice.Serial));
+            RefreshDevices();
+        }
+
+
+
         void TestDeviceConnect()
         {
             var monitor = new DeviceMonitor(new AdbSocket(new IPEndPoint(IPAddress.Loopback, AdbClient.AdbServerPort)));
@@ -227,10 +252,10 @@ namespace AndroidManager_SHW
         /// </summary>
         private void currentDeviceIsNullIcon()
         {
-            button_fileManager.Enabled = button_software.Enabled = button_code.Enabled = button_setting.Enabled = false;
+            button_fileManager.Enabled = button_software.Enabled = button_shutdown.Enabled = button_setting.Enabled = false;
             button_fileManager.BackgroundImage= AndroidManager_SHW.Properties.Resources.file8bw;
             button_software.BackgroundImage = AndroidManager_SHW.Properties.Resources.soft8bw;
-            button_code.BackgroundImage= AndroidManager_SHW.Properties.Resources.code8bw;
+            button_shutdown.BackgroundImage= AndroidManager_SHW.Properties.Resources.power8bw;
             button_setting.BackgroundImage = AndroidManager_SHW.Properties.Resources.sett8bw;
 
             //pictureBox1.Image= AndroidManager_SHW.Properties.Resources.mobilebw;
@@ -245,10 +270,10 @@ namespace AndroidManager_SHW
         /// 
         private void currentDeviceIsOn()
         {
-            button_fileManager.Enabled = button_software.Enabled = /*button_code.Enabled = button_setting.Enabled=*/ true;
+            button_fileManager.Enabled = button_software.Enabled = button_shutdown.Enabled = /*button_setting.Enabled=*/ true;
             button_fileManager.BackgroundImage = AndroidManager_SHW.Properties.Resources.file8;
             button_software.BackgroundImage = AndroidManager_SHW.Properties.Resources.soft8;
-            //button_code.BackgroundImage = AndroidManager_SHW.Properties.Resources.code8h;
+            button_shutdown.BackgroundImage = AndroidManager_SHW.Properties.Resources.power8;
             //button_setting.BackgroundImage = AndroidManager_SHW.Properties.Resources.sett8h;
             //pictureBox1.Image = AndroidManager_SHW.Properties.Resources.mobile;
             button_mobileState.BackgroundImage = AndroidManager_SHW.Properties.Resources.mobileOnline;
@@ -290,7 +315,7 @@ namespace AndroidManager_SHW
 
         private void pictureBox_code_MouseHover(object sender, EventArgs e)
         {
-            button_code.BackgroundImage = AndroidManager_SHW.Properties.Resources.code8h;
+            button_shutdown.BackgroundImage = AndroidManager_SHW.Properties.Resources.power8h;
             //pictureBox_code.Size = new Size(60, 60);
         }
 
@@ -300,7 +325,7 @@ namespace AndroidManager_SHW
             {
                 return;
             }
-            button_code.BackgroundImage = AndroidManager_SHW.Properties.Resources.code8;
+            button_shutdown.BackgroundImage = AndroidManager_SHW.Properties.Resources.power8;
             //  pictureBox_code.Size = new Size(55, 55);
         }
 
@@ -406,7 +431,7 @@ namespace AndroidManager_SHW
 
         private void pictureBox_about_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Create By ShayanW" + "\n\n" + "shayan.worthy@msn.com" + "\n\n" + "CopyRight 2018-2019" + "\n\n" + "Version: 0.78 Beta", "About Me", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Create By ShayanW" + "\n\n" + "shayan.worthy@msn.com" + "\n\n" + "CopyRight 2018-2019" + "\n\n" + "Version: 0.79 Beta", "About Me", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
 
@@ -449,7 +474,37 @@ namespace AndroidManager_SHW
             }
         }
 
+        private void button_code_Click(object sender, EventArgs e)
+        {
+            if (currentDevice == null)
+            {
+                return;
+            }
+            contextMenuStrip_reboot.Show(button_shutdown,new Point(0,0));
 
+            //AdbCommand.CommandForm cmdf = new AdbCommand.CommandForm(currentDevice);
+            //cmdf.ShowDialog();
+
+            ////----- ezafi -----
+            //childForms.Add(cmdf);
+        }
+
+        private void button_reconnect_Click(object sender, EventArgs e)
+        {
+            string cmdadb = "";
+
+            if (currentDevice==null)
+            {
+                cmdadb = "reconnect";
+            }
+            else
+            {
+                cmdadb = string.Format("-s {0} reconnect", currentDevice.Serial);
+            }
+
+            ExternalMethod.AdbCommand(cmdadb);
+            RefreshDevices();
+        }
 
         private void comboBox_devices_SelectedIndexChanged(object sender, EventArgs e)
         {
