@@ -21,6 +21,8 @@ namespace ADBProccessDLL
         static public string FullAddressBackupApk = "";
         static public string DeviceDirectoryName;
 
+        
+        
         /// <summary>
         /// make and return main path for backup
         /// </summary>

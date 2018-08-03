@@ -179,7 +179,7 @@
             this.button_setting.Size = new System.Drawing.Size(55, 55);
             this.button_setting.TabIndex = 8;
             this.button_setting.UseVisualStyleBackColor = false;
-            this.button_setting.Click += new System.EventHandler(this.pictureBox_software_Click);
+            this.button_setting.Click += new System.EventHandler(this.button_setting_Click);
             this.button_setting.MouseLeave += new System.EventHandler(this.pictureBox_setting_MouseLeave);
             this.button_setting.MouseHover += new System.EventHandler(this.pictureBox_setting_MouseHover);
             // 

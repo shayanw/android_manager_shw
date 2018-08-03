@@ -22,7 +22,7 @@ namespace AndroidManager_SHW
         public static DeviceData currentDevice;
         List<Form> childForms = new List<Form>();
         bool IsDisconnect, IsConnect, IsDebuging;
-
+        ADBProccessDLL.Setting st;
 
         public HomeForm()
         {
@@ -33,6 +33,7 @@ namespace AndroidManager_SHW
             currentDevice = null;
             IsDisconnect = IsConnect = IsDebuging = false;
             TestDeviceConnect();
+            st = new ADBProccessDLL.Setting();
         }
 
         private void HomeForm_Load(object sender, EventArgs e)
@@ -260,11 +261,11 @@ namespace AndroidManager_SHW
         /// </summary>
         private void currentDeviceIsNullIcon()
         {
-            button_fileManager.Enabled = button_software.Enabled = button_shutdown.Enabled = button_setting.Enabled = false;
+            button_fileManager.Enabled = button_software.Enabled = button_shutdown.Enabled /*= button_setting.Enabled*/ = false;
             button_fileManager.BackgroundImage= AndroidManager_SHW.Properties.Resources.file8bw;
             button_software.BackgroundImage = AndroidManager_SHW.Properties.Resources.soft8bw;
             button_shutdown.BackgroundImage= AndroidManager_SHW.Properties.Resources.power8bw;
-            button_setting.BackgroundImage = AndroidManager_SHW.Properties.Resources.sett8bw;
+            //button_setting.BackgroundImage = AndroidManager_SHW.Properties.Resources.sett8bw;
 
             //pictureBox1.Image= AndroidManager_SHW.Properties.Resources.mobilebw;
             button_mobileState.BackgroundImage = AndroidManager_SHW.Properties.Resources.mobileOffline;
@@ -279,11 +280,11 @@ namespace AndroidManager_SHW
         /// 
         private void currentDeviceIsOn()
         {
-            button_fileManager.Enabled = button_software.Enabled = button_shutdown.Enabled = /*button_setting.Enabled=*/ true;
+            button_fileManager.Enabled = button_software.Enabled = button_shutdown.Enabled = button_setting.Enabled = true;
             button_fileManager.BackgroundImage = AndroidManager_SHW.Properties.Resources.file8;
             button_software.BackgroundImage = AndroidManager_SHW.Properties.Resources.soft8;
             button_shutdown.BackgroundImage = AndroidManager_SHW.Properties.Resources.power8;
-            //button_setting.BackgroundImage = AndroidManager_SHW.Properties.Resources.sett8h;
+            button_setting.BackgroundImage = AndroidManager_SHW.Properties.Resources.sett8h;
             //pictureBox1.Image = AndroidManager_SHW.Properties.Resources.mobile;
             button_mobileState.BackgroundImage = AndroidManager_SHW.Properties.Resources.mobileOnline;
             button_backupDirectory.BackgroundImage = AndroidManager_SHW.Properties.Resources.backup8;
@@ -441,7 +442,7 @@ namespace AndroidManager_SHW
 
         private void pictureBox_about_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Create By ShayanW" + "\n\n" + "shayan.worthy@msn.com" + "\n\n" + "CopyRight 2018-2019" + "\n\n" + "Version: 0.81 Beta", "About Me", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Create By ShayanW" + "\n\n" + "shayan.worthy@msn.com" + "\n\n" + "CopyRight 2018-2019" + "\n\n" + "Version: 0.82 Beta", "About Me", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
 
@@ -516,7 +517,11 @@ namespace AndroidManager_SHW
             RefreshDevices();
         }
 
-
+        private void button_setting_Click(object sender, EventArgs e)
+        {
+            Setting.SettingForm stf = new Setting.SettingForm();
+            stf.ShowDialog();
+        }
 
         private void comboBox_devices_SelectedIndexChanged(object sender, EventArgs e)
         {
