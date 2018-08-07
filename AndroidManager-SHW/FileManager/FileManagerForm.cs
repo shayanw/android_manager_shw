@@ -1114,7 +1114,7 @@ namespace AndroidManager_SHW
             }
             foreach (ADBFile tmpfile in fm.ListAdbFiles)
             {
-                tmpfile.SetSizeAdbFile();
+                tmpfile.GetLengthDouble();
             }
         }
 

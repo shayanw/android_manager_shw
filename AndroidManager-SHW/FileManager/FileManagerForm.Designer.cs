@@ -37,36 +37,36 @@
             this.panel_fillRightSideBar = new System.Windows.Forms.Panel();
             this.listView_files = new System.Windows.Forms.ListView();
             this.contextMenuStrip_ListView = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.refreshToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.backupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.uploadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pasteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.newFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.propertiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imageList_iconFile = new System.Windows.Forms.ImageList(this.components);
             this.panel_rightSideBarProgress = new System.Windows.Forms.Panel();
             this.panel_rightSideBarDown = new System.Windows.Forms.Panel();
+            this.button_showSize = new System.Windows.Forms.Button();
             this.label_size = new System.Windows.Forms.Label();
+            this.label_IsShowSize = new System.Windows.Forms.Label();
             this.label_type = new System.Windows.Forms.Label();
             this.label_name = new System.Windows.Forms.Label();
             this.panel_rightSideBarUp = new System.Windows.Forms.Panel();
             this.toolStrip_upMain = new System.Windows.Forms.ToolStrip();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripTextBox_path = new System.Windows.Forms.ToolStripTextBox();
-            this.backgroundWorker_ProccessSize = new System.ComponentModel.BackgroundWorker();
-            this.refreshToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.backupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.uploadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pasteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.newFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.propertiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.button_showSize = new System.Windows.Forms.Button();
             this.toolStripButton_collapseExpand = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton_ParentDirectory = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton_forwardDirectory = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripTextBox_path = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripButton_goPath = new System.Windows.Forms.ToolStripButton();
-            this.label_IsShowSize = new System.Windows.Forms.Label();
+            this.backgroundWorker_ProccessSize = new System.ComponentModel.BackgroundWorker();
             this.panel_TreeSideBar.SuspendLayout();
             this.panel_leftSideBar.SuspendLayout();
             this.panel_fillRightSideBar.SuspendLayout();
@@ -87,7 +87,7 @@
             // 
             // treeView_dir
             // 
-            this.treeView_dir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(168)))), ((int)(((byte)(220)))), ((int)(((byte)(203)))));
+            this.treeView_dir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(230)))), ((int)(((byte)(213)))));
             this.treeView_dir.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.treeView_dir.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeView_dir.ImageIndex = 0;
@@ -172,146 +172,6 @@
             this.contextMenuStrip_ListView.Size = new System.Drawing.Size(203, 256);
             this.contextMenuStrip_ListView.Opened += new System.EventHandler(this.contextMenuStrip_ListView_Opened);
             // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(199, 6);
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(199, 6);
-            // 
-            // toolStripSeparator5
-            // 
-            this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(199, 6);
-            // 
-            // imageList_iconFile
-            // 
-            this.imageList_iconFile.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList_iconFile.ImageStream")));
-            this.imageList_iconFile.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList_iconFile.Images.SetKeyName(0, "drive.png");
-            this.imageList_iconFile.Images.SetKeyName(1, "folder.png");
-            this.imageList_iconFile.Images.SetKeyName(2, "file.png");
-            this.imageList_iconFile.Images.SetKeyName(3, "Music.png");
-            this.imageList_iconFile.Images.SetKeyName(4, "exe.png");
-            this.imageList_iconFile.Images.SetKeyName(5, "apk.png");
-            this.imageList_iconFile.Images.SetKeyName(6, "zip.png");
-            this.imageList_iconFile.Images.SetKeyName(7, "Movie.png");
-            this.imageList_iconFile.Images.SetKeyName(8, "pdf.png");
-            this.imageList_iconFile.Images.SetKeyName(9, "text.png");
-            this.imageList_iconFile.Images.SetKeyName(10, "picture.png");
-            this.imageList_iconFile.Images.SetKeyName(11, "files.png");
-            this.imageList_iconFile.Images.SetKeyName(12, "contact.png");
-            this.imageList_iconFile.Images.SetKeyName(13, "office_Word.png");
-            this.imageList_iconFile.Images.SetKeyName(14, "office_Excel.png");
-            this.imageList_iconFile.Images.SetKeyName(15, "office_Powerpoint.png");
-            this.imageList_iconFile.Images.SetKeyName(16, "office_Access.png");
-            // 
-            // panel_rightSideBarProgress
-            // 
-            this.panel_rightSideBarProgress.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(110)))), ((int)(((byte)(114)))));
-            this.panel_rightSideBarProgress.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel_rightSideBarProgress.Location = new System.Drawing.Point(0, 40);
-            this.panel_rightSideBarProgress.Name = "panel_rightSideBarProgress";
-            this.panel_rightSideBarProgress.Size = new System.Drawing.Size(510, 30);
-            this.panel_rightSideBarProgress.TabIndex = 2;
-            this.panel_rightSideBarProgress.Visible = false;
-            // 
-            // panel_rightSideBarDown
-            // 
-            this.panel_rightSideBarDown.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(190)))), ((int)(((byte)(195)))));
-            this.panel_rightSideBarDown.Controls.Add(this.button_showSize);
-            this.panel_rightSideBarDown.Controls.Add(this.label_size);
-            this.panel_rightSideBarDown.Controls.Add(this.label_IsShowSize);
-            this.panel_rightSideBarDown.Controls.Add(this.label_type);
-            this.panel_rightSideBarDown.Controls.Add(this.label_name);
-            this.panel_rightSideBarDown.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel_rightSideBarDown.Location = new System.Drawing.Point(0, 374);
-            this.panel_rightSideBarDown.Name = "panel_rightSideBarDown";
-            this.panel_rightSideBarDown.Size = new System.Drawing.Size(510, 79);
-            this.panel_rightSideBarDown.TabIndex = 1;
-            // 
-            // label_size
-            // 
-            this.label_size.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_size.Location = new System.Drawing.Point(371, 46);
-            this.label_size.Name = "label_size";
-            this.label_size.Size = new System.Drawing.Size(127, 24);
-            this.label_size.TabIndex = 0;
-            this.label_size.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label_type
-            // 
-            this.label_type.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_type.Location = new System.Drawing.Point(17, 46);
-            this.label_type.Name = "label_type";
-            this.label_type.Size = new System.Drawing.Size(151, 24);
-            this.label_type.TabIndex = 0;
-            this.label_type.Text = "Type: ";
-            // 
-            // label_name
-            // 
-            this.label_name.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_name.Location = new System.Drawing.Point(17, 16);
-            this.label_name.Name = "label_name";
-            this.label_name.Size = new System.Drawing.Size(367, 24);
-            this.label_name.TabIndex = 0;
-            this.label_name.Text = "Name:";
-            // 
-            // panel_rightSideBarUp
-            // 
-            this.panel_rightSideBarUp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(52)))), ((int)(((byte)(54)))));
-            this.panel_rightSideBarUp.Controls.Add(this.toolStrip_upMain);
-            this.panel_rightSideBarUp.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel_rightSideBarUp.Location = new System.Drawing.Point(0, 0);
-            this.panel_rightSideBarUp.Name = "panel_rightSideBarUp";
-            this.panel_rightSideBarUp.Size = new System.Drawing.Size(510, 40);
-            this.panel_rightSideBarUp.TabIndex = 0;
-            // 
-            // toolStrip_upMain
-            // 
-            this.toolStrip_upMain.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(72)))), ((int)(((byte)(74)))));
-            this.toolStrip_upMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.toolStrip_upMain.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.toolStrip_upMain.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.toolStrip_upMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton_collapseExpand,
-            this.toolStripSeparator3,
-            this.toolStripButton_ParentDirectory,
-            this.toolStripButton_forwardDirectory,
-            this.toolStripSeparator1,
-            this.toolStripTextBox_path,
-            this.toolStripButton_goPath});
-            this.toolStrip_upMain.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip_upMain.Name = "toolStrip_upMain";
-            this.toolStrip_upMain.Padding = new System.Windows.Forms.Padding(0, 0, 4, 0);
-            this.toolStrip_upMain.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.toolStrip_upMain.Size = new System.Drawing.Size(510, 40);
-            this.toolStrip_upMain.TabIndex = 2;
-            this.toolStrip_upMain.Text = "Go";
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 40);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 40);
-            // 
-            // toolStripTextBox_path
-            // 
-            this.toolStripTextBox_path.Name = "toolStripTextBox_path";
-            this.toolStripTextBox_path.Size = new System.Drawing.Size(315, 40);
-            this.toolStripTextBox_path.Click += new System.EventHandler(this.toolStripTextBox_path_Click);
-            // 
-            // backgroundWorker_ProccessSize
-            // 
-            this.backgroundWorker_ProccessSize.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker_ProccessSize_DoWork);
-            // 
             // refreshToolStripMenuItem2
             // 
             this.refreshToolStripMenuItem2.Image = global::AndroidManager_SHW.Properties.Resources.fm_con_refresh;
@@ -337,6 +197,11 @@
             this.uploadToolStripMenuItem.Size = new System.Drawing.Size(202, 26);
             this.uploadToolStripMenuItem.Text = "Upload";
             this.uploadToolStripMenuItem.Click += new System.EventHandler(this.uploadToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(199, 6);
             // 
             // copyToolStripMenuItem
             // 
@@ -365,6 +230,11 @@
             this.pasteToolStripMenuItem.Text = "Paste";
             this.pasteToolStripMenuItem.Click += new System.EventHandler(this.pasteToolStripMenuItem_Click);
             // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(199, 6);
+            // 
             // newFolderToolStripMenuItem
             // 
             this.newFolderToolStripMenuItem.Image = global::AndroidManager_SHW.Properties.Resources.fm_con_newdr;
@@ -382,6 +252,11 @@
             this.deleteToolStripMenuItem.Text = "Delete";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(199, 6);
+            // 
             // propertiesToolStripMenuItem
             // 
             this.propertiesToolStripMenuItem.Image = global::AndroidManager_SHW.Properties.Resources.fm_con_details;
@@ -391,8 +266,55 @@
             this.propertiesToolStripMenuItem.Text = "Properties";
             this.propertiesToolStripMenuItem.Click += new System.EventHandler(this.propertiesToolStripMenuItem_Click);
             // 
+            // imageList_iconFile
+            // 
+            this.imageList_iconFile.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList_iconFile.ImageStream")));
+            this.imageList_iconFile.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList_iconFile.Images.SetKeyName(0, "drive.png");
+            this.imageList_iconFile.Images.SetKeyName(1, "folder.png");
+            this.imageList_iconFile.Images.SetKeyName(2, "file.png");
+            this.imageList_iconFile.Images.SetKeyName(3, "Music.png");
+            this.imageList_iconFile.Images.SetKeyName(4, "exe.png");
+            this.imageList_iconFile.Images.SetKeyName(5, "apk.png");
+            this.imageList_iconFile.Images.SetKeyName(6, "zip.png");
+            this.imageList_iconFile.Images.SetKeyName(7, "Movie.png");
+            this.imageList_iconFile.Images.SetKeyName(8, "pdf.png");
+            this.imageList_iconFile.Images.SetKeyName(9, "text.png");
+            this.imageList_iconFile.Images.SetKeyName(10, "picture.png");
+            this.imageList_iconFile.Images.SetKeyName(11, "files.png");
+            this.imageList_iconFile.Images.SetKeyName(12, "contact.png");
+            this.imageList_iconFile.Images.SetKeyName(13, "office_Word.png");
+            this.imageList_iconFile.Images.SetKeyName(14, "office_Excel.png");
+            this.imageList_iconFile.Images.SetKeyName(15, "office_Powerpoint.png");
+            this.imageList_iconFile.Images.SetKeyName(16, "office_Access.png");
+            // 
+            // panel_rightSideBarProgress
+            // 
+            this.panel_rightSideBarProgress.BackColor = System.Drawing.Color.Transparent;
+            this.panel_rightSideBarProgress.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel_rightSideBarProgress.Location = new System.Drawing.Point(0, 40);
+            this.panel_rightSideBarProgress.Name = "panel_rightSideBarProgress";
+            this.panel_rightSideBarProgress.Size = new System.Drawing.Size(510, 30);
+            this.panel_rightSideBarProgress.TabIndex = 2;
+            this.panel_rightSideBarProgress.Visible = false;
+            // 
+            // panel_rightSideBarDown
+            // 
+            this.panel_rightSideBarDown.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(200)))), ((int)(((byte)(205)))));
+            this.panel_rightSideBarDown.Controls.Add(this.button_showSize);
+            this.panel_rightSideBarDown.Controls.Add(this.label_size);
+            this.panel_rightSideBarDown.Controls.Add(this.label_IsShowSize);
+            this.panel_rightSideBarDown.Controls.Add(this.label_type);
+            this.panel_rightSideBarDown.Controls.Add(this.label_name);
+            this.panel_rightSideBarDown.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel_rightSideBarDown.Location = new System.Drawing.Point(0, 374);
+            this.panel_rightSideBarDown.Name = "panel_rightSideBarDown";
+            this.panel_rightSideBarDown.Size = new System.Drawing.Size(510, 79);
+            this.panel_rightSideBarDown.TabIndex = 1;
+            // 
             // button_showSize
             // 
+            this.button_showSize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button_showSize.BackgroundImage = global::AndroidManager_SHW.Properties.Resources.toggleOff;
             this.button_showSize.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button_showSize.FlatAppearance.BorderSize = 0;
@@ -404,6 +326,78 @@
             this.button_showSize.UseVisualStyleBackColor = true;
             this.button_showSize.Click += new System.EventHandler(this.button_showSize_Click);
             // 
+            // label_size
+            // 
+            this.label_size.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label_size.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_size.Location = new System.Drawing.Point(371, 46);
+            this.label_size.Name = "label_size";
+            this.label_size.Size = new System.Drawing.Size(127, 24);
+            this.label_size.TabIndex = 0;
+            this.label_size.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label_IsShowSize
+            // 
+            this.label_IsShowSize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label_IsShowSize.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_IsShowSize.Location = new System.Drawing.Point(402, 3);
+            this.label_IsShowSize.Name = "label_IsShowSize";
+            this.label_IsShowSize.Size = new System.Drawing.Size(108, 50);
+            this.label_IsShowSize.TabIndex = 0;
+            this.label_IsShowSize.Text = "Show Size:";
+            this.label_IsShowSize.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label_IsShowSize.Click += new System.EventHandler(this.button_showSize_Click);
+            // 
+            // label_type
+            // 
+            this.label_type.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_type.Location = new System.Drawing.Point(17, 46);
+            this.label_type.Name = "label_type";
+            this.label_type.Size = new System.Drawing.Size(151, 24);
+            this.label_type.TabIndex = 0;
+            this.label_type.Text = "Type: ";
+            // 
+            // label_name
+            // 
+            this.label_name.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_name.Location = new System.Drawing.Point(17, 16);
+            this.label_name.Name = "label_name";
+            this.label_name.Size = new System.Drawing.Size(367, 24);
+            this.label_name.TabIndex = 0;
+            this.label_name.Text = "Name:";
+            // 
+            // panel_rightSideBarUp
+            // 
+            this.panel_rightSideBarUp.BackColor = System.Drawing.Color.Transparent;
+            this.panel_rightSideBarUp.Controls.Add(this.toolStrip_upMain);
+            this.panel_rightSideBarUp.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel_rightSideBarUp.Location = new System.Drawing.Point(0, 0);
+            this.panel_rightSideBarUp.Name = "panel_rightSideBarUp";
+            this.panel_rightSideBarUp.Size = new System.Drawing.Size(510, 40);
+            this.panel_rightSideBarUp.TabIndex = 0;
+            // 
+            // toolStrip_upMain
+            // 
+            this.toolStrip_upMain.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(220)))), ((int)(((byte)(225)))));
+            this.toolStrip_upMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.toolStrip_upMain.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStrip_upMain.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.toolStrip_upMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripButton_collapseExpand,
+            this.toolStripSeparator3,
+            this.toolStripButton_ParentDirectory,
+            this.toolStripButton_forwardDirectory,
+            this.toolStripSeparator1,
+            this.toolStripTextBox_path,
+            this.toolStripButton_goPath});
+            this.toolStrip_upMain.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip_upMain.Name = "toolStrip_upMain";
+            this.toolStrip_upMain.Padding = new System.Windows.Forms.Padding(0, 0, 4, 0);
+            this.toolStrip_upMain.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
+            this.toolStrip_upMain.Size = new System.Drawing.Size(510, 40);
+            this.toolStrip_upMain.TabIndex = 2;
+            this.toolStrip_upMain.Text = "Go";
+            // 
             // toolStripButton_collapseExpand
             // 
             this.toolStripButton_collapseExpand.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -413,6 +407,11 @@
             this.toolStripButton_collapseExpand.Size = new System.Drawing.Size(24, 37);
             this.toolStripButton_collapseExpand.Text = "Expand/Collapse";
             this.toolStripButton_collapseExpand.Click += new System.EventHandler(this.toolStripButton_collapseExpand_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 40);
             // 
             // toolStripButton_ParentDirectory
             // 
@@ -434,6 +433,17 @@
             this.toolStripButton_forwardDirectory.Text = "Go Last Path";
             this.toolStripButton_forwardDirectory.Click += new System.EventHandler(this.toolStripButton_forwardDirectory_Click);
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 40);
+            // 
+            // toolStripTextBox_path
+            // 
+            this.toolStripTextBox_path.Name = "toolStripTextBox_path";
+            this.toolStripTextBox_path.Size = new System.Drawing.Size(315, 40);
+            this.toolStripTextBox_path.Click += new System.EventHandler(this.toolStripTextBox_path_Click);
+            // 
             // toolStripButton_goPath
             // 
             this.toolStripButton_goPath.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -444,16 +454,9 @@
             this.toolStripButton_goPath.Text = "Go/Refresh";
             this.toolStripButton_goPath.Click += new System.EventHandler(this.toolStripButton_goPath_Click);
             // 
-            // label_IsShowSize
+            // backgroundWorker_ProccessSize
             // 
-            this.label_IsShowSize.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_IsShowSize.Location = new System.Drawing.Point(402, 3);
-            this.label_IsShowSize.Name = "label_IsShowSize";
-            this.label_IsShowSize.Size = new System.Drawing.Size(108, 50);
-            this.label_IsShowSize.TabIndex = 0;
-            this.label_IsShowSize.Text = "Show Size:";
-            this.label_IsShowSize.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label_IsShowSize.Click += new System.EventHandler(this.button_showSize_Click);
+            this.backgroundWorker_ProccessSize.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker_ProccessSize_DoWork);
             // 
             // FileManagerForm
             // 

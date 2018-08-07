@@ -1,19 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using SharpAdbClient;
 using System.IO;
 using System.Threading;
 using System.Net;
-using System.Drawing;
+
 
 namespace ADBProccessDLL
 {
     public class FileManager
     {
-        DeviceData dv;
+        DeviceData CurrentDevice;
         public int FileAndDirectoryCounter = 0;
         public List<ADBFile> ListAdbFiles;
 
@@ -21,34 +19,14 @@ namespace ADBProccessDLL
         public ADBProccessDLL.Option option;
         public FileManager(DeviceData currentDevice)
         {
-            dv = currentDevice;
+            CurrentDevice = currentDevice;
             option = new Option(currentDevice);
         }
 
         //zire file and directory ro dar ghalebe [List<ADBFile>] bar migardune
         public List<ADBFile> getDirectoryAndFiles(string CurrentPath)
         {
-            //if (backgroundWorker_ProccessSize.IsBusy)
-            //{
-            //    backgroundWorker_ProccessSize.CancelAsync();
-            //}
-            //if (!backgroundWorker_ProccessSize.IsBusy)
-            //{
-            //    backgroundWorker_ProccessSize.RunWorkerAsync();
-
-
-            //List<ADBFile> DirectoryAndFiles = new List<ADBFile>();
-
-            //ADBFile myfile = new ADBFile(dv);
-            //myfile.FullName = CurrentPath;
-            //myfile.Tag = "d";
-
-            //foreach (var item in myfile.GetChildFiles())
-            //{
-            //    DirectoryAndFiles.Add(item);
-            //}
-            //return DirectoryAndFiles;
-            ListAdbFiles = new ADBFile(dv) { FullName = CurrentPath }.SubFiles();
+            ListAdbFiles = new ADBFile(CurrentDevice) { FullName = CurrentPath }.SubFiles();
             return ListAdbFiles ;
         }
 
@@ -59,7 +37,6 @@ namespace ADBProccessDLL
                 return true;
             }
             return false;
-
         }
 
 
@@ -71,7 +48,7 @@ namespace ADBProccessDLL
             if (myfile.isDirectory())
             {
                 CreateDirectory(path, myfile.Name.fixBracketInTerminal());
-                foreach (ADBFile onefile in myfile.GetChildFiles())
+                foreach (ADBFile onefile in myfile.SubFiles())
                 {
                     PasteCopy(onefile, path + "/" + myfile.Name.fixBracketInTerminal());
 
@@ -97,7 +74,7 @@ namespace ADBProccessDLL
             if (myfile.isDirectory())
             {
                 CreateDirectory(path, myfile.Name.fixBracketInTerminal());
-                foreach (ADBFile onefile in myfile.GetChildFiles())
+                foreach (ADBFile onefile in myfile.SubFiles())
                 {
                     PasteCut(onefile, path + "/" + myfile.Name.fixBracketInTerminal());
 
@@ -118,24 +95,23 @@ namespace ADBProccessDLL
         public bool BackupToSystem(ADBFile myfile, string BackupPath)
         {
             ExternalMethod.counterEx++;
-            //FileAndDirectoryCounter++;
             if (myfile.isDirectory())
             {
-                Directory.CreateDirectory(/*option.MainPathBackupProp*/BackupPath + @"\" + myfile.Name.nickName().DecodingText());
-                foreach (ADBFile onefile in myfile.GetChildFiles())
+                Directory.CreateDirectory(BackupPath + @"\" + myfile.Name.nickName().DecodingText());
+                foreach (ADBFile onefile in myfile.SubFiles())
                 {
-                    BackupToSystem(onefile, /*option.MainPathBackupProp */BackupPath + @"\" + myfile.Name.nickName().DecodingText());
+                    BackupToSystem(onefile,BackupPath + @"\" + myfile.Name.nickName().DecodingText());
                 }
                 return true;
             }
             else
             {
-                string fullnamebackup = /*option.MainPathBackupProp*/BackupPath + @"\" + myfile.FullName.returnFile(dv).Name.Replace(@"\", string.Empty).DecodingText();
+                string fullnamebackup =BackupPath + @"\" + myfile.FullName.returnFile(CurrentDevice).Name.Replace(@"\", string.Empty).DecodingText();
                 if (File.Exists(fullnamebackup))
                 {
                     return true;
                 }
-                using (SyncService service = new SyncService(new AdbSocket(new IPEndPoint(IPAddress.Loopback, AdbClient.AdbServerPort)), dv))
+                using (SyncService service = new SyncService(new AdbSocket(new IPEndPoint(IPAddress.Loopback, AdbClient.AdbServerPort)), CurrentDevice))
                 using (Stream stream = System.IO.File.OpenWrite(fullnamebackup))
                 {
                     try
@@ -154,7 +130,7 @@ namespace ADBProccessDLL
         }
         public bool UploadToAndroid(FileInfo FileForUpload, string AndroidPath)
         {
-            using (SyncService service = new SyncService(new AdbSocket(new IPEndPoint(IPAddress.Loopback, AdbClient.AdbServerPort)), dv))
+            using (SyncService service = new SyncService(new AdbSocket(new IPEndPoint(IPAddress.Loopback, AdbClient.AdbServerPort)), CurrentDevice))
             using (Stream stream = File.OpenRead(FileForUpload.FullName))
             {
                 service.Push(stream, AndroidPath + "/" + FileForUpload.Name, 444, DateTime.Now, null, CancellationToken.None);
@@ -194,7 +170,7 @@ namespace ADBProccessDLL
                 else
                 {
                     FileInfo fi = new FileInfo(AddressFileOrDir);
-                    using (SyncService service = new SyncService(new AdbSocket(new IPEndPoint(IPAddress.Loopback, AdbClient.AdbServerPort)), dv))
+                    using (SyncService service = new SyncService(new AdbSocket(new IPEndPoint(IPAddress.Loopback, AdbClient.AdbServerPort)), CurrentDevice))
                     using (Stream stream = File.OpenRead(fi.FullName))
                     {
                         try
@@ -234,7 +210,7 @@ namespace ADBProccessDLL
             else
             {
                 FileInfo fi = new FileInfo(FileOrDirectory);
-                using (SyncService service = new SyncService(new AdbSocket(new IPEndPoint(IPAddress.Loopback, AdbClient.AdbServerPort)), dv))
+                using (SyncService service = new SyncService(new AdbSocket(new IPEndPoint(IPAddress.Loopback, AdbClient.AdbServerPort)), CurrentDevice))
                 using (Stream stream = File.OpenRead(fi.FullName))
                 {
                     service.Push(stream, AndroidPath.Replace("\\", "").EncodingText() + "/" + fi.Name, 444, DateTime.Now, null, CancellationToken.None);
@@ -254,38 +230,15 @@ namespace ADBProccessDLL
         private string resultCommand(string Command)
         {
             var receiver = new ConsoleOutputReceiver();
-            AdbClient.Instance.ExecuteRemoteCommand(Command, dv, receiver);
+            AdbClient.Instance.ExecuteRemoteCommand(Command, CurrentDevice, receiver);
             return receiver.ToString();
         }
-
-        //public string MainPathSystem(string address)
-        //{
-        //    string name=dv.Model+"_"+dv.Name + "_AndroidManagerSHW";
-        //    //try
-        //    //{
-        //        if (!Directory.Exists(address + "\\" + "AndroidManagerSHW"))
-        //        {
-        //            Directory.CreateDirectory(address + "\\" + "AndroidManagerSHW");
-        //        }
-        //        if (!Directory.Exists(address + "\\" + "AndroidManagerSHW"+"\\" + name))
-        //        {
-        //            Directory.CreateDirectory(address + "\\" + "AndroidManagerSHW" + "\\" + name);
-        //        }
-        //        return address + "\\" + "AndroidManagerSHW" + "\\" + name;
-        //    //}
-        //    //catch (Exception)
-        //    //{
-
-        //    //    return false;
-        //    //}
-
-        //}
 
         public int CountFileAndDirectory(ADBFile myFile)
         {
             int countFiles = 1;
-            countFiles += myFile.GetChildFiles().Count();
-            foreach (ADBFile onefileordir in myFile.GetChildFiles())
+            countFiles += myFile.SubFiles().Count();
+            foreach (ADBFile onefileordir in myFile.SubFiles())
             {
                 if (onefileordir.Tag == "d")
                 {

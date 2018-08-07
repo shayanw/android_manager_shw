@@ -29,11 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.label_CopyCutBackup = new System.Windows.Forms.Label();
             this.progressBar_transfer = new System.Windows.Forms.ProgressBar();
             this.label_totalSize = new System.Windows.Forms.Label();
             this.label_totalFiles = new System.Windows.Forms.Label();
-            this.label_to = new System.Windows.Forms.Label();
             this.button_cancel = new System.Windows.Forms.Button();
             this.label_transferBase = new System.Windows.Forms.Label();
             this.label_transferTo = new System.Windows.Forms.Label();
@@ -43,16 +41,6 @@
             this.timer_5s = new System.Windows.Forms.Timer(this.components);
             this.backgroundWorker_SetLabels = new System.ComponentModel.BackgroundWorker();
             this.SuspendLayout();
-            // 
-            // label_CopyCutBackup
-            // 
-            this.label_CopyCutBackup.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_CopyCutBackup.Location = new System.Drawing.Point(12, 9);
-            this.label_CopyCutBackup.Name = "label_CopyCutBackup";
-            this.label_CopyCutBackup.Size = new System.Drawing.Size(103, 34);
-            this.label_CopyCutBackup.TabIndex = 0;
-            this.label_CopyCutBackup.Text = "Copying";
-            this.label_CopyCutBackup.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // progressBar_transfer
             // 
@@ -85,16 +73,6 @@
             this.label_totalFiles.Text = "Total Files: 1024";
             this.label_totalFiles.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // label_to
-            // 
-            this.label_to.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_to.Location = new System.Drawing.Point(12, 43);
-            this.label_to.Name = "label_to";
-            this.label_to.Size = new System.Drawing.Size(46, 34);
-            this.label_to.TabIndex = 0;
-            this.label_to.Text = "to   ";
-            this.label_to.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // button_cancel
             // 
             this.button_cancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -113,11 +91,11 @@
             // 
             // label_transferBase
             // 
-            this.label_transferBase.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_transferBase.Font = new System.Drawing.Font("MS Reference Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_transferBase.ForeColor = System.Drawing.Color.Black;
-            this.label_transferBase.Location = new System.Drawing.Point(121, 9);
+            this.label_transferBase.Location = new System.Drawing.Point(16, 9);
             this.label_transferBase.Name = "label_transferBase";
-            this.label_transferBase.Size = new System.Drawing.Size(357, 34);
+            this.label_transferBase.Size = new System.Drawing.Size(462, 34);
             this.label_transferBase.TabIndex = 0;
             this.label_transferBase.Text = "[ Finding Address... ]";
             this.label_transferBase.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -125,10 +103,10 @@
             // 
             // label_transferTo
             // 
-            this.label_transferTo.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_transferTo.Location = new System.Drawing.Point(64, 43);
+            this.label_transferTo.Font = new System.Drawing.Font("MS Reference Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_transferTo.Location = new System.Drawing.Point(20, 43);
             this.label_transferTo.Name = "label_transferTo";
-            this.label_transferTo.Size = new System.Drawing.Size(414, 34);
+            this.label_transferTo.Size = new System.Drawing.Size(458, 34);
             this.label_transferTo.TabIndex = 0;
             this.label_transferTo.Text = "MyPC:Dr";
             this.label_transferTo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -177,8 +155,6 @@
             this.Controls.Add(this.label_transferTo);
             this.Controls.Add(this.label_Status);
             this.Controls.Add(this.label_transferBase);
-            this.Controls.Add(this.label_to);
-            this.Controls.Add(this.label_CopyCutBackup);
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(620, 200);
             this.MinimumSize = new System.Drawing.Size(620, 200);
@@ -191,12 +167,9 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Label label_CopyCutBackup;
         private System.Windows.Forms.ProgressBar progressBar_transfer;
         private System.Windows.Forms.Label label_totalSize;
         private System.Windows.Forms.Label label_totalFiles;
-        private System.Windows.Forms.Label label_to;
         private System.Windows.Forms.Button button_cancel;
         private System.Windows.Forms.Label label_transferBase;
         private System.Windows.Forms.Label label_transferTo;

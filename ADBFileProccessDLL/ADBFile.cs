@@ -81,19 +81,6 @@ namespace ADBProccessDLL
         }
         #endregion
 
-
-        public List<ADBFile> GetChildFiles()
-        {
-            List<ADBFile> lf = new List<ADBFile>();
-            string cmd = resultCommand("ls -l " + FullName + "/");
-
-            foreach (string[] fileOrDirName in ReturnListTagName_LinesLs(cmd))
-            {
-                lf.Add(new ADBFile(device, fileOrDirName[1], FullName, fileOrDirName[0]));
-            }
-            return lf;
-        }
-
         public List<ADBFile> SubFiles()
         {
             List<ADBFile> ListAdbFiles = new List<ADBFile>();
@@ -146,50 +133,6 @@ namespace ADBProccessDLL
             Size = Convert.ToDouble(result);
             return Size;
         }
-        public void SetSizeAdbFile()
-        {
-            if (Size > -1)
-            {
-                return;
-            }
-            string fixName = Name.fixBracketInTerminal();
-            string cmd = "";
-            if (!string.IsNullOrEmpty(LineLsForFile))
-            {
-                cmd = LineLsForFile;
-            }
-            else
-            {
-                cmd = resultCommand(string.Format("ls -l {0}|grep {1} ", DirectoryName, fixName));
-            }
-            string[] rslt = ReturnTagSize_OneLineLs(cmd);
-            Double result;
-
-            if (!"ld".Contains(rslt[0]))
-            {
-                //in kb
-                result = (Convert.ToDouble(rslt[1]) / 1024);
-            }
-            else if (rslt[0] == "l")
-            {
-                result = 0;
-            }
-            else
-            {
-                //in byte
-                cmd = resultCommand(@"du -s " + FullName);
-                try
-                {
-                    result = Convert.ToDouble(ResultDu(cmd));
-                }
-                catch
-                {
-                    result = 000;
-                }
-
-            }
-            Size = Convert.ToDouble(result);
-        }
 
         private string resultCommand(string Command)
         {
@@ -216,77 +159,6 @@ namespace ADBProccessDLL
         {
             return "." + nameFile.Split('.').LastOrDefault();
         }
-
-
-
-        /// <summary>
-        /// method return list of tag and name
-        /// </summary>
-        /// <param name="result">result Command In Shell</param>
-        /// <returns>Tag & Name File or Directory</returns>
-        private List<string[]> ReturnListTagName_LinesLs(string result_LinesLs)
-        {
-            //Should Return ADB File...
-            //Fiels-------------------------------------------------------------
-            List<string> ValidLsLines = new List<string>();
-            List<string> resultWords = new List<string>();
-            List<string[]> ListTagName = new List<string[]>();
-            StringReader StreamReader_ResultCode = new StringReader(result_LinesLs);
-            string tempCheckLine;
-            bool firstTime = true;
-            Regex rgx = new Regex(@"\d\d:\d\d");
-
-
-
-            //Add Valid Code in ValidLsLines------------------------------------
-            while (StreamReader_ResultCode.Peek() >= 0)
-            {
-                tempCheckLine = StreamReader_ResultCode.ReadLine();
-                if (tempCheckLine.Contains("Permission denied") || tempCheckLine.Contains("total"))
-                {
-                    continue;
-                }
-                ValidLsLines.Add(tempCheckLine);
-            }
-
-
-
-            //Each Line Ls -l Get Tag & Name-------------------------------------
-            foreach (string oneline in ValidLsLines)
-            {
-                resultWords = oneline.Split(' ').ToList();
-
-                for (int i = 0; i < resultWords.Count; i++)
-                {
-                    if (rgx.IsMatch(resultWords[i]))
-                    {
-                        tempCheckLine = "";
-                        firstTime = true;
-                        for (int j = i + 1; j < resultWords.Count; j++)
-                        {
-                            if (resultWords[j] == "->" && j < resultWords.Count)
-                            {
-                                break;
-                            }
-                            if (firstTime)
-                            {
-                                tempCheckLine += resultWords[j];
-                                firstTime = false;
-                            }
-                            else
-                            {
-                                tempCheckLine += @"\ " + resultWords[j];
-                            }
-                        }
-                        ListTagName.Add(new string[] { oneline[0].ToString(), tempCheckLine });
-                        break;
-                    }
-                }
-            }
-
-            return ListTagName;
-        }
-
 
 
         private List<ADBFile> ReturnListAdbFile_LinesLs(string result_LinesLs,string tmpDirectoryName)

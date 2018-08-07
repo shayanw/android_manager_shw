@@ -21,9 +21,10 @@ namespace AndroidManager_SHW
         TransferType TransferTp;
         int CountFilesForTransfer = 0;
         double TotalLengthFiles = 0;
-        DeviceData Device;
         int MyTime = 0;
+        DeviceData Device;
         List<string> FilesAndDirecoriesForUpload;
+        String PreLine_CopyCutBackup;
 
         public TransferForm()
         {
@@ -46,11 +47,11 @@ namespace AndroidManager_SHW
             if (tt == TransferType.BackingUp)
             {
                 DirectoryInfo di = new DirectoryInfo(path);
-                label_transferTo.Text = di.Name.fixDecodePatch();
+                label_transferTo.Text = "to => " + di.Name.fixDecodePatch();
             }
             else
             {
-                label_transferTo.Text = path.fixDecodePatch();
+                label_transferTo.Text = "to => " + path.fixDecodePatch();
             }
             this.Text = tt.ToString();
             backgroundWorker_SetLabels.RunWorkerAsync();
@@ -72,11 +73,11 @@ namespace AndroidManager_SHW
             if (tt == TransferType.BackingUp)
             {
                 DirectoryInfo di = new DirectoryInfo(path);
-                label_transferTo.Text = di.Name.DecodingText();
+                label_transferTo.Text ="to => "+di.Name.DecodingText();
             }
             else
             {
-                label_transferTo.Text = path.DecodingText();
+                label_transferTo.Text = "to => " + path.DecodingText();
             }
             this.Text = tt.ToString();
             backgroundWorker_SetLabels.RunWorkerAsync();
@@ -91,7 +92,7 @@ namespace AndroidManager_SHW
         {
 
 
-            label_CopyCutBackup.Text = TransferTp.ToString().fixDecodePatch();
+            PreLine_CopyCutBackup = TransferTp.ToString().fixDecodePatch()+":: ";
 
 
         }
@@ -182,16 +183,11 @@ namespace AndroidManager_SHW
             MyTime++;
             if (TransferTp == TransferType.Uploading)
             {
-                label_transferBase.Text = GetParentDirectory(FilesAndDirecoriesForUpload[0]);
+                label_transferBase.Text = PreLine_CopyCutBackup+" "+GetParentDirectory(FilesAndDirecoriesForUpload[0]).Replace(@"\","");
             }
             else
             {
-                label_transferBase.Text = MyFiles[0].Name.fixDecodePatch();
-                //if (!backgroundWorker_SetProgress.IsBusy)
-                //{
-                //    backgroundWorker_SetProgress.RunWorkerAsync();
-                //    // progressBar_transfer.Value = CountFilesNow - CountFilesPath;
-                //} 
+                label_transferBase.Text = PreLine_CopyCutBackup + " " + MyFiles[0].Name.fixDecodePatch().Replace(@"\", "");
             }
             //------------------------------------------------------------------------------
             if (ExternalMethod.counterEx < progressBar_transfer.Maximum)
@@ -228,7 +224,7 @@ namespace AndroidManager_SHW
         {
             if (TransferTp==TransferType.Uploading)
             {
-                label_transferBase.Text = GetParentDirectory(FilesAndDirecoriesForUpload[0]);
+                label_transferBase.Text = PreLine_CopyCutBackup + " " + GetParentDirectory(FilesAndDirecoriesForUpload[0]);
             }
             label_totalFiles.Text = "Total Files: " + CountFilesForTransfer.ToString();
             progressBar_transfer.Maximum = CountFilesForTransfer;
