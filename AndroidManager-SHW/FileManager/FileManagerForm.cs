@@ -188,7 +188,14 @@ namespace AndroidManager_SHW
             }
             catch (Exception)
             {
-                listView_files.Items.AddRange(last);
+                try
+                {
+                    listView_files.Items.AddRange(last);
+                }
+                catch
+                {
+
+                }
             }
         }
 
