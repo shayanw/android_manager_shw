@@ -15,6 +15,7 @@ namespace ADBProccessDLL
     {
         DeviceData dv;
         public int FileAndDirectoryCounter = 0;
+        public List<ADBFile> ListAdbFiles;
 
         //address directory backup tush hast
         public ADBProccessDLL.Option option;
@@ -27,17 +28,19 @@ namespace ADBProccessDLL
         //zire file and directory ro dar ghalebe [List<ADBFile>] bar migardune
         public List<ADBFile> getDirectoryAndFiles(string CurrentPath)
         {
-            List<ADBFile> DirectoryAndFiles = new List<ADBFile>();
+            //List<ADBFile> DirectoryAndFiles = new List<ADBFile>();
 
-            ADBFile myfile = new ADBFile(dv);
-            myfile.FullName = CurrentPath;
-            myfile.Tag = "d";
+            //ADBFile myfile = new ADBFile(dv);
+            //myfile.FullName = CurrentPath;
+            //myfile.Tag = "d";
 
-            foreach (var item in myfile.GetChildFiles())
-            {
-                DirectoryAndFiles.Add(item);
-            }
-            return DirectoryAndFiles;
+            //foreach (var item in myfile.GetChildFiles())
+            //{
+            //    DirectoryAndFiles.Add(item);
+            //}
+            //return DirectoryAndFiles;
+            ListAdbFiles = new ADBFile(dv) { FullName = CurrentPath }.SubFiles();
+            return ListAdbFiles ;
         }
 
         public bool DeleteDirectoryAndFiles(string FileFullName)

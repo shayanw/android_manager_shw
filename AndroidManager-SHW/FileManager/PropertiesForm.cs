@@ -70,7 +70,7 @@ namespace AndroidManager_SHW
         {
             if (isFile)
             {
-                Size = oneFile.GetLength();
+                Size = oneFile.GetLengthDouble().humanReadable();
             }
             else
             {

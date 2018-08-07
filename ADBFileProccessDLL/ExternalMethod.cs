@@ -37,7 +37,7 @@ namespace ADBProccessDLL
         public static string returnSizeFile(this string fullname, DeviceData device)
         {
             ADBFile f = new ADBFile(device, fullname);
-            return f.GetLength();
+            return f.GetLengthDouble().humanReadable();
         }
 
         public static string humanReadable(this double byteSize)

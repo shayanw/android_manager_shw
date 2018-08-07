@@ -6,43 +6,15 @@ using System.Threading.Tasks;
 using SharpAdbClient;
 using System.IO;
 using System.Text.RegularExpressions;
+using System.Threading;
 
 namespace ADBProccessDLL
 {
     public class ADBFile
     {
+        #region Filed and Prop
+
         public DeviceData device;
-        public ADBFile(DeviceData currentDevice)
-        {
-            device = currentDevice;
-        }
-
-        public ADBFile(DeviceData currentDevice, string name, string directoryname, string tag)
-        {
-            device = currentDevice;
-            Name = name;
-            DirectoryName = directoryname;
-            FullName = directoryname + "/" + name;
-            Extension = GetExtension(Name);
-            Tag = tag;
-        }
-
-        public ADBFile(DeviceData currentDevice, string fullname)
-        {
-            device = currentDevice;
-            FullName = fullname;
-            Name = fullname.Remove(0, fullname.LastIndexOf(@"/")).Remove(0, 1);
-            DirectoryName = fullname.Remove(fullname.LastIndexOf(@"/"), fullname.Length - fullname.LastIndexOf(@"/"));
-            try
-            {
-                ParentDirectory = DirectoryName.Remove(DirectoryName.LastIndexOf(@"/"), DirectoryName.Length - DirectoryName.LastIndexOf(@"/"));
-            }
-            catch (Exception)
-            {
-                ParentDirectory = "/";
-            }
-            Extension = GetExtension(Name);
-        }
 
         /// <summary>
         /// just name of file or directory
@@ -66,59 +38,92 @@ namespace ADBProccessDLL
         public string Extension { get; set; }
 
         public string Tag { get; set; }
-        public bool Exist { get; set; }
+
+        public double Size=-1;
+
+        public string LineLsForFile;
+
+        #endregion
+
+        #region Constructor
+        public ADBFile(DeviceData currentDevice, string name, string directoryname, string tag,string lineLs="")
+        {
+            device = currentDevice;
+            Name = name;
+            DirectoryName = directoryname;
+            FullName = directoryname + "/" + name;
+            Extension = GetExtension(Name);
+            Tag = tag;
+            LineLsForFile = lineLs;
+        }
+
+        public ADBFile(DeviceData currentDevice, string fullname)
+        {
+            device = currentDevice;
+            FullName = fullname;
+            Name = fullname.Remove(0, fullname.LastIndexOf(@"/")).Remove(0, 1);
+
+            DirectoryName = fullname.Remove(fullname.LastIndexOf(@"/"), fullname.Length - fullname.LastIndexOf(@"/"));
+            try
+            {
+                ParentDirectory = DirectoryName.Remove(DirectoryName.LastIndexOf(@"/"), DirectoryName.Length - DirectoryName.LastIndexOf(@"/"));
+            }
+            catch (Exception)
+            {
+                ParentDirectory = "/";
+            }
+            Extension = GetExtension(Name);
+        }
+
+        public ADBFile(DeviceData currentDevice)
+        {
+            device = currentDevice;
+        }
+        #endregion
+
 
         public List<ADBFile> GetChildFiles()
         {
             List<ADBFile> lf = new List<ADBFile>();
             string cmd = resultCommand("ls -l " + FullName + "/");
-            if (FullName == "/sdcard")
-            {
-                Exist = true;
-            }
-            foreach (string[] fileOrDirName in resultNameLs(cmd))
+
+            foreach (string[] fileOrDirName in ReturnListTagName_LinesLs(cmd))
             {
                 lf.Add(new ADBFile(device, fileOrDirName[1], FullName, fileOrDirName[0]));
             }
             return lf;
         }
-        public string GetLength()
-        {
-            string fixName = Name.fixBracketInTerminal();
-            string cmd = resultCommand(string.Format("ls -l {0}|grep {1} ", DirectoryName, fixName));
-            string[] rslt = resultOneLineLs(cmd);
-            string result = "";
 
-            if (!"ld".Contains(rslt[0]))
+        public List<ADBFile> SubFiles()
+        {
+            List<ADBFile> ListAdbFiles = new List<ADBFile>();
+            string cmd = resultCommand("ls -l " + FullName + "/");
+            return ReturnListAdbFile_LinesLs(cmd,FullName);
+        }
+
+        public double GetLengthDouble()
+        {
+            if (Size>-1)
             {
-                //in kb
-                result = (Convert.ToDouble(rslt[1]) / 1024).ToString();
+                return Size;
             }
-            else if (rslt[0] == "l")
+            string fixName = Name.fixBracketInTerminal();
+            string cmd = "";
+            if (!string.IsNullOrEmpty(LineLsForFile))
             {
-                result = "0";
+                cmd = LineLsForFile;
             }
             else
             {
-                //in byte
-                cmd = resultCommand(@"du -s " + FullName);
-                result = resultDu(cmd);
+                 cmd = resultCommand(string.Format("ls -l {0}|grep {1} ", DirectoryName, fixName));
             }
-
-            return Convert.ToDouble(result).humanReadable();
-
-        }
-        public double GetLengthDouble()
-        {
-            string fixName = Name.fixBracketInTerminal();
-            string cmd = resultCommand(string.Format("ls -l {0}|grep {1} ", DirectoryName, fixName));
-            string[] rslt = resultOneLineLs(cmd);
+            string[] rslt = ReturnTagSize_OneLineLs(cmd);
             Double result;
 
             if (!"ld".Contains(rslt[0]))
             {
                 //in kb
-                result = (Convert.ToDouble(rslt[1]) / 1024);
+                result = (Convert.ToDouble(rslt[1]) /1024);
             }
             else if (rslt[0] == "l")
             {
@@ -130,7 +135,7 @@ namespace ADBProccessDLL
                 cmd = resultCommand(@"du -s " + FullName);
                 try
                 {
-                    result = Convert.ToDouble(resultDu(cmd));
+                    result = Convert.ToDouble(ResultDu(cmd));
                 }
                 catch
                 {
@@ -138,8 +143,8 @@ namespace ADBProccessDLL
                 }
 
             }
-
-            return Convert.ToDouble(result);
+            Size = Convert.ToDouble(result);
+            return Size;
         } 
 
 
@@ -162,6 +167,8 @@ namespace ADBProccessDLL
             }
             return false;
         }
+
+
         private string GetExtension(string nameFile)
         {
             return "." + nameFile.Split('.').LastOrDefault();
@@ -174,31 +181,35 @@ namespace ADBProccessDLL
         /// </summary>
         /// <param name="result">result Command In Shell</param>
         /// <returns>Tag & Name File or Directory</returns>
-        private List<string[]> resultNameLs(string result)
+        private List<string[]> ReturnListTagName_LinesLs(string result_LinesLs)
         {
-            List<string> resultList_ls = new List<string>();
+            //Should Return ADB File...
+            //Fiels-------------------------------------------------------------
+            List<string> ValidLsLines = new List<string>();
             List<string> resultWords = new List<string>();
-            List<string[]> resultEnd = new List<string[]>();
-            string temp;
+            List<string[]> ListTagName = new List<string[]>();
+            StringReader StreamReader_ResultCode = new StringReader(result_LinesLs);
+            string tempCheckLine;
             bool firstTime = true;
-
-
             Regex rgx = new Regex(@"\d\d:\d\d");
 
-            // remove Error
-            StringReader sr = new StringReader(result);
-            while (sr.Peek() >= 0)
+
+
+            //Add Valid Code in ValidLsLines------------------------------------
+            while (StreamReader_ResultCode.Peek() >= 0)
             {
-                temp = sr.ReadLine();
-                if (temp.Contains("Permission denied") || temp.Contains("total"))
+                tempCheckLine = StreamReader_ResultCode.ReadLine();
+                if (tempCheckLine.Contains("Permission denied") || tempCheckLine.Contains("total"))
                 {
                     continue;
                 }
-                resultList_ls.Add(temp);
+                ValidLsLines.Add(tempCheckLine);
             }
 
-            //Each Line Ls -l
-            foreach (string oneline in resultList_ls)
+
+
+            //Each Line Ls -l Get Tag & Name-------------------------------------
+            foreach (string oneline in ValidLsLines)
             {
                 resultWords = oneline.Split(' ').ToList();
 
@@ -206,7 +217,7 @@ namespace ADBProccessDLL
                 {
                     if (rgx.IsMatch(resultWords[i]))
                     {
-                        temp = "";
+                        tempCheckLine = "";
                         firstTime = true;
                         for (int j = i + 1; j < resultWords.Count; j++)
                         {
@@ -216,80 +227,191 @@ namespace ADBProccessDLL
                             }
                             if (firstTime)
                             {
-                                temp += resultWords[j];
+                                tempCheckLine += resultWords[j];
                                 firstTime = false;
                             }
                             else
                             {
-                                temp += @"\ " + resultWords[j];
+                                tempCheckLine += @"\ " + resultWords[j];
                             }
                         }
-                        resultEnd.Add(new string[] { oneline[0].ToString(), temp });
+                        ListTagName.Add(new string[] { oneline[0].ToString(), tempCheckLine });
                         break;
                     }
                 }
             }
 
-            return resultEnd;
+            return ListTagName;
         }
-        private string resultDu(string result)
+
+
+
+        private List<ADBFile> ReturnListAdbFile_LinesLs(string result_LinesLs,string tmpDirectoryName)
         {
-            Regex rgx = new Regex(@"\d{1,10}");
-            List<string> tmp = new List<string>();
-            string temp;
-            StringReader sr = new StringReader(result);
-            while (sr.Peek() >= 0)
+            //Should Return ADB File...
+            //Fiels-------------------------------------------------------------
+            List<string> ValidLsLines = new List<string>();
+            List<string> resultWords = new List<string>();
+            List<string[]> ListTagName = new List<string[]>();
+            StringReader StreamReader_ResultCode = new StringReader(result_LinesLs);
+            string tempCheckLine;
+            bool firstTime = true;
+            Regex rgx = new Regex(@"\d\d:\d\d");
+
+            List<ADBFile> ListAdbFile = new List<ADBFile>();
+            ADBFile tmpAdbFile;
+            string tmpName, tmpTag;
+
+            //Add Valid Code in ValidLsLines------------------------------------
+            while (StreamReader_ResultCode.Peek() >= 0)
             {
-                temp = sr.ReadLine();
-                if (temp.Contains("Permission denied") || temp.Contains("error"))
+                tempCheckLine = StreamReader_ResultCode.ReadLine();
+                if (tempCheckLine.Contains("Permission denied") || tempCheckLine.Contains("total"))
                 {
                     continue;
                 }
-                tmp.Add(temp);
+                ValidLsLines.Add(tempCheckLine);
             }
-            if (tmp.Count == 0)
+
+
+
+            //Each Line Ls -l Get Tag & Name-------------------------------------
+            foreach (string oneline in ValidLsLines)
+            {
+                resultWords = oneline.Split(' ').ToList();
+
+                for (int i = 0; i < resultWords.Count; i++)
+                {
+                    if (rgx.IsMatch(resultWords[i]))
+                    {
+                        tempCheckLine = "";
+                        firstTime = true;
+                        for (int j = i + 1; j < resultWords.Count; j++)
+                        {
+                            if (resultWords[j] == "->" && j < resultWords.Count)
+                            {
+                                break;
+                            }
+                            if (firstTime)
+                            {
+                                tempCheckLine += resultWords[j];
+                                firstTime = false;
+                            }
+                            else
+                            {
+                                tempCheckLine += @"\ " + resultWords[j];
+                            }
+                        }
+                        tmpName = tempCheckLine;
+                        tmpTag = oneline[0].ToString();
+                        tmpAdbFile = new ADBFile(device, tmpName,tmpDirectoryName, tmpTag,oneline);
+                        ListAdbFile.Add(tmpAdbFile);
+                   //     thread = new Thread();
+                        break;
+                    }
+                }
+            }
+
+            return ListAdbFile;
+        }
+
+
+
+
+
+        /// <summary>
+        /// return Size of Directory--> Du Code
+        /// </summary>
+        /// <param name="result_Du_Code"></param>
+        /// <returns></returns>
+        private string ResultDu(string result_Du_Code)
+        {
+            //Fiels-------------------------------------------------------------
+            Regex rgx = new Regex(@"\d{1,10}");
+            List<string> ValidLsLines = new List<string>();
+            string tempCheckLine;
+            StringReader StreamReader_ResultCode = new StringReader(result_Du_Code);
+
+
+
+            //Add Valid Code in ValidLsLines------------------------------------
+            while (StreamReader_ResultCode.Peek() >= 0)
+            {
+                tempCheckLine = StreamReader_ResultCode.ReadLine();
+                if (tempCheckLine.Contains("Permission denied") || tempCheckLine.Contains("error"))
+                {
+                    continue;
+                }
+                ValidLsLines.Add(tempCheckLine);
+            }
+
+
+
+            //if ValidLsLines is Empty Return Size=0----------------------------
+            if (ValidLsLines.Count == 0)
             {
                 return "0";
             }
-            return tmp.LastOrDefault().Split('\t')[0];
-        }
-        private string[] resultOneLineLs(string result)
-        {
-            List<string> tmp = new List<string>();
-            string temp;
-            string size = "0";
-            StringReader sr = new StringReader(result);
 
-            while (sr.Peek() >= 0)
+
+
+            //return Size Of Directory------------------------------------------
+            return ValidLsLines.LastOrDefault().Split('\t')[0];
+        }
+
+        /// <summary>
+        /// Return Tag And Size From OneLine Of Ls -s
+        /// </summary>
+        /// <param name="result_Ls_Code"></param>
+        /// <returns></returns>
+        private string[] ReturnTagSize_OneLineLs(string result_Ls_Code)
+        {
+            //Fiels-------------------------------------------------------------
+            List<string> ValidLsLines = new List<string>();
+            string tempCheckLine;
+            string SizeString = "0";
+            StringReader StreamReader_ResultCode = new StringReader(result_Ls_Code);
+
+
+
+            //Add Valid Code in ValidLsLines------------------------------------
+            while (StreamReader_ResultCode.Peek() >= 0)
             {
-                temp = sr.ReadLine();
-                if (temp.Contains("Permission denied") || temp.Contains("error"))
+                tempCheckLine = StreamReader_ResultCode.ReadLine();
+                if (tempCheckLine.Contains("Permission denied") || tempCheckLine.Contains("error"))
                 {
                     continue;
                 }
-                tmp.Add(temp);
+                ValidLsLines.Add(tempCheckLine);
             }
 
-            ///
-            if (tmp.Count == 0)
+
+
+            //Seprate null and Directory from File------------------------------
+            //Default null and Directory => Tag="d" & Size="0"------------------
+            if (ValidLsLines.Count == 0)
             {
                 return new string[] { "d", "0" };
             }
-            if (tmp.LastOrDefault()[0].ToString() == "d")
+            else if (ValidLsLines.LastOrDefault()[0].ToString() == "d")
             {
                 return new string[] { "d", "0" };
             }
-            ///
 
-            foreach (string word in tmp.LastOrDefault().Split(' '))
+
+
+            //Seprate null and Directory from File------------------------------
+            foreach (string word in ValidLsLines.LastOrDefault().Split(' '))
             {
                 if (word.isDigits())
                 {
-                    size = word;
+                    SizeString = word;
                 }
             }
 
-            return new string[] { tmp.LastOrDefault()[0].ToString(), size };
+
+            //Return Tag & Size-------------------------------------------------
+            return new string[] { ValidLsLines.LastOrDefault()[0].ToString(), SizeString };
         }
 
     }

@@ -42,7 +42,7 @@ namespace AndroidManager_SHW.Setting
 
         //public string Name { get { return name; } }
         //public string Serial { get { return serial; } }
-        public string SizePath { get { return sizePath.humanReableSize(); } }
+        public string SizePath { get { return sizePath.humanReadable(); } }
         public int CountFiles { get { return countFiles; } }
         
         public string PathBackup { get { return pathBackup; } }

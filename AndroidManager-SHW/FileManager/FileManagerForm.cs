@@ -390,8 +390,10 @@ namespace AndroidManager_SHW
 
         private void setLabelFile()
         {
-            ADBFile f1 = ListViewSI.Name.returnFile(device);
+            ADBFile f1 = ReturnAdbFileFromLVSelectItem(ListViewSI);
+
             label_name.Text = "Name: " + f1.Name.nickName().DecodingText();
+            label_size.Text = "Size: "+f1.GetLengthDouble().humanReadable();
 
             if (ListViewSI.Tag.ToString() == "d" || ListViewSI.Tag.ToString() == "l")
             {
@@ -401,8 +403,24 @@ namespace AndroidManager_SHW
             else
             {
                 ADBFile oneFile = ListViewSI.Name.returnFile(device);
-                label_type.Text = "Type: "+oneFile.Extension.DecodingText();
+                label_type.Text = "Type: " + oneFile.Extension.DecodingText();
             }
+        }
+
+        private ADBFile ReturnAdbFileFromLVSelectItem(ListViewItem onelistViewItem)
+        {
+            ADBFile f1;
+
+            if (fm.ListAdbFiles.Exists(a => a.FullName == onelistViewItem.Name))
+            {
+                f1 = fm.ListAdbFiles.Find(a => a.FullName == onelistViewItem.Name);
+            }
+            else
+            {
+                f1 = ListViewSI.Name.returnFile(device);
+            }
+
+            return f1;
         }
 
         private void backgroundWorker_getSize_DoWork(object sender, DoWorkEventArgs e)
@@ -629,7 +647,7 @@ namespace AndroidManager_SHW
             else if (listView_files.SelectedItems.Count==1)
             {
                 Image thisImg = imageList_iconFile.Images[listView_files.SelectedItems[0].ImageIndex];
-                PropertiesForm pf = new PropertiesForm(new ADBFile(device, listView_files.SelectedItems[0].Name),thisImg);
+                PropertiesForm pf = new PropertiesForm(ReturnAdbFileFromLVSelectItem(listView_files.SelectedItems[0]),thisImg);
                 pf.FormClosed += Pf_FormClosed;
                 pf.ShowDialog();
             }
@@ -639,7 +657,7 @@ namespace AndroidManager_SHW
                 List<ADBFile> liFiles = new List<ADBFile>();
                 for (int i = 0; i < listView_files.SelectedItems.Count; i++)
                 {
-                    liFiles.Add(new ADBFile(device, listView_files.SelectedItems[i].Name));
+                    liFiles.Add(ReturnAdbFileFromLVSelectItem(listView_files.SelectedItems[i]));
                 }
                 PropertiesForm pf = new PropertiesForm(liFiles, thisImg);
                 pf.FormClosed += Pf_FormClosed;
