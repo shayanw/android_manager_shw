@@ -22,7 +22,6 @@ namespace AndroidManager_SHW
         
         //String
         string currentPath = "storage";
-        string tmpSizeFile = "";
         string backupPath = "";
 
         //Form DataType
@@ -32,15 +31,17 @@ namespace AndroidManager_SHW
         //List
         List<ListViewItem> lastSelectedItem = new List<ListViewItem>();
         List<string> fileOrDirectoryForCopyCut = new List<string>();
-        bool IsPasteForCopy = true;
 
+    
+       
         //Stack
         Stack<string> BackwardPath = new Stack<string>();
         Stack<string> ForwardPath = new Stack<string>();
 
         //Bool
         bool IsTransfer = false;
-
+        bool IsPasteForCopy = true;
+        bool IsShowSize = false;
         /// <summary>
         /// Contructor
         /// </summary>
@@ -76,6 +77,8 @@ namespace AndroidManager_SHW
                 //be ezaye har file ye icon dar item listView_files dar nazar migirim...
                 foreach (ADBFile item in fm.getDirectoryAndFiles(currentPath))
                 {
+
+
                     ListViewItem lvi = new ListViewItem();
                     lvi.Name = item.FullName;
                     lvi.Text = item.Name.nickName().DecodingText();
@@ -172,7 +175,16 @@ namespace AndroidManager_SHW
                 }
 
                 //masire directory fileha ro dar toolStripTextBox_path neshun mide
-                toolStripTextBox_path.Text = currentPath.Replace(@"\",string.Empty).DecodingText();
+                toolStripTextBox_path.Text = currentPath.Replace(@"\", string.Empty).DecodingText();
+
+                if (backgroundWorker_ProccessSize.IsBusy)
+                {
+                    backgroundWorker_ProccessSize.CancelAsync();
+                }
+                if (!backgroundWorker_ProccessSize.IsBusy)
+                {
+                    backgroundWorker_ProccessSize.RunWorkerAsync();
+                }
             }
             catch (Exception)
             {
@@ -376,6 +388,12 @@ namespace AndroidManager_SHW
             {
                 label_name.Text= "Selected Items: " + listView_files.SelectedItems.Count + " Files";
                 label_type.Text = "Type: Files...";
+
+                if (IsShowSize)
+                {
+                    label_size.Text = "_";
+                }
+                
             }
        
             if (listView_files.SelectedItems.Count > 0)
@@ -393,7 +411,13 @@ namespace AndroidManager_SHW
             ADBFile f1 = ReturnAdbFileFromLVSelectItem(ListViewSI);
 
             label_name.Text = "Name: " + f1.Name.nickName().DecodingText();
-            label_size.Text = "Size: "+f1.GetLengthDouble().humanReadable();
+
+
+            if (IsShowSize)
+            {
+                label_size.Text = "Size: " + f1.GetLengthDouble().humanReadable();
+            }
+
 
             if (ListViewSI.Tag.ToString() == "d" || ListViewSI.Tag.ToString() == "l")
             {
@@ -421,11 +445,6 @@ namespace AndroidManager_SHW
             }
 
             return f1;
-        }
-
-        private void backgroundWorker_getSize_DoWork(object sender, DoWorkEventArgs e)
-        {
-            tmpSizeFile = "Size: " + ListViewSI.Name.returnSizeFile(device);
         }
 
         /// <summary>
@@ -1077,6 +1096,33 @@ namespace AndroidManager_SHW
                 propertiesToolStripMenuItem.Enabled = false;
                 copyToolStripMenuItem.Enabled = false;
                 cutToolStripMenuItem.Enabled = false;
+            }
+        }
+
+        private void backgroundWorker_ProccessSize_DoWork(object sender, DoWorkEventArgs e)
+        {
+            if (fm.ListAdbFiles.Count>50 || !IsShowSize)
+            {
+                return;
+            }
+            foreach (ADBFile tmpfile in fm.ListAdbFiles)
+            {
+                tmpfile.SetSizeAdbFile();
+            }
+        }
+
+        private void button_showSize_Click(object sender, EventArgs e)
+        {
+            if (IsShowSize)
+            {
+                button_showSize.BackgroundImage = AndroidManager_SHW.Properties.Resources.toggleOff;
+                IsShowSize = false;
+                label_size.Text = "";
+            }
+            else
+            {
+                button_showSize.BackgroundImage = AndroidManager_SHW.Properties.Resources.toggleOn;
+                IsShowSize = true;
             }
         }
     }

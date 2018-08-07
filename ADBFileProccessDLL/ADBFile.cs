@@ -145,8 +145,51 @@ namespace ADBProccessDLL
             }
             Size = Convert.ToDouble(result);
             return Size;
-        } 
+        }
+        public void SetSizeAdbFile()
+        {
+            if (Size > -1)
+            {
+                return;
+            }
+            string fixName = Name.fixBracketInTerminal();
+            string cmd = "";
+            if (!string.IsNullOrEmpty(LineLsForFile))
+            {
+                cmd = LineLsForFile;
+            }
+            else
+            {
+                cmd = resultCommand(string.Format("ls -l {0}|grep {1} ", DirectoryName, fixName));
+            }
+            string[] rslt = ReturnTagSize_OneLineLs(cmd);
+            Double result;
 
+            if (!"ld".Contains(rslt[0]))
+            {
+                //in kb
+                result = (Convert.ToDouble(rslt[1]) / 1024);
+            }
+            else if (rslt[0] == "l")
+            {
+                result = 0;
+            }
+            else
+            {
+                //in byte
+                cmd = resultCommand(@"du -s " + FullName);
+                try
+                {
+                    result = Convert.ToDouble(ResultDu(cmd));
+                }
+                catch
+                {
+                    result = 000;
+                }
+
+            }
+            Size = Convert.ToDouble(result);
+        }
 
         private string resultCommand(string Command)
         {
@@ -306,7 +349,6 @@ namespace ADBProccessDLL
                         tmpTag = oneline[0].ToString();
                         tmpAdbFile = new ADBFile(device, tmpName,tmpDirectoryName, tmpTag,oneline);
                         ListAdbFile.Add(tmpAdbFile);
-                   //     thread = new Thread();
                         break;
                     }
                 }

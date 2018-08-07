@@ -28,6 +28,15 @@ namespace ADBProccessDLL
         //zire file and directory ro dar ghalebe [List<ADBFile>] bar migardune
         public List<ADBFile> getDirectoryAndFiles(string CurrentPath)
         {
+            //if (backgroundWorker_ProccessSize.IsBusy)
+            //{
+            //    backgroundWorker_ProccessSize.CancelAsync();
+            //}
+            //if (!backgroundWorker_ProccessSize.IsBusy)
+            //{
+            //    backgroundWorker_ProccessSize.RunWorkerAsync();
+
+
             //List<ADBFile> DirectoryAndFiles = new List<ADBFile>();
 
             //ADBFile myfile = new ADBFile(dv);
