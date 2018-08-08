@@ -442,7 +442,7 @@ namespace AndroidManager_SHW
 
         private void pictureBox_about_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Create By ShayanW" + "\n\n" + "shayan.worthy@msn.com" + "\n\n" + "CopyRight 2018-2019" + "\n\n" + "Version: 0.85.1 Beta", "About Me", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Create By ShayanW" + "\n\n" + "shayan.worthy@msn.com" + "\n\n" + "CopyRight 2018-2019" + "\n\n" + "Version: 0.86 Beta", "About Me", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
 
