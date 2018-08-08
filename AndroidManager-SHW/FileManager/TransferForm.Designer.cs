@@ -77,7 +77,7 @@
             // 
             this.button_cancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button_cancel.Cursor = System.Windows.Forms.Cursors.Default;
-            this.button_cancel.FlatAppearance.BorderColor = System.Drawing.Color.DimGray;
+            this.button_cancel.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
             this.button_cancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_cancel.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_cancel.ForeColor = System.Drawing.Color.Black;

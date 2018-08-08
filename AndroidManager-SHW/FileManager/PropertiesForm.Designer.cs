@@ -139,8 +139,9 @@
             // button_cancel
             // 
             this.button_cancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button_cancel.FlatAppearance.BorderColor = System.Drawing.Color.DimGray;
+            this.button_cancel.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
             this.button_cancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_cancel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_cancel.Location = new System.Drawing.Point(169, 208);
             this.button_cancel.Name = "button_cancel";
             this.button_cancel.Size = new System.Drawing.Size(66, 24);
@@ -152,8 +153,9 @@
             // button_ok
             // 
             this.button_ok.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button_ok.FlatAppearance.BorderColor = System.Drawing.Color.DimGray;
+            this.button_ok.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
             this.button_ok.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_ok.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_ok.Location = new System.Drawing.Point(97, 208);
             this.button_ok.Name = "button_ok";
             this.button_ok.Size = new System.Drawing.Size(66, 24);

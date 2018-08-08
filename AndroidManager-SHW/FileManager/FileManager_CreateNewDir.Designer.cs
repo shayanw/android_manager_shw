@@ -35,8 +35,8 @@
             // 
             // label1
             // 
-            this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(6, 6);
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(6, 8);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(59, 26);
             this.label1.TabIndex = 0;
@@ -45,7 +45,7 @@
             // 
             // textBox_nameDir
             // 
-            this.textBox_nameDir.BackColor = System.Drawing.Color.White;
+            this.textBox_nameDir.BackColor = System.Drawing.SystemColors.Control;
             this.textBox_nameDir.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_nameDir.Location = new System.Drawing.Point(71, 6);
             this.textBox_nameDir.Name = "textBox_nameDir";
@@ -55,7 +55,8 @@
             // 
             // button_CreateDir
             // 
-            this.button_CreateDir.FlatAppearance.BorderColor = System.Drawing.Color.DimGray;
+            this.button_CreateDir.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
+            this.button_CreateDir.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ActiveCaption;
             this.button_CreateDir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_CreateDir.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_CreateDir.Location = new System.Drawing.Point(238, 6);
@@ -70,7 +71,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
             this.ClientSize = new System.Drawing.Size(329, 43);
             this.Controls.Add(this.button_CreateDir);
             this.Controls.Add(this.textBox_nameDir);
@@ -83,7 +84,7 @@
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Create New Folder";
+            this.Text = "New Folder";
             this.ResumeLayout(false);
             this.PerformLayout();
 
