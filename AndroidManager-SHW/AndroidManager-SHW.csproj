@@ -224,6 +224,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="if_android_1220337.ico" />
+    <None Include="Resources\internalMemory.png" />
+    <None Include="Resources\exteralMemory.png" />
     <None Include="Resources\toggleOn.png" />
     <None Include="Resources\toggleOff.png" />
     <None Include="Resources\walpapernew6.png" />

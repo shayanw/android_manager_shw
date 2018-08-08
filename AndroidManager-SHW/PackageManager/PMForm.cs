@@ -238,7 +238,8 @@ namespace AndroidManager_SHW.PackageManager
             bool isInternal, isReinstall;
             isReinstall = true;
             isInternal = true;
-            if (radioButton_externalMemory.Checked)
+
+            if (radioButton_isExternal.Checked)
             {
                 isInternal = false;
             }
@@ -445,8 +446,19 @@ namespace AndroidManager_SHW.PackageManager
             }
             return listFiles;
         }
-    
 
+        private void radioButton_isExternal_Click(object sender, EventArgs e)
+        {
+            radioButton_isExternal.Checked = !radioButton_isExternal.Checked;
+            if (radioButton_isExternal.Checked)
+            {
+                radioButton_isExternal.BackgroundImage = AndroidManager_SHW.Properties.Resources.exteralMemory;
+            }
+            else
+            {
+                radioButton_isExternal.BackgroundImage = AndroidManager_SHW.Properties.Resources.internalMemory;
+            }
+        }
 
         private void button_installTempPackages_Click(object sender, EventArgs e)
         {

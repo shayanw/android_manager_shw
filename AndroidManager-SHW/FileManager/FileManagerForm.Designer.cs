@@ -87,7 +87,7 @@
             // 
             // treeView_dir
             // 
-            this.treeView_dir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(230)))), ((int)(((byte)(213)))));
+            this.treeView_dir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(240)))), ((int)(((byte)(223)))));
             this.treeView_dir.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.treeView_dir.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeView_dir.ImageIndex = 0;
@@ -134,7 +134,7 @@
             // listView_files
             // 
             this.listView_files.AllowDrop = true;
-            this.listView_files.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(230)))), ((int)(((byte)(233)))));
+            this.listView_files.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(240)))), ((int)(((byte)(243)))));
             this.listView_files.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.listView_files.ContextMenuStrip = this.contextMenuStrip_ListView;
             this.listView_files.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -300,7 +300,7 @@
             // 
             // panel_rightSideBarDown
             // 
-            this.panel_rightSideBarDown.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(200)))), ((int)(((byte)(205)))));
+            this.panel_rightSideBarDown.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(198)))), ((int)(((byte)(210)))), ((int)(((byte)(215)))));
             this.panel_rightSideBarDown.Controls.Add(this.button_showSize);
             this.panel_rightSideBarDown.Controls.Add(this.label_size);
             this.panel_rightSideBarDown.Controls.Add(this.label_IsShowSize);
@@ -378,7 +378,7 @@
             // 
             // toolStrip_upMain
             // 
-            this.toolStrip_upMain.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(220)))), ((int)(((byte)(225)))));
+            this.toolStrip_upMain.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(230)))), ((int)(((byte)(235)))));
             this.toolStrip_upMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.toolStrip_upMain.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip_upMain.ImageScalingSize = new System.Drawing.Size(20, 20);

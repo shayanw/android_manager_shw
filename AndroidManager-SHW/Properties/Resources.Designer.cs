@@ -203,6 +203,16 @@ namespace AndroidManager_SHW.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap exteralMemory {
+            get {
+                object obj = ResourceManager.GetObject("exteralMemory", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap file8 {
             get {
                 object obj = ResourceManager.GetObject("file8", resourceCulture);
@@ -326,6 +336,16 @@ namespace AndroidManager_SHW.Properties {
         internal static System.Drawing.Bitmap Go {
             get {
                 object obj = ResourceManager.GetObject("Go", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap internalMemory {
+            get {
+                object obj = ResourceManager.GetObject("internalMemory", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

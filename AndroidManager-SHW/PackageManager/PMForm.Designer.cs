@@ -47,8 +47,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.button_installTempPackages = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.radioButton_externalMemory = new System.Windows.Forms.RadioButton();
-            this.radioButton_internalMemory = new System.Windows.Forms.RadioButton();
+            this.radioButton_isExternal = new System.Windows.Forms.RadioButton();
             this.panel_rightHeader = new System.Windows.Forms.Panel();
             this.panel_leftSide = new System.Windows.Forms.Panel();
             this.dataGridView_devicePackages = new System.Windows.Forms.DataGridView();
@@ -96,7 +95,7 @@
             // 
             // panel_details
             // 
-            this.panel_details.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(190)))), ((int)(((byte)(195)))));
+            this.panel_details.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(198)))), ((int)(((byte)(210)))), ((int)(((byte)(215)))));
             this.panel_details.Controls.Add(this.pictureBox2);
             this.panel_details.Controls.Add(this.label_statePackage);
             this.panel_details.Controls.Add(this.label_namePackage);
@@ -159,7 +158,7 @@
             // 
             // label_titleTempPackages
             // 
-            this.label_titleTempPackages.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(168)))), ((int)(((byte)(220)))), ((int)(((byte)(203)))));
+            this.label_titleTempPackages.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(240)))), ((int)(((byte)(223)))));
             this.label_titleTempPackages.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label_titleTempPackages.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_titleTempPackages.ForeColor = System.Drawing.Color.Black;
@@ -172,7 +171,7 @@
             // 
             // label_titleDevicePackages
             // 
-            this.label_titleDevicePackages.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(168)))), ((int)(((byte)(220)))), ((int)(((byte)(203)))));
+            this.label_titleDevicePackages.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(240)))), ((int)(((byte)(223)))));
             this.label_titleDevicePackages.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label_titleDevicePackages.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_titleDevicePackages.ForeColor = System.Drawing.Color.Black;
@@ -199,7 +198,7 @@
             // listBox_tempPackages
             // 
             this.listBox_tempPackages.AllowDrop = true;
-            this.listBox_tempPackages.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(230)))), ((int)(((byte)(233)))));
+            this.listBox_tempPackages.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(240)))), ((int)(((byte)(243)))));
             this.listBox_tempPackages.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.listBox_tempPackages.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listBox_tempPackages.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -225,9 +224,9 @@
             // 
             // button_addTempPackages
             // 
-            this.button_addTempPackages.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.button_addTempPackages.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(205)))), ((int)(((byte)(255)))));
             this.button_addTempPackages.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button_addTempPackages.FlatAppearance.BorderColor = System.Drawing.Color.DimGray;
+            this.button_addTempPackages.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
             this.button_addTempPackages.FlatAppearance.BorderSize = 0;
             this.button_addTempPackages.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_addTempPackages.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -242,9 +241,9 @@
             // 
             // button_removeTempPackages
             // 
-            this.button_removeTempPackages.BackColor = System.Drawing.Color.LightPink;
+            this.button_removeTempPackages.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(205)))), ((int)(((byte)(205)))));
             this.button_removeTempPackages.Dock = System.Windows.Forms.DockStyle.Right;
-            this.button_removeTempPackages.FlatAppearance.BorderColor = System.Drawing.Color.DimGray;
+            this.button_removeTempPackages.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
             this.button_removeTempPackages.FlatAppearance.BorderSize = 0;
             this.button_removeTempPackages.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_removeTempPackages.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -275,21 +274,21 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(173, 59);
+            this.panel2.Size = new System.Drawing.Size(242, 59);
             this.panel2.TabIndex = 10;
             // 
             // button_installTempPackages
             // 
-            this.button_installTempPackages.BackColor = System.Drawing.Color.PaleGreen;
+            this.button_installTempPackages.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(255)))), ((int)(((byte)(205)))));
             this.button_installTempPackages.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button_installTempPackages.FlatAppearance.BorderColor = System.Drawing.Color.DimGray;
+            this.button_installTempPackages.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
             this.button_installTempPackages.FlatAppearance.BorderSize = 0;
             this.button_installTempPackages.Font = new System.Drawing.Font("Segoe UI Semibold", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_installTempPackages.Image = global::AndroidManager_SHW.Properties.Resources.pm_install;
             this.button_installTempPackages.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.button_installTempPackages.Location = new System.Drawing.Point(0, 0);
             this.button_installTempPackages.Name = "button_installTempPackages";
-            this.button_installTempPackages.Size = new System.Drawing.Size(173, 59);
+            this.button_installTempPackages.Size = new System.Drawing.Size(242, 59);
             this.button_installTempPackages.TabIndex = 8;
             this.button_installTempPackages.Text = "Install";
             this.button_installTempPackages.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -298,42 +297,31 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.panel1.Controls.Add(this.radioButton_externalMemory);
-            this.panel1.Controls.Add(this.radioButton_internalMemory);
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(220)))), ((int)(((byte)(225)))));
+            this.panel1.Controls.Add(this.radioButton_isExternal);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel1.Location = new System.Drawing.Point(173, 0);
+            this.panel1.Location = new System.Drawing.Point(242, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(119, 59);
+            this.panel1.Size = new System.Drawing.Size(50, 59);
             this.panel1.TabIndex = 9;
             // 
-            // radioButton_externalMemory
+            // radioButton_isExternal
             // 
-            this.radioButton_externalMemory.AutoSize = true;
-            this.radioButton_externalMemory.BackColor = System.Drawing.Color.Transparent;
-            this.radioButton_externalMemory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.radioButton_externalMemory.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton_externalMemory.Location = new System.Drawing.Point(11, 30);
-            this.radioButton_externalMemory.Name = "radioButton_externalMemory";
-            this.radioButton_externalMemory.Size = new System.Drawing.Size(94, 23);
-            this.radioButton_externalMemory.TabIndex = 7;
-            this.radioButton_externalMemory.Text = "External M";
-            this.radioButton_externalMemory.UseVisualStyleBackColor = false;
-            // 
-            // radioButton_internalMemory
-            // 
-            this.radioButton_internalMemory.AutoSize = true;
-            this.radioButton_internalMemory.BackColor = System.Drawing.Color.Transparent;
-            this.radioButton_internalMemory.Checked = true;
-            this.radioButton_internalMemory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.radioButton_internalMemory.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton_internalMemory.Location = new System.Drawing.Point(11, 6);
-            this.radioButton_internalMemory.Name = "radioButton_internalMemory";
-            this.radioButton_internalMemory.Size = new System.Drawing.Size(93, 23);
-            this.radioButton_internalMemory.TabIndex = 6;
-            this.radioButton_internalMemory.TabStop = true;
-            this.radioButton_internalMemory.Text = "Internal M";
-            this.radioButton_internalMemory.UseVisualStyleBackColor = false;
+            this.radioButton_isExternal.Appearance = System.Windows.Forms.Appearance.Button;
+            this.radioButton_isExternal.AutoCheck = false;
+            this.radioButton_isExternal.AutoSize = true;
+            this.radioButton_isExternal.BackColor = System.Drawing.Color.White;
+            this.radioButton_isExternal.BackgroundImage = global::AndroidManager_SHW.Properties.Resources.internalMemory;
+            this.radioButton_isExternal.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.radioButton_isExternal.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radioButton_isExternal.FlatAppearance.BorderSize = 0;
+            this.radioButton_isExternal.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.radioButton_isExternal.Location = new System.Drawing.Point(0, 0);
+            this.radioButton_isExternal.Name = "radioButton_isExternal";
+            this.radioButton_isExternal.Size = new System.Drawing.Size(50, 59);
+            this.radioButton_isExternal.TabIndex = 0;
+            this.radioButton_isExternal.UseVisualStyleBackColor = false;
+            this.radioButton_isExternal.Click += new System.EventHandler(this.radioButton_isExternal_Click);
             // 
             // panel_rightHeader
             // 
@@ -365,7 +353,7 @@
             this.dataGridView_devicePackages.AllowUserToOrderColumns = true;
             this.dataGridView_devicePackages.AllowUserToResizeColumns = false;
             this.dataGridView_devicePackages.AllowUserToResizeRows = false;
-            this.dataGridView_devicePackages.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(230)))), ((int)(((byte)(233)))));
+            this.dataGridView_devicePackages.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(240)))), ((int)(((byte)(243)))));
             this.dataGridView_devicePackages.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridView_devicePackages.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.RaisedHorizontal;
             this.dataGridView_devicePackages.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
@@ -504,9 +492,9 @@
             // 
             // button_unistallDevicePackages
             // 
-            this.button_unistallDevicePackages.BackColor = System.Drawing.Color.LightPink;
+            this.button_unistallDevicePackages.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(205)))), ((int)(((byte)(205)))));
             this.button_unistallDevicePackages.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button_unistallDevicePackages.FlatAppearance.BorderColor = System.Drawing.Color.DimGray;
+            this.button_unistallDevicePackages.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
             this.button_unistallDevicePackages.FlatAppearance.BorderSize = 0;
             this.button_unistallDevicePackages.Font = new System.Drawing.Font("Segoe UI Semibold", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_unistallDevicePackages.Image = global::AndroidManager_SHW.Properties.Resources.pm_unistall;
@@ -531,9 +519,9 @@
             // 
             // button_backupDevicePackages
             // 
-            this.button_backupDevicePackages.BackColor = System.Drawing.Color.Aquamarine;
+            this.button_backupDevicePackages.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(205)))), ((int)(((byte)(255)))));
             this.button_backupDevicePackages.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button_backupDevicePackages.FlatAppearance.BorderColor = System.Drawing.Color.DimGray;
+            this.button_backupDevicePackages.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
             this.button_backupDevicePackages.FlatAppearance.BorderSize = 0;
             this.button_backupDevicePackages.Font = new System.Drawing.Font("Segoe UI Semibold", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_backupDevicePackages.Image = global::AndroidManager_SHW.Properties.Resources.pm_backup;
@@ -646,8 +634,6 @@
         private System.Windows.Forms.Panel panel_rightTools;
         private System.Windows.Forms.Button button_addTempPackages;
         private System.Windows.Forms.Button button_removeTempPackages;
-        private System.Windows.Forms.RadioButton radioButton_externalMemory;
-        private System.Windows.Forms.RadioButton radioButton_internalMemory;
         private System.Windows.Forms.ProgressBar progressBar_statePackage;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label label_statePackage;
@@ -676,5 +662,6 @@
         private System.Windows.Forms.Button button_backupDevicePackages;
         private System.Windows.Forms.Panel panel_leftButton;
         private System.Windows.Forms.Panel panel_righteButton;
+        private System.Windows.Forms.RadioButton radioButton_isExternal;
     }
 }

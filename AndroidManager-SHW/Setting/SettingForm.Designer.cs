@@ -28,11 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel_pathSetting = new System.Windows.Forms.Panel();
+            this.button_showFileSize = new System.Windows.Forms.Button();
             this.panel_titlePath = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
             this.panel_titleDGV = new System.Windows.Forms.Panel();
@@ -41,6 +42,7 @@
             this.button_save = new System.Windows.Forms.Button();
             this.button_updatePath = new System.Windows.Forms.Button();
             this.button_backupPath = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.textBox_updatePath = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -57,8 +59,6 @@
             this.button_deleteDeviceBackup = new System.Windows.Forms.Button();
             this.saveFileDialog_path = new System.Windows.Forms.SaveFileDialog();
             this.folderBrowserDialog_path = new System.Windows.Forms.FolderBrowserDialog();
-            this.label5 = new System.Windows.Forms.Label();
-            this.button_showFileSize = new System.Windows.Forms.Button();
             this.panel_pathSetting.SuspendLayout();
             this.panel_titlePath.SuspendLayout();
             this.panel_titleDGV.SuspendLayout();
@@ -70,7 +70,7 @@
             // 
             // panel_pathSetting
             // 
-            this.panel_pathSetting.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(230)))), ((int)(((byte)(233)))));
+            this.panel_pathSetting.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(240)))), ((int)(((byte)(243)))));
             this.panel_pathSetting.Controls.Add(this.button_showFileSize);
             this.panel_pathSetting.Controls.Add(this.panel_titlePath);
             this.panel_pathSetting.Controls.Add(this.panel_titleDGV);
@@ -88,6 +88,20 @@
             this.panel_pathSetting.Name = "panel_pathSetting";
             this.panel_pathSetting.Size = new System.Drawing.Size(482, 245);
             this.panel_pathSetting.TabIndex = 0;
+            // 
+            // button_showFileSize
+            // 
+            this.button_showFileSize.BackColor = System.Drawing.Color.Transparent;
+            this.button_showFileSize.BackgroundImage = global::AndroidManager_SHW.Properties.Resources.toggleOff;
+            this.button_showFileSize.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button_showFileSize.FlatAppearance.BorderSize = 0;
+            this.button_showFileSize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_showFileSize.Location = new System.Drawing.Point(240, 105);
+            this.button_showFileSize.Name = "button_showFileSize";
+            this.button_showFileSize.Size = new System.Drawing.Size(48, 48);
+            this.button_showFileSize.TabIndex = 7;
+            this.button_showFileSize.UseVisualStyleBackColor = false;
+            this.button_showFileSize.Click += new System.EventHandler(this.button_showFileSize_Click);
             // 
             // panel_titlePath
             // 
@@ -192,6 +206,15 @@
             this.button_backupPath.UseVisualStyleBackColor = false;
             this.button_backupPath.Click += new System.EventHandler(this.button_backupPath_Click);
             // 
+            // label5
+            // 
+            this.label5.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(15, 118);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(227, 23);
+            this.label5.TabIndex = 2;
+            this.label5.Text = "show file size in Filemanager: \r\n";
+            // 
             // label2
             // 
             this.label2.Enabled = false;
@@ -257,54 +280,54 @@
             this.dataGridView_Device.AllowUserToDeleteRows = false;
             this.dataGridView_Device.AllowUserToResizeColumns = false;
             this.dataGridView_Device.AllowUserToResizeRows = false;
-            dataGridViewCellStyle13.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle13.Padding = new System.Windows.Forms.Padding(5, 5, 5, 0);
-            this.dataGridView_Device.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(5, 5, 5, 0);
+            this.dataGridView_Device.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView_Device.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dataGridView_Device.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.dataGridView_Device.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(230)))), ((int)(((byte)(233)))));
+            this.dataGridView_Device.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(240)))), ((int)(((byte)(243)))));
             this.dataGridView_Device.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridView_Device.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(255)))), ((int)(((byte)(250)))));
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle14.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle14.Padding = new System.Windows.Forms.Padding(8, 8, 8, 0);
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView_Device.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(255)))), ((int)(((byte)(250)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(8, 8, 8, 0);
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView_Device.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView_Device.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_Device.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Model,
             this.SizePath,
             this.CountFiles,
             this.PathBackup});
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle15.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle15.Padding = new System.Windows.Forms.Padding(5, 5, 5, 0);
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView_Device.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.Padding = new System.Windows.Forms.Padding(5, 5, 5, 0);
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView_Device.DefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView_Device.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView_Device.EnableHeadersVisualStyles = false;
             this.dataGridView_Device.Location = new System.Drawing.Point(0, 0);
             this.dataGridView_Device.MultiSelect = false;
             this.dataGridView_Device.Name = "dataGridView_Device";
             this.dataGridView_Device.ReadOnly = true;
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(200)))), ((int)(((byte)(183)))));
-            dataGridViewCellStyle16.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle16.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle16.Padding = new System.Windows.Forms.Padding(5);
-            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView_Device.RowHeadersDefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(200)))), ((int)(((byte)(183)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.Padding = new System.Windows.Forms.Padding(5);
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView_Device.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView_Device.RowHeadersVisible = false;
             this.dataGridView_Device.RowTemplate.Height = 24;
             this.dataGridView_Device.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -396,29 +419,6 @@
             // folderBrowserDialog_path
             // 
             this.folderBrowserDialog_path.Description = "Select a Directory for Main work [ Your_path\\AndroidManagerSHW\\  ]";
-            // 
-            // label5
-            // 
-            this.label5.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(15, 118);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(227, 23);
-            this.label5.TabIndex = 2;
-            this.label5.Text = "show file size in Filemanager: \r\n";
-            // 
-            // button_showFileSize
-            // 
-            this.button_showFileSize.BackColor = System.Drawing.Color.Transparent;
-            this.button_showFileSize.BackgroundImage = global::AndroidManager_SHW.Properties.Resources.toggleOff;
-            this.button_showFileSize.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button_showFileSize.FlatAppearance.BorderSize = 0;
-            this.button_showFileSize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_showFileSize.Location = new System.Drawing.Point(240, 105);
-            this.button_showFileSize.Name = "button_showFileSize";
-            this.button_showFileSize.Size = new System.Drawing.Size(48, 48);
-            this.button_showFileSize.TabIndex = 7;
-            this.button_showFileSize.UseVisualStyleBackColor = false;
-            this.button_showFileSize.Click += new System.EventHandler(this.button_showFileSize_Click);
             // 
             // SettingForm
             // 
