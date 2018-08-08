@@ -440,6 +440,7 @@
             // 
             // toolStripTextBox_path
             // 
+            this.toolStripTextBox_path.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
             this.toolStripTextBox_path.Name = "toolStripTextBox_path";
             this.toolStripTextBox_path.Size = new System.Drawing.Size(315, 40);
             this.toolStripTextBox_path.Click += new System.EventHandler(this.toolStripTextBox_path_Click);

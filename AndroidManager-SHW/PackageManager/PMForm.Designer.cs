@@ -102,7 +102,7 @@
             this.panel_details.Controls.Add(this.label_addressPackage);
             this.panel_details.Controls.Add(this.progressBar_statePackage);
             this.panel_details.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel_details.Location = new System.Drawing.Point(0, 660);
+            this.panel_details.Location = new System.Drawing.Point(0, 582);
             this.panel_details.Name = "panel_details";
             this.panel_details.Size = new System.Drawing.Size(710, 71);
             this.panel_details.TabIndex = 0;
@@ -192,7 +192,7 @@
             this.panel_rightSide.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel_rightSide.Location = new System.Drawing.Point(418, 0);
             this.panel_rightSide.Name = "panel_rightSide";
-            this.panel_rightSide.Size = new System.Drawing.Size(292, 660);
+            this.panel_rightSide.Size = new System.Drawing.Size(292, 582);
             this.panel_rightSide.TabIndex = 1;
             // 
             // listBox_tempPackages
@@ -207,7 +207,7 @@
             this.listBox_tempPackages.Location = new System.Drawing.Point(0, 68);
             this.listBox_tempPackages.Name = "listBox_tempPackages";
             this.listBox_tempPackages.SelectionMode = System.Windows.Forms.SelectionMode.None;
-            this.listBox_tempPackages.Size = new System.Drawing.Size(292, 533);
+            this.listBox_tempPackages.Size = new System.Drawing.Size(292, 455);
             this.listBox_tempPackages.TabIndex = 7;
             this.listBox_tempPackages.DragDrop += new System.Windows.Forms.DragEventHandler(this.listBox_tempPackages_DragDrop);
             this.listBox_tempPackages.DragEnter += new System.Windows.Forms.DragEventHandler(this.listBox_tempPackages_DragEnter);
@@ -262,7 +262,7 @@
             this.panel_rightFooter.Controls.Add(this.panel2);
             this.panel_rightFooter.Controls.Add(this.panel1);
             this.panel_rightFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel_rightFooter.Location = new System.Drawing.Point(0, 601);
+            this.panel_rightFooter.Location = new System.Drawing.Point(0, 523);
             this.panel_rightFooter.Name = "panel_rightFooter";
             this.panel_rightFooter.Size = new System.Drawing.Size(292, 59);
             this.panel_rightFooter.TabIndex = 3;
@@ -310,7 +310,7 @@
             this.radioButton_isExternal.Appearance = System.Windows.Forms.Appearance.Button;
             this.radioButton_isExternal.AutoCheck = false;
             this.radioButton_isExternal.AutoSize = true;
-            this.radioButton_isExternal.BackColor = System.Drawing.Color.White;
+            this.radioButton_isExternal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(255)))), ((int)(((byte)(195)))));
             this.radioButton_isExternal.BackgroundImage = global::AndroidManager_SHW.Properties.Resources.internalMemory;
             this.radioButton_isExternal.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.radioButton_isExternal.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -343,7 +343,7 @@
             this.panel_leftSide.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panel_leftSide.Location = new System.Drawing.Point(0, 0);
             this.panel_leftSide.Name = "panel_leftSide";
-            this.panel_leftSide.Size = new System.Drawing.Size(418, 660);
+            this.panel_leftSide.Size = new System.Drawing.Size(418, 582);
             this.panel_leftSide.TabIndex = 2;
             // 
             // dataGridView_devicePackages
@@ -369,7 +369,7 @@
             this.dataGridView_devicePackages.RowHeadersVisible = false;
             this.dataGridView_devicePackages.RowTemplate.Height = 24;
             this.dataGridView_devicePackages.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView_devicePackages.Size = new System.Drawing.Size(418, 533);
+            this.dataGridView_devicePackages.Size = new System.Drawing.Size(418, 455);
             this.dataGridView_devicePackages.TabIndex = 1;
             this.dataGridView_devicePackages.SelectionChanged += new System.EventHandler(this.dataGridView_devicePackages_SelectionChanged);
             // 
@@ -476,7 +476,7 @@
             this.panel_leftFooter.Controls.Add(this.panel_leftButton);
             this.panel_leftFooter.Controls.Add(this.panel_righteButton);
             this.panel_leftFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel_leftFooter.Location = new System.Drawing.Point(0, 601);
+            this.panel_leftFooter.Location = new System.Drawing.Point(0, 523);
             this.panel_leftFooter.Name = "panel_leftFooter";
             this.panel_leftFooter.Size = new System.Drawing.Size(418, 59);
             this.panel_leftFooter.TabIndex = 2;
@@ -585,7 +585,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(710, 731);
+            this.ClientSize = new System.Drawing.Size(710, 653);
             this.Controls.Add(this.panel_leftSide);
             this.Controls.Add(this.panel_rightSide);
             this.Controls.Add(this.panel_details);
