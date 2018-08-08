@@ -50,15 +50,15 @@
             this.panel_showDevices = new System.Windows.Forms.Panel();
             this.panel_DGV = new System.Windows.Forms.Panel();
             this.dataGridView_Device = new System.Windows.Forms.DataGridView();
-            this.Model = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SizePath = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CountFiles = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PathBackup = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel_buttonDGV = new System.Windows.Forms.Panel();
             this.button_openFolderBackup = new System.Windows.Forms.Button();
             this.button_deleteDeviceBackup = new System.Windows.Forms.Button();
             this.saveFileDialog_path = new System.Windows.Forms.SaveFileDialog();
             this.folderBrowserDialog_path = new System.Windows.Forms.FolderBrowserDialog();
+            this.Model = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SizePath = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CountFiles = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PathBackup = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel_pathSetting.SuspendLayout();
             this.panel_titlePath.SuspendLayout();
             this.panel_titleDGV.SuspendLayout();
@@ -336,44 +336,6 @@
             this.dataGridView_Device.DoubleClick += new System.EventHandler(this.button_openFolderBackup_Click);
             this.dataGridView_Device.KeyUp += new System.Windows.Forms.KeyEventHandler(this.dataGridView_Device_KeyUp);
             // 
-            // Model
-            // 
-            this.Model.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Model.DataPropertyName = "Model";
-            this.Model.FillWeight = 55F;
-            this.Model.HeaderText = "Model";
-            this.Model.Name = "Model";
-            this.Model.ReadOnly = true;
-            // 
-            // SizePath
-            // 
-            this.SizePath.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.SizePath.DataPropertyName = "SizePath";
-            this.SizePath.FillWeight = 45F;
-            this.SizePath.HeaderText = "Size";
-            this.SizePath.Name = "SizePath";
-            this.SizePath.ReadOnly = true;
-            // 
-            // CountFiles
-            // 
-            this.CountFiles.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.CountFiles.DataPropertyName = "CountFiles";
-            this.CountFiles.FillWeight = 50F;
-            this.CountFiles.HeaderText = "Files Number";
-            this.CountFiles.Name = "CountFiles";
-            this.CountFiles.ReadOnly = true;
-            // 
-            // PathBackup
-            // 
-            this.PathBackup.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.PathBackup.DataPropertyName = "PathBackup";
-            this.PathBackup.FillWeight = 200F;
-            this.PathBackup.HeaderText = "Path";
-            this.PathBackup.Name = "PathBackup";
-            this.PathBackup.ReadOnly = true;
-            this.PathBackup.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.PathBackup.Visible = false;
-            // 
             // panel_buttonDGV
             // 
             this.panel_buttonDGV.BackColor = System.Drawing.Color.LightSteelBlue;
@@ -420,6 +382,44 @@
             // 
             this.folderBrowserDialog_path.Description = "Select a Directory for Main work [ Your_path\\AndroidManagerSHW\\  ]";
             // 
+            // Model
+            // 
+            this.Model.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Model.DataPropertyName = "Model";
+            this.Model.FillWeight = 65F;
+            this.Model.HeaderText = "Model";
+            this.Model.Name = "Model";
+            this.Model.ReadOnly = true;
+            // 
+            // SizePath
+            // 
+            this.SizePath.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.SizePath.DataPropertyName = "SizePath";
+            this.SizePath.FillWeight = 45F;
+            this.SizePath.HeaderText = "Size";
+            this.SizePath.Name = "SizePath";
+            this.SizePath.ReadOnly = true;
+            // 
+            // CountFiles
+            // 
+            this.CountFiles.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.CountFiles.DataPropertyName = "CountFiles";
+            this.CountFiles.FillWeight = 50F;
+            this.CountFiles.HeaderText = "Files Number";
+            this.CountFiles.Name = "CountFiles";
+            this.CountFiles.ReadOnly = true;
+            // 
+            // PathBackup
+            // 
+            this.PathBackup.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.PathBackup.DataPropertyName = "PathBackup";
+            this.PathBackup.FillWeight = 200F;
+            this.PathBackup.HeaderText = "Path";
+            this.PathBackup.Name = "PathBackup";
+            this.PathBackup.ReadOnly = true;
+            this.PathBackup.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.PathBackup.Visible = false;
+            // 
             // SettingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -465,15 +465,15 @@
         private System.Windows.Forms.Panel panel_buttonDGV;
         private System.Windows.Forms.Button button_openFolderBackup;
         private System.Windows.Forms.Button button_deleteDeviceBackup;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Model;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SizePath;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CountFiles;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PathBackup;
         private System.Windows.Forms.Panel panel_titleDGV;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Panel panel_titlePath;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button button_showFileSize;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Model;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SizePath;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CountFiles;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PathBackup;
     }
 }

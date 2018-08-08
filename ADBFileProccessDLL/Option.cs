@@ -74,7 +74,7 @@ namespace ADBProccessDLL
             string name;
             if (string.IsNullOrEmpty(DeviceDirectoryName) || !DeviceDirectoryName.Contains(currentDevice.Serial))
             {
-                name = currentDevice.Model + "_" + currentDevice.Name + "[" + currentDevice.Serial + "]";
+                name = currentDevice.Model + "_" + currentDevice.Name + "[" + currentDevice.Serial.Replace(":", "_") + "]";
                 DeviceDirectoryName = name;
             }
             else

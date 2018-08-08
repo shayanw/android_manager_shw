@@ -21,14 +21,14 @@ namespace AndroidManager_SHW.Setting
             pathBackup = directoryName.FullName;
 
             //--mode | name | serial
-            int tmpLastUnderLine = DirectoryName.LastIndexOf('_');
+            int tmpLastUnderLine = DirectoryName.Split('[')[0].LastIndexOf('_');
             for (int i = 0; i < tmpLastUnderLine; i++)
             {
                 model += DirectoryName[i];
             }
             DirectoryName=DirectoryName.Replace(model, "");
             name = DirectoryName.Split('[')[0].Replace("_","");
-            serial = DirectoryName.Split('[')[1].Replace("]","");
+            serial = DirectoryName.Replace(name,"").Replace("_", "").Replace("[", "").Replace("]", "");
 
 
             //---Size
