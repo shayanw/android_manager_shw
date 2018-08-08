@@ -51,6 +51,24 @@ namespace AndroidManager_SHW
             InitializeComponent();
             patchFixImage();
 
+            IsShowSize = Option.IsShowSizeFM;
+            if (IsShowSize)
+            {
+                button_showSize.BackgroundImage = AndroidManager_SHW.Properties.Resources.toggleOn;
+                IsShowSize = true;
+
+            }
+            else
+            {
+                button_showSize.BackgroundImage = AndroidManager_SHW.Properties.Resources.toggleOff;
+                label_size.Text = "";
+                IsShowSize = false;
+            }
+
+
+
+
+
             device = currentDevice;
             fm = new FileManager(device);
             backupPath = fm.option.MainPathBackupProp;

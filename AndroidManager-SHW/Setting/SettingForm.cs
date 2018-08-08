@@ -31,6 +31,19 @@ namespace AndroidManager_SHW.Setting
             try
             {
                 RefreshDataGridView();
+
+
+                if (st.isShowSizeFM)
+                {
+                    button_showFileSize.BackgroundImage = AndroidManager_SHW.Properties.Resources.toggleOn;
+                    st.isShowSizeFM = true;
+                }
+                else
+                {
+                    button_showFileSize.BackgroundImage = AndroidManager_SHW.Properties.Resources.toggleOff;
+                    st.isShowSizeFM = false;
+                }
+
             }
             catch
             {
@@ -51,7 +64,7 @@ namespace AndroidManager_SHW.Setting
             {
                 if (st.changeBackupPath(textBox_backupPath.Text))
                 {
-                    if (textBox_backupPath.Text==Option.MainPath)
+                    if (textBox_backupPath.Text==Option.MainPath && st.isShowSizeFM==Option.IsShowSizeFM)
                     {
                         return;
                     }
@@ -110,6 +123,10 @@ namespace AndroidManager_SHW.Setting
         {
             textBox_backupPath.Text = System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             st.changeBackupPath(textBox_backupPath.Text);
+
+            st.isShowSizeFM = Option.IsShowSizeFM = false;
+            button_showFileSize.BackgroundImage = AndroidManager_SHW.Properties.Resources.toggleOff;
+
             st.saveChanged();
         }
 
@@ -187,6 +204,20 @@ namespace AndroidManager_SHW.Setting
             if (e.KeyCode == Keys.Delete)
             {
                 button_deleteDeviceBackup_Click(sender, e);
+            }
+        }
+
+        private void button_showFileSize_Click(object sender, EventArgs e)
+        {
+            if (st.isShowSizeFM)
+            {
+                button_showFileSize.BackgroundImage = AndroidManager_SHW.Properties.Resources.toggleOff;
+                st.isShowSizeFM = false;
+            }
+            else
+            {
+                button_showFileSize.BackgroundImage = AndroidManager_SHW.Properties.Resources.toggleOn;
+                st.isShowSizeFM = true;
             }
         }
     }

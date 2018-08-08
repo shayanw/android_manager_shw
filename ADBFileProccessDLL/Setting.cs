@@ -13,6 +13,7 @@ namespace ADBProccessDLL
     {
         public string backupPath;
         public string updatePackagePath;
+        public bool isShowSizeFM;
         public Setting()
         {
             string tmp;
@@ -22,6 +23,7 @@ namespace ADBProccessDLL
                 while (sr.Peek()>0)
                 {
                     tmp=sr.ReadLine();
+
                     if (tmp.Contains("backupPath:"))
                     {
                         backupPath = tmp.Replace("backupPath:", "");
@@ -39,6 +41,23 @@ namespace ADBProccessDLL
                     {
                         updatePackagePath = tmp.Replace("updatePackagePath:", "");
                     }
+                    else if (tmp.Contains("isShowSizeFM:"))
+                    {
+                        isShowSizeFM = Convert.ToBoolean(tmp.Replace("isShowSizeFM:", ""));
+
+                        if (string.IsNullOrEmpty(isShowSizeFM.ToString()))
+                        {
+                            isShowSizeFM = Option.IsShowSizeFM;
+                        }
+                        else
+                        {
+                            Option.IsShowSizeFM = isShowSizeFM;
+                        }
+                    }
+
+
+
+
                 }
                 sr.Close();
             }
@@ -86,13 +105,22 @@ namespace ADBProccessDLL
             return false;
         }
 
+
         public void saveChanged()
         {
             Option.MainPath = backupPath;
 
             StreamWriter sw = new StreamWriter(returnPathSetting() + @"\sett.shw");
+
+            Option.MainPath = backupPath;
             sw.WriteLine("backupPath:" + backupPath);
+
+            
             sw.WriteLine("updatePackagePath:" + updatePackagePath);
+
+            Option.IsShowSizeFM = isShowSizeFM;
+            sw.WriteLine("isShowSizeFM:" + isShowSizeFM);
+
             sw.Close();
         }
 
