@@ -25,16 +25,14 @@ namespace AndroidManager_SHW
         DeviceData Device;
         List<string> FilesAndDirecoriesForUpload;
         String PreLine_CopyCutBackup;
+        public bool IsChangeValue;
 
-        public TransferForm()
-        {
-            InitializeComponent();
-        }
 
         public TransferForm(TransferType tt, List<ADBFile> myfiles, string path, DeviceData device)
         {
 
             InitializeComponent();
+            IsChangeValue = false;
             ExternalMethod.counterEx = 0;
             progressBar_transfer.Value = 0;
             Path = path;
@@ -156,6 +154,7 @@ namespace AndroidManager_SHW
                 {
                     FM.DeleteDirectoryAndFiles(item.FullName);
                 }
+                IsChangeValue = true;
             }
         }
 
@@ -183,6 +182,7 @@ namespace AndroidManager_SHW
             MyTime++;
             if (TransferTp == TransferType.Uploading)
             {
+                IsChangeValue = true;
                 label_transferBase.Text = PreLine_CopyCutBackup+" "+GetParentDirectory(FilesAndDirecoriesForUpload[0]).Replace(@"\","");
             }
             else
@@ -203,6 +203,7 @@ namespace AndroidManager_SHW
         {
             if (TransferTp == TransferType.Uploading)
             {
+                IsChangeValue = true;
                 foreach (string Filetmp in FilesAndDirecoriesForUpload)
                 {
                     CountFilesForTransfer += Filetmp.GetCountOfFilesAndDirectoriesInSystem();
@@ -224,6 +225,7 @@ namespace AndroidManager_SHW
         {
             if (TransferTp==TransferType.Uploading)
             {
+                IsChangeValue = true;
                 label_transferBase.Text = PreLine_CopyCutBackup + " " + GetParentDirectory(FilesAndDirecoriesForUpload[0]);
             }
             label_totalFiles.Text = "Total Files: " + CountFilesForTransfer.ToString();

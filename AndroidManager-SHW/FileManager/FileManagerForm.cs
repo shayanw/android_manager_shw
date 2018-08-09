@@ -506,7 +506,10 @@ namespace AndroidManager_SHW
         private void Transferform_FormClosed(object sender, FormClosedEventArgs e)
         {
             IsTransfer = false;
-            refreshListView();
+            if (((TransferForm)sender).IsChangeValue)
+            {
+                refreshListView();
+            }
         }
 
         /// <summary>
