@@ -53,8 +53,10 @@
             this.panel_rightSideBarProgress = new System.Windows.Forms.Panel();
             this.progressBar_loadFile = new System.Windows.Forms.ProgressBar();
             this.panel_rightSideBarDown = new System.Windows.Forms.Panel();
+            this.button_showHidden = new System.Windows.Forms.Button();
             this.button_showSize = new System.Windows.Forms.Button();
             this.label_size = new System.Windows.Forms.Label();
+            this.label_IsShowHidden = new System.Windows.Forms.Label();
             this.label_IsShowSize = new System.Windows.Forms.Label();
             this.label_name = new System.Windows.Forms.Label();
             this.panel_rightSideBarUp = new System.Windows.Forms.Panel();
@@ -68,8 +70,6 @@
             this.toolStripButton_goPath = new System.Windows.Forms.ToolStripButton();
             this.backgroundWorker_ProccessSize = new System.ComponentModel.BackgroundWorker();
             this.backgroundWorker_refreshListView = new System.ComponentModel.BackgroundWorker();
-            this.label_IsShowHidden = new System.Windows.Forms.Label();
-            this.button_showHidden = new System.Windows.Forms.Button();
             this.panel_TreeSideBar.SuspendLayout();
             this.panel_leftSideBar.SuspendLayout();
             this.panel_fillRightSideBar.SuspendLayout();
@@ -326,6 +326,21 @@
             this.panel_rightSideBarDown.Size = new System.Drawing.Size(510, 84);
             this.panel_rightSideBarDown.TabIndex = 1;
             // 
+            // button_showHidden
+            // 
+            this.button_showHidden.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button_showHidden.BackColor = System.Drawing.Color.Transparent;
+            this.button_showHidden.BackgroundImage = global::AndroidManager_SHW.Properties.Resources.toggleOff;
+            this.button_showHidden.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button_showHidden.FlatAppearance.BorderSize = 0;
+            this.button_showHidden.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_showHidden.Location = new System.Drawing.Point(466, 5);
+            this.button_showHidden.Name = "button_showHidden";
+            this.button_showHidden.Size = new System.Drawing.Size(38, 38);
+            this.button_showHidden.TabIndex = 1;
+            this.button_showHidden.UseVisualStyleBackColor = false;
+            this.button_showHidden.Click += new System.EventHandler(this.button_showHidden_Click);
+            // 
             // button_showSize
             // 
             this.button_showSize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -346,12 +361,25 @@
             this.label_size.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label_size.BackColor = System.Drawing.Color.Transparent;
             this.label_size.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_size.Location = new System.Drawing.Point(17, 47);
+            this.label_size.Location = new System.Drawing.Point(17, 34);
             this.label_size.Name = "label_size";
-            this.label_size.Size = new System.Drawing.Size(239, 24);
+            this.label_size.Size = new System.Drawing.Size(181, 50);
             this.label_size.TabIndex = 0;
             this.label_size.Text = "Size: ";
             this.label_size.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label_IsShowHidden
+            // 
+            this.label_IsShowHidden.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label_IsShowHidden.BackColor = System.Drawing.Color.Transparent;
+            this.label_IsShowHidden.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_IsShowHidden.Location = new System.Drawing.Point(376, 0);
+            this.label_IsShowHidden.Name = "label_IsShowHidden";
+            this.label_IsShowHidden.Size = new System.Drawing.Size(122, 50);
+            this.label_IsShowHidden.TabIndex = 0;
+            this.label_IsShowHidden.Text = "Show Hidden:";
+            this.label_IsShowHidden.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label_IsShowHidden.Click += new System.EventHandler(this.button_showHidden_Click);
             // 
             // label_IsShowSize
             // 
@@ -370,11 +398,12 @@
             // 
             this.label_name.BackColor = System.Drawing.Color.Transparent;
             this.label_name.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_name.Location = new System.Drawing.Point(17, 13);
+            this.label_name.Location = new System.Drawing.Point(17, 0);
             this.label_name.Name = "label_name";
-            this.label_name.Size = new System.Drawing.Size(367, 24);
+            this.label_name.Size = new System.Drawing.Size(353, 50);
             this.label_name.TabIndex = 0;
             this.label_name.Text = "Name:";
+            this.label_name.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // panel_rightSideBarUp
             // 
@@ -479,34 +508,6 @@
             this.backgroundWorker_refreshListView.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker_refreshListView_DoWork);
             this.backgroundWorker_refreshListView.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker_refreshListView_ProgressChanged);
             this.backgroundWorker_refreshListView.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker_refreshListView_RunWorkerCompleted);
-            // 
-            // label_IsShowHidden
-            // 
-            this.label_IsShowHidden.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label_IsShowHidden.BackColor = System.Drawing.Color.Transparent;
-            this.label_IsShowHidden.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_IsShowHidden.Location = new System.Drawing.Point(376, 0);
-            this.label_IsShowHidden.Name = "label_IsShowHidden";
-            this.label_IsShowHidden.Size = new System.Drawing.Size(122, 50);
-            this.label_IsShowHidden.TabIndex = 0;
-            this.label_IsShowHidden.Text = "Show Hidden:";
-            this.label_IsShowHidden.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label_IsShowHidden.Click += new System.EventHandler(this.button_showHidden_Click);
-            // 
-            // button_showHidden
-            // 
-            this.button_showHidden.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button_showHidden.BackColor = System.Drawing.Color.Transparent;
-            this.button_showHidden.BackgroundImage = global::AndroidManager_SHW.Properties.Resources.toggleOff;
-            this.button_showHidden.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button_showHidden.FlatAppearance.BorderSize = 0;
-            this.button_showHidden.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_showHidden.Location = new System.Drawing.Point(466, 5);
-            this.button_showHidden.Name = "button_showHidden";
-            this.button_showHidden.Size = new System.Drawing.Size(38, 38);
-            this.button_showHidden.TabIndex = 1;
-            this.button_showHidden.UseVisualStyleBackColor = false;
-            this.button_showHidden.Click += new System.EventHandler(this.button_showHidden_Click);
             // 
             // FileManagerForm
             // 
