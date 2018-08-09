@@ -15,16 +15,13 @@ namespace AndroidManager_SHW
     {
         FileManager FM;
         string Path;
-        public FileManager_CreateNewDir()
-        {
-            InitializeComponent();
-        }
-
+        public bool IsChangeValue;
         public FileManager_CreateNewDir(DeviceData device,string path)
         {
             InitializeComponent();
             FM = new FileManager(device);
             Path = path;
+            IsChangeValue = false;
         }
 
         private void button_CreateDir_Click(object sender, EventArgs e)
@@ -32,6 +29,7 @@ namespace AndroidManager_SHW
             if (!string.IsNullOrEmpty(textBox_nameDir.Text))
             {
                 FM.CreateDirectory(Path, textBox_nameDir.Text.fixBracketInTerminal().EncodingText());
+                IsChangeValue = true;
             }
             this.Close();
         }

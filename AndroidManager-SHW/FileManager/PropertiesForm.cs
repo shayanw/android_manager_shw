@@ -18,20 +18,16 @@ namespace AndroidManager_SHW
         bool isFile;
         ADBFile oneFile;
         FileManager FM;
+        public bool IsChangeValue;
 
         string tmpName;
 
         List<ADBFile> multiFiles;
 
-        public PropertiesForm()
-        {
-            InitializeComponent();
-        }
-
         public PropertiesForm(ADBFile myFile,Image img)
         {
             InitializeComponent();
-            
+            IsChangeValue = false;
             isFile = true;
             oneFile = myFile;
             FM = new FileManager(myFile.device);
@@ -150,6 +146,7 @@ namespace AndroidManager_SHW
                 if (!string.IsNullOrEmpty(textBox_name.Text) && isFile)
                 {
                     oneFile.Rename(textBox_name.Text.fixBracketInTerminal().EncodingText());
+                    IsChangeValue = true;
                 }
             }
             this.Close();

@@ -519,7 +519,6 @@ namespace AndroidManager_SHW
             FileManager_CreateNewDir CND = new FileManager_CreateNewDir(device, currentPath);
             CND.FormClosed += CND_FormClosed;
             CND.ShowDialog();
-
         }
 
         /// <summary>
@@ -529,7 +528,11 @@ namespace AndroidManager_SHW
         /// <param name="e"></param>
         private void CND_FormClosed(object sender, FormClosedEventArgs e)
         {
-            refreshListView();
+            if (((FileManager_CreateNewDir)sender).IsChangeValue)
+            {
+                refreshListView();
+            }
+            
         }
 
         /// <summary>
@@ -594,7 +597,11 @@ namespace AndroidManager_SHW
 
         private void Pf_FormClosed(object sender, FormClosedEventArgs e)
         {
-            refreshListView();
+            if (((PropertiesForm)sender).IsChangeValue)
+            {
+                refreshListView();
+            }
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
