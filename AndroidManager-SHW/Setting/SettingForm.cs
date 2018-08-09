@@ -45,6 +45,17 @@ namespace AndroidManager_SHW.Setting
                     st.isShowSizeFM = false;
                 }
 
+                if (st.isShowHiddenFile)
+                {
+                    button_showHiddenFile.BackgroundImage = AndroidManager_SHW.Properties.Resources.toggleOn;
+                    st.isShowHiddenFile = true;
+                }
+                else
+                {
+                    button_showHiddenFile.BackgroundImage = AndroidManager_SHW.Properties.Resources.toggleOff;
+                    st.isShowHiddenFile = false;
+                }
+
             }
             catch
             {
@@ -65,7 +76,7 @@ namespace AndroidManager_SHW.Setting
             {
                 if (st.changeBackupPath(textBox_backupPath.Text))
                 {
-                    if (textBox_backupPath.Text == Option.MainPath && st.isShowSizeFM == Option.IsShowSizeFM)
+                    if (textBox_backupPath.Text == Option.MainPath && st.isShowSizeFM == Option.IsShowSizeFM && st.isShowHiddenFile==Option.IsShowHiddenFile)
                     {
                         return;
                     }
@@ -126,7 +137,9 @@ namespace AndroidManager_SHW.Setting
             st.changeBackupPath(textBox_backupPath.Text);
 
             st.isShowSizeFM = Option.IsShowSizeFM = true;
+            st.isShowHiddenFile = Option.IsShowHiddenFile = false;
             button_showFileSize.BackgroundImage = AndroidManager_SHW.Properties.Resources.toggleOn;
+            button_showHiddenFile.BackgroundImage = AndroidManager_SHW.Properties.Resources.toggleOff;
 
             st.saveChanged();
         }
@@ -238,6 +251,20 @@ namespace AndroidManager_SHW.Setting
         private void backgroundWorker_refreshDGV_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             dataGridView_Device.DataSource = dsbl;
+        }
+
+        private void button_showHiddenFile_Click(object sender, EventArgs e)
+        {
+            if (st.isShowHiddenFile)
+            {
+                button_showHiddenFile.BackgroundImage = AndroidManager_SHW.Properties.Resources.toggleOff;
+                st.isShowHiddenFile = false;
+            }
+            else
+            {
+                button_showHiddenFile.BackgroundImage = AndroidManager_SHW.Properties.Resources.toggleOn;
+                st.isShowHiddenFile = true;
+            }
         }
     }
 }

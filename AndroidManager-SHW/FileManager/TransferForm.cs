@@ -22,13 +22,12 @@ namespace AndroidManager_SHW
         int CountFilesForTransfer = 0;
         double TotalLengthFiles = 0;
         int MyTime = 0;
-        DeviceData Device;
         List<string> FilesAndDirecoriesForUpload;
         String PreLine_CopyCutBackup;
         public bool IsChangeValue;
 
 
-        public TransferForm(TransferType tt, List<ADBFile> myfiles, string path, DeviceData device)
+        public TransferForm(TransferType tt, List<ADBFile> myfiles, string path, FileManager fm)
         {
 
             InitializeComponent();
@@ -37,7 +36,7 @@ namespace AndroidManager_SHW
             progressBar_transfer.Value = 0;
             Path = path;
             MyFiles = myfiles;
-            FM = new FileManager(device);
+            FM = fm;
             TransferTp = tt;
             progressBar_transfer.Maximum = 100;
             timer_5s.Start();
@@ -166,7 +165,7 @@ namespace AndroidManager_SHW
             }
             else
             {
-                return FM.CountFileAndDirectory(Path.returnFile(Device));
+                return FM.CountFileAndDirectory(Path.returnFile(FM.CurrentDevice));
             }
         }
 

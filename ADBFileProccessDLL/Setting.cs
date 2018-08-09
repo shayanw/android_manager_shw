@@ -14,6 +14,7 @@ namespace ADBProccessDLL
         public string backupPath;
         public string updatePackagePath;
         public bool isShowSizeFM;
+        public bool isShowHiddenFile;
         public Setting()
         {
             string tmp;
@@ -54,9 +55,19 @@ namespace ADBProccessDLL
                             Option.IsShowSizeFM = isShowSizeFM;
                         }
                     }
+                    else if (tmp.Contains("isShowHiddenFile:"))
+                    {
+                        isShowHiddenFile = Convert.ToBoolean(tmp.Replace("isShowHiddenFile:", ""));
 
-
-
+                        if (string.IsNullOrEmpty(isShowHiddenFile.ToString()))
+                        {
+                            isShowHiddenFile = Option.IsShowHiddenFile;
+                        }
+                        else
+                        {
+                            Option.IsShowHiddenFile = isShowHiddenFile;
+                        }
+                    }
 
                 }
                 sr.Close();
@@ -120,6 +131,9 @@ namespace ADBProccessDLL
 
             Option.IsShowSizeFM = isShowSizeFM;
             sw.WriteLine("isShowSizeFM:" + isShowSizeFM);
+
+            Option.IsShowHiddenFile = isShowHiddenFile;
+            sw.WriteLine("isShowHiddenFile:" + isShowHiddenFile);
 
             sw.Close();
         }

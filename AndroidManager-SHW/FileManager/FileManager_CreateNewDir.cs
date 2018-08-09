@@ -16,10 +16,10 @@ namespace AndroidManager_SHW
         FileManager FM;
         string Path;
         public bool IsChangeValue;
-        public FileManager_CreateNewDir(DeviceData device,string path)
+        public FileManager_CreateNewDir(FileManager fm, string path)
         {
             InitializeComponent();
-            FM = new FileManager(device);
+            FM = fm;
             Path = path;
             IsChangeValue = false;
         }

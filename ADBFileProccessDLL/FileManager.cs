@@ -11,7 +11,7 @@ namespace ADBProccessDLL
 {
     public class FileManager
     {
-        DeviceData CurrentDevice;
+        public DeviceData CurrentDevice;
         public int FileAndDirectoryCounter = 0;
         public List<ADBFile> ListAdbFiles;
 
@@ -21,6 +21,7 @@ namespace ADBProccessDLL
         {
             CurrentDevice = currentDevice;
             option = new Option(currentDevice);
+            ListAdbFiles = new List<ADBFile>();
         }
 
         //zire file and directory ro dar ghalebe [List<ADBFile>] bar migardune
@@ -128,16 +129,6 @@ namespace ADBProccessDLL
 
 
         }
-        public bool UploadToAndroid(FileInfo FileForUpload, string AndroidPath)
-        {
-            using (SyncService service = new SyncService(new AdbSocket(new IPEndPoint(IPAddress.Loopback, AdbClient.AdbServerPort)), CurrentDevice))
-            using (Stream stream = File.OpenRead(FileForUpload.FullName))
-            {
-                service.Push(stream, AndroidPath + "/" + FileForUpload.Name, 444, DateTime.Now, null, CancellationToken.None);
-            }
-            return true;
-        }
-
 
         //Upload file And Directory (Support Unicode Character)
         public bool UploadToAndroid(List<string> FilesAndDirectory, string AndroidPath)
@@ -170,58 +161,36 @@ namespace ADBProccessDLL
                 else
                 {
                     FileInfo fi = new FileInfo(AddressFileOrDir);
-                    using (SyncService service = new SyncService(new AdbSocket(new IPEndPoint(IPAddress.Loopback, AdbClient.AdbServerPort)), CurrentDevice))
-                    using (Stream stream = File.OpenRead(fi.FullName))
+                    if (!ListAdbFiles.Any(a=>a.Name==fi.Name))
                     {
-                        try
+                        using (SyncService service = new SyncService(new AdbSocket(new IPEndPoint(IPAddress.Loopback, AdbClient.AdbServerPort)), CurrentDevice))
+                        using (Stream stream = File.OpenRead(fi.FullName))
                         {
-                            service.Push(stream, AndroidPath.EncodingText().Replace("\\", "") + "/" + fi.Name.EncodingText(), 444, DateTime.Now, null, CancellationToken.None);
-                        }
-                        catch
-                        {
-                            service.Push(stream, AndroidPath.Replace("\\", "").EncodingText() + "/" + fi.Name.EncodingText(), 444, DateTime.Now, null, CancellationToken.None);
-                        }
+                            try
+                            {
+                                service.Push(stream, AndroidPath.EncodingText().Replace("\\", "") + "/" + fi.Name.EncodingText(), 444, DateTime.Now, null, CancellationToken.None);
+                            }
+                            catch
+                            {
+                                service.Push(stream, AndroidPath.Replace("\\", "").EncodingText() + "/" + fi.Name.EncodingText(), 444, DateTime.Now, null, CancellationToken.None);
+                            }
 
+                        }
                     }
+
                 }
 
-            }
-            return true;
-        }
-        public bool UploadToAndroid(string FileOrDirectory, string AndroidPath)
-        {
-            ExternalMethod.counterEx++;
-            if (Directory.Exists(FileOrDirectory))
-            {
-                //CreateDirectory(path, myfile.Name.fixBracketInTerminal());
-                DirectoryInfo di = new DirectoryInfo(FileOrDirectory);
-                CreateDirectory(AndroidPath.fixBracketInTerminal().EncodingText(), di.Name.fixBracketInTerminal());
-
-                foreach (FileInfo item in di.GetFiles())
-                {
-                    UploadToAndroid(item.FullName, AndroidPath + "/" + di.Name);
-                }
-                foreach (DirectoryInfo item in di.GetDirectories())
-                {
-                    UploadToAndroid(item.FullName, AndroidPath + "/" + di.Name);
-                }
-            }
-
-            else
-            {
-                FileInfo fi = new FileInfo(FileOrDirectory);
-                using (SyncService service = new SyncService(new AdbSocket(new IPEndPoint(IPAddress.Loopback, AdbClient.AdbServerPort)), CurrentDevice))
-                using (Stream stream = File.OpenRead(fi.FullName))
-                {
-                    service.Push(stream, AndroidPath.Replace("\\", "").EncodingText() + "/" + fi.Name, 444, DateTime.Now, null, CancellationToken.None);
-                }
             }
             return true;
         }
 
         public bool CreateDirectory(string BaseDirectory, string NameNewDir)
         {
-            if (resultCommand("mkdir " + BaseDirectory + "/" + NameNewDir).Count() == 0)
+            if (ListAdbFiles.Any(a=>a.Name==NameNewDir))
+            {
+                return true;
+            }
+            else if (resultCommand("mkdir " + BaseDirectory + "/" + NameNewDir).Count() == 0)
             {
                 return true;
             }

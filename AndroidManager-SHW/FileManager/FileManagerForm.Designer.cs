@@ -51,11 +51,11 @@
             this.propertiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imageList_iconFile = new System.Windows.Forms.ImageList(this.components);
             this.panel_rightSideBarProgress = new System.Windows.Forms.Panel();
+            this.progressBar_loadFile = new System.Windows.Forms.ProgressBar();
             this.panel_rightSideBarDown = new System.Windows.Forms.Panel();
             this.button_showSize = new System.Windows.Forms.Button();
             this.label_size = new System.Windows.Forms.Label();
             this.label_IsShowSize = new System.Windows.Forms.Label();
-            this.label_type = new System.Windows.Forms.Label();
             this.label_name = new System.Windows.Forms.Label();
             this.panel_rightSideBarUp = new System.Windows.Forms.Panel();
             this.toolStrip_upMain = new System.Windows.Forms.ToolStrip();
@@ -68,7 +68,8 @@
             this.toolStripButton_goPath = new System.Windows.Forms.ToolStripButton();
             this.backgroundWorker_ProccessSize = new System.ComponentModel.BackgroundWorker();
             this.backgroundWorker_refreshListView = new System.ComponentModel.BackgroundWorker();
-            this.progressBar_loadFile = new System.Windows.Forms.ProgressBar();
+            this.label_IsShowHidden = new System.Windows.Forms.Label();
+            this.button_showHidden = new System.Windows.Forms.Button();
             this.panel_TreeSideBar.SuspendLayout();
             this.panel_leftSideBar.SuspendLayout();
             this.panel_fillRightSideBar.SuspendLayout();
@@ -131,7 +132,7 @@
             this.panel_fillRightSideBar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel_fillRightSideBar.Location = new System.Drawing.Point(0, 43);
             this.panel_fillRightSideBar.Name = "panel_fillRightSideBar";
-            this.panel_fillRightSideBar.Size = new System.Drawing.Size(510, 331);
+            this.panel_fillRightSideBar.Size = new System.Drawing.Size(510, 326);
             this.panel_fillRightSideBar.TabIndex = 3;
             // 
             // listView_files
@@ -145,7 +146,7 @@
             this.listView_files.LargeImageList = this.imageList_iconFile;
             this.listView_files.Location = new System.Drawing.Point(0, 0);
             this.listView_files.Name = "listView_files";
-            this.listView_files.Size = new System.Drawing.Size(510, 331);
+            this.listView_files.Size = new System.Drawing.Size(510, 326);
             this.listView_files.SmallImageList = this.imageList_iconFile;
             this.listView_files.TabIndex = 1;
             this.listView_files.UseCompatibleStateImageBehavior = false;
@@ -302,69 +303,74 @@
             this.panel_rightSideBarProgress.TabIndex = 2;
             this.panel_rightSideBarProgress.Visible = false;
             // 
+            // progressBar_loadFile
+            // 
+            this.progressBar_loadFile.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.progressBar_loadFile.Location = new System.Drawing.Point(0, 0);
+            this.progressBar_loadFile.Name = "progressBar_loadFile";
+            this.progressBar_loadFile.Size = new System.Drawing.Size(510, 3);
+            this.progressBar_loadFile.TabIndex = 0;
+            // 
             // panel_rightSideBarDown
             // 
             this.panel_rightSideBarDown.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(198)))), ((int)(((byte)(210)))), ((int)(((byte)(215)))));
+            this.panel_rightSideBarDown.Controls.Add(this.button_showHidden);
             this.panel_rightSideBarDown.Controls.Add(this.button_showSize);
             this.panel_rightSideBarDown.Controls.Add(this.label_size);
+            this.panel_rightSideBarDown.Controls.Add(this.label_IsShowHidden);
             this.panel_rightSideBarDown.Controls.Add(this.label_IsShowSize);
-            this.panel_rightSideBarDown.Controls.Add(this.label_type);
             this.panel_rightSideBarDown.Controls.Add(this.label_name);
             this.panel_rightSideBarDown.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel_rightSideBarDown.Location = new System.Drawing.Point(0, 374);
+            this.panel_rightSideBarDown.Location = new System.Drawing.Point(0, 369);
             this.panel_rightSideBarDown.Name = "panel_rightSideBarDown";
-            this.panel_rightSideBarDown.Size = new System.Drawing.Size(510, 79);
+            this.panel_rightSideBarDown.Size = new System.Drawing.Size(510, 84);
             this.panel_rightSideBarDown.TabIndex = 1;
             // 
             // button_showSize
             // 
             this.button_showSize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button_showSize.BackColor = System.Drawing.Color.Transparent;
             this.button_showSize.BackgroundImage = global::AndroidManager_SHW.Properties.Resources.toggleOff;
             this.button_showSize.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button_showSize.FlatAppearance.BorderSize = 0;
             this.button_showSize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_showSize.Location = new System.Drawing.Point(469, 9);
+            this.button_showSize.Location = new System.Drawing.Point(466, 40);
             this.button_showSize.Name = "button_showSize";
             this.button_showSize.Size = new System.Drawing.Size(38, 38);
             this.button_showSize.TabIndex = 1;
-            this.button_showSize.UseVisualStyleBackColor = true;
+            this.button_showSize.UseVisualStyleBackColor = false;
             this.button_showSize.Click += new System.EventHandler(this.button_showSize_Click);
             // 
             // label_size
             // 
             this.label_size.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label_size.BackColor = System.Drawing.Color.Transparent;
             this.label_size.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_size.Location = new System.Drawing.Point(371, 46);
+            this.label_size.Location = new System.Drawing.Point(17, 47);
             this.label_size.Name = "label_size";
-            this.label_size.Size = new System.Drawing.Size(127, 24);
+            this.label_size.Size = new System.Drawing.Size(239, 24);
             this.label_size.TabIndex = 0;
-            this.label_size.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label_size.Text = "Size: ";
+            this.label_size.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label_IsShowSize
             // 
             this.label_IsShowSize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label_IsShowSize.BackColor = System.Drawing.Color.Transparent;
             this.label_IsShowSize.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_IsShowSize.Location = new System.Drawing.Point(402, 3);
+            this.label_IsShowSize.Location = new System.Drawing.Point(376, 34);
             this.label_IsShowSize.Name = "label_IsShowSize";
-            this.label_IsShowSize.Size = new System.Drawing.Size(108, 50);
+            this.label_IsShowSize.Size = new System.Drawing.Size(122, 50);
             this.label_IsShowSize.TabIndex = 0;
             this.label_IsShowSize.Text = "Show Size:";
             this.label_IsShowSize.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.label_IsShowSize.Click += new System.EventHandler(this.button_showSize_Click);
             // 
-            // label_type
-            // 
-            this.label_type.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_type.Location = new System.Drawing.Point(17, 46);
-            this.label_type.Name = "label_type";
-            this.label_type.Size = new System.Drawing.Size(151, 24);
-            this.label_type.TabIndex = 0;
-            this.label_type.Text = "Type: ";
-            // 
             // label_name
             // 
+            this.label_name.BackColor = System.Drawing.Color.Transparent;
             this.label_name.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_name.Location = new System.Drawing.Point(17, 16);
+            this.label_name.Location = new System.Drawing.Point(17, 13);
             this.label_name.Name = "label_name";
             this.label_name.Size = new System.Drawing.Size(367, 24);
             this.label_name.TabIndex = 0;
@@ -474,13 +480,33 @@
             this.backgroundWorker_refreshListView.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker_refreshListView_ProgressChanged);
             this.backgroundWorker_refreshListView.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker_refreshListView_RunWorkerCompleted);
             // 
-            // progressBar_loadFile
+            // label_IsShowHidden
             // 
-            this.progressBar_loadFile.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.progressBar_loadFile.Location = new System.Drawing.Point(0, 0);
-            this.progressBar_loadFile.Name = "progressBar_loadFile";
-            this.progressBar_loadFile.Size = new System.Drawing.Size(510, 3);
-            this.progressBar_loadFile.TabIndex = 0;
+            this.label_IsShowHidden.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label_IsShowHidden.BackColor = System.Drawing.Color.Transparent;
+            this.label_IsShowHidden.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_IsShowHidden.Location = new System.Drawing.Point(376, 0);
+            this.label_IsShowHidden.Name = "label_IsShowHidden";
+            this.label_IsShowHidden.Size = new System.Drawing.Size(122, 50);
+            this.label_IsShowHidden.TabIndex = 0;
+            this.label_IsShowHidden.Text = "Show Hidden:";
+            this.label_IsShowHidden.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label_IsShowHidden.Click += new System.EventHandler(this.button_showHidden_Click);
+            // 
+            // button_showHidden
+            // 
+            this.button_showHidden.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button_showHidden.BackColor = System.Drawing.Color.Transparent;
+            this.button_showHidden.BackgroundImage = global::AndroidManager_SHW.Properties.Resources.toggleOff;
+            this.button_showHidden.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button_showHidden.FlatAppearance.BorderSize = 0;
+            this.button_showHidden.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_showHidden.Location = new System.Drawing.Point(466, 5);
+            this.button_showHidden.Name = "button_showHidden";
+            this.button_showHidden.Size = new System.Drawing.Size(38, 38);
+            this.button_showHidden.TabIndex = 1;
+            this.button_showHidden.UseVisualStyleBackColor = false;
+            this.button_showHidden.Click += new System.EventHandler(this.button_showHidden_Click);
             // 
             // FileManagerForm
             // 
@@ -529,7 +555,6 @@
         private System.Windows.Forms.ToolStripButton toolStripButton_goPath;
         private System.Windows.Forms.ImageList imageList_iconFile;
         private System.Windows.Forms.ImageList imageList_tools;
-        private System.Windows.Forms.Label label_type;
         private System.Windows.Forms.Label label_name;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip_ListView;
         private System.Windows.Forms.ToolStripMenuItem copyToolStripMenuItem;
@@ -550,5 +575,7 @@
         private System.Windows.Forms.Label label_IsShowSize;
         private System.ComponentModel.BackgroundWorker backgroundWorker_refreshListView;
         private System.Windows.Forms.ProgressBar progressBar_loadFile;
+        private System.Windows.Forms.Button button_showHidden;
+        private System.Windows.Forms.Label label_IsShowHidden;
     }
 }

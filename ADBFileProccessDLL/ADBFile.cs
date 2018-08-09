@@ -84,7 +84,17 @@ namespace ADBProccessDLL
         public List<ADBFile> SubFiles()
         {
             List<ADBFile> ListAdbFiles = new List<ADBFile>();
-            string cmd = resultCommand("ls -l " + FullName + "/");
+            string cmd = "";
+
+            if (Option.IsShowHiddenFile)
+            {
+                cmd = resultCommand("ls -la " + FullName + "/");
+            }
+            else
+            {
+                cmd = resultCommand("ls -l " + FullName + "/");
+            }
+             
             return ReturnListAdbFile_LinesLs(cmd,FullName);
         }
 

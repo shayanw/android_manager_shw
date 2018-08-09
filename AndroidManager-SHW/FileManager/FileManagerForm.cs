@@ -56,14 +56,24 @@ namespace AndroidManager_SHW
             if (IsShowSize)
             {
                 button_showSize.BackgroundImage = AndroidManager_SHW.Properties.Resources.toggleOn;
-                IsShowSize = true;
+                //IsShowSize = true;
 
             }
             else
             {
                 button_showSize.BackgroundImage = AndroidManager_SHW.Properties.Resources.toggleOff;
                 label_size.Text = "";
-                IsShowSize = false;
+                //IsShowSize = false;
+            }
+
+            if (Option.IsShowHiddenFile)
+            {
+                button_showHidden.BackgroundImage = AndroidManager_SHW.Properties.Resources.toggleOn;
+
+            }
+            else
+            {
+                button_showHidden.BackgroundImage = AndroidManager_SHW.Properties.Resources.toggleOff;
             }
 
 
@@ -271,7 +281,7 @@ namespace AndroidManager_SHW
             if (listView_files.SelectedItems.Count == 0)
             {
                 label_name.Text = "None";
-                label_type.Text = "None";
+                //label_type.Text = "None";
 
                 if (IsShowSize)
                 {
@@ -287,7 +297,7 @@ namespace AndroidManager_SHW
             if (listView_files.SelectedItems.Count > 1)
             {
                 label_name.Text = "Selected Items: " + listView_files.SelectedItems.Count + " Files";
-                label_type.Text = "Type: Files...";
+                //label_type.Text = "Type: Files...";
 
                 if (IsShowSize)
                 {
@@ -327,16 +337,16 @@ namespace AndroidManager_SHW
             }
 
 
-            if (ListViewSI.Tag.ToString() == "d" || ListViewSI.Tag.ToString() == "l")
-            {
-                label_type.Text = "Type: Directory";
+            //if (ListViewSI.Tag.ToString() == "d" || ListViewSI.Tag.ToString() == "l")
+            //{
+            //    label_type.Text = "Type: Directory";
 
-            }
-            else
-            {
-                ADBFile oneFile = ListViewSI.Name.returnFile(device);
-                label_type.Text = "Type: " + oneFile.Extension.DecodingText();
-            }
+            //}
+            //else
+            //{
+            //    ADBFile oneFile = ListViewSI.Name.returnFile(device);
+            //    label_type.Text = "Type: " + oneFile.Extension.DecodingText();
+            //}
         }
 
         private ADBFile ReturnAdbFileFromLVSelectItem(ListViewItem onelistViewItem)
@@ -450,7 +460,7 @@ namespace AndroidManager_SHW
                 {
                     listFilesTmp.Add(new ADBFile(device, item.Name.fixBracketInTerminal()));
                 }
-                TransferForm transferform = new TransferForm(TransferType.BackingUp, listFilesTmp, backupPath, device);
+                TransferForm transferform = new TransferForm(TransferType.BackingUp, listFilesTmp, backupPath, fm);
                 IsTransfer = true;
                 transferform.Show();
 
@@ -482,11 +492,11 @@ namespace AndroidManager_SHW
 
                 if (IsPasteForCopy)
                 {
-                    transferform = new TransferForm(TransferType.Copying, listFilesTmp, currentPath, device);
+                    transferform = new TransferForm(TransferType.Copying, listFilesTmp, currentPath, fm);
                 }
                 else
                 {
-                    transferform = new TransferForm(TransferType.Cutting, listFilesTmp, currentPath, device);
+                    transferform = new TransferForm(TransferType.Cutting, listFilesTmp, currentPath, fm);
                 }
 
                 IsTransfer = true;
@@ -519,7 +529,7 @@ namespace AndroidManager_SHW
         /// <param name="e"></param>
         private void newFolderToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FileManager_CreateNewDir CND = new FileManager_CreateNewDir(device, currentPath);
+            FileManager_CreateNewDir CND = new FileManager_CreateNewDir(fm, currentPath);
             CND.FormClosed += CND_FormClosed;
             CND.ShowDialog();
         }
@@ -1059,9 +1069,12 @@ namespace AndroidManager_SHW
             {
                 //item haye listView_files pak mikonim
                 //be ezaye har file ye icon dar item listView_files dar nazar migirim...
-                foreach (ADBFile item in tmpListAdbFiles/*fm.getDirectoryAndFiles(currentPath)*/)
+                foreach (ADBFile item in tmpListAdbFiles)
                 {
-
+                    if (item.Name == "." || item.Name == "..")
+                    {
+                        continue;
+                    }
                     ListViewItem lvi = new ListViewItem();
                     lvi.Name = item.FullName;
                     lvi.Text = item.Name.nickName().DecodingText();
@@ -1179,16 +1192,21 @@ namespace AndroidManager_SHW
         {
             //masire directory fileha ro dar toolStripTextBox_path neshun mide
             toolStripTextBox_path.Text = currentPath.Replace(@"\", string.Empty).DecodingText();
-            //if (backgroundWorker_ProccessSize.IsBusy)
-            //{
-            //    backgroundWorker_ProccessSize.CancelAsync();
-            //}
-            //if (!backgroundWorker_ProccessSize.IsBusy)
-            //{
-            //    backgroundWorker_ProccessSize.RunWorkerAsync();
-            //}
         }
 
-
+        private void button_showHidden_Click(object sender, EventArgs e)
+        {
+            if (Option.IsShowHiddenFile)
+            {
+                button_showHidden.BackgroundImage = AndroidManager_SHW.Properties.Resources.toggleOff;
+                Option.IsShowHiddenFile = false;
+            }
+            else
+            {
+                button_showHidden.BackgroundImage = AndroidManager_SHW.Properties.Resources.toggleOn;
+                Option.IsShowHiddenFile = true;
+            }
+            refreshListView();
+        }
     }
 }
