@@ -334,9 +334,9 @@
             this.button_showHidden.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button_showHidden.FlatAppearance.BorderSize = 0;
             this.button_showHidden.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_showHidden.Location = new System.Drawing.Point(466, 5);
+            this.button_showHidden.Location = new System.Drawing.Point(466, 8);
             this.button_showHidden.Name = "button_showHidden";
-            this.button_showHidden.Size = new System.Drawing.Size(38, 38);
+            this.button_showHidden.Size = new System.Drawing.Size(34, 34);
             this.button_showHidden.TabIndex = 1;
             this.button_showHidden.UseVisualStyleBackColor = false;
             this.button_showHidden.Click += new System.EventHandler(this.button_showHidden_Click);
@@ -349,21 +349,21 @@
             this.button_showSize.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button_showSize.FlatAppearance.BorderSize = 0;
             this.button_showSize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_showSize.Location = new System.Drawing.Point(466, 40);
+            this.button_showSize.Location = new System.Drawing.Point(466, 42);
             this.button_showSize.Name = "button_showSize";
-            this.button_showSize.Size = new System.Drawing.Size(38, 38);
+            this.button_showSize.Size = new System.Drawing.Size(34, 34);
             this.button_showSize.TabIndex = 1;
             this.button_showSize.UseVisualStyleBackColor = false;
             this.button_showSize.Click += new System.EventHandler(this.button_showSize_Click);
             // 
             // label_size
             // 
-            this.label_size.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label_size.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label_size.BackColor = System.Drawing.Color.Transparent;
             this.label_size.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_size.Location = new System.Drawing.Point(17, 34);
+            this.label_size.Location = new System.Drawing.Point(17, 42);
             this.label_size.Name = "label_size";
-            this.label_size.Size = new System.Drawing.Size(181, 50);
+            this.label_size.Size = new System.Drawing.Size(181, 34);
             this.label_size.TabIndex = 0;
             this.label_size.Text = "Size: ";
             this.label_size.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -372,10 +372,10 @@
             // 
             this.label_IsShowHidden.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label_IsShowHidden.BackColor = System.Drawing.Color.Transparent;
-            this.label_IsShowHidden.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_IsShowHidden.Location = new System.Drawing.Point(376, 0);
+            this.label_IsShowHidden.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_IsShowHidden.Location = new System.Drawing.Point(376, 8);
             this.label_IsShowHidden.Name = "label_IsShowHidden";
-            this.label_IsShowHidden.Size = new System.Drawing.Size(122, 50);
+            this.label_IsShowHidden.Size = new System.Drawing.Size(122, 34);
             this.label_IsShowHidden.TabIndex = 0;
             this.label_IsShowHidden.Text = "Show Hidden:";
             this.label_IsShowHidden.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -385,10 +385,10 @@
             // 
             this.label_IsShowSize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label_IsShowSize.BackColor = System.Drawing.Color.Transparent;
-            this.label_IsShowSize.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_IsShowSize.Location = new System.Drawing.Point(376, 34);
+            this.label_IsShowSize.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_IsShowSize.Location = new System.Drawing.Point(376, 42);
             this.label_IsShowSize.Name = "label_IsShowSize";
-            this.label_IsShowSize.Size = new System.Drawing.Size(122, 50);
+            this.label_IsShowSize.Size = new System.Drawing.Size(122, 34);
             this.label_IsShowSize.TabIndex = 0;
             this.label_IsShowSize.Text = "Show Size:";
             this.label_IsShowSize.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -398,9 +398,9 @@
             // 
             this.label_name.BackColor = System.Drawing.Color.Transparent;
             this.label_name.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_name.Location = new System.Drawing.Point(17, 0);
+            this.label_name.Location = new System.Drawing.Point(17, 8);
             this.label_name.Name = "label_name";
-            this.label_name.Size = new System.Drawing.Size(353, 50);
+            this.label_name.Size = new System.Drawing.Size(353, 34);
             this.label_name.TabIndex = 0;
             this.label_name.Text = "Name:";
             this.label_name.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
