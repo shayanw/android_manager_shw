@@ -46,17 +46,21 @@ namespace ADBProccessDLL
             double kb1 = 1;
             double mb1 = kb1 * 1024;
             double gb1 = mb1 * 1024;
-            if (byteSize>gb1)
+            if (byteSize >= gb1)
             {
-                result = (byteSize / gb1).ToString("0.0") +" Gb";
+                result = (byteSize / gb1).ToString("0.0") +" GB";
             }
-            else if (byteSize > mb1)
+            else if (byteSize >= mb1)
             {
-                result = (byteSize / mb1).ToString("0.0") +" Mb";
+                result = (byteSize / mb1).ToString("0.0") +" MB";
+            }
+            else if(byteSize >= kb1)
+            {
+                result = (byteSize / kb1).ToString("0.0") + " KB";
             }
             else
             {
-                result = (byteSize / mb1).ToString("0.0") + " kb";
+                result = byteSize.ToString("0.0") + " B";
             }
             return result;
         }
