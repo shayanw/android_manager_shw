@@ -111,9 +111,9 @@
             // 
             this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Right;
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(660, 13);
+            this.pictureBox2.Location = new System.Drawing.Point(660, 5);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(50, 58);
+            this.pictureBox2.Size = new System.Drawing.Size(50, 66);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 7;
             this.pictureBox2.TabStop = false;
@@ -152,7 +152,7 @@
             this.progressBar_statePackage.Dock = System.Windows.Forms.DockStyle.Top;
             this.progressBar_statePackage.Location = new System.Drawing.Point(0, 0);
             this.progressBar_statePackage.Name = "progressBar_statePackage";
-            this.progressBar_statePackage.Size = new System.Drawing.Size(710, 13);
+            this.progressBar_statePackage.Size = new System.Drawing.Size(710, 5);
             this.progressBar_statePackage.TabIndex = 0;
             this.progressBar_statePackage.Visible = false;
             // 
@@ -234,7 +234,7 @@
             this.button_addTempPackages.Location = new System.Drawing.Point(0, 0);
             this.button_addTempPackages.Name = "button_addTempPackages";
             this.button_addTempPackages.Size = new System.Drawing.Size(232, 28);
-            this.button_addTempPackages.TabIndex = 5;
+            this.button_addTempPackages.TabIndex = 1;
             this.button_addTempPackages.Text = "Add Packages";
             this.button_addTempPackages.UseVisualStyleBackColor = false;
             this.button_addTempPackages.Click += new System.EventHandler(this.button_addTempPackages_Click);
@@ -251,7 +251,7 @@
             this.button_removeTempPackages.Location = new System.Drawing.Point(232, 0);
             this.button_removeTempPackages.Name = "button_removeTempPackages";
             this.button_removeTempPackages.Size = new System.Drawing.Size(60, 28);
-            this.button_removeTempPackages.TabIndex = 4;
+            this.button_removeTempPackages.TabIndex = 2;
             this.button_removeTempPackages.Text = "Clear";
             this.button_removeTempPackages.UseVisualStyleBackColor = false;
             this.button_removeTempPackages.Click += new System.EventHandler(this.button_removeTempPackages_Click);
@@ -289,7 +289,7 @@
             this.button_installTempPackages.Location = new System.Drawing.Point(0, 0);
             this.button_installTempPackages.Name = "button_installTempPackages";
             this.button_installTempPackages.Size = new System.Drawing.Size(242, 59);
-            this.button_installTempPackages.TabIndex = 8;
+            this.button_installTempPackages.TabIndex = 3;
             this.button_installTempPackages.Text = "Install";
             this.button_installTempPackages.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button_installTempPackages.UseVisualStyleBackColor = false;
@@ -366,6 +366,7 @@
             this.dataGridView_devicePackages.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView_devicePackages.Location = new System.Drawing.Point(0, 68);
             this.dataGridView_devicePackages.Name = "dataGridView_devicePackages";
+            this.dataGridView_devicePackages.ReadOnly = true;
             this.dataGridView_devicePackages.RowHeadersVisible = false;
             this.dataGridView_devicePackages.RowTemplate.Height = 24;
             this.dataGridView_devicePackages.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -379,6 +380,7 @@
             this.Name.FillWeight = 60F;
             this.Name.HeaderText = "Name";
             this.Name.Name = "Name";
+            this.Name.ReadOnly = true;
             // 
             // Version
             // 
@@ -386,6 +388,7 @@
             this.Version.FillWeight = 40F;
             this.Version.HeaderText = "Version";
             this.Version.Name = "Version";
+            this.Version.ReadOnly = true;
             // 
             // contextMenuStrip_dataGridView
             // 
@@ -502,7 +505,7 @@
             this.button_unistallDevicePackages.Location = new System.Drawing.Point(0, 0);
             this.button_unistallDevicePackages.Name = "button_unistallDevicePackages";
             this.button_unistallDevicePackages.Size = new System.Drawing.Size(245, 59);
-            this.button_unistallDevicePackages.TabIndex = 2;
+            this.button_unistallDevicePackages.TabIndex = 5;
             this.button_unistallDevicePackages.Text = "Unistall";
             this.button_unistallDevicePackages.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button_unistallDevicePackages.UseVisualStyleBackColor = false;
@@ -529,7 +532,7 @@
             this.button_backupDevicePackages.Location = new System.Drawing.Point(0, 0);
             this.button_backupDevicePackages.Name = "button_backupDevicePackages";
             this.button_backupDevicePackages.Size = new System.Drawing.Size(173, 59);
-            this.button_backupDevicePackages.TabIndex = 2;
+            this.button_backupDevicePackages.TabIndex = 4;
             this.button_backupDevicePackages.Text = "Backup";
             this.button_backupDevicePackages.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button_backupDevicePackages.UseVisualStyleBackColor = false;

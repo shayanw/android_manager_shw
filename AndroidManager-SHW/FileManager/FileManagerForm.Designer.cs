@@ -67,10 +67,13 @@
             this.toolStripTextBox_path = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripButton_goPath = new System.Windows.Forms.ToolStripButton();
             this.backgroundWorker_ProccessSize = new System.ComponentModel.BackgroundWorker();
+            this.backgroundWorker_refreshListView = new System.ComponentModel.BackgroundWorker();
+            this.progressBar_loadFile = new System.Windows.Forms.ProgressBar();
             this.panel_TreeSideBar.SuspendLayout();
             this.panel_leftSideBar.SuspendLayout();
             this.panel_fillRightSideBar.SuspendLayout();
             this.contextMenuStrip_ListView.SuspendLayout();
+            this.panel_rightSideBarProgress.SuspendLayout();
             this.panel_rightSideBarDown.SuspendLayout();
             this.panel_rightSideBarUp.SuspendLayout();
             this.toolStrip_upMain.SuspendLayout();
@@ -126,9 +129,9 @@
             // 
             this.panel_fillRightSideBar.Controls.Add(this.listView_files);
             this.panel_fillRightSideBar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel_fillRightSideBar.Location = new System.Drawing.Point(0, 70);
+            this.panel_fillRightSideBar.Location = new System.Drawing.Point(0, 43);
             this.panel_fillRightSideBar.Name = "panel_fillRightSideBar";
-            this.panel_fillRightSideBar.Size = new System.Drawing.Size(510, 304);
+            this.panel_fillRightSideBar.Size = new System.Drawing.Size(510, 331);
             this.panel_fillRightSideBar.TabIndex = 3;
             // 
             // listView_files
@@ -142,7 +145,7 @@
             this.listView_files.LargeImageList = this.imageList_iconFile;
             this.listView_files.Location = new System.Drawing.Point(0, 0);
             this.listView_files.Name = "listView_files";
-            this.listView_files.Size = new System.Drawing.Size(510, 304);
+            this.listView_files.Size = new System.Drawing.Size(510, 331);
             this.listView_files.SmallImageList = this.imageList_iconFile;
             this.listView_files.TabIndex = 1;
             this.listView_files.UseCompatibleStateImageBehavior = false;
@@ -291,10 +294,11 @@
             // panel_rightSideBarProgress
             // 
             this.panel_rightSideBarProgress.BackColor = System.Drawing.Color.Transparent;
+            this.panel_rightSideBarProgress.Controls.Add(this.progressBar_loadFile);
             this.panel_rightSideBarProgress.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel_rightSideBarProgress.Location = new System.Drawing.Point(0, 40);
             this.panel_rightSideBarProgress.Name = "panel_rightSideBarProgress";
-            this.panel_rightSideBarProgress.Size = new System.Drawing.Size(510, 30);
+            this.panel_rightSideBarProgress.Size = new System.Drawing.Size(510, 3);
             this.panel_rightSideBarProgress.TabIndex = 2;
             this.panel_rightSideBarProgress.Visible = false;
             // 
@@ -457,7 +461,26 @@
             // 
             // backgroundWorker_ProccessSize
             // 
+            this.backgroundWorker_ProccessSize.WorkerReportsProgress = true;
+            this.backgroundWorker_ProccessSize.WorkerSupportsCancellation = true;
             this.backgroundWorker_ProccessSize.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker_ProccessSize_DoWork);
+            this.backgroundWorker_ProccessSize.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker_ProccessSize_ProgressChanged);
+            // 
+            // backgroundWorker_refreshListView
+            // 
+            this.backgroundWorker_refreshListView.WorkerReportsProgress = true;
+            this.backgroundWorker_refreshListView.WorkerSupportsCancellation = true;
+            this.backgroundWorker_refreshListView.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker_refreshListView_DoWork);
+            this.backgroundWorker_refreshListView.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker_refreshListView_ProgressChanged);
+            this.backgroundWorker_refreshListView.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker_refreshListView_RunWorkerCompleted);
+            // 
+            // progressBar_loadFile
+            // 
+            this.progressBar_loadFile.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.progressBar_loadFile.Location = new System.Drawing.Point(0, 0);
+            this.progressBar_loadFile.Name = "progressBar_loadFile";
+            this.progressBar_loadFile.Size = new System.Drawing.Size(510, 3);
+            this.progressBar_loadFile.TabIndex = 0;
             // 
             // FileManagerForm
             // 
@@ -476,6 +499,7 @@
             this.panel_leftSideBar.ResumeLayout(false);
             this.panel_fillRightSideBar.ResumeLayout(false);
             this.contextMenuStrip_ListView.ResumeLayout(false);
+            this.panel_rightSideBarProgress.ResumeLayout(false);
             this.panel_rightSideBarDown.ResumeLayout(false);
             this.panel_rightSideBarUp.ResumeLayout(false);
             this.panel_rightSideBarUp.PerformLayout();
@@ -524,5 +548,7 @@
         private System.ComponentModel.BackgroundWorker backgroundWorker_ProccessSize;
         private System.Windows.Forms.Button button_showSize;
         private System.Windows.Forms.Label label_IsShowSize;
+        private System.ComponentModel.BackgroundWorker backgroundWorker_refreshListView;
+        private System.Windows.Forms.ProgressBar progressBar_loadFile;
     }
 }

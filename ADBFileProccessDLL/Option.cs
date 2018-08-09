@@ -20,7 +20,7 @@ namespace ADBProccessDLL
         static public string DirNameBackupApk = "ApkBackups_" + "SHW";
         static public string FullAddressBackupApk = "";
         static public string DeviceDirectoryName;
-        static public bool IsShowSizeFM = false;
+        static public bool IsShowSizeFM = true;
 
 
 

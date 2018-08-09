@@ -16,10 +16,11 @@ namespace AndroidManager_SHW.Setting
     public partial class SettingForm : Form
     {
         ADBProccessDLL.Setting st;
+        List<deviceSettingBackup> dsbl;
         public SettingForm()
         {
             InitializeComponent();
-            st= new ADBProccessDLL.Setting();
+            st = new ADBProccessDLL.Setting();
 
             textBox_backupPath.Text = st.backupPath;
 
@@ -64,7 +65,7 @@ namespace AndroidManager_SHW.Setting
             {
                 if (st.changeBackupPath(textBox_backupPath.Text))
                 {
-                    if (textBox_backupPath.Text==Option.MainPath && st.isShowSizeFM==Option.IsShowSizeFM)
+                    if (textBox_backupPath.Text == Option.MainPath && st.isShowSizeFM == Option.IsShowSizeFM)
                     {
                         return;
                     }
@@ -79,7 +80,7 @@ namespace AndroidManager_SHW.Setting
                 {
                     MessageBox.Show("this address is Not Valid !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-              
+
             }
             catch
             {
@@ -91,7 +92,7 @@ namespace AndroidManager_SHW.Setting
 
         private void button_backupPath_Click(object sender, EventArgs e)
         {
-            if (folderBrowserDialog_path.ShowDialog()==DialogResult.OK)
+            if (folderBrowserDialog_path.ShowDialog() == DialogResult.OK)
             {
                 textBox_backupPath.Text = folderBrowserDialog_path.SelectedPath;
             }
@@ -124,8 +125,8 @@ namespace AndroidManager_SHW.Setting
             textBox_backupPath.Text = System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             st.changeBackupPath(textBox_backupPath.Text);
 
-            st.isShowSizeFM = Option.IsShowSizeFM = false;
-            button_showFileSize.BackgroundImage = AndroidManager_SHW.Properties.Resources.toggleOff;
+            st.isShowSizeFM = Option.IsShowSizeFM = true;
+            button_showFileSize.BackgroundImage = AndroidManager_SHW.Properties.Resources.toggleOn;
 
             st.saveChanged();
         }
@@ -133,30 +134,26 @@ namespace AndroidManager_SHW.Setting
 
         private void RefreshDataGridView()
         {
-            List<deviceSettingBackup> dsbl = new List<deviceSettingBackup>();
-            string path = Option.MainPath + "\\" + Option.MainLabelDirectoryName;
-            DirectoryInfo di = new DirectoryInfo(path);
-            Regex rgx = new Regex(@"^.*_.*\[.*\]$");
+            //List<deviceSettingBackup> dsbl = new List<deviceSettingBackup>();
+            //string path = Option.MainPath + "\\" + Option.MainLabelDirectoryName;
+            //DirectoryInfo di = new DirectoryInfo(path);
+            //Regex rgx = new Regex(@"^.*_.*\[.*\]$");
 
-            foreach (DirectoryInfo tmpdi in di.GetDirectories())
-            {
-                if (rgx.IsMatch(tmpdi.Name))
-                {
-                    dsbl.Add(new deviceSettingBackup(tmpdi));
-                }
-            }
+            //foreach (DirectoryInfo tmpdi in di.GetDirectories())
+            //{
+            //    if (rgx.IsMatch(tmpdi.Name))
+            //    {
+            //        dsbl.Add(new deviceSettingBackup(tmpdi));
+            //    }
+            //}
 
-            foreach (deviceSettingBackup tmpdsb in dsbl)
-            {
-                dataGridView_Device.DataSource=dsbl ;
-
-            }
-            
+            //dataGridView_Device.DataSource = dsbl;
+            backgroundWorker_refreshDGV.RunWorkerAsync();
         }
 
         private void textBox_backupPath_TextChanged(object sender, EventArgs e)
         {
-            if (textBox_backupPath.Text== Option.MainPath || textBox_backupPath.Text== System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments))
+            if (textBox_backupPath.Text == Option.MainPath || textBox_backupPath.Text == System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments))
             {
                 button_save.BackColor = Color.WhiteSmoke;
             }
@@ -164,18 +161,18 @@ namespace AndroidManager_SHW.Setting
             {
                 button_save.BackColor = Color.LightGreen;
             }
-           
+
         }
 
         private void button_deleteDeviceBackup_Click(object sender, EventArgs e)
         {
-            if (dataGridView_Device.SelectedRows.Count>0)
+            if (dataGridView_Device.SelectedRows.Count > 0)
             {
                 try
                 {
                     string tmpAddress = dataGridView_Device.SelectedRows[0].Cells["PathBackup"].Value.ToString();
-                    string ModelDevice= dataGridView_Device.SelectedRows[0].Cells["Model"].Value.ToString();
-                    if (MessageBox.Show("Are you sure to Delete " + ModelDevice + "'s Backups ? ", "Question", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question)==DialogResult.Yes)
+                    string ModelDevice = dataGridView_Device.SelectedRows[0].Cells["Model"].Value.ToString();
+                    if (MessageBox.Show("Are you sure to Delete " + ModelDevice + "'s Backups ? ", "Question", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
                         Directory.Delete(tmpAddress, true);
                         MessageBox.Show("Delete " + ModelDevice + "'s Backups Successfully ", "info", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -219,6 +216,28 @@ namespace AndroidManager_SHW.Setting
                 button_showFileSize.BackgroundImage = AndroidManager_SHW.Properties.Resources.toggleOn;
                 st.isShowSizeFM = true;
             }
+        }
+
+        private void backgroundWorker_refreshDGV_DoWork(object sender, DoWorkEventArgs e)
+        {
+            dsbl = new List<deviceSettingBackup>();
+            string path = Option.MainPath + "\\" + Option.MainLabelDirectoryName;
+            DirectoryInfo di = new DirectoryInfo(path);
+            Regex rgx = new Regex(@"^.*_.*\[.*\]$");
+
+            foreach (DirectoryInfo tmpdi in di.GetDirectories())
+            {
+                if (rgx.IsMatch(tmpdi.Name))
+                {
+                    dsbl.Add(new deviceSettingBackup(tmpdi));
+                }
+            }
+            
+        }
+
+        private void backgroundWorker_refreshDGV_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            dataGridView_Device.DataSource = dsbl;
         }
     }
 }

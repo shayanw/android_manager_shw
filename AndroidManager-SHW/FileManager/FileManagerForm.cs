@@ -19,21 +19,22 @@ namespace AndroidManager_SHW
         //Local DataType
         DeviceData device;
         FileManager fm;
-        
+        ADBFile tmpAdbFile;
+
         //String
         string currentPath = "storage";
         string backupPath = "";
 
         //Form DataType
-            //Selected Item ListView...
+        //Selected Item ListView...
         ListViewItem ListViewSI = new ListViewItem();
 
         //List
         List<ListViewItem> lastSelectedItem = new List<ListViewItem>();
         List<string> fileOrDirectoryForCopyCut = new List<string>();
+        List<ADBFile> tmpListAdbFiles;
 
-    
-       
+
         //Stack
         Stack<string> BackwardPath = new Stack<string>();
         Stack<string> ForwardPath = new Stack<string>();
@@ -85,135 +86,16 @@ namespace AndroidManager_SHW
         /// </summary>
         void refreshListView()
         {
-            //az item haye listView_files backup migirim
-            ListView.ListViewItemCollection last = listView_files.Items;
-            try
+
+            if (backgroundWorker_refreshListView.IsBusy)
             {
-                //item haye listView_files pak mikonim
-                listView_files.Items.Clear();
-
-                //be ezaye har file ye icon dar item listView_files dar nazar migirim...
-                foreach (ADBFile item in fm.getDirectoryAndFiles(currentPath))
-                {
-
-
-                    ListViewItem lvi = new ListViewItem();
-                    lvi.Name = item.FullName;
-                    lvi.Text = item.Name.nickName().DecodingText();
-
-                    if (item.Tag == "d" || item.Tag == "l")
-                    {
-                        lvi.ImageIndex = 1;
-                        lvi.Tag = item.Tag;
-                    }
-                    else
-                    {
-                        switch (item.Extension.ToLower())
-                        {
-                            case ".aac":
-                            case ".flac":
-                            case ".mp3":
-                            case ".MP3":
-                            case ".ogg":
-                                lvi.ImageIndex = 3;
-                                break;
-                            case ".exe":
-                            case ".msi":
-                                lvi.ImageIndex = 4;
-                                break;
-                            case ".apk":
-                                lvi.ImageIndex = 5;
-                                break;
-                            case ".zip":
-                            case ".rar":
-                                lvi.ImageIndex = 6;
-                                break;
-                            case ".3gp":
-                            case ".mkv":
-                            case ".mp4":
-                                lvi.ImageIndex = 7;
-                                break;
-                            case ".pdf":
-                                lvi.ImageIndex = 8;
-                                break;
-                            case ".txt":
-                            case ".text":
-                                lvi.ImageIndex = 9;
-                                break;
-                            case ".jpg":
-                            case ".JPG":
-                            case ".png":
-                            case ".img":
-                            case ".dng":
-                                lvi.ImageIndex = 10;
-                                break;
-                            case ".vcf":
-                                lvi.ImageIndex = 12;
-                                break;
-                            case ".doc":
-                            case ".docx":
-                            case ".docm":
-                            case ".dotx":
-                            case ".dotm":
-                            case ".docb":
-                                lvi.ImageIndex = 13;
-                                break;
-                            case ".xls":
-                            case ".xlt":
-                            case ".xlm":
-                            case ".xlsx":
-                            case ".xlsm":
-                                lvi.ImageIndex = 14;
-                                break;
-                            case ".ppt":
-                            case ".pot":
-                            case ".pps":
-                            case ".pptx":
-                            case ".ppsx":
-                                lvi.ImageIndex = 15;
-                                break;
-                            case ".accdb":
-                            case ".accde":
-                            case ".accdt":
-                            case ".accdr":
-                                lvi.ImageIndex = 16;
-                                break;
-                            default:
-                                lvi.ImageIndex = 2;
-                                break;
-                        }
-                        lvi.Tag = 'F';
-
-                    }
-
-                    //har item dorost shode dar listView_files add mishe
-                    listView_files.Items.Add(lvi);
-
-
-                }
-
-                //masire directory fileha ro dar toolStripTextBox_path neshun mide
-                toolStripTextBox_path.Text = currentPath.Replace(@"\", string.Empty).DecodingText();
-
-                if (backgroundWorker_ProccessSize.IsBusy)
-                {
-                    backgroundWorker_ProccessSize.CancelAsync();
-                }
-                if (!backgroundWorker_ProccessSize.IsBusy)
-                {
-                    backgroundWorker_ProccessSize.RunWorkerAsync();
-                }
+                backgroundWorker_refreshListView.CancelAsync();
             }
-            catch (Exception)
+            if (!backgroundWorker_refreshListView.IsBusy)
             {
-                try
-                {
-                    listView_files.Items.AddRange(last);
-                }
-                catch
-                {
-
-                }
+                listView_files.Items.Clear();
+                tmpListAdbFiles = fm.getDirectoryAndFiles(currentPath);
+                backgroundWorker_refreshListView.RunWorkerAsync();
             }
         }
 
@@ -227,19 +109,6 @@ namespace AndroidManager_SHW
                     currentPath = listView_files.SelectedItems[0].Name;
                     refreshListView();
                 }
-                else
-                {
-                    //try
-                    //{
-               
-                    //}
-                    //catch (Exception)
-                    //{
-
-
-                    //}
-                }
-
             }
         }
 
@@ -304,7 +173,7 @@ namespace AndroidManager_SHW
         }
 
         #endregion
-        
+
         /// <summary>
         /// double click ruye treeView=>esm node dar currentPath mire va listView Refresh mishe...
         /// </summary>
@@ -403,6 +272,12 @@ namespace AndroidManager_SHW
             {
                 label_name.Text = "None";
                 label_type.Text = "None";
+
+                if (IsShowSize)
+                {
+                    label_size.Text = "None";
+                }
+               
             }
             if (listView_files.SelectedItems.Count == 1)
             {
@@ -411,16 +286,16 @@ namespace AndroidManager_SHW
             }
             if (listView_files.SelectedItems.Count > 1)
             {
-                label_name.Text= "Selected Items: " + listView_files.SelectedItems.Count + " Files";
+                label_name.Text = "Selected Items: " + listView_files.SelectedItems.Count + " Files";
                 label_type.Text = "Type: Files...";
 
                 if (IsShowSize)
                 {
                     label_size.Text = "_";
                 }
-                
+
             }
-       
+
             if (listView_files.SelectedItems.Count > 0)
             {
                 backupToolStripMenuItem.Enabled = true;
@@ -433,14 +308,22 @@ namespace AndroidManager_SHW
 
         private void setLabelFile()
         {
-            ADBFile f1 = ReturnAdbFileFromLVSelectItem(ListViewSI);
-
-            label_name.Text = "Name: " + f1.Name.nickName().DecodingText();
+            tmpAdbFile = ReturnAdbFileFromLVSelectItem(ListViewSI);
+            label_name.Text = "Name: " + tmpAdbFile.Name.nickName().DecodingText();
 
 
             if (IsShowSize)
             {
-                label_size.Text = "Size: " + f1.GetLengthDouble().humanReadable();
+                //label_size.Text = "Size: " + tmpAdbFile.GetLengthDouble().humanReadable();
+    
+                if (backgroundWorker_ProccessSize.IsBusy)
+                {
+                    backgroundWorker_ProccessSize.CancelAsync();
+                }
+                if (!backgroundWorker_ProccessSize.IsBusy)
+                {
+                    backgroundWorker_ProccessSize.RunWorkerAsync();
+                }
             }
 
 
@@ -481,7 +364,7 @@ namespace AndroidManager_SHW
         {
             if (listView_files.SelectedItems.Count > 0)
             {
-                if (DialogResult.Yes == MessageBox.Show( messageForDelete(), "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
+                if (DialogResult.Yes == MessageBox.Show(messageForDelete(), "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
                 {
                     int errorCounter = 0;
                     foreach (ListViewItem item in listView_files.SelectedItems)
@@ -491,7 +374,7 @@ namespace AndroidManager_SHW
                             errorCounter++;
                         }
                     }
-                    if (errorCounter>0)
+                    if (errorCounter > 0)
                     {
                         MessageBox.Show("you have " + errorCounter + " Error", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
@@ -508,9 +391,9 @@ namespace AndroidManager_SHW
 
         private string messageForDelete()
         {
-            if (listView_files.SelectedItems.Count==1)
+            if (listView_files.SelectedItems.Count == 1)
             {
-                return "are you sure Delete" +" \""+ listView_files.SelectedItems[0].Text+" \"  ?";
+                return "are you sure Delete" + " \"" + listView_files.SelectedItems[0].Text + " \"  ?";
             }
             else
             {
@@ -559,7 +442,7 @@ namespace AndroidManager_SHW
             {
                 if (IsTransfer)
                 {
-                    MessageBox.Show("Please Wait For Last Proccess And Then Try Agin...","Notice",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
+                    MessageBox.Show("Please Wait For Last Proccess And Then Try Agin...", "Notice", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return;
                 }
                 List<ADBFile> listFilesTmp = new List<ADBFile>();
@@ -590,22 +473,22 @@ namespace AndroidManager_SHW
                     return;
                 }
 
-                
+
                 foreach (string item in fileOrDirectoryForCopyCut)
                 {
                     listFilesTmp.Add(new ADBFile(device, item.fixBracketInTerminal()));
                 }
 
-                
+
                 if (IsPasteForCopy)
                 {
-                     transferform = new TransferForm(TransferType.Copying, listFilesTmp, currentPath, device);
+                    transferform = new TransferForm(TransferType.Copying, listFilesTmp, currentPath, device);
                 }
                 else
                 {
-                     transferform = new TransferForm(TransferType.Cutting, listFilesTmp, currentPath, device);
+                    transferform = new TransferForm(TransferType.Cutting, listFilesTmp, currentPath, device);
                 }
-                
+
                 IsTransfer = true;
                 transferform.Show();
                 transferform.FormClosed += Transferform_FormClosed;
@@ -633,7 +516,7 @@ namespace AndroidManager_SHW
         /// <param name="e"></param>
         private void newFolderToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FileManager_CreateNewDir CND = new FileManager_CreateNewDir(device, currentPath); 
+            FileManager_CreateNewDir CND = new FileManager_CreateNewDir(device, currentPath);
             CND.FormClosed += CND_FormClosed;
             CND.ShowDialog();
 
@@ -657,7 +540,7 @@ namespace AndroidManager_SHW
         private void uploadToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
-            if (Clipboard.GetFileDropList().Count!=0)
+            if (Clipboard.GetFileDropList().Count != 0)
             {
                 if (IsTransfer)
                 {
@@ -669,7 +552,7 @@ namespace AndroidManager_SHW
                 {
                     fdList.Add(item);
                 }
-                TransferForm transferform = new TransferForm(TransferType.Uploading,fdList,currentPath,device);
+                TransferForm transferform = new TransferForm(TransferType.Uploading, fdList, currentPath, device);
                 IsTransfer = true;
                 transferform.Show();
 
@@ -684,18 +567,18 @@ namespace AndroidManager_SHW
         /// <param name="e"></param>
         private void propertiesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (listView_files.SelectedItems.Count==0)
+            if (listView_files.SelectedItems.Count == 0)
             {
                 return;
             }
-            else if (listView_files.SelectedItems.Count==1)
+            else if (listView_files.SelectedItems.Count == 1)
             {
                 Image thisImg = imageList_iconFile.Images[listView_files.SelectedItems[0].ImageIndex];
-                PropertiesForm pf = new PropertiesForm(ReturnAdbFileFromLVSelectItem(listView_files.SelectedItems[0]),thisImg);
+                PropertiesForm pf = new PropertiesForm(ReturnAdbFileFromLVSelectItem(listView_files.SelectedItems[0]), thisImg);
                 pf.FormClosed += Pf_FormClosed;
                 pf.ShowDialog();
             }
-            else if (listView_files.SelectedItems.Count>1)
+            else if (listView_files.SelectedItems.Count > 1)
             {
                 Image thisImg = imageList_iconFile.Images[11];
                 List<ADBFile> liFiles = new List<ADBFile>();
@@ -716,7 +599,7 @@ namespace AndroidManager_SHW
 
         private void button1_Click(object sender, EventArgs e)
         {
-            propertiesToolStripMenuItem_Click(sender,e);
+            propertiesToolStripMenuItem_Click(sender, e);
         }
 
         private void listView_files_KeyDown(object sender, KeyEventArgs e)
@@ -1109,12 +992,12 @@ namespace AndroidManager_SHW
 
         private void contextMenuStrip_ListView_Opened(object sender, EventArgs e)
         {
-            if (fileOrDirectoryForCopyCut.Count==0)
+            if (fileOrDirectoryForCopyCut.Count == 0)
             {
                 pasteToolStripMenuItem.Enabled = false;
             }
 
-            if (listView_files.SelectedItems.Count==0)
+            if (listView_files.SelectedItems.Count == 0)
             {
                 backupToolStripMenuItem.Enabled = false;
                 deleteToolStripMenuItem.Enabled = false;
@@ -1126,14 +1009,20 @@ namespace AndroidManager_SHW
 
         private void backgroundWorker_ProccessSize_DoWork(object sender, DoWorkEventArgs e)
         {
-            if (fm.ListAdbFiles.Count>50 || !IsShowSize)
-            {
-                return;
-            }
-            foreach (ADBFile tmpfile in fm.ListAdbFiles)
-            {
-                tmpfile.GetLengthDouble();
-            }
+            //if (fm.ListAdbFiles.Count > 50 || !IsShowSize)
+            //{
+            //    return;
+            //}
+            //foreach (ADBFile tmpfile in fm.ListAdbFiles)
+            //{
+            //    tmpfile.GetLengthDouble();
+            //}
+            backgroundWorker_ProccessSize.ReportProgress(-1,"Size: "+tmpAdbFile.GetLengthDouble().humanReadable());
+        }
+
+        private void backgroundWorker_ProccessSize_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            label_size.Text = (string)e.UserState;
         }
 
         private void button_showSize_Click(object sender, EventArgs e)
@@ -1150,5 +1039,146 @@ namespace AndroidManager_SHW
                 IsShowSize = true;
             }
         }
+
+        private void backgroundWorker_refreshListView_DoWork(object sender, DoWorkEventArgs e)
+        {
+            //az item haye listView_files backup migirim
+            ListView.ListViewItemCollection last = listView_files.Items;
+            List<ListViewItem> listFinalLVIs = new List<ListViewItem>();
+            try
+            {
+                //item haye listView_files pak mikonim
+                //be ezaye har file ye icon dar item listView_files dar nazar migirim...
+                foreach (ADBFile item in tmpListAdbFiles/*fm.getDirectoryAndFiles(currentPath)*/)
+                {
+
+                    ListViewItem lvi = new ListViewItem();
+                    lvi.Name = item.FullName;
+                    lvi.Text = item.Name.nickName().DecodingText();
+
+                    if (item.Tag == "d" || item.Tag == "l")
+                    {
+                        lvi.ImageIndex = 1;
+                        lvi.Tag = item.Tag;
+                    }
+                    else
+                    {
+                        switch (item.Extension.ToLower())
+                        {
+                            case ".aac":
+                            case ".flac":
+                            case ".mp3":
+                            case ".MP3":
+                            case ".ogg":
+                                lvi.ImageIndex = 3;
+                                break;
+                            case ".exe":
+                            case ".msi":
+                                lvi.ImageIndex = 4;
+                                break;
+                            case ".apk":
+                                lvi.ImageIndex = 5;
+                                break;
+                            case ".zip":
+                            case ".rar":
+                                lvi.ImageIndex = 6;
+                                break;
+                            case ".3gp":
+                            case ".mkv":
+                            case ".mp4":
+                                lvi.ImageIndex = 7;
+                                break;
+                            case ".pdf":
+                                lvi.ImageIndex = 8;
+                                break;
+                            case ".txt":
+                            case ".text":
+                                lvi.ImageIndex = 9;
+                                break;
+                            case ".jpg":
+                            case ".JPG":
+                            case ".png":
+                            case ".img":
+                            case ".dng":
+                                lvi.ImageIndex = 10;
+                                break;
+                            case ".vcf":
+                                lvi.ImageIndex = 12;
+                                break;
+                            case ".doc":
+                            case ".docx":
+                            case ".docm":
+                            case ".dotx":
+                            case ".dotm":
+                            case ".docb":
+                                lvi.ImageIndex = 13;
+                                break;
+                            case ".xls":
+                            case ".xlt":
+                            case ".xlm":
+                            case ".xlsx":
+                            case ".xlsm":
+                                lvi.ImageIndex = 14;
+                                break;
+                            case ".ppt":
+                            case ".pot":
+                            case ".pps":
+                            case ".pptx":
+                            case ".ppsx":
+                                lvi.ImageIndex = 15;
+                                break;
+                            case ".accdb":
+                            case ".accde":
+                            case ".accdt":
+                            case ".accdr":
+                                lvi.ImageIndex = 16;
+                                break;
+                            default:
+                                lvi.ImageIndex = 2;
+                                break;
+                        }
+                        lvi.Tag = 'F';
+
+                    }
+
+                    //har item dorost shode dar listView_files add mishe
+                    //backgroundWorker_refreshListView.ReportProgress(counterItemFile, lvi);
+                    listFinalLVIs.Add(lvi);
+                }
+                backgroundWorker_refreshListView.ReportProgress(-1, listFinalLVIs.ToArray());
+            }
+            catch (Exception)
+            {
+                try
+                {
+                    listView_files.Items.AddRange(last);
+                }
+                catch
+                {
+
+                }
+            }
+        }
+
+        private void backgroundWorker_refreshListView_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            listView_files.Items.AddRange((ListViewItem[])e.UserState);
+        }
+
+        private void backgroundWorker_refreshListView_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            //masire directory fileha ro dar toolStripTextBox_path neshun mide
+            toolStripTextBox_path.Text = currentPath.Replace(@"\", string.Empty).DecodingText();
+            //if (backgroundWorker_ProccessSize.IsBusy)
+            //{
+            //    backgroundWorker_ProccessSize.CancelAsync();
+            //}
+            //if (!backgroundWorker_ProccessSize.IsBusy)
+            //{
+            //    backgroundWorker_ProccessSize.RunWorkerAsync();
+            //}
+        }
+
+
     }
 }

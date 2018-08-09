@@ -47,7 +47,15 @@ namespace AndroidManager_SHW
             currentDeviceIsNullIcon();
 
             //liste device haye motasel dar devices entesab mishe
-            devices = AdbClient.Instance.GetDevices();
+            try
+            {
+                devices = AdbClient.Instance.GetDevices();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                
+            }
 
             //age currentDevice vujud dasht...
             if (currentDevice!=null)
@@ -442,7 +450,7 @@ namespace AndroidManager_SHW
 
         private void pictureBox_about_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Create By ShayanW" + "\n\n" + "shayan.worthy@msn.com" + "\n\n" + "CopyRight 2018-2019" + "\n\n" + "Version: 0.87.5 Beta", "About Me", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Create By ShayanW" + "\n\n" + "shayan.worthy@msn.com" + "\n\n" + "CopyRight 2018-2019" + "\n\n" + "Version: 0.89 Beta", "About Me", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
 
