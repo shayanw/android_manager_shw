@@ -172,7 +172,8 @@ namespace ADBProccessDLL
                             }
                             catch
                             {
-                                service.Push(stream, AndroidPath.Replace("\\", "").EncodingText() + "/" + fi.Name.EncodingText(), 444, DateTime.Now, null, CancellationToken.None);
+                                //service.Push(stream, AndroidPath.Replace("\\", "").EncodingText() + "/" + fi.Name.EncodingText(), 444, DateTime.Now, null, CancellationToken.None);
+                                return false;
                             }
 
                         }

@@ -116,15 +116,10 @@ namespace ADBProccessDLL
             }
             string[] rslt = ReturnTagSize_OneLineLs(cmd);
             Double result;
-
             if (!"ld".Contains(rslt[0]))
             {
                 //in kb
                 result = (Convert.ToDouble(rslt[1]) /1024);
-            }
-            else if (rslt[0] == "l")
-            {
-                result = 0;
             }
             else
             {

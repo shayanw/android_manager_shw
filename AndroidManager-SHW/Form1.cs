@@ -554,19 +554,32 @@ namespace AndroidManager_SHW
         }
         private void panel_upLeftSide_DragLeave(object sender, EventArgs e)
         {
-            panel_upLeftSide.BackgroundImage = AndroidManager_SHW.Properties.Resources.walpapernew6;
+
+            if (backgroundWorker_installApk.IsBusy)
+            {
+                panel_upLeftSide.BackColor = Color.LightSteelBlue;
+            }
+            else
+            {
+                panel_upLeftSide.BackgroundImage = AndroidManager_SHW.Properties.Resources.walpapernew6;
+            }
         }
 
         private void panel_upLeftSide_DragDrop(object sender, DragEventArgs e)
         {
-            panel_upLeftSide.BackgroundImage = AndroidManager_SHW.Properties.Resources.walpapernew6;
-            if (currentDevice==null)
-            { 
-                return;
-            }
             if (backgroundWorker_installApk.IsBusy)
             {
+                panel_upLeftSide.BackColor = Color.LightSteelBlue;
                 MessageBox.Show("Please Wait,Another Packages are installing...", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            else
+            {
+                panel_upLeftSide.BackgroundImage = AndroidManager_SHW.Properties.Resources.walpapernew6;
+            }
+
+            if (currentDevice==null)
+            { 
                 return;
             }
 
@@ -587,7 +600,7 @@ namespace AndroidManager_SHW
                 return;
             }
             lastLableState = label_state.Text;
-            panel_downLeftSide.BackColor = Color.LightPink;
+            panel_downLeftSide.BackColor = Color.SkyBlue;
             panel_upLeftSide.BackgroundImage = null;
             panel_upLeftSide.BackColor = Color.LightSteelBlue;//PaleTurquoise
             label_state.Text = "installing Package...";
@@ -635,7 +648,7 @@ namespace AndroidManager_SHW
             {
                 tmpMessage += string.Format("{0}     > {1} \n",item2[0],item2[1]);
             }
-            if (MessageBox.Show(tmpMessage, "state Install Packages", MessageBoxButtons.OK, MessageBoxIcon.Information)==DialogResult.OK)
+            if (MessageBox.Show(tmpMessage, "install status", MessageBoxButtons.OK, MessageBoxIcon.Information)==DialogResult.OK)
             {
                 label_state.Text = lastLableState;
                 panel_downLeftSide.BackColor = Color.GreenYellow;
