@@ -44,11 +44,11 @@ namespace AndroidManager_SHW
             if (tt == TransferType.BackingUp)
             {
                 DirectoryInfo di = new DirectoryInfo(path);
-                label_transferTo.Text = "to => " + di.Name.fixDecodePatch();
+                label_transferTo.Text = "to => " + di.Name.fixDecodePatch().Replace(@"\", "");
             }
             else
             {
-                label_transferTo.Text = "to => " + path.fixDecodePatch();
+                label_transferTo.Text = "to => " + path.fixDecodePatch().Replace(@"\", "");
             }
             this.Text = tt.ToString();
             backgroundWorker_SetLabels.RunWorkerAsync();
@@ -70,11 +70,11 @@ namespace AndroidManager_SHW
             if (tt == TransferType.BackingUp)
             {
                 DirectoryInfo di = new DirectoryInfo(path);
-                label_transferTo.Text ="to => "+di.Name.DecodingText();
+                label_transferTo.Text ="to => "+di.Name.DecodingText().Replace(@"\", "");
             }
             else
             {
-                label_transferTo.Text = "to => " + path.DecodingText();
+                label_transferTo.Text = "to => " + path.DecodingText().Replace(@"\", "");
             }
             this.Text = tt.ToString();
             backgroundWorker_SetLabels.RunWorkerAsync();
