@@ -113,6 +113,7 @@
             this.panel_upLeftSide.TabIndex = 5;
             this.panel_upLeftSide.DragDrop += new System.Windows.Forms.DragEventHandler(this.panel_upLeftSide_DragDrop);
             this.panel_upLeftSide.DragEnter += new System.Windows.Forms.DragEventHandler(this.panel_upLeftSide_DragEnter);
+            this.panel_upLeftSide.DragLeave += new System.EventHandler(this.panel_upLeftSide_DragLeave);
             // 
             // button_mobileState
             // 

@@ -542,15 +542,26 @@ namespace AndroidManager_SHW
 
         private void panel_upLeftSide_DragEnter(object sender, DragEventArgs e)
         {
+            
             if (e.Data.GetDataPresent(DataFormats.FileDrop, false))
+            {
                 e.Effect = DragDropEffects.All;
+                panel_upLeftSide.BackgroundImage = null;
+                panel_upLeftSide.BackColor = Color.PaleTurquoise;
+            }
             else
                 e.Effect = DragDropEffects.None;
         }
+        private void panel_upLeftSide_DragLeave(object sender, EventArgs e)
+        {
+            panel_upLeftSide.BackgroundImage = AndroidManager_SHW.Properties.Resources.walpapernew6;
+        }
+
         private void panel_upLeftSide_DragDrop(object sender, DragEventArgs e)
         {
+            panel_upLeftSide.BackgroundImage = AndroidManager_SHW.Properties.Resources.walpapernew6;
             if (currentDevice==null)
-            {
+            { 
                 return;
             }
             if (backgroundWorker_installApk.IsBusy)
@@ -578,6 +589,7 @@ namespace AndroidManager_SHW
             lastLableState = label_state.Text;
             panel_downLeftSide.BackColor = Color.LightPink;
             panel_upLeftSide.BackgroundImage = null;
+            panel_upLeftSide.BackColor = Color.LightSteelBlue;//PaleTurquoise
             label_state.Text = "installing Package...";
             backgroundWorker_installApk.RunWorkerAsync();
         }
@@ -631,6 +643,8 @@ namespace AndroidManager_SHW
             }
 
         }
+
+
 
         private void comboBox_devices_SelectedIndexChanged(object sender, EventArgs e)
         {
