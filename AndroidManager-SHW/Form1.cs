@@ -626,7 +626,7 @@ namespace AndroidManager_SHW
             if (MessageBox.Show(tmpMessage, "state Install Packages", MessageBoxButtons.OK, MessageBoxIcon.Information)==DialogResult.OK)
             {
                 label_state.Text = lastLableState;
-                panel_downLeftSide.BackColor = Color.LightGreen;
+                panel_downLeftSide.BackColor = Color.GreenYellow;
                 panel_upLeftSide.BackgroundImage = AndroidManager_SHW.Properties.Resources.walpapernew6;
             }
 
