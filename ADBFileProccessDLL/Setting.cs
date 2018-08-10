@@ -17,18 +17,18 @@ namespace ADBProccessDLL
         public bool isShowHiddenFile;
         public Setting()
         {
-            string tmp;
             try
             {
+                string tmp;
                 StreamReader sr = new StreamReader(returnPathSetting() + @"\sett.shw");
-                while (sr.Peek()>0)
+                while (sr.Peek() > 0)
                 {
-                    tmp=sr.ReadLine();
+                    tmp = sr.ReadLine();
 
                     if (tmp.Contains("backupPath:"))
                     {
                         backupPath = tmp.Replace("backupPath:", "");
-                        
+
                         if (string.IsNullOrEmpty(backupPath))
                         {
                             backupPath = Option.MainPath;
@@ -74,7 +74,9 @@ namespace ADBProccessDLL
             }
             catch
             {
-                backupPath = updatePackagePath = "";
+                backupPath = Option.MainPath;
+                isShowSizeFM = Option.IsShowSizeFM;
+                isShowHiddenFile = Option.IsShowHiddenFile;
             }
         }
 
@@ -126,7 +128,7 @@ namespace ADBProccessDLL
             Option.MainPath = backupPath;
             sw.WriteLine("backupPath:" + backupPath);
 
-            
+
             sw.WriteLine("updatePackagePath:" + updatePackagePath);
 
             Option.IsShowSizeFM = isShowSizeFM;

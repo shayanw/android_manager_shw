@@ -281,8 +281,6 @@ namespace AndroidManager_SHW
             if (listView_files.SelectedItems.Count == 0)
             {
                 label_name.Text = "None";
-                //label_type.Text = "None";
-
                 if (IsShowSize)
                 {
                     label_size.Text = "None";
@@ -297,8 +295,6 @@ namespace AndroidManager_SHW
             if (listView_files.SelectedItems.Count > 1)
             {
                 label_name.Text = "Selected Items: " + listView_files.SelectedItems.Count + " Files";
-                //label_type.Text = "Type: Files...";
-
                 if (IsShowSize)
                 {
                     label_size.Text = "_";
@@ -325,7 +321,6 @@ namespace AndroidManager_SHW
             if (IsShowSize)
             {
                 //label_size.Text = "Size: " + tmpAdbFile.GetLengthDouble().humanReadable();
-    
                 if (backgroundWorker_ProccessSize.IsBusy)
                 {
                     backgroundWorker_ProccessSize.CancelAsync();
@@ -1042,7 +1037,10 @@ namespace AndroidManager_SHW
 
         private void backgroundWorker_ProccessSize_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            label_size.Text = (string)e.UserState;
+            if (listView_files.SelectedItems.Count==1)
+            {
+                label_size.Text = (string)e.UserState;
+            }
         }
 
         private void button_showSize_Click(object sender, EventArgs e)
@@ -1207,6 +1205,25 @@ namespace AndroidManager_SHW
                 Option.IsShowHiddenFile = true;
             }
             refreshListView();
+        }
+
+        private void toolStripButton_checkedAll_Click(object sender, EventArgs e)
+        {
+
+            bool IsChecked = false;
+            if (((ToolStripButton)sender).Name== toolStripButton_checkedAll.Name)
+            {
+                IsChecked = true;
+            }
+            else if (((ToolStripButton)sender).Name == toolStripButton_checkedNone.Name)
+            {
+                IsChecked = false;
+            }
+
+            foreach (ListViewItem lvi in listView_files.Items)
+            {
+                lvi.Selected = IsChecked;
+            }
         }
     }
 }

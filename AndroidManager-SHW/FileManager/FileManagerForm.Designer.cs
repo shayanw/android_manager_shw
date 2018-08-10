@@ -37,39 +37,42 @@
             this.panel_fillRightSideBar = new System.Windows.Forms.Panel();
             this.listView_files = new System.Windows.Forms.ListView();
             this.contextMenuStrip_ListView = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.refreshToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.backupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.uploadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pasteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.newFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.propertiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imageList_iconFile = new System.Windows.Forms.ImageList(this.components);
             this.panel_rightSideBarProgress = new System.Windows.Forms.Panel();
             this.progressBar_loadFile = new System.Windows.Forms.ProgressBar();
             this.panel_rightSideBarDown = new System.Windows.Forms.Panel();
-            this.button_showHidden = new System.Windows.Forms.Button();
-            this.button_showSize = new System.Windows.Forms.Button();
             this.label_size = new System.Windows.Forms.Label();
             this.label_IsShowHidden = new System.Windows.Forms.Label();
             this.label_IsShowSize = new System.Windows.Forms.Label();
             this.label_name = new System.Windows.Forms.Label();
             this.panel_rightSideBarUp = new System.Windows.Forms.Panel();
             this.toolStrip_upMain = new System.Windows.Forms.ToolStrip();
-            this.toolStripButton_collapseExpand = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButton_ParentDirectory = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton_forwardDirectory = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripTextBox_path = new System.Windows.Forms.ToolStripTextBox();
-            this.toolStripButton_goPath = new System.Windows.Forms.ToolStripButton();
             this.backgroundWorker_ProccessSize = new System.ComponentModel.BackgroundWorker();
             this.backgroundWorker_refreshListView = new System.ComponentModel.BackgroundWorker();
+            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
+            this.refreshToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.backupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.uploadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pasteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.propertiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.button_showHidden = new System.Windows.Forms.Button();
+            this.button_showSize = new System.Windows.Forms.Button();
+            this.toolStripButton_collapseExpand = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton_ParentDirectory = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton_forwardDirectory = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton_goPath = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton_checkedAll = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton_checkedNone = new System.Windows.Forms.ToolStripButton();
             this.panel_TreeSideBar.SuspendLayout();
             this.panel_leftSideBar.SuspendLayout();
             this.panel_fillRightSideBar.SuspendLayout();
@@ -176,99 +179,20 @@
             this.contextMenuStrip_ListView.Size = new System.Drawing.Size(203, 256);
             this.contextMenuStrip_ListView.Opened += new System.EventHandler(this.contextMenuStrip_ListView_Opened);
             // 
-            // refreshToolStripMenuItem2
-            // 
-            this.refreshToolStripMenuItem2.Image = global::AndroidManager_SHW.Properties.Resources.fm_con_refresh;
-            this.refreshToolStripMenuItem2.Name = "refreshToolStripMenuItem2";
-            this.refreshToolStripMenuItem2.Size = new System.Drawing.Size(202, 26);
-            this.refreshToolStripMenuItem2.Text = "Refresh";
-            this.refreshToolStripMenuItem2.Click += new System.EventHandler(this.refreshToolStripMenuItem2_Click);
-            // 
-            // backupToolStripMenuItem
-            // 
-            this.backupToolStripMenuItem.Image = global::AndroidManager_SHW.Properties.Resources.fm_con_backup;
-            this.backupToolStripMenuItem.Name = "backupToolStripMenuItem";
-            this.backupToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.B)));
-            this.backupToolStripMenuItem.Size = new System.Drawing.Size(202, 26);
-            this.backupToolStripMenuItem.Text = "Backup";
-            this.backupToolStripMenuItem.Click += new System.EventHandler(this.backupToolStripMenuItem_Click);
-            // 
-            // uploadToolStripMenuItem
-            // 
-            this.uploadToolStripMenuItem.Image = global::AndroidManager_SHW.Properties.Resources.fm_con_upload;
-            this.uploadToolStripMenuItem.Name = "uploadToolStripMenuItem";
-            this.uploadToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.U)));
-            this.uploadToolStripMenuItem.Size = new System.Drawing.Size(202, 26);
-            this.uploadToolStripMenuItem.Text = "Upload";
-            this.uploadToolStripMenuItem.Click += new System.EventHandler(this.uploadToolStripMenuItem_Click);
-            // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(199, 6);
-            // 
-            // copyToolStripMenuItem
-            // 
-            this.copyToolStripMenuItem.Image = global::AndroidManager_SHW.Properties.Resources.fm_con_copy;
-            this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
-            this.copyToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
-            this.copyToolStripMenuItem.Size = new System.Drawing.Size(202, 26);
-            this.copyToolStripMenuItem.Text = "Copy";
-            this.copyToolStripMenuItem.Click += new System.EventHandler(this.copycutToolStripMenuItem_Click);
-            // 
-            // cutToolStripMenuItem
-            // 
-            this.cutToolStripMenuItem.Image = global::AndroidManager_SHW.Properties.Resources.fm_con_cut;
-            this.cutToolStripMenuItem.Name = "cutToolStripMenuItem";
-            this.cutToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
-            this.cutToolStripMenuItem.Size = new System.Drawing.Size(202, 26);
-            this.cutToolStripMenuItem.Text = "Cut";
-            this.cutToolStripMenuItem.Click += new System.EventHandler(this.copycutToolStripMenuItem_Click);
-            // 
-            // pasteToolStripMenuItem
-            // 
-            this.pasteToolStripMenuItem.Image = global::AndroidManager_SHW.Properties.Resources.fm_con_paste;
-            this.pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
-            this.pasteToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
-            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(202, 26);
-            this.pasteToolStripMenuItem.Text = "Paste";
-            this.pasteToolStripMenuItem.Click += new System.EventHandler(this.pasteToolStripMenuItem_Click);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
             this.toolStripSeparator4.Size = new System.Drawing.Size(199, 6);
             // 
-            // newFolderToolStripMenuItem
-            // 
-            this.newFolderToolStripMenuItem.Image = global::AndroidManager_SHW.Properties.Resources.fm_con_newdr;
-            this.newFolderToolStripMenuItem.Name = "newFolderToolStripMenuItem";
-            this.newFolderToolStripMenuItem.Size = new System.Drawing.Size(202, 26);
-            this.newFolderToolStripMenuItem.Text = "NewFolder";
-            this.newFolderToolStripMenuItem.Click += new System.EventHandler(this.newFolderToolStripMenuItem_Click);
-            // 
-            // deleteToolStripMenuItem
-            // 
-            this.deleteToolStripMenuItem.Image = global::AndroidManager_SHW.Properties.Resources.fm_con_delete;
-            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete;
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(202, 26);
-            this.deleteToolStripMenuItem.Text = "Delete";
-            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
-            // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
             this.toolStripSeparator5.Size = new System.Drawing.Size(199, 6);
-            // 
-            // propertiesToolStripMenuItem
-            // 
-            this.propertiesToolStripMenuItem.Image = global::AndroidManager_SHW.Properties.Resources.fm_con_details;
-            this.propertiesToolStripMenuItem.Name = "propertiesToolStripMenuItem";
-            this.propertiesToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D)));
-            this.propertiesToolStripMenuItem.Size = new System.Drawing.Size(202, 26);
-            this.propertiesToolStripMenuItem.Text = "Properties";
-            this.propertiesToolStripMenuItem.Click += new System.EventHandler(this.propertiesToolStripMenuItem_Click);
             // 
             // imageList_iconFile
             // 
@@ -325,36 +249,6 @@
             this.panel_rightSideBarDown.Name = "panel_rightSideBarDown";
             this.panel_rightSideBarDown.Size = new System.Drawing.Size(510, 84);
             this.panel_rightSideBarDown.TabIndex = 1;
-            // 
-            // button_showHidden
-            // 
-            this.button_showHidden.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button_showHidden.BackColor = System.Drawing.Color.Transparent;
-            this.button_showHidden.BackgroundImage = global::AndroidManager_SHW.Properties.Resources.toggleOff;
-            this.button_showHidden.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button_showHidden.FlatAppearance.BorderSize = 0;
-            this.button_showHidden.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_showHidden.Location = new System.Drawing.Point(466, 8);
-            this.button_showHidden.Name = "button_showHidden";
-            this.button_showHidden.Size = new System.Drawing.Size(34, 34);
-            this.button_showHidden.TabIndex = 1;
-            this.button_showHidden.UseVisualStyleBackColor = false;
-            this.button_showHidden.Click += new System.EventHandler(this.button_showHidden_Click);
-            // 
-            // button_showSize
-            // 
-            this.button_showSize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button_showSize.BackColor = System.Drawing.Color.Transparent;
-            this.button_showSize.BackgroundImage = global::AndroidManager_SHW.Properties.Resources.toggleOff;
-            this.button_showSize.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button_showSize.FlatAppearance.BorderSize = 0;
-            this.button_showSize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_showSize.Location = new System.Drawing.Point(466, 42);
-            this.button_showSize.Name = "button_showSize";
-            this.button_showSize.Size = new System.Drawing.Size(34, 34);
-            this.button_showSize.TabIndex = 1;
-            this.button_showSize.UseVisualStyleBackColor = false;
-            this.button_showSize.Click += new System.EventHandler(this.button_showSize_Click);
             // 
             // label_size
             // 
@@ -428,7 +322,10 @@
             this.toolStripButton_forwardDirectory,
             this.toolStripSeparator1,
             this.toolStripTextBox_path,
-            this.toolStripButton_goPath});
+            this.toolStripButton_goPath,
+            this.toolStripSeparator6,
+            this.toolStripButton_checkedAll,
+            this.toolStripButton_checkedNone});
             this.toolStrip_upMain.Location = new System.Drawing.Point(0, 0);
             this.toolStrip_upMain.Name = "toolStrip_upMain";
             this.toolStrip_upMain.Padding = new System.Windows.Forms.Padding(0, 0, 4, 0);
@@ -436,6 +333,152 @@
             this.toolStrip_upMain.Size = new System.Drawing.Size(510, 40);
             this.toolStrip_upMain.TabIndex = 2;
             this.toolStrip_upMain.Text = "Go";
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 40);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 40);
+            // 
+            // toolStripTextBox_path
+            // 
+            this.toolStripTextBox_path.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
+            this.toolStripTextBox_path.Name = "toolStripTextBox_path";
+            this.toolStripTextBox_path.Size = new System.Drawing.Size(315, 40);
+            this.toolStripTextBox_path.Click += new System.EventHandler(this.toolStripTextBox_path_Click);
+            // 
+            // backgroundWorker_ProccessSize
+            // 
+            this.backgroundWorker_ProccessSize.WorkerReportsProgress = true;
+            this.backgroundWorker_ProccessSize.WorkerSupportsCancellation = true;
+            this.backgroundWorker_ProccessSize.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker_ProccessSize_DoWork);
+            this.backgroundWorker_ProccessSize.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker_ProccessSize_ProgressChanged);
+            // 
+            // backgroundWorker_refreshListView
+            // 
+            this.backgroundWorker_refreshListView.WorkerReportsProgress = true;
+            this.backgroundWorker_refreshListView.WorkerSupportsCancellation = true;
+            this.backgroundWorker_refreshListView.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker_refreshListView_DoWork);
+            this.backgroundWorker_refreshListView.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker_refreshListView_ProgressChanged);
+            this.backgroundWorker_refreshListView.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker_refreshListView_RunWorkerCompleted);
+            // 
+            // toolStripSeparator6
+            // 
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 40);
+            // 
+            // refreshToolStripMenuItem2
+            // 
+            this.refreshToolStripMenuItem2.Image = global::AndroidManager_SHW.Properties.Resources.fm_con_refresh;
+            this.refreshToolStripMenuItem2.Name = "refreshToolStripMenuItem2";
+            this.refreshToolStripMenuItem2.Size = new System.Drawing.Size(202, 26);
+            this.refreshToolStripMenuItem2.Text = "Refresh";
+            this.refreshToolStripMenuItem2.Click += new System.EventHandler(this.refreshToolStripMenuItem2_Click);
+            // 
+            // backupToolStripMenuItem
+            // 
+            this.backupToolStripMenuItem.Image = global::AndroidManager_SHW.Properties.Resources.fm_con_backup;
+            this.backupToolStripMenuItem.Name = "backupToolStripMenuItem";
+            this.backupToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.B)));
+            this.backupToolStripMenuItem.Size = new System.Drawing.Size(202, 26);
+            this.backupToolStripMenuItem.Text = "Backup";
+            this.backupToolStripMenuItem.Click += new System.EventHandler(this.backupToolStripMenuItem_Click);
+            // 
+            // uploadToolStripMenuItem
+            // 
+            this.uploadToolStripMenuItem.Image = global::AndroidManager_SHW.Properties.Resources.fm_con_upload;
+            this.uploadToolStripMenuItem.Name = "uploadToolStripMenuItem";
+            this.uploadToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.U)));
+            this.uploadToolStripMenuItem.Size = new System.Drawing.Size(202, 26);
+            this.uploadToolStripMenuItem.Text = "Upload";
+            this.uploadToolStripMenuItem.Click += new System.EventHandler(this.uploadToolStripMenuItem_Click);
+            // 
+            // copyToolStripMenuItem
+            // 
+            this.copyToolStripMenuItem.Image = global::AndroidManager_SHW.Properties.Resources.fm_con_copy;
+            this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
+            this.copyToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
+            this.copyToolStripMenuItem.Size = new System.Drawing.Size(202, 26);
+            this.copyToolStripMenuItem.Text = "Copy";
+            this.copyToolStripMenuItem.Click += new System.EventHandler(this.copycutToolStripMenuItem_Click);
+            // 
+            // cutToolStripMenuItem
+            // 
+            this.cutToolStripMenuItem.Image = global::AndroidManager_SHW.Properties.Resources.fm_con_cut;
+            this.cutToolStripMenuItem.Name = "cutToolStripMenuItem";
+            this.cutToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
+            this.cutToolStripMenuItem.Size = new System.Drawing.Size(202, 26);
+            this.cutToolStripMenuItem.Text = "Cut";
+            this.cutToolStripMenuItem.Click += new System.EventHandler(this.copycutToolStripMenuItem_Click);
+            // 
+            // pasteToolStripMenuItem
+            // 
+            this.pasteToolStripMenuItem.Image = global::AndroidManager_SHW.Properties.Resources.fm_con_paste;
+            this.pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
+            this.pasteToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
+            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(202, 26);
+            this.pasteToolStripMenuItem.Text = "Paste";
+            this.pasteToolStripMenuItem.Click += new System.EventHandler(this.pasteToolStripMenuItem_Click);
+            // 
+            // newFolderToolStripMenuItem
+            // 
+            this.newFolderToolStripMenuItem.Image = global::AndroidManager_SHW.Properties.Resources.fm_con_newdr;
+            this.newFolderToolStripMenuItem.Name = "newFolderToolStripMenuItem";
+            this.newFolderToolStripMenuItem.Size = new System.Drawing.Size(202, 26);
+            this.newFolderToolStripMenuItem.Text = "NewFolder";
+            this.newFolderToolStripMenuItem.Click += new System.EventHandler(this.newFolderToolStripMenuItem_Click);
+            // 
+            // deleteToolStripMenuItem
+            // 
+            this.deleteToolStripMenuItem.Image = global::AndroidManager_SHW.Properties.Resources.fm_con_delete;
+            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            this.deleteToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete;
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(202, 26);
+            this.deleteToolStripMenuItem.Text = "Delete";
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
+            // 
+            // propertiesToolStripMenuItem
+            // 
+            this.propertiesToolStripMenuItem.Image = global::AndroidManager_SHW.Properties.Resources.fm_con_details;
+            this.propertiesToolStripMenuItem.Name = "propertiesToolStripMenuItem";
+            this.propertiesToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D)));
+            this.propertiesToolStripMenuItem.Size = new System.Drawing.Size(202, 26);
+            this.propertiesToolStripMenuItem.Text = "Properties";
+            this.propertiesToolStripMenuItem.Click += new System.EventHandler(this.propertiesToolStripMenuItem_Click);
+            // 
+            // button_showHidden
+            // 
+            this.button_showHidden.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button_showHidden.BackColor = System.Drawing.Color.Transparent;
+            this.button_showHidden.BackgroundImage = global::AndroidManager_SHW.Properties.Resources.toggleOff;
+            this.button_showHidden.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button_showHidden.FlatAppearance.BorderSize = 0;
+            this.button_showHidden.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_showHidden.Location = new System.Drawing.Point(466, 8);
+            this.button_showHidden.Name = "button_showHidden";
+            this.button_showHidden.Size = new System.Drawing.Size(34, 34);
+            this.button_showHidden.TabIndex = 1;
+            this.button_showHidden.UseVisualStyleBackColor = false;
+            this.button_showHidden.Click += new System.EventHandler(this.button_showHidden_Click);
+            // 
+            // button_showSize
+            // 
+            this.button_showSize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button_showSize.BackColor = System.Drawing.Color.Transparent;
+            this.button_showSize.BackgroundImage = global::AndroidManager_SHW.Properties.Resources.toggleOff;
+            this.button_showSize.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button_showSize.FlatAppearance.BorderSize = 0;
+            this.button_showSize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_showSize.Location = new System.Drawing.Point(466, 42);
+            this.button_showSize.Name = "button_showSize";
+            this.button_showSize.Size = new System.Drawing.Size(34, 34);
+            this.button_showSize.TabIndex = 1;
+            this.button_showSize.UseVisualStyleBackColor = false;
+            this.button_showSize.Click += new System.EventHandler(this.button_showSize_Click);
             // 
             // toolStripButton_collapseExpand
             // 
@@ -446,11 +489,6 @@
             this.toolStripButton_collapseExpand.Size = new System.Drawing.Size(24, 37);
             this.toolStripButton_collapseExpand.Text = "Expand/Collapse";
             this.toolStripButton_collapseExpand.Click += new System.EventHandler(this.toolStripButton_collapseExpand_Click);
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 40);
             // 
             // toolStripButton_ParentDirectory
             // 
@@ -472,18 +510,6 @@
             this.toolStripButton_forwardDirectory.Text = "Go Last Path";
             this.toolStripButton_forwardDirectory.Click += new System.EventHandler(this.toolStripButton_forwardDirectory_Click);
             // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 40);
-            // 
-            // toolStripTextBox_path
-            // 
-            this.toolStripTextBox_path.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
-            this.toolStripTextBox_path.Name = "toolStripTextBox_path";
-            this.toolStripTextBox_path.Size = new System.Drawing.Size(315, 40);
-            this.toolStripTextBox_path.Click += new System.EventHandler(this.toolStripTextBox_path_Click);
-            // 
             // toolStripButton_goPath
             // 
             this.toolStripButton_goPath.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -494,20 +520,25 @@
             this.toolStripButton_goPath.Text = "Go/Refresh";
             this.toolStripButton_goPath.Click += new System.EventHandler(this.toolStripButton_goPath_Click);
             // 
-            // backgroundWorker_ProccessSize
+            // toolStripButton_checkedAll
             // 
-            this.backgroundWorker_ProccessSize.WorkerReportsProgress = true;
-            this.backgroundWorker_ProccessSize.WorkerSupportsCancellation = true;
-            this.backgroundWorker_ProccessSize.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker_ProccessSize_DoWork);
-            this.backgroundWorker_ProccessSize.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker_ProccessSize_ProgressChanged);
+            this.toolStripButton_checkedAll.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton_checkedAll.Image = global::AndroidManager_SHW.Properties.Resources.checkAll;
+            this.toolStripButton_checkedAll.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton_checkedAll.Name = "toolStripButton_checkedAll";
+            this.toolStripButton_checkedAll.Size = new System.Drawing.Size(24, 37);
+            this.toolStripButton_checkedAll.Text = "Select All";
+            this.toolStripButton_checkedAll.Click += new System.EventHandler(this.toolStripButton_checkedAll_Click);
             // 
-            // backgroundWorker_refreshListView
+            // toolStripButton_checkedNone
             // 
-            this.backgroundWorker_refreshListView.WorkerReportsProgress = true;
-            this.backgroundWorker_refreshListView.WorkerSupportsCancellation = true;
-            this.backgroundWorker_refreshListView.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker_refreshListView_DoWork);
-            this.backgroundWorker_refreshListView.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker_refreshListView_ProgressChanged);
-            this.backgroundWorker_refreshListView.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker_refreshListView_RunWorkerCompleted);
+            this.toolStripButton_checkedNone.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton_checkedNone.Image = global::AndroidManager_SHW.Properties.Resources.checkNone;
+            this.toolStripButton_checkedNone.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton_checkedNone.Name = "toolStripButton_checkedNone";
+            this.toolStripButton_checkedNone.Size = new System.Drawing.Size(24, 37);
+            this.toolStripButton_checkedNone.Text = "Select None";
+            this.toolStripButton_checkedNone.Click += new System.EventHandler(this.toolStripButton_checkedAll_Click);
             // 
             // FileManagerForm
             // 
@@ -578,5 +609,8 @@
         private System.Windows.Forms.ProgressBar progressBar_loadFile;
         private System.Windows.Forms.Button button_showHidden;
         private System.Windows.Forms.Label label_IsShowHidden;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
+        private System.Windows.Forms.ToolStripButton toolStripButton_checkedAll;
+        private System.Windows.Forms.ToolStripButton toolStripButton_checkedNone;
     }
 }
