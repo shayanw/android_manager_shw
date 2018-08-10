@@ -43,6 +43,17 @@ namespace AndroidManager_SHW
             textBox_name.Text = myFile.Name.Replace(@"\",string.Empty).DecodingText();
             tmpName = textBox_name.Text;
             label_typeValue.Text = TypeFile.DecodingText();
+
+            checkBox_IsHidden.Visible = true;
+
+            if (tmpName[0]=='.')
+            {
+                checkBox_IsHidden.Checked = true;
+            }
+            else
+            {
+                checkBox_IsHidden.Checked = false;
+            }
         }
 
         public PropertiesForm(List<ADBFile> myFiles, Image img)
@@ -60,6 +71,7 @@ namespace AndroidManager_SHW
             textBox_name.Text = myFiles .Count+ " Selected Files...";
             tmpName = textBox_name.Text;
             label_typeValue.Text = "Multi Files";
+            button_ok.Visible = false;
             backgroundWorker_getSizeFile.RunWorkerAsync();
         }
         private void backgroundWorker_getSizeFile_DoWork(object sender, DoWorkEventArgs e)
@@ -145,7 +157,29 @@ namespace AndroidManager_SHW
             {
                 if (!string.IsNullOrEmpty(textBox_name.Text) && isFile)
                 {
-                    oneFile.Rename(textBox_name.Text.fixBracketInTerminal().EncodingText());
+                    if (checkBox_IsHidden.Checked)
+                    {
+                        if (textBox_name.Text[0]=='.')
+                        {
+                            oneFile.Rename(textBox_name.Text.fixBracketInTerminal().EncodingText());
+                        }
+                        else
+                        {
+                            oneFile.Rename('.'+textBox_name.Text.fixBracketInTerminal().EncodingText());
+                        }
+                    }
+                    else
+                    {
+                        if (textBox_name.Text[0] == '.')
+                        {
+                            oneFile.Rename(textBox_name.Text.fixBracketInTerminal().EncodingText().Remove(0,1));
+                        }
+                        else
+                        {
+                            oneFile.Rename(textBox_name.Text.fixBracketInTerminal().EncodingText());
+                        }
+                    }
+                    
                     IsChangeValue = true;
                 }
             }

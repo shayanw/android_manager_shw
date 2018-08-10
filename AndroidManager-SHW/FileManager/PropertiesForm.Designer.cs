@@ -42,6 +42,7 @@
             this.button_ok = new System.Windows.Forms.Button();
             this.backgroundWorker_getSizeFile = new System.ComponentModel.BackgroundWorker();
             this.backgroundWorker_getCountFile = new System.ComponentModel.BackgroundWorker();
+            this.checkBox_IsHidden = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_iconFile)).BeginInit();
             this.SuspendLayout();
             // 
@@ -57,7 +58,7 @@
             // label_type
             // 
             this.label_type.AutoSize = true;
-            this.label_type.Location = new System.Drawing.Point(12, 63);
+            this.label_type.Location = new System.Drawing.Point(16, 75);
             this.label_type.Name = "label_type";
             this.label_type.Size = new System.Drawing.Size(41, 19);
             this.label_type.TabIndex = 3;
@@ -66,7 +67,7 @@
             // label_location
             // 
             this.label_location.AutoSize = true;
-            this.label_location.Location = new System.Drawing.Point(12, 99);
+            this.label_location.Location = new System.Drawing.Point(16, 112);
             this.label_location.Name = "label_location";
             this.label_location.Size = new System.Drawing.Size(66, 19);
             this.label_location.TabIndex = 3;
@@ -75,7 +76,7 @@
             // label_size
             // 
             this.label_size.AutoSize = true;
-            this.label_size.Location = new System.Drawing.Point(12, 135);
+            this.label_size.Location = new System.Drawing.Point(16, 149);
             this.label_size.Name = "label_size";
             this.label_size.Size = new System.Drawing.Size(38, 19);
             this.label_size.TabIndex = 3;
@@ -84,7 +85,7 @@
             // label_count
             // 
             this.label_count.AutoSize = true;
-            this.label_count.Location = new System.Drawing.Point(12, 171);
+            this.label_count.Location = new System.Drawing.Point(16, 186);
             this.label_count.Name = "label_count";
             this.label_count.Size = new System.Drawing.Size(82, 19);
             this.label_count.TabIndex = 3;
@@ -93,7 +94,7 @@
             // label_typeValue
             // 
             this.label_typeValue.AutoSize = true;
-            this.label_typeValue.Location = new System.Drawing.Point(106, 63);
+            this.label_typeValue.Location = new System.Drawing.Point(106, 75);
             this.label_typeValue.Name = "label_typeValue";
             this.label_typeValue.Size = new System.Drawing.Size(41, 19);
             this.label_typeValue.TabIndex = 3;
@@ -102,7 +103,7 @@
             // label_locationValue
             // 
             this.label_locationValue.AutoSize = true;
-            this.label_locationValue.Location = new System.Drawing.Point(106, 99);
+            this.label_locationValue.Location = new System.Drawing.Point(106, 112);
             this.label_locationValue.Name = "label_locationValue";
             this.label_locationValue.Size = new System.Drawing.Size(66, 19);
             this.label_locationValue.TabIndex = 3;
@@ -111,7 +112,7 @@
             // label_sizeValue
             // 
             this.label_sizeValue.AutoSize = true;
-            this.label_sizeValue.Location = new System.Drawing.Point(106, 135);
+            this.label_sizeValue.Location = new System.Drawing.Point(106, 149);
             this.label_sizeValue.Name = "label_sizeValue";
             this.label_sizeValue.Size = new System.Drawing.Size(38, 19);
             this.label_sizeValue.TabIndex = 3;
@@ -120,7 +121,7 @@
             // label_countValue
             // 
             this.label_countValue.AutoSize = true;
-            this.label_countValue.Location = new System.Drawing.Point(106, 171);
+            this.label_countValue.Location = new System.Drawing.Point(106, 186);
             this.label_countValue.Name = "label_countValue";
             this.label_countValue.Size = new System.Drawing.Size(82, 19);
             this.label_countValue.TabIndex = 3;
@@ -142,7 +143,7 @@
             this.button_cancel.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
             this.button_cancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_cancel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_cancel.Location = new System.Drawing.Point(169, 208);
+            this.button_cancel.Location = new System.Drawing.Point(184, 217);
             this.button_cancel.Name = "button_cancel";
             this.button_cancel.Size = new System.Drawing.Size(66, 24);
             this.button_cancel.TabIndex = 3;
@@ -156,7 +157,7 @@
             this.button_ok.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
             this.button_ok.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_ok.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_ok.Location = new System.Drawing.Point(97, 208);
+            this.button_ok.Location = new System.Drawing.Point(112, 217);
             this.button_ok.Name = "button_ok";
             this.button_ok.Size = new System.Drawing.Size(66, 24);
             this.button_ok.TabIndex = 2;
@@ -174,12 +175,24 @@
             this.backgroundWorker_getCountFile.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker_getCountFile_DoWork);
             this.backgroundWorker_getCountFile.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker_getCountFile_RunWorkerCompleted);
             // 
+            // checkBox_IsHidden
+            // 
+            this.checkBox_IsHidden.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.checkBox_IsHidden.Location = new System.Drawing.Point(16, 219);
+            this.checkBox_IsHidden.Name = "checkBox_IsHidden";
+            this.checkBox_IsHidden.Size = new System.Drawing.Size(84, 21);
+            this.checkBox_IsHidden.TabIndex = 4;
+            this.checkBox_IsHidden.Text = "Hidden";
+            this.checkBox_IsHidden.UseVisualStyleBackColor = true;
+            this.checkBox_IsHidden.Visible = false;
+            // 
             // PropertiesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(251, 244);
+            this.ClientSize = new System.Drawing.Size(262, 253);
+            this.Controls.Add(this.checkBox_IsHidden);
             this.Controls.Add(this.button_ok);
             this.Controls.Add(this.button_cancel);
             this.Controls.Add(this.label_countValue);
@@ -194,8 +207,8 @@
             this.Controls.Add(this.pictureBox_iconFile);
             this.Font = new System.Drawing.Font("Segoe UI Semibold", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(269, 291);
-            this.MinimumSize = new System.Drawing.Size(269, 291);
+            this.MaximumSize = new System.Drawing.Size(280, 300);
+            this.MinimumSize = new System.Drawing.Size(280, 300);
             this.Name = "PropertiesForm";
             this.ShowIcon = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
@@ -224,5 +237,6 @@
         private System.Windows.Forms.Button button_ok;
         private System.ComponentModel.BackgroundWorker backgroundWorker_getSizeFile;
         private System.ComponentModel.BackgroundWorker backgroundWorker_getCountFile;
+        private System.Windows.Forms.CheckBox checkBox_IsHidden;
     }
 }
