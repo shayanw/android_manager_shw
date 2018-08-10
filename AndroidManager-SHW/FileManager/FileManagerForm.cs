@@ -294,7 +294,7 @@ namespace AndroidManager_SHW
             }
             if (listView_files.SelectedItems.Count > 1)
             {
-                label_name.Text = "Selected Items: " + listView_files.SelectedItems.Count + " Files";
+                label_name.Text = "Selected " + listView_files.SelectedItems.Count + " Items";
                 if (IsShowSize)
                 {
                     label_size.Text = "_";
