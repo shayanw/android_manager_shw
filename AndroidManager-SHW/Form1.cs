@@ -472,7 +472,17 @@ namespace AndroidManager_SHW
         private void button_network_Click(object sender, EventArgs e)
         {
             Form_networkADB fnadb = new Form_networkADB();
+            fnadb.FormClosed += Fnadb_FormClosed;
             fnadb.ShowDialog();
+
+        }
+
+        private void Fnadb_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (((Form_networkADB)sender).isChanged)
+            {
+                RefreshDevices();
+            }
         }
 
         private void button_backupDirectory_Click(object sender, EventArgs e)

@@ -13,6 +13,7 @@ namespace AndroidManager_SHW
 {
     public partial class Form_networkADB : Form
     {
+        public bool isChanged;
         public Form_networkADB()
         {
             InitializeComponent();
@@ -29,6 +30,7 @@ namespace AndroidManager_SHW
             {
                 label_title.Text ="Something is Wrong!";
             }
+            isChanged = true;
         }
     }
 }
