@@ -11,6 +11,7 @@ using SharpAdbClient;
 using ADBProccessDLL;
 using SharpAdbClient.DeviceCommands;
 using System.Net;
+using System.IO;
 
 namespace AndroidManager_SHW
 {
@@ -24,6 +25,11 @@ namespace AndroidManager_SHW
         bool IsDisconnect, IsConnect, IsDebuging;
         ADBProccessDLL.Setting st;
 
+        List<FileInfo> listTmpApks;
+        List<string[]> ListStateInstalledApk;
+        ApkManager AM;
+        string lastLableState;
+
         public HomeForm()
         {
 
@@ -34,6 +40,7 @@ namespace AndroidManager_SHW
             IsDisconnect = IsConnect = IsDebuging = false;
             TestDeviceConnect();
             st = new ADBProccessDLL.Setting();
+
         }
 
         private void HomeForm_Load(object sender, EventArgs e)
@@ -45,7 +52,7 @@ namespace AndroidManager_SHW
         {
             //hame icon ha black and white she
             currentDeviceIsNullIcon();
-
+            panel_upLeftSide.AllowDrop = false;
             //liste device haye motasel dar devices entesab mishe
             try
             {
@@ -102,6 +109,7 @@ namespace AndroidManager_SHW
         {
             if (devices.Count != 0)
             {
+                
                 //age currentDevice vojud dasht ama Model ro natunest neshun bede=>debuging active nist & timer_event start she
                 if (string.IsNullOrEmpty(currentDevice.Model))
                 {
@@ -124,6 +132,7 @@ namespace AndroidManager_SHW
                     label_battery.Text = "Battery:  " + currentDevice.BatteryPercentage() + "%";
                     label_state.Text = "State: " + currentDevice.State.ToString();
                     comboBox_devices.SelectedIndex = devices.IndexOf(currentDevice);
+                    panel_upLeftSide.AllowDrop = true;
                 }
 
             }
@@ -450,7 +459,7 @@ namespace AndroidManager_SHW
 
         private void pictureBox_about_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Create By ShayanW" + "\n\n" + "shayan.worthy@msn.com" + "\n\n" + "CopyRight 2018-2019" + "\n\n" + "Version: 0.93 Beta", "About Me", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Create By ShayanW" + "\n\n" + "shayan.worthy@msn.com" + "\n\n" + "CopyRight 2018-2019" + "\n\n" + "Version: 0.94 Beta", "About Me", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
 
@@ -529,6 +538,98 @@ namespace AndroidManager_SHW
         {
             Setting.SettingForm stf = new Setting.SettingForm();
             stf.ShowDialog();
+        }
+
+        private void panel_upLeftSide_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop, false))
+                e.Effect = DragDropEffects.All;
+            else
+                e.Effect = DragDropEffects.None;
+        }
+        private void panel_upLeftSide_DragDrop(object sender, DragEventArgs e)
+        {
+            if (currentDevice==null)
+            {
+                return;
+            }
+            if (backgroundWorker_installApk.IsBusy)
+            {
+                MessageBox.Show("Please Wait,Another Packages are installing...", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            string[] files = (string[])e.Data.GetData(DataFormats.FileDrop, false);
+            listTmpApks = new List<FileInfo>();
+            AM = new ApkManager(currentDevice);
+            foreach (string itemFile in files)
+            {
+                if ((new FileInfo(itemFile).Extension.ToLower() == ".apk"))
+                {
+                    FileInfo fi = new FileInfo(itemFile);
+                    listTmpApks.Add(fi);
+                }
+            }
+
+            if (listTmpApks.Count==0)
+            {
+                return;
+            }
+            lastLableState = label_state.Text;
+            panel_downLeftSide.BackColor = Color.LightPink;
+            panel_upLeftSide.BackgroundImage = null;
+            label_state.Text = "installing Package...";
+            backgroundWorker_installApk.RunWorkerAsync();
+        }
+
+        private void backgroundWorker_installApk_DoWork(object sender, DoWorkEventArgs e)
+        {
+
+            ListStateInstalledApk = new List<string[]>();
+            int count = 0;
+            foreach (FileInfo apkFile in listTmpApks)
+            {
+                if (currentDevice == null)
+                {
+                    backgroundWorker_installApk.CancelAsync();
+                }
+                backgroundWorker_installApk.ReportProgress(count, apkFile.Name);
+                count++;
+
+                if (AM.InstallApk(apkFile.FullName))
+                {
+                    ListStateInstalledApk.Add(new string[] { apkFile.Name, "Successfull" });
+                }
+                else
+                {
+                    ListStateInstalledApk.Add(new string[] { apkFile.Name, "Failed" });
+                }
+
+            }
+        }
+
+        private void backgroundWorker_installApk_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+
+         label_state.Text = "installing "+(string)e.UserState;
+
+        }
+
+        private void backgroundWorker_installApk_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+
+            string tmpMessage = "";
+            foreach (string[] item2 in ListStateInstalledApk)
+            {
+                tmpMessage += string.Format("{0}     > {1} \n",item2[0],item2[1]);
+            }
+            if (MessageBox.Show(tmpMessage, "state Install Packages", MessageBoxButtons.OK, MessageBoxIcon.Information)==DialogResult.OK)
+            {
+                label_state.Text = lastLableState;
+                panel_downLeftSide.BackColor = Color.LightGreen;
+                panel_upLeftSide.BackgroundImage = AndroidManager_SHW.Properties.Resources.walpapernew6;
+            }
+
         }
 
         private void comboBox_devices_SelectedIndexChanged(object sender, EventArgs e)
