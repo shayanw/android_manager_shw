@@ -39,14 +39,14 @@ namespace ADBProccessDLL
 
         public string Tag { get; set; }
 
-        public double Size=-1;
-
+        public double Size = -1;
+        public int SubFilesNumber;
         public string LineLsForFile;
 
         #endregion
 
         #region Constructor
-        public ADBFile(DeviceData currentDevice, string name, string directoryname, string tag,string lineLs="")
+        public ADBFile(DeviceData currentDevice, string name, string directoryname, string tag, string lineLs = "")
         {
             device = currentDevice;
             Name = name;
@@ -55,6 +55,7 @@ namespace ADBProccessDLL
             Extension = GetExtension(Name);
             Tag = tag;
             LineLsForFile = lineLs;
+            SubFilesNumber = 0;
         }
 
         public ADBFile(DeviceData currentDevice, string fullname)
@@ -62,7 +63,7 @@ namespace ADBProccessDLL
             device = currentDevice;
             FullName = fullname;
             Name = fullname.Remove(0, fullname.LastIndexOf(@"/")).Remove(0, 1);
-
+            SubFilesNumber = 0;
             DirectoryName = fullname.Remove(fullname.LastIndexOf(@"/"), fullname.Length - fullname.LastIndexOf(@"/"));
             try
             {
@@ -78,6 +79,7 @@ namespace ADBProccessDLL
         public ADBFile(DeviceData currentDevice)
         {
             device = currentDevice;
+            SubFilesNumber = 0;
         }
         #endregion
 
@@ -94,13 +96,13 @@ namespace ADBProccessDLL
             {
                 cmd = resultCommand("ls -l " + FullName + "/");
             }
-             
-            return ReturnListAdbFile_LinesLs(cmd,FullName);
+
+            return ReturnListAdbFile_LinesLs(cmd, FullName);
         }
 
         public double GetLengthDouble()
         {
-            if (Size>-1)
+            if (Size > -1)
             {
                 return Size;
             }
@@ -112,14 +114,14 @@ namespace ADBProccessDLL
             }
             else
             {
-                 cmd = resultCommand(string.Format("ls -l {0}|grep {1} ", DirectoryName, fixName));
+                cmd = resultCommand(string.Format("ls -l {0}|grep {1} ", DirectoryName, fixName));
             }
             string[] rslt = ReturnTagSize_OneLineLs(cmd);
             Double result;
             if (!"ld".Contains(rslt[0]))
             {
                 //in kb
-                result = (Convert.ToDouble(rslt[1]) /1024);
+                result = (Convert.ToDouble(rslt[1]) / 1024);
             }
             else
             {
@@ -138,13 +140,56 @@ namespace ADBProccessDLL
             Size = Convert.ToDouble(result);
             return Size;
         }
+        public int GetCountSubFiles()
+        {
+            int ctmp = 0;
+
+            if ("ld".Contains(getTag()))
+            {
+                foreach (ADBFile oneFileTmp in SubFiles())
+                {
+                    ctmp += oneFileTmp.GetCountSubFiles();
+                }
+            }
+            else
+            {
+                ctmp++;
+            }
+
+            SubFilesNumber = ctmp;
+            return ctmp;
+        }
+
+        private char getTag()
+        {
+            string cmd = "";
+            if (!string.IsNullOrEmpty(LineLsForFile))
+            {
+                cmd = LineLsForFile;
+            }
+            else
+            {
+                cmd = resultCommand(string.Format("ls -l {0}|grep {1} ",DirectoryName,Name.fixBracketInTerminal()));
+            }
+
+            try
+            {
+                return cmd[0];
+            }
+            catch
+            {
+
+                return 'n';
+            }
+
+        }
 
         private string resultCommand(string Command)
         {
 
-                var receiver = new ConsoleOutputReceiver();
-                AdbClient.Instance.ExecuteRemoteCommand(Command, device, receiver);
-                return receiver.ToString();
+            var receiver = new ConsoleOutputReceiver();
+            AdbClient.Instance.ExecuteRemoteCommand(Command, device, receiver);
+            return receiver.ToString();
 
         }
 
@@ -166,7 +211,7 @@ namespace ADBProccessDLL
         }
 
 
-        private List<ADBFile> ReturnListAdbFile_LinesLs(string result_LinesLs,string tmpDirectoryName)
+        private List<ADBFile> ReturnListAdbFile_LinesLs(string result_LinesLs, string tmpDirectoryName)
         {
             //Should Return ADB File...
             //Fiels-------------------------------------------------------------
@@ -224,7 +269,7 @@ namespace ADBProccessDLL
                         }
                         tmpName = tempCheckLine;
                         tmpTag = oneline[0].ToString();
-                        tmpAdbFile = new ADBFile(device, tmpName,tmpDirectoryName, tmpTag,oneline);
+                        tmpAdbFile = new ADBFile(device, tmpName, tmpDirectoryName, tmpTag, oneline);
                         ListAdbFile.Add(tmpAdbFile);
                         break;
                     }

@@ -320,7 +320,6 @@ namespace AndroidManager_SHW
 
             if (IsShowSize)
             {
-                //label_size.Text = "Size: " + tmpAdbFile.GetLengthDouble().humanReadable();
                 if (backgroundWorker_ProccessSize.IsBusy)
                 {
                     backgroundWorker_ProccessSize.CancelAsync();
@@ -330,18 +329,6 @@ namespace AndroidManager_SHW
                     backgroundWorker_ProccessSize.RunWorkerAsync();
                 }
             }
-
-
-            //if (ListViewSI.Tag.ToString() == "d" || ListViewSI.Tag.ToString() == "l")
-            //{
-            //    label_type.Text = "Type: Directory";
-
-            //}
-            //else
-            //{
-            //    ADBFile oneFile = ListViewSI.Name.returnFile(device);
-            //    label_type.Text = "Type: " + oneFile.Extension.DecodingText();
-            //}
         }
 
         private ADBFile ReturnAdbFileFromLVSelectItem(ListViewItem onelistViewItem)
@@ -398,7 +385,8 @@ namespace AndroidManager_SHW
         {
             if (listView_files.SelectedItems.Count == 1)
             {
-                return "are you sure Delete" + " \"" + listView_files.SelectedItems[0].Text + " \"  ?";
+                ADBFile tmpfile = ReturnAdbFileFromLVSelectItem(listView_files.SelectedItems[0]);
+                return "are you sure Delete" + " \"" + tmpfile.Name + " \"  ?\nSize: "+tmpfile.GetLengthDouble().humanReadable();
             }
             else
             {

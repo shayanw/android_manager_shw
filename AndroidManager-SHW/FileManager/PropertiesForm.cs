@@ -15,7 +15,7 @@ namespace AndroidManager_SHW
         string TypeFile, Location, Size, CountFiles;
         int CountFilesInt;
         double SizeDouble;
-        bool isFile;
+        bool isOneFile;
         ADBFile oneFile;
         FileManager FM;
         public bool IsChangeValue;
@@ -28,7 +28,8 @@ namespace AndroidManager_SHW
         {
             InitializeComponent();
             IsChangeValue = false;
-            isFile = true;
+            CountFilesInt = 0;
+            isOneFile = true;
             oneFile = myFile;
             FM = new FileManager(myFile.device);
             TypeFile = getTypeFile(myFile);
@@ -60,7 +61,7 @@ namespace AndroidManager_SHW
         {
             InitializeComponent();
             textBox_name.Enabled = false;
-            isFile = false;
+            isOneFile = false;
             CountFilesInt = 0;
             SizeDouble = 0;
             multiFiles = myFiles;
@@ -76,7 +77,7 @@ namespace AndroidManager_SHW
         }
         private void backgroundWorker_getSizeFile_DoWork(object sender, DoWorkEventArgs e)
         {
-            if (isFile)
+            if (isOneFile)
             {
                 Size = oneFile.GetLengthDouble().humanReadable();
             }
@@ -98,32 +99,22 @@ namespace AndroidManager_SHW
 
         private void backgroundWorker_getCountFile_DoWork(object sender, DoWorkEventArgs e)
         {
-            if (isFile)
+            if (isOneFile)
             {
                 CountFiles = FM.CountFileAndDirectory(oneFile).ToString();
             }
             else
             {
-
+                foreach (ADBFile onefiletmp in multiFiles)
+                {
+                    CountFilesInt+=FM.CountFileAndDirectory(onefiletmp);
+                }
+                CountFiles = CountFilesInt.ToString();
             }
-            
         }
         private void backgroundWorker_getCountFile_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            if (isFile)
-            {
-                if (TypeFile != "Directory")
-                {
-                    label_countValue.Visible = label_count.Visible = false;
-                    return;
-                }
-                label_countValue.Text = CountFiles;
-            }
-            else
-            {
-                label_countValue.Text = "-";
-            }
-            
+            label_countValue.Text = CountFiles;
         }
 
         private void button_cancel_Click(object sender, EventArgs e)
@@ -153,9 +144,9 @@ namespace AndroidManager_SHW
 
         private void button_ok_Click(object sender, EventArgs e)
         {
-            if (isFile)
+            if (isOneFile)
             {
-                if (!string.IsNullOrEmpty(textBox_name.Text) && isFile)
+                if (!string.IsNullOrEmpty(textBox_name.Text) && isOneFile)
                 {
                     if (checkBox_IsHidden.Checked)
                     {

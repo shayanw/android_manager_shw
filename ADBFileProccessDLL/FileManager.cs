@@ -206,16 +206,8 @@ namespace ADBProccessDLL
 
         public int CountFileAndDirectory(ADBFile myFile)
         {
-            int countFiles = 1;
-            countFiles += myFile.SubFiles().Count();
-            foreach (ADBFile onefileordir in myFile.SubFiles())
-            {
-                if (onefileordir.Tag == "d")
-                {
-                    countFiles += CountFileAndDirectory(onefileordir);
-                }
-            }
-            return countFiles;
+            myFile.GetCountSubFiles();
+            return myFile.SubFilesNumber;
         }
 
 
