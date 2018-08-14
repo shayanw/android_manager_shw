@@ -192,6 +192,8 @@ namespace AndroidManager_SHW
                 return;
             }
             FileManagerForm fmf = new FileManagerForm(currentDevice);
+            pictureBox_onMobileState_enable(sender);
+            fmf.FormClosed += allFormClosed;
             fmf.ShowDialog();
 
             //----- ezafi -----
@@ -204,6 +206,8 @@ namespace AndroidManager_SHW
                 return;
             }
             PackageManager.PMForm pmrf = new PackageManager.PMForm(currentDevice);
+            pictureBox_onMobileState_enable(sender);
+            pmrf.FormClosed += allFormClosed;
             pmrf.ShowDialog();
 
             //----- ezafi -----
@@ -213,6 +217,8 @@ namespace AndroidManager_SHW
         private void button_setting_Click(object sender, EventArgs e)
         {
             Setting.SettingForm stf = new Setting.SettingForm();
+            pictureBox_onMobileState_enable(sender);
+            stf.FormClosed += allFormClosed;
             stf.ShowDialog();
         }
         private void button_shutdown_Click(object sender, EventArgs e)
@@ -222,12 +228,8 @@ namespace AndroidManager_SHW
                 return;
             }
             contextMenuStrip_reboot.Show(button_shutdown, new Point(0, 0));
-
-            //AdbCommand.CommandForm cmdf = new AdbCommand.CommandForm(currentDevice);
-            //cmdf.ShowDialog();
-
-            ////----- ezafi -----
-            //childForms.Add(cmdf);
+            pictureBox_onMobileState_enable(sender);
+            contextMenuStrip_reboot.Closed += ContextMenuStrip_reboot_Closed;
         }
         private void button_backupDirectory_Click(object sender, EventArgs e)
         {
@@ -257,7 +259,25 @@ namespace AndroidManager_SHW
         }
         private void button_about_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Create By ShayanW" + "\n\n" + "shayan.worthy@msn.com" + "\n\n" + "CopyRight 2018-2019" + "\n\n" + "Version: 0.94.6 Beta", "About Me", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            pictureBox_onMobileState_enable(sender);
+            if (MessageBox.Show("Create By ShayanW" + "\n\n" + "shayan.worthy@msn.com" + "\n\n" + "CopyRight 2018-2019" + "\n\n" + "Version: 0.95 Beta", "About Me", MessageBoxButtons.OK, MessageBoxIcon.Information)==DialogResult.OK)
+            {
+                pictureBox_onMobileState.Visible = false;
+            }
+        }
+
+        private void pictureBox_onMobileState_enable(object sender)
+        {
+            pictureBox_onMobileState.Image = ((Button)sender).BackgroundImage;
+            pictureBox_onMobileState.Visible = true;
+        }
+        private void ContextMenuStrip_reboot_Closed(object sender, ToolStripDropDownClosedEventArgs e)
+        {
+            pictureBox_onMobileState.Visible = false;
+        }
+        private void allFormClosed(object sender, FormClosedEventArgs e)
+        {
+            pictureBox_onMobileState.Visible = false;
         }
         #endregion
 
@@ -295,6 +315,8 @@ namespace AndroidManager_SHW
         {
             Form_networkADB fnadb = new Form_networkADB();
             fnadb.FormClosed += Fnadb_FormClosed;
+            pictureBox_onMobileState.Image = AndroidManager_SHW.Properties.Resources.network;
+            pictureBox_onMobileState.Visible = true;
             fnadb.ShowDialog();
 
         }
@@ -304,6 +326,7 @@ namespace AndroidManager_SHW
             {
                 RefreshDevices();
             }
+            pictureBox_onMobileState.Visible = false;
         }
 
         private void button_reconnect_Click(object sender, EventArgs e)
@@ -441,7 +464,9 @@ namespace AndroidManager_SHW
             lastLableState = label_state.Text;
             panel_downLeftSide.BackColor = Color.SkyBlue;
             panel_upLeftSide.BackgroundImage = null;
-            panel_upLeftSide.BackColor = Color.LightSteelBlue;//PaleTurquoise
+            panel_upLeftSide.BackColor = Color.LightSteelBlue;
+            pictureBox_onMobileState.Image = AndroidManager_SHW.Properties.Resources.installing;
+            pictureBox_onMobileState.Visible = true;
             label_state.Text = "installing Package...";
             backgroundWorker_installApk.RunWorkerAsync();
         }
@@ -492,6 +517,7 @@ namespace AndroidManager_SHW
                 label_state.Text = lastLableState;
                 panel_downLeftSide.BackColor = Color.GreenYellow;
                 panel_upLeftSide.BackgroundImage = AndroidManager_SHW.Properties.Resources.walpapernew6;
+                pictureBox_onMobileState.Visible = false;
             }
 
         }
@@ -628,18 +654,18 @@ namespace AndroidManager_SHW
             }
         }
 
-        private void pictureBox_about_MouseHover(object sender, EventArgs e)
+        private void button_about_MouseHover(object sender, EventArgs e)
         {
-            pictureBox_about.Image = AndroidManager_SHW.Properties.Resources.about8h;
+            button_about.BackgroundImage = AndroidManager_SHW.Properties.Resources.about8h;
         }
 
-        private void pictureBox_about_MouseLeave(object sender, EventArgs e)
+        private void button_about_MouseLeave(object sender, EventArgs e)
         {
             if (currentDevice == null)
             {
                 return;
             }
-            pictureBox_about.Image = AndroidManager_SHW.Properties.Resources.about8;
+            button_about.BackgroundImage = AndroidManager_SHW.Properties.Resources.about8;
         }
 
 

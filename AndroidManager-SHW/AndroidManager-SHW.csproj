@@ -118,6 +118,11 @@
     <Compile Include="FileManager\TransferForm.Designer.cs">
       <DependentUpon>TransferForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Setting\deviceSettingBackup.cs" />
     <Compile Include="Setting\SettingForm.cs">
       <SubType>Form</SubType>
@@ -145,14 +150,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <EmbeddedResource Include="FileManager\TransferForm.resx">
       <DependentUpon>TransferForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -227,6 +227,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="if_android_1220337.ico" />
+    <None Include="Resources\network.png" />
+    <None Include="Resources\installing.png" />
     <None Include="Resources\checkNone.png" />
     <None Include="Resources\checkAll.png" />
     <None Include="Resources\internalMemory.png" />
@@ -256,7 +258,6 @@
     <None Include="Resources\power8h.png" />
     <None Include="Resources\power8bw.png" />
     <None Include="Resources\power8.png" />
-    <None Include="Resources\monitor_CodeForm.png" />
     <None Include="Resources\backup8Orangeh.png" />
     <None Include="Resources\backup8h.png" />
     <None Include="Resources\backup8Orange.png" />

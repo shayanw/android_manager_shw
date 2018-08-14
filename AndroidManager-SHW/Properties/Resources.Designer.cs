@@ -363,6 +363,16 @@ namespace AndroidManager_SHW.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap installing {
+            get {
+                object obj = ResourceManager.GetObject("installing", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap internalMemory {
             get {
                 object obj = ResourceManager.GetObject("internalMemory", resourceCulture);
@@ -403,9 +413,9 @@ namespace AndroidManager_SHW.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap monitor_CodeForm {
+        internal static System.Drawing.Bitmap network {
             get {
-                object obj = ResourceManager.GetObject("monitor_CodeForm", resourceCulture);
+                object obj = ResourceManager.GetObject("network", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
