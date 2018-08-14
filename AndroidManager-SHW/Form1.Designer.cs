@@ -45,6 +45,8 @@
             this.button_reconnect = new System.Windows.Forms.Button();
             this.button_check = new System.Windows.Forms.Button();
             this.panel_downLeftSide = new System.Windows.Forms.Panel();
+            this.panel_dslL = new System.Windows.Forms.Panel();
+            this.panel_dlsR = new System.Windows.Forms.Panel();
             this.button_state = new System.Windows.Forms.Button();
             this.toolTip_fileManager = new System.Windows.Forms.ToolTip(this.components);
             this.button_software = new System.Windows.Forms.Button();
@@ -62,16 +64,14 @@
             this.bootloaderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.shutdownToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.backgroundWorker_installApk = new System.ComponentModel.BackgroundWorker();
-            this.panel_dlsR = new System.Windows.Forms.Panel();
-            this.panel_dslL = new System.Windows.Forms.Panel();
             this.panel_leftSide.SuspendLayout();
             this.panel_upLeftSide.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_onMobileState)).BeginInit();
             this.panel_downLeftSide.SuspendLayout();
+            this.panel_dslL.SuspendLayout();
+            this.panel_dlsR.SuspendLayout();
             this.panel_rightSide.SuspendLayout();
             this.contextMenuStrip_reboot.SuspendLayout();
-            this.panel_dlsR.SuspendLayout();
-            this.panel_dslL.SuspendLayout();
             this.SuspendLayout();
             // 
             // label_state
@@ -227,6 +227,7 @@
             this.button_network.Size = new System.Drawing.Size(88, 28);
             this.button_network.TabIndex = 1;
             this.button_network.Text = "Network";
+            this.toolTip_fileManager.SetToolTip(this.button_network, "just if you have adb over the network on developer options");
             this.button_network.UseVisualStyleBackColor = false;
             this.button_network.Click += new System.EventHandler(this.button_network_Click);
             // 
@@ -258,6 +259,7 @@
             this.button_check.Name = "button_check";
             this.button_check.Size = new System.Drawing.Size(28, 28);
             this.button_check.TabIndex = 1;
+            this.toolTip_fileManager.SetToolTip(this.button_check, "Refresh Device List");
             this.button_check.UseVisualStyleBackColor = false;
             this.button_check.Click += new System.EventHandler(this.button_check_Click);
             this.button_check.MouseLeave += new System.EventHandler(this.button_check_MouseLeave);
@@ -275,6 +277,26 @@
             this.panel_downLeftSide.Size = new System.Drawing.Size(301, 35);
             this.panel_downLeftSide.TabIndex = 5;
             // 
+            // panel_dslL
+            // 
+            this.panel_dslL.BackColor = System.Drawing.Color.Transparent;
+            this.panel_dslL.Controls.Add(this.label_state);
+            this.panel_dslL.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel_dslL.Location = new System.Drawing.Point(0, 0);
+            this.panel_dslL.Name = "panel_dslL";
+            this.panel_dslL.Size = new System.Drawing.Size(266, 35);
+            this.panel_dslL.TabIndex = 1;
+            // 
+            // panel_dlsR
+            // 
+            this.panel_dlsR.BackColor = System.Drawing.Color.Transparent;
+            this.panel_dlsR.Controls.Add(this.button_state);
+            this.panel_dlsR.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel_dlsR.Location = new System.Drawing.Point(266, 0);
+            this.panel_dlsR.Name = "panel_dlsR";
+            this.panel_dlsR.Size = new System.Drawing.Size(35, 35);
+            this.panel_dlsR.TabIndex = 0;
+            // 
             // button_state
             // 
             this.button_state.BackColor = System.Drawing.Color.Transparent;
@@ -289,6 +311,7 @@
             this.button_state.Name = "button_state";
             this.button_state.Size = new System.Drawing.Size(35, 35);
             this.button_state.TabIndex = 8;
+            this.toolTip_fileManager.SetToolTip(this.button_state, "informations about instaltions state");
             this.button_state.UseVisualStyleBackColor = false;
             this.button_state.Visible = false;
             this.button_state.Click += new System.EventHandler(this.button_state_Click);
@@ -370,6 +393,7 @@
             this.button_backupDirectory.Name = "button_backupDirectory";
             this.button_backupDirectory.Size = new System.Drawing.Size(55, 55);
             this.button_backupDirectory.TabIndex = 8;
+            this.toolTip_fileManager.SetToolTip(this.button_backupDirectory, "Backup Path | you can go to Backup path rapidly");
             this.button_backupDirectory.UseVisualStyleBackColor = false;
             this.button_backupDirectory.Click += new System.EventHandler(this.button_backupDirectory_Click);
             this.button_backupDirectory.MouseLeave += new System.EventHandler(this.button_backupDirectory_MouseLeave);
@@ -388,6 +412,7 @@
             this.button_about.Name = "button_about";
             this.button_about.Size = new System.Drawing.Size(55, 55);
             this.button_about.TabIndex = 8;
+            this.toolTip_fileManager.SetToolTip(this.button_about, "About | Version and Programmer");
             this.button_about.UseVisualStyleBackColor = false;
             this.button_about.Click += new System.EventHandler(this.button_about_Click);
             this.button_about.MouseLeave += new System.EventHandler(this.button_about_MouseLeave);
@@ -406,10 +431,11 @@
             this.button_setting.Name = "button_setting";
             this.button_setting.Size = new System.Drawing.Size(55, 55);
             this.button_setting.TabIndex = 8;
+            this.toolTip_fileManager.SetToolTip(this.button_setting, "Setting | you can change default options and view all backup paths");
             this.button_setting.UseVisualStyleBackColor = false;
             this.button_setting.Click += new System.EventHandler(this.button_setting_Click);
-            this.button_setting.MouseLeave += new System.EventHandler(this.pictureBox_setting_MouseLeave);
-            this.button_setting.MouseHover += new System.EventHandler(this.pictureBox_setting_MouseHover);
+            this.button_setting.MouseLeave += new System.EventHandler(this.button_setting_MouseLeave);
+            this.button_setting.MouseHover += new System.EventHandler(this.button_setting_MouseHover);
             // 
             // button_shutdown
             // 
@@ -424,6 +450,7 @@
             this.button_shutdown.Name = "button_shutdown";
             this.button_shutdown.Size = new System.Drawing.Size(55, 55);
             this.button_shutdown.TabIndex = 6;
+            this.toolTip_fileManager.SetToolTip(this.button_shutdown, "Power | you can restart & shutdown & go to recovery mod & go to bootloader mod");
             this.button_shutdown.UseVisualStyleBackColor = false;
             this.button_shutdown.Click += new System.EventHandler(this.button_shutdown_Click);
             this.button_shutdown.MouseLeave += new System.EventHandler(this.pictureBox_code_MouseLeave);
@@ -493,26 +520,6 @@
             this.backgroundWorker_installApk.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker_installApk_ProgressChanged);
             this.backgroundWorker_installApk.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker_installApk_RunWorkerCompleted);
             // 
-            // panel_dlsR
-            // 
-            this.panel_dlsR.BackColor = System.Drawing.Color.Transparent;
-            this.panel_dlsR.Controls.Add(this.button_state);
-            this.panel_dlsR.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel_dlsR.Location = new System.Drawing.Point(266, 0);
-            this.panel_dlsR.Name = "panel_dlsR";
-            this.panel_dlsR.Size = new System.Drawing.Size(35, 35);
-            this.panel_dlsR.TabIndex = 0;
-            // 
-            // panel_dslL
-            // 
-            this.panel_dslL.BackColor = System.Drawing.Color.Transparent;
-            this.panel_dslL.Controls.Add(this.label_state);
-            this.panel_dslL.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel_dslL.Location = new System.Drawing.Point(0, 0);
-            this.panel_dslL.Name = "panel_dslL";
-            this.panel_dslL.Size = new System.Drawing.Size(266, 35);
-            this.panel_dslL.TabIndex = 1;
-            // 
             // HomeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -531,10 +538,10 @@
             this.panel_upLeftSide.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_onMobileState)).EndInit();
             this.panel_downLeftSide.ResumeLayout(false);
+            this.panel_dslL.ResumeLayout(false);
+            this.panel_dlsR.ResumeLayout(false);
             this.panel_rightSide.ResumeLayout(false);
             this.contextMenuStrip_reboot.ResumeLayout(false);
-            this.panel_dlsR.ResumeLayout(false);
-            this.panel_dslL.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

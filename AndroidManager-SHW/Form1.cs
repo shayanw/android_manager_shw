@@ -262,7 +262,7 @@ namespace AndroidManager_SHW
         private void button_about_Click(object sender, EventArgs e)
         {
             pictureBox_onMobileState_enable(sender);
-            if (MessageBox.Show("Create By ShayanW" + "\n\n" + "shayan.worthy@msn.com" + "\n\n" + "CopyRight 2018-2019" + "\n\n" + "Version: 0.95.4 Beta", "About Me", MessageBoxButtons.OK, MessageBoxIcon.Information)==DialogResult.OK)
+            if (MessageBox.Show("Create By ShayanW" + "\n\n" + "shayan.worthy@msn.com" + "\n\n" + "CopyRight 2018-2019" + "\n\n" + "Version: 0.95.5 Beta", "About Me", MessageBoxButtons.OK, MessageBoxIcon.Information)==DialogResult.OK)
             {
                 pictureBox_onMobileState.Visible = false;
             }
@@ -624,20 +624,14 @@ namespace AndroidManager_SHW
             //  pictureBox_code.Size = new Size(55, 55);
         }
 
-        private void pictureBox_setting_MouseHover(object sender, EventArgs e)
+        private void button_setting_MouseHover(object sender, EventArgs e)
         {
             button_setting.BackgroundImage = AndroidManager_SHW.Properties.Resources.sett8h;
-            // pictureBox_setting.Size = new Size(60, 60);
         }
 
-        private void pictureBox_setting_MouseLeave(object sender, EventArgs e)
+        private void button_setting_MouseLeave(object sender, EventArgs e)
         {
-            if (currentDevice == null)
-            {
-                return;
-            }
             button_setting.BackgroundImage = AndroidManager_SHW.Properties.Resources.sett8;
-            // pictureBox_setting.Size = new Size(55, 55);
         }
 
 
@@ -669,6 +663,10 @@ namespace AndroidManager_SHW
         {
             button_about.BackgroundImage = AndroidManager_SHW.Properties.Resources.about8h;
         }
+        private void button_about_MouseLeave(object sender, EventArgs e)
+        {
+            button_about.BackgroundImage = AndroidManager_SHW.Properties.Resources.about8;
+        }
 
         private void button_state_MouseHover(object sender, EventArgs e)
         {
@@ -678,17 +676,6 @@ namespace AndroidManager_SHW
         private void button_state_MouseLeave(object sender, EventArgs e)
         {
             button_state.BackgroundImage = AndroidManager_SHW.Properties.Resources.info;
-        }
-
-
-
-        private void button_about_MouseLeave(object sender, EventArgs e)
-        {
-            if (currentDevice == null)
-            {
-                return;
-            }
-            button_about.BackgroundImage = AndroidManager_SHW.Properties.Resources.about8;
         }
 
 
