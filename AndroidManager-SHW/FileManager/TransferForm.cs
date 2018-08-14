@@ -44,7 +44,7 @@ namespace AndroidManager_SHW
             if (tt == TransferType.BackingUp)
             {
                 DirectoryInfo di = new DirectoryInfo(path);
-                label_transferTo.Text = "to => " + di.Name.fixDecodePatch().Replace(@"\", "");
+                label_transferTo.Text = "from => " + di.Name.fixDecodePatch().Replace(@"\", "");
             }
             else
             {
@@ -54,7 +54,7 @@ namespace AndroidManager_SHW
             backgroundWorker_SetLabels.RunWorkerAsync();
         }
 
-        public TransferForm(TransferType tt, List<string> FilesForUpload, string path, DeviceData device)
+        public TransferForm(TransferType transfer_type, List<string> FilesForUpload, string path, DeviceData device)
         {
             InitializeComponent();
             ExternalMethod.counterEx = 0;
@@ -62,21 +62,21 @@ namespace AndroidManager_SHW
             Path = path;
             FilesAndDirecoriesForUpload = FilesForUpload;
             FM = new FileManager(device);
-            TransferTp = tt;
+            TransferTp = transfer_type;
             progressBar_transfer.Maximum = 100;
             timer_5s.Interval = 500;
             timer_5s.Start();
             label_totalFiles.Text = label_totalSize.Text = "•••";
-            if (tt == TransferType.BackingUp)
+            if (transfer_type == TransferType.BackingUp)
             {
                 DirectoryInfo di = new DirectoryInfo(path);
-                label_transferTo.Text ="to => "+di.Name.DecodingText().Replace(@"\", "");
+                label_transferTo.Text ="From => "+di.Name.DecodingText().Replace(@"\", "");
             }
             else
             {
                 label_transferTo.Text = "to => " + path.DecodingText().Replace(@"\", "");
             }
-            this.Text = tt.ToString();
+            this.Text = transfer_type.ToString();
             backgroundWorker_SetLabels.RunWorkerAsync();
         }
 
@@ -88,9 +88,7 @@ namespace AndroidManager_SHW
         private void TransferForm_Load(object sender, EventArgs e)
         {
 
-
             PreLine_CopyCutBackup = TransferTp.ToString().fixDecodePatch()+":: ";
-
 
         }
 
@@ -143,6 +141,7 @@ namespace AndroidManager_SHW
             label_Status.Text = "Transfer " + progressBar_transfer.Value + " Files In " + (MyTime * timer_5s.Interval / 1000).getStringTime();
 
             MessageBox.Show(TransferTp.ToString() + " Successfully", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            IsChangeValue = true;
             if (TransferType.BackingUp == TransferTp)
             {
                 System.Diagnostics.Process.Start(Path);
@@ -153,7 +152,6 @@ namespace AndroidManager_SHW
                 {
                     FM.DeleteDirectoryAndFiles(item.FullName);
                 }
-                IsChangeValue = true;
             }
         }
 
@@ -176,12 +174,9 @@ namespace AndroidManager_SHW
 
         private void timer_5s_Tick(object sender, EventArgs e)
         {
-            //FileTransferExternalProp = FM.FileTransfer_FileManager;
-            //FileTransferExternalProp = ExternalMethod.counterEx;
             MyTime++;
             if (TransferTp == TransferType.Uploading)
             {
-                IsChangeValue = true;
                 label_transferBase.Text = PreLine_CopyCutBackup+" "+GetParentDirectory(FilesAndDirecoriesForUpload[0]).Replace(@"\","");
             }
             else
@@ -192,7 +187,6 @@ namespace AndroidManager_SHW
             if (ExternalMethod.counterEx < progressBar_transfer.Maximum)
             {
                 progressBar_transfer.Value = ExternalMethod.counterEx;
-                //progressBar_transfer.Value = FM.FileAndDirectoryCounter;
             }
             label_Status.Text = "Transfer " + progressBar_transfer.Value + " Files";
         }
@@ -202,7 +196,6 @@ namespace AndroidManager_SHW
         {
             if (TransferTp == TransferType.Uploading)
             {
-                IsChangeValue = true;
                 foreach (string Filetmp in FilesAndDirecoriesForUpload)
                 {
                     CountFilesForTransfer += Filetmp.GetCountOfFilesAndDirectoriesInSystem();
@@ -224,7 +217,6 @@ namespace AndroidManager_SHW
         {
             if (TransferTp==TransferType.Uploading)
             {
-                IsChangeValue = true;
                 label_transferBase.Text = PreLine_CopyCutBackup + " " + GetParentDirectory(FilesAndDirecoriesForUpload[0]);
             }
             label_totalFiles.Text = "Total Files: " + CountFilesForTransfer.ToString();

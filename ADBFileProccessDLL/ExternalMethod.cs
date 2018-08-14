@@ -65,26 +65,13 @@ namespace ADBProccessDLL
             return result;
         }
 
-        public static string humanReableSize(this double i)
-        {
-            string[] sizes = { "B", "KB", "MB", "GB", "TB" };
-            double len = i;
-            int order = 0;
-            while (len >= 1024 && order < sizes.Length - 1)
-            {
-                order++;
-                len = len / 1024;
-            }
-
-            // Adjust the format string to your preferences. For example "{0:0.#}{1}" would
-            // show a single decimal place, and no space.
-            string result = String.Format("{0:0.##} {1}", len, sizes[order]);
-            return result;
-        }
-
         public static string fixBracketInTerminal(this string txt)
         {
             string result = "";
+            if (string.IsNullOrEmpty(txt))
+            {
+                return "";
+            }
             foreach (char oneChar in txt.ToList())
             {
                 if (oneChar == '\\')
@@ -263,19 +250,16 @@ namespace ADBProccessDLL
             process.StartInfo.CreateNoWindow = true;
             process.StartInfo.UseShellExecute = false;
             process.StartInfo.RedirectStandardOutput = true;
-            //process.StartInfo.WorkingDirectory = @"C:\Windows\System32";
             process.Start();
             return process.StandardOutput.ReadToEnd();
         }
 
-        /// <summary>
-        /// remove soon...
-        /// </summary>
-        /// <param name="unicodeString"></param>
-        /// <returns></returns>
-
         public static string DecodingText(this string forDecodText)
         {
+            if (string.IsNullOrEmpty(forDecodText))
+            {
+                return "";
+            }
             return Encoding.UTF8.GetString(Encoding.GetEncoding("iso-8859-1").GetBytes(forDecodText));
         }
         public static string EncodingText(this string forEncodText)

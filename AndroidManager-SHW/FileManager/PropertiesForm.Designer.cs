@@ -58,7 +58,7 @@
             // label_type
             // 
             this.label_type.AutoSize = true;
-            this.label_type.Location = new System.Drawing.Point(16, 75);
+            this.label_type.Location = new System.Drawing.Point(18, 110);
             this.label_type.Name = "label_type";
             this.label_type.Size = new System.Drawing.Size(41, 19);
             this.label_type.TabIndex = 3;
@@ -67,7 +67,7 @@
             // label_location
             // 
             this.label_location.AutoSize = true;
-            this.label_location.Location = new System.Drawing.Point(16, 112);
+            this.label_location.Location = new System.Drawing.Point(16, 64);
             this.label_location.Name = "label_location";
             this.label_location.Size = new System.Drawing.Size(66, 19);
             this.label_location.TabIndex = 3;
@@ -76,7 +76,7 @@
             // label_size
             // 
             this.label_size.AutoSize = true;
-            this.label_size.Location = new System.Drawing.Point(16, 149);
+            this.label_size.Location = new System.Drawing.Point(18, 148);
             this.label_size.Name = "label_size";
             this.label_size.Size = new System.Drawing.Size(38, 19);
             this.label_size.TabIndex = 3;
@@ -94,7 +94,7 @@
             // label_typeValue
             // 
             this.label_typeValue.AutoSize = true;
-            this.label_typeValue.Location = new System.Drawing.Point(106, 75);
+            this.label_typeValue.Location = new System.Drawing.Point(111, 110);
             this.label_typeValue.Name = "label_typeValue";
             this.label_typeValue.Size = new System.Drawing.Size(41, 19);
             this.label_typeValue.TabIndex = 3;
@@ -102,17 +102,16 @@
             // 
             // label_locationValue
             // 
-            this.label_locationValue.AutoSize = true;
-            this.label_locationValue.Location = new System.Drawing.Point(106, 112);
+            this.label_locationValue.Location = new System.Drawing.Point(111, 64);
             this.label_locationValue.Name = "label_locationValue";
-            this.label_locationValue.Size = new System.Drawing.Size(66, 19);
+            this.label_locationValue.Size = new System.Drawing.Size(144, 46);
             this.label_locationValue.TabIndex = 3;
             this.label_locationValue.Text = "Location:";
             // 
             // label_sizeValue
             // 
             this.label_sizeValue.AutoSize = true;
-            this.label_sizeValue.Location = new System.Drawing.Point(106, 149);
+            this.label_sizeValue.Location = new System.Drawing.Point(111, 148);
             this.label_sizeValue.Name = "label_sizeValue";
             this.label_sizeValue.Size = new System.Drawing.Size(38, 19);
             this.label_sizeValue.TabIndex = 3;
@@ -121,7 +120,7 @@
             // label_countValue
             // 
             this.label_countValue.AutoSize = true;
-            this.label_countValue.Location = new System.Drawing.Point(106, 186);
+            this.label_countValue.Location = new System.Drawing.Point(111, 186);
             this.label_countValue.Name = "label_countValue";
             this.label_countValue.Size = new System.Drawing.Size(82, 19);
             this.label_countValue.TabIndex = 3;

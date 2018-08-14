@@ -62,18 +62,21 @@ namespace ADBProccessDLL
         {
             device = currentDevice;
             FullName = fullname;
-            Name = fullname.Remove(0, fullname.LastIndexOf(@"/")).Remove(0, 1);
-            SubFilesNumber = 0;
-            DirectoryName = fullname.Remove(fullname.LastIndexOf(@"/"), fullname.Length - fullname.LastIndexOf(@"/"));
+
             try
             {
+                Name = fullname.Remove(0, fullname.LastIndexOf(@"/")).Remove(0, 1);
+                SubFilesNumber = 0;
+                DirectoryName = fullname.Remove(fullname.LastIndexOf(@"/"), fullname.Length - fullname.LastIndexOf(@"/"));
                 ParentDirectory = DirectoryName.Remove(DirectoryName.LastIndexOf(@"/"), DirectoryName.Length - DirectoryName.LastIndexOf(@"/"));
+                Extension = GetExtension(Name);
             }
             catch (Exception)
             {
                 ParentDirectory = "/";
+                Extension = "-";
             }
-            Extension = GetExtension(Name);
+            
         }
 
         public ADBFile(DeviceData currentDevice)
@@ -83,18 +86,19 @@ namespace ADBProccessDLL
         }
         #endregion
 
-        public List<ADBFile> SubFiles()
+        #region Get More Details File
+        public List<ADBFile> GetSubFiles()
         {
             List<ADBFile> ListAdbFiles = new List<ADBFile>();
             string cmd = "";
 
             if (Option.IsShowHiddenFile)
             {
-                cmd = resultCommand("ls -la " + FullName + "/");
+                cmd = ReturnResultCommand("ls -la " + FullName + "/");
             }
             else
             {
-                cmd = resultCommand("ls -l " + FullName + "/");
+                cmd = ReturnResultCommand("ls -l " + FullName + "/");
             }
 
             return ReturnListAdbFile_LinesLs(cmd, FullName);
@@ -114,7 +118,7 @@ namespace ADBProccessDLL
             }
             else
             {
-                cmd = resultCommand(string.Format("ls -l {0}|grep {1} ", DirectoryName, fixName));
+                cmd = ReturnResultCommand(string.Format("ls -l {0}|grep {1} ", DirectoryName, fixName));
             }
             string[] rslt = ReturnTagSize_OneLineLs(cmd);
             Double result;
@@ -126,10 +130,10 @@ namespace ADBProccessDLL
             else
             {
                 //in byte
-                cmd = resultCommand(@"du -s " + FullName);
+                cmd = ReturnResultCommand(@"du -s " + FullName);
                 try
                 {
-                    result = Convert.ToDouble(ResultDu(cmd));
+                    result = Convert.ToDouble(ReturnResultDu(cmd));
                 }
                 catch
                 {
@@ -144,9 +148,9 @@ namespace ADBProccessDLL
         {
             int ctmp = 0;
 
-            if ("ld".Contains(getTag()))
+            if ("ld".Contains(GetTag()))
             {
-                foreach (ADBFile oneFileTmp in SubFiles())
+                foreach (ADBFile oneFileTmp in GetSubFiles())
                 {
                     ctmp += oneFileTmp.GetCountSubFiles();
                 }
@@ -159,17 +163,27 @@ namespace ADBProccessDLL
             SubFilesNumber = ctmp;
             return ctmp;
         }
+        private string GetExtension(string nameFile)
+        {
+            return "." + nameFile.Split('.').LastOrDefault();
+        }
 
-        private char getTag()
+        public char GetTag()
         {
             string cmd = "";
-            if (!string.IsNullOrEmpty(LineLsForFile))
+
+            if (!string.IsNullOrEmpty(this.Tag))
+            {
+                cmd = this.Tag;
+            }
+
+            else if (!string.IsNullOrEmpty(LineLsForFile))
             {
                 cmd = LineLsForFile;
             }
             else
             {
-                cmd = resultCommand(string.Format("ls -l {0}|grep {1} ",DirectoryName,Name.fixBracketInTerminal()));
+                cmd = ReturnResultCommand(string.Format("ls -l {0}|grep {1} ", DirectoryName, Name.fixBracketInTerminal()));
             }
 
             try
@@ -183,8 +197,10 @@ namespace ADBProccessDLL
             }
 
         }
-
-        private string resultCommand(string Command)
+        #endregion
+         
+        #region Base Method
+        private string ReturnResultCommand(string Command)
         {
 
             var receiver = new ConsoleOutputReceiver();
@@ -192,25 +208,6 @@ namespace ADBProccessDLL
             return receiver.ToString();
 
         }
-
-        public bool Rename(string NewName)
-        {
-            if (string.IsNullOrEmpty(resultCommand(string.Format(@"mv {0} {1}", FullName.fixBracketInTerminal(), (this.DirectoryName + "/" + NewName).fixBracketInTerminal()))))
-            {
-                this.FullName = this.ParentDirectory + "/" + NewName;
-                this.Name = NewName;
-                return true;
-            }
-            return false;
-        }
-
-
-        private string GetExtension(string nameFile)
-        {
-            return "." + nameFile.Split('.').LastOrDefault();
-        }
-
-
         private List<ADBFile> ReturnListAdbFile_LinesLs(string result_LinesLs, string tmpDirectoryName)
         {
             //Should Return ADB File...
@@ -278,56 +275,6 @@ namespace ADBProccessDLL
 
             return ListAdbFile;
         }
-
-
-
-
-
-        /// <summary>
-        /// return Size of Directory--> Du Code
-        /// </summary>
-        /// <param name="result_Du_Code"></param>
-        /// <returns></returns>
-        private string ResultDu(string result_Du_Code)
-        {
-            //Fiels-------------------------------------------------------------
-            Regex rgx = new Regex(@"\d{1,10}");
-            List<string> ValidLsLines = new List<string>();
-            string tempCheckLine;
-            StringReader StreamReader_ResultCode = new StringReader(result_Du_Code);
-
-
-
-            //Add Valid Code in ValidLsLines------------------------------------
-            while (StreamReader_ResultCode.Peek() >= 0)
-            {
-                tempCheckLine = StreamReader_ResultCode.ReadLine();
-                if (tempCheckLine.Contains("Permission denied") || tempCheckLine.Contains("error"))
-                {
-                    continue;
-                }
-                ValidLsLines.Add(tempCheckLine);
-            }
-
-
-
-            //if ValidLsLines is Empty Return Size=0----------------------------
-            if (ValidLsLines.Count == 0)
-            {
-                return "0";
-            }
-
-
-
-            //return Size Of Directory------------------------------------------
-            return ValidLsLines.LastOrDefault().Split('\t')[0];
-        }
-
-        /// <summary>
-        /// Return Tag And Size From OneLine Of Ls -s
-        /// </summary>
-        /// <param name="result_Ls_Code"></param>
-        /// <returns></returns>
         private string[] ReturnTagSize_OneLineLs(string result_Ls_Code)
         {
             //Fiels-------------------------------------------------------------
@@ -377,6 +324,51 @@ namespace ADBProccessDLL
             //Return Tag & Size-------------------------------------------------
             return new string[] { ValidLsLines.LastOrDefault()[0].ToString(), SizeString };
         }
+        private string ReturnResultDu(string result_Du_Code)
+        {
+            //Fiels-------------------------------------------------------------
+            Regex rgx = new Regex(@"\d{1,10}");
+            List<string> ValidLsLines = new List<string>();
+            string tempCheckLine;
+            StringReader StreamReader_ResultCode = new StringReader(result_Du_Code);
+
+
+
+            //Add Valid Code in ValidLsLines------------------------------------
+            while (StreamReader_ResultCode.Peek() >= 0)
+            {
+                tempCheckLine = StreamReader_ResultCode.ReadLine();
+                if (tempCheckLine.Contains("Permission denied") || tempCheckLine.Contains("error"))
+                {
+                    continue;
+                }
+                ValidLsLines.Add(tempCheckLine);
+            }
+
+
+
+            //if ValidLsLines is Empty Return Size=0----------------------------
+            if (ValidLsLines.Count == 0)
+            {
+                return "0";
+            }
+
+
+
+            //return Size Of Directory------------------------------------------
+            return ValidLsLines.LastOrDefault().Split('\t')[0];
+        }
+        public bool Rename(string NewName)
+        {
+            if (string.IsNullOrEmpty(ReturnResultCommand(string.Format(@"mv {0} {1}", FullName.fixBracketInTerminal(), (this.DirectoryName + "/" + NewName).fixBracketInTerminal()))))
+            {
+                this.FullName = this.ParentDirectory + "/" + NewName;
+                this.Name = NewName;
+                return true;
+            }
+            return false;
+        }
+        #endregion
 
     }
 }

@@ -110,10 +110,7 @@ namespace AndroidManager_SHW.Setting
         }
         private void button_updatePath_Click(object sender, EventArgs e)
         {
-            if (folderBrowserDialog_path.ShowDialog() == DialogResult.OK)
-            {
-                textBox_updatePath.Text = folderBrowserDialog_path.SelectedPath;
-            }
+
         }
         private void button_reset_Click(object sender, EventArgs e)
         {
@@ -264,6 +261,21 @@ namespace AndroidManager_SHW.Setting
             {
                 button_showHiddenFile.BackgroundImage = AndroidManager_SHW.Properties.Resources.toggleOn;
                 st.isShowHiddenFile = true;
+            }
+        }
+
+        private void button_updatePath_Click_1(object sender, EventArgs e)
+        {
+            if (panel_filemanagerSett.Visible)
+            {
+                panel_filemanagerSett.Visible = false;
+                this.Height -= panel_filemanagerSett.Height;
+            }
+            else
+            {
+                this.Height += panel_filemanagerSett.Height;
+                panel_filemanagerSett.Visible = true;
+
             }
         }
     }

@@ -27,7 +27,7 @@ namespace ADBProccessDLL
         //zire file and directory ro dar ghalebe [List<ADBFile>] bar migardune
         public List<ADBFile> getDirectoryAndFiles(string CurrentPath)
         {
-            ListAdbFiles = new ADBFile(CurrentDevice) { FullName = CurrentPath }.SubFiles();
+            ListAdbFiles = new ADBFile(CurrentDevice) { FullName = CurrentPath }.GetSubFiles();
             return ListAdbFiles ;
         }
 
@@ -46,15 +46,21 @@ namespace ADBProccessDLL
         {
             ExternalMethod.counterEx++;
             bool rslt = false;
-            if (myfile.isDirectory())
+            if (myfile.GetTag()=='d')
             {
                 CreateDirectory(path, myfile.Name.fixBracketInTerminal());
-                foreach (ADBFile onefile in myfile.SubFiles())
+                foreach (ADBFile onefile in myfile.GetSubFiles())
                 {
-                    PasteCopy(onefile, path + "/" + myfile.Name.fixBracketInTerminal());
-
+                    if (PasteCopy(onefile, path + "/" + myfile.Name.fixBracketInTerminal()))
+                    {
+                        rslt = true;
+                    }
+                    else
+                    {
+                        rslt = false;
+                    }
                 }
-                rslt = true;
+                
             }
             else
             {
@@ -62,7 +68,10 @@ namespace ADBProccessDLL
                 {
                     rslt = true;
                 }
-                rslt = false;
+                else
+                {
+                    rslt = false;
+                }
             }
             return rslt;
 
@@ -72,10 +81,10 @@ namespace ADBProccessDLL
             //FileAndDirectoryCounter++;
             ExternalMethod.counterEx++;
             bool rslt = false;
-            if (myfile.isDirectory())
+            if (myfile.GetTag()=='d')
             {
                 CreateDirectory(path, myfile.Name.fixBracketInTerminal());
-                foreach (ADBFile onefile in myfile.SubFiles())
+                foreach (ADBFile onefile in myfile.GetSubFiles())
                 {
                     PasteCut(onefile, path + "/" + myfile.Name.fixBracketInTerminal());
 
@@ -96,10 +105,10 @@ namespace ADBProccessDLL
         public bool BackupToSystem(ADBFile myfile, string BackupPath)
         {
             ExternalMethod.counterEx++;
-            if (myfile.isDirectory())
+            if (myfile.GetTag()=='d')
             {
                 Directory.CreateDirectory(BackupPath + @"\" + myfile.Name.nickName().DecodingText());
-                foreach (ADBFile onefile in myfile.SubFiles())
+                foreach (ADBFile onefile in myfile.GetSubFiles())
                 {
                     BackupToSystem(onefile,BackupPath + @"\" + myfile.Name.nickName().DecodingText());
                 }

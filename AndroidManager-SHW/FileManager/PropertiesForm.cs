@@ -35,7 +35,7 @@ namespace AndroidManager_SHW
             TypeFile = getTypeFile(myFile);
             Location = myFile.DirectoryName;
             pictureBox_iconFile.Image = img;
-            label_locationValue.Text = Location.DecodingText();
+            label_locationValue.Text = Location.DecodingText().Replace(@"\","");
 
             label_sizeValue.Text = label_countValue.Text = "•••";
 
@@ -179,7 +179,7 @@ namespace AndroidManager_SHW
 
         private string getTypeFile(ADBFile onefile)
         {
-            if (onefile.isDirectory())
+            if (onefile.GetTag()=='d')
             {
                 return "Directory";
             }

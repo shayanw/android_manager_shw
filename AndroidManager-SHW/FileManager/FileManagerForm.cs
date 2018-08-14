@@ -304,11 +304,11 @@ namespace AndroidManager_SHW
 
             if (listView_files.SelectedItems.Count > 0)
             {
-                backupToolStripMenuItem.Enabled = true;
-                deleteToolStripMenuItem.Enabled = true;
-                propertiesToolStripMenuItem.Enabled = true;
-                copyToolStripMenuItem.Enabled = true;
-                cutToolStripMenuItem.Enabled = true;
+                backupToolStripMenuItem.Visible = true;
+                deleteToolStripMenuItem.Visible = true;
+               // propertiesToolStripMenuItem.Visible = true;
+                copyToolStripMenuItem.Visible = true;
+                cutToolStripMenuItem.Visible = true;
             }
         }
 
@@ -419,7 +419,7 @@ namespace AndroidManager_SHW
                 {
                     fileOrDirectoryForCopyCut.Add(item.Name);
                 }
-                pasteToolStripMenuItem.Enabled = true;
+                pasteToolStripMenuItem.Visible = true;
             }
         }
 
@@ -568,7 +568,17 @@ namespace AndroidManager_SHW
         {
             if (listView_files.SelectedItems.Count == 0)
             {
-                return;
+                if (currentPath.Contains("storage/"))
+                {
+                    Image thisImg = imageList_iconFile.Images[1];
+                    PropertiesForm pf = new PropertiesForm(currentPath.returnFile(device), thisImg);
+                    pf.FormClosed += Pf_FormClosed;
+                    pf.ShowDialog();
+                }
+                else
+                {
+                    return;
+                }
             }
             else if (listView_files.SelectedItems.Count == 1)
             {
@@ -997,16 +1007,16 @@ namespace AndroidManager_SHW
         {
             if (fileOrDirectoryForCopyCut.Count == 0)
             {
-                pasteToolStripMenuItem.Enabled = false;
+                pasteToolStripMenuItem.Visible = false;
             }
 
             if (listView_files.SelectedItems.Count == 0)
             {
-                backupToolStripMenuItem.Enabled = false;
-                deleteToolStripMenuItem.Enabled = false;
-                propertiesToolStripMenuItem.Enabled = false;
-                copyToolStripMenuItem.Enabled = false;
-                cutToolStripMenuItem.Enabled = false;
+                backupToolStripMenuItem.Visible = false;
+                deleteToolStripMenuItem.Visible = false;
+                //propertiesToolStripMenuItem.Visible = false;
+                copyToolStripMenuItem.Visible = false;
+                cutToolStripMenuItem.Visible = false;
             }
         }
 
