@@ -16,7 +16,7 @@ namespace ADBProccessDLL
         }
 
         static public string MainPath = System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-        static public string MainLabelDirectoryName = "AndroidManagerSHW";
+        static public string MainLabelDirectoryName = "Android Manager SHW";
         static public string DirNameBackupApk = "ApkBackups_" + "SHW";
         static public string FullAddressBackupApk = "";
         static public string DeviceDirectoryName;

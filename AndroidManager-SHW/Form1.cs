@@ -230,7 +230,8 @@ namespace AndroidManager_SHW
                 return;
             }
             contextMenuStrip_reboot.Show(button_shutdown, new Point(0, 0));
-            pictureBox_onMobileState_enable(sender);
+            pictureBox_onMobileState.Image = AndroidManager_SHW.Properties.Resources.toggleOn;
+            pictureBox_onMobileState.Visible = true;
             contextMenuStrip_reboot.Closed += ContextMenuStrip_reboot_Closed;
         }
         private void button_backupDirectory_Click(object sender, EventArgs e)
@@ -262,7 +263,7 @@ namespace AndroidManager_SHW
         private void button_about_Click(object sender, EventArgs e)
         {
             pictureBox_onMobileState_enable(sender);
-            if (MessageBox.Show("Create By ShayanW" + "\n\n" + "shayan.worthy@msn.com" + "\n\n" + "CopyRight 2018-2019" + "\n\n" + "Version: 0.95.5 Beta", "About Me", MessageBoxButtons.OK, MessageBoxIcon.Information)==DialogResult.OK)
+            if (MessageBox.Show("Create By ShayanW" + "\n\n" + "shayan.worthy@msn.com" + "\n\n" + "CopyRight 2018-2019" + "\n\n" + "Version: 0.95.7 Beta", "About Me", MessageBoxButtons.OK, MessageBoxIcon.Information)==DialogResult.OK)
             {
                 pictureBox_onMobileState.Visible = false;
             }
