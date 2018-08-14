@@ -36,7 +36,6 @@ namespace AndroidManager_SHW
 
             InitializeComponent();
             server = new AdbServer();
-            StartServerResult resultStartServer = server.StartServer(@".\platform-tools\adb.exe", false);
             currentDevice = null;
             IsDisconnect = IsConnect = IsDebuging = false;
             TestDeviceConnect();
@@ -92,7 +91,7 @@ namespace AndroidManager_SHW
             //tamame label ha vaziat nabud dastgah ro neshun midan
             label_model.Text = "[ No Device ! ]";
             label_vAndroid.Text = label_battery.Text =label_serial.Text = " ";
-            panel_downLeftSide.BackColor = Color.Gray;
+            panel_downLeftSide.BackColor = Color.Silver;
             label_state.Text = "State: Offline";
 
             //age dastgahi vojud dasht va currentDevice null bud=> avalin dastgah ro currentDevice entesab kon
@@ -121,6 +120,7 @@ namespace AndroidManager_SHW
                     label_state.Text = "State: Away";
                     button_mobileState.BackgroundImage = AndroidManager_SHW.Properties.Resources.mobileDebugging;
                     panel_downLeftSide.BackColor = Color.Yellow;
+                    panel_upLeftSide.BackColor = Color.Ivory;
                     IsDebuging = true;
                     currentDevice = null;
                     timer_event.Start();
@@ -262,7 +262,7 @@ namespace AndroidManager_SHW
         private void button_about_Click(object sender, EventArgs e)
         {
             pictureBox_onMobileState_enable(sender);
-            if (MessageBox.Show("Create By ShayanW" + "\n\n" + "shayan.worthy@msn.com" + "\n\n" + "CopyRight 2018-2019" + "\n\n" + "Version: 0.95.2 Beta", "About Me", MessageBoxButtons.OK, MessageBoxIcon.Information)==DialogResult.OK)
+            if (MessageBox.Show("Create By ShayanW" + "\n\n" + "shayan.worthy@msn.com" + "\n\n" + "CopyRight 2018-2019" + "\n\n" + "Version: 0.95.4 Beta", "About Me", MessageBoxButtons.OK, MessageBoxIcon.Information)==DialogResult.OK)
             {
                 pictureBox_onMobileState.Visible = false;
             }
@@ -554,7 +554,8 @@ namespace AndroidManager_SHW
             button_shutdown.BackgroundImage = AndroidManager_SHW.Properties.Resources.power8bw;
             button_mobileState.BackgroundImage = AndroidManager_SHW.Properties.Resources.mobileOffline;
             button_backupDirectory.BackgroundImage = AndroidManager_SHW.Properties.Resources.backup8Orange;
-            panel_upLeftSide.BackgroundImage = AndroidManager_SHW.Properties.Resources.walpaperbw;
+            panel_upLeftSide.BackgroundImage = null;
+            panel_upLeftSide.BackColor = Color.Gainsboro;
         }
 
         /// <summary>

@@ -24,6 +24,7 @@ namespace AndroidManager_SHW.PackageManager
         List<string> SelectedItemsForUnistall = new List<string>();
         List<string> SelectedItemsForInstall = new List<string>();
         List<DataGridViewRow> SelectedItemsForBackup = new List<DataGridViewRow>();
+        bool ClosedForm;
         public PMForm()
         {
             InitializeComponent();
@@ -38,6 +39,7 @@ namespace AndroidManager_SHW.PackageManager
             am = new ApkManager(Device);
             packageKeys = new Stack<string>();
             RefreshDataGridView();
+            ClosedForm = false;
         }
 
 
@@ -58,23 +60,30 @@ namespace AndroidManager_SHW.PackageManager
         }
         private void backgroundWorker_setDataGridView_DoWork(object sender, DoWorkEventArgs e)
         {
-            PM = new SharpAdbClient.DeviceCommands.PackageManager(Device);
-            foreach (var item in PM.Packages)
+            try
             {
-                if (!item.Value.Contains("/system/"))
+                PM = new SharpAdbClient.DeviceCommands.PackageManager(Device);
+                foreach (var item in PM.Packages)
                 {
-                    MyPackages.Add(item);
+                    if (!item.Value.Contains("/system/"))
+                    {
+                        MyPackages.Add(item);
+                    }
+                }
+                TotalPackage = MyPackages.Count;
+                c = 0;
+                foreach (var item in MyPackages)
+                {
+                    oneRow.Clear();
+                    oneRow.Add(item.Key);
+                    oneRow.Add(PM.GetVersionInfo(item.Key).VersionName);
+                    c++;
+                    backgroundWorker_setDataGridView.ReportProgress(c, oneRow.ToArray());
                 }
             }
-            TotalPackage = MyPackages.Count;
-            c = 0;
-            foreach (var item in MyPackages)
+            catch
             {
-                oneRow.Clear();
-                oneRow.Add(item.Key);
-                oneRow.Add(PM.GetVersionInfo(item.Key).VersionName);
-                c++;
-                backgroundWorker_setDataGridView.ReportProgress(c, oneRow.ToArray());
+                ClosedForm = true;
             }
         }
         private void backgroundWorker_setDataGridView_ProgressChanged(object sender, ProgressChangedEventArgs e)
@@ -110,6 +119,10 @@ namespace AndroidManager_SHW.PackageManager
         }
         private void backgroundWorker_setDataGridView_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+            if (ClosedForm)
+            {
+                this.Close();
+            }
             progressBar_statePackage.Visible = false;
             List<DataGridViewRow> LDGVTemp = new List<DataGridViewRow>();
             foreach (DataGridViewRow item in dataGridView_devicePackages.Rows)
