@@ -3,11 +3,8 @@ using SharpAdbClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 
@@ -32,7 +29,7 @@ namespace AndroidManager_SHW
 
             InitializeComponent();
             IsChangeValue = false;
-            ExternalMethod.counterEx = 0;
+            ExternalMethod.CounterEx = 0;
             progressBar_transfer.Value = 0;
             Path = path;
             MyFiles = myfiles;
@@ -44,11 +41,11 @@ namespace AndroidManager_SHW
             if (tt == TransferType.BackingUp)
             {
                 DirectoryInfo di = new DirectoryInfo(path);
-                label_transferTo.Text = "from => " + di.Name.fixDecodePatch().Replace(@"\", "");
+                label_transferTo.Text = "from => " + di.Name.DecodingText().Replace(@"\", "");
             }
             else
             {
-                label_transferTo.Text = "to => " + path.fixDecodePatch().Replace(@"\", "");
+                label_transferTo.Text = "to => " + path.DecodingText().Replace(@"\", "");
             }
             this.Text = tt.ToString();
             backgroundWorker_SetLabels.RunWorkerAsync();
@@ -57,7 +54,7 @@ namespace AndroidManager_SHW
         public TransferForm(TransferType transfer_type, List<string> FilesForUpload, string path, DeviceData device)
         {
             InitializeComponent();
-            ExternalMethod.counterEx = 0;
+            ExternalMethod.CounterEx = 0;
             progressBar_transfer.Value = 0;
             Path = path;
             FilesAndDirecoriesForUpload = FilesForUpload;
@@ -88,7 +85,7 @@ namespace AndroidManager_SHW
         private void TransferForm_Load(object sender, EventArgs e)
         {
 
-            PreLine_CopyCutBackup = TransferTp.ToString().fixDecodePatch()+":: ";
+            PreLine_CopyCutBackup = TransferTp.ToString().DecodingText()+":: ";
 
         }
 
@@ -181,12 +178,12 @@ namespace AndroidManager_SHW
             }
             else
             {
-                label_transferBase.Text = PreLine_CopyCutBackup + " " + MyFiles[0].Name.fixDecodePatch().Replace(@"\", "");
+                label_transferBase.Text = PreLine_CopyCutBackup + " " + MyFiles[0].Name.DecodingText().Replace(@"\", "");
             }
             //------------------------------------------------------------------------------
-            if (ExternalMethod.counterEx < progressBar_transfer.Maximum)
+            if (ExternalMethod.CounterEx < progressBar_transfer.Maximum)
             {
-                progressBar_transfer.Value = ExternalMethod.counterEx;
+                progressBar_transfer.Value = ExternalMethod.CounterEx;
             }
             label_Status.Text = "Transfer " + progressBar_transfer.Value + " Files";
         }

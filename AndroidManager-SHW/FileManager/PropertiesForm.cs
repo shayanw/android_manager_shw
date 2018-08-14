@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using ADBProccessDLL;
 namespace AndroidManager_SHW
@@ -152,22 +148,22 @@ namespace AndroidManager_SHW
                     {
                         if (textBox_name.Text[0]=='.')
                         {
-                            oneFile.Rename(textBox_name.Text.fixBracketInTerminal().EncodingText());
+                            oneFile.Rename(textBox_name.Text.FixForbidCharInTerminal().EncodingText());
                         }
                         else
                         {
-                            oneFile.Rename('.'+textBox_name.Text.fixBracketInTerminal().EncodingText());
+                            oneFile.Rename('.'+textBox_name.Text.FixForbidCharInTerminal().EncodingText());
                         }
                     }
                     else
                     {
                         if (textBox_name.Text[0] == '.')
                         {
-                            oneFile.Rename(textBox_name.Text.fixBracketInTerminal().EncodingText().Remove(0,1));
+                            oneFile.Rename(textBox_name.Text.FixForbidCharInTerminal().EncodingText().Remove(0,1));
                         }
                         else
                         {
-                            oneFile.Rename(textBox_name.Text.fixBracketInTerminal().EncodingText());
+                            oneFile.Rename(textBox_name.Text.FixForbidCharInTerminal().EncodingText());
                         }
                     }
                     

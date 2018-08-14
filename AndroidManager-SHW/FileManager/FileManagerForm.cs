@@ -1,16 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using SharpAdbClient;
 using ADBProccessDLL;
-using System.Net;
-using System.Threading;
 
 namespace AndroidManager_SHW
 {
@@ -96,7 +90,6 @@ namespace AndroidManager_SHW
         /// </summary>
         void refreshListView()
         {
-
             if (backgroundWorker_refreshListView.IsBusy)
             {
                 backgroundWorker_refreshListView.CancelAsync();
@@ -271,7 +264,7 @@ namespace AndroidManager_SHW
         /// <param name="e"></param>
         private void toolStripButton_goPath_Click(object sender, EventArgs e)
         {
-            currentPath = toolStripTextBox_path.Text.fixBracketInTerminal().EncodingText();
+            currentPath = toolStripTextBox_path.Text.FixForbidCharInTerminal().EncodingText();
             refreshListView();
         }
 
@@ -441,7 +434,7 @@ namespace AndroidManager_SHW
                 List<ADBFile> listFilesTmp = new List<ADBFile>();
                 foreach (ListViewItem item in listView_files.SelectedItems)
                 {
-                    listFilesTmp.Add(new ADBFile(device, item.Name.fixBracketInTerminal()));
+                    listFilesTmp.Add(new ADBFile(device, item.Name.FixForbidCharInTerminal()));
                 }
                 TransferForm transferform = new TransferForm(TransferType.BackingUp, listFilesTmp, backupPath, fm);
                 IsTransfer = true;
@@ -469,7 +462,7 @@ namespace AndroidManager_SHW
 
                 foreach (string item in fileOrDirectoryForCopyCut)
                 {
-                    listFilesTmp.Add(new ADBFile(device, item.fixBracketInTerminal()));
+                    listFilesTmp.Add(new ADBFile(device, item.FixForbidCharInTerminal()));
                 }
 
 

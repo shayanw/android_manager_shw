@@ -11,47 +11,44 @@ namespace ADBProccessDLL
 {
     public class FileManager
     {
+        #region filed and prop
         public DeviceData CurrentDevice;
         public int FileAndDirectoryCounter = 0;
         public List<ADBFile> ListAdbFiles;
-
         //address directory backup tush hast
         public ADBProccessDLL.Option option;
+        #endregion
+
+        #region Constructor
         public FileManager(DeviceData currentDevice)
         {
             CurrentDevice = currentDevice;
             option = new Option(currentDevice);
             ListAdbFiles = new List<ADBFile>();
         }
+        #endregion
 
-        //zire file and directory ro dar ghalebe [List<ADBFile>] bar migardune
-        public List<ADBFile> getDirectoryAndFiles(string CurrentPath)
-        {
-            ListAdbFiles = new ADBFile(CurrentDevice) { FullName = CurrentPath }.GetSubFiles();
-            return ListAdbFiles ;
-        }
+        #region proccess on File
 
         public bool DeleteDirectoryAndFiles(string FileFullName)
         {
-            if (resultCommand("rm -r " + FileFullName.fixBracketInTerminal()).Count() == 0)
+            if (resultCommand("rm -r " + FileFullName.FixForbidCharInTerminal()).Count() == 0)
             {
                 return true;
             }
             return false;
         }
 
-
-
         public bool PasteCopy(ADBFile myfile, string path)
         {
-            ExternalMethod.counterEx++;
+            ExternalMethod.CounterEx++;
             bool rslt = false;
             if (myfile.GetTag()=='d')
             {
-                CreateDirectory(path, myfile.Name.fixBracketInTerminal());
+                CreateDirectory(path, myfile.Name.FixForbidCharInTerminal());
                 foreach (ADBFile onefile in myfile.GetSubFiles())
                 {
-                    if (PasteCopy(onefile, path + "/" + myfile.Name.fixBracketInTerminal()))
+                    if (PasteCopy(onefile, path + "/" + myfile.Name.FixForbidCharInTerminal()))
                     {
                         rslt = true;
                     }
@@ -64,7 +61,7 @@ namespace ADBProccessDLL
             }
             else
             {
-                if (resultCommand(string.Format(@"cp {0} {1}", myfile.FullName.fixBracketInTerminal(), path)).Count() == 0)
+                if (resultCommand(string.Format(@"cp {0} {1}", myfile.FullName.FixForbidCharInTerminal(), path)).Count() == 0)
                 {
                     rslt = true;
                 }
@@ -79,21 +76,21 @@ namespace ADBProccessDLL
         public bool PasteCut(ADBFile myfile, string path)
         {
             //FileAndDirectoryCounter++;
-            ExternalMethod.counterEx++;
+            ExternalMethod.CounterEx++;
             bool rslt = false;
             if (myfile.GetTag()=='d')
             {
-                CreateDirectory(path, myfile.Name.fixBracketInTerminal());
+                CreateDirectory(path, myfile.Name.FixForbidCharInTerminal());
                 foreach (ADBFile onefile in myfile.GetSubFiles())
                 {
-                    PasteCut(onefile, path + "/" + myfile.Name.fixBracketInTerminal());
+                    PasteCut(onefile, path + "/" + myfile.Name.FixForbidCharInTerminal());
 
                 }
                 rslt = true;
             }
             else
             {
-                if (resultCommand(string.Format(@"mv {0} {1}", myfile.FullName.fixBracketInTerminal(), path)).Count() == 0)
+                if (resultCommand(string.Format(@"mv {0} {1}", myfile.FullName.FixForbidCharInTerminal(), path)).Count() == 0)
                 {
                     rslt = true;
                 }
@@ -104,7 +101,7 @@ namespace ADBProccessDLL
 
         public bool BackupToSystem(ADBFile myfile, string BackupPath)
         {
-            ExternalMethod.counterEx++;
+            ExternalMethod.CounterEx++;
             if (myfile.GetTag()=='d')
             {
                 Directory.CreateDirectory(BackupPath + @"\" + myfile.Name.nickName().DecodingText());
@@ -149,7 +146,7 @@ namespace ADBProccessDLL
             }
             foreach (string AddressFileOrDir in FilesAndDirectory)
             {
-                ExternalMethod.counterEx++;
+                ExternalMethod.CounterEx++;
                 //age [AddressFileOrDir] Directory bud yedune besaz
                 if (Directory.Exists(AddressFileOrDir))
                 {
@@ -157,7 +154,7 @@ namespace ADBProccessDLL
                     DirectoryInfo di = new DirectoryInfo(AddressFileOrDir);
                     //be hamun esm ye directory besaz
 
-                    CreateDirectory(AndroidPath.fixBracketInTerminal().EncodingText(), di.Name.fixBracketInTerminal().EncodingText());
+                    CreateDirectory(AndroidPath.FixForbidCharInTerminal().EncodingText(), di.Name.FixForbidCharInTerminal().EncodingText());
 
                     //list directory ha va file haro be [tmpLifD] ezaf kon
                     tmpLiFD.AddRange(di.GetDirectories().Select(a => a.FullName));
@@ -206,20 +203,29 @@ namespace ADBProccessDLL
             }
             return false;
         }
+        #endregion
+
+        #region Get More Details File
+        public int CountFileAndDirectory(ADBFile myFile)
+        {
+            myFile.GetCountSubFiles();
+            return myFile.SubFilesNumber;
+        }
+        public List<ADBFile> getDirectoryAndFiles(string CurrentPath)
+        {
+            ListAdbFiles = new ADBFile(CurrentDevice) { FullName = CurrentPath }.GetSubFiles();
+            return ListAdbFiles;
+        }
+        #endregion
+
+        #region base method
         private string resultCommand(string Command)
         {
             var receiver = new ConsoleOutputReceiver();
             AdbClient.Instance.ExecuteRemoteCommand(Command, CurrentDevice, receiver);
             return receiver.ToString();
         }
-
-        public int CountFileAndDirectory(ADBFile myFile)
-        {
-            myFile.GetCountSubFiles();
-            return myFile.SubFilesNumber;
-        }
-
-
+        #endregion
     }
     public enum TransferType
     {

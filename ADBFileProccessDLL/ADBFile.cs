@@ -110,7 +110,7 @@ namespace ADBProccessDLL
             {
                 return Size;
             }
-            string fixName = Name.fixBracketInTerminal();
+            string fixName = Name.FixForbidCharInTerminal();
             string cmd = "";
             if (!string.IsNullOrEmpty(LineLsForFile))
             {
@@ -183,7 +183,7 @@ namespace ADBProccessDLL
             }
             else
             {
-                cmd = ReturnResultCommand(string.Format("ls -l {0}|grep {1} ", DirectoryName, Name.fixBracketInTerminal()));
+                cmd = ReturnResultCommand(string.Format("ls -l {0}|grep {1} ", DirectoryName, Name.FixForbidCharInTerminal()));
             }
 
             try
@@ -360,7 +360,7 @@ namespace ADBProccessDLL
         }
         public bool Rename(string NewName)
         {
-            if (string.IsNullOrEmpty(ReturnResultCommand(string.Format(@"mv {0} {1}", FullName.fixBracketInTerminal(), (this.DirectoryName + "/" + NewName).fixBracketInTerminal()))))
+            if (string.IsNullOrEmpty(ReturnResultCommand(string.Format(@"mv {0} {1}", FullName.FixForbidCharInTerminal(), (this.DirectoryName + "/" + NewName).FixForbidCharInTerminal()))))
             {
                 this.FullName = this.ParentDirectory + "/" + NewName;
                 this.Name = NewName;

@@ -10,36 +10,10 @@ namespace ADBProccessDLL
 {
     public static class ExternalMethod
     {
-        public static int counterEx;
-        public static string nickName(this string txt)
-        {
-            string tmp = "";
-            List<int> listIndex = new List<int>();
-            for (int i = 0; i < txt.Length; i++)
-            {
-                if (txt[i].ToString() == @"\" && i + 1 < txt.Length)
-                {
-                    if (txt[i + 1] == ' ')
-                    {
-                        listIndex.Add(i);
-                        tmp += " ";
-                        continue;
-                    }
-                }
-                tmp += txt[i];
-            }
-            return tmp;
-        }
-        public static ADBFile returnFile(this string fullname,DeviceData device)
-        {
-            return new ADBFile(device, fullname);
-        }
-        public static string returnSizeFile(this string fullname, DeviceData device)
-        {
-            ADBFile f = new ADBFile(device, fullname);
-            return f.GetLengthDouble().humanReadable();
-        }
+        private static int counterEx;
+        public static int CounterEx { get => counterEx; set => counterEx = value; }
 
+        #region More Method About AdbFile and convert...
         public static string humanReadable(this double byteSize)
         {
             string result = "";
@@ -61,28 +35,6 @@ namespace ADBProccessDLL
             else
             {
                 result = byteSize.ToString("0.0") + " B";
-            }
-            return result;
-        }
-
-        public static string fixBracketInTerminal(this string txt)
-        {
-            string result = "";
-            if (string.IsNullOrEmpty(txt))
-            {
-                return "";
-            }
-            foreach (char oneChar in txt.ToList())
-            {
-                if (oneChar == '\\')
-                {
-                    continue;
-                }
-                if (oneChar=='('|| oneChar == ')'|| oneChar == ' ' || oneChar == '\'' || oneChar == '&')
-                {
-                    result+=@"\";
-                }
-                result += oneChar;
             }
             return result;
         }
@@ -126,45 +78,33 @@ namespace ADBProccessDLL
                 return false;
             }
         }
-
-        public static bool isDirectory(this ADBFile oneFile)
+        public static string nickName(this string txt)
         {
-            string cmd = resultCommand(string.Format("ls -l {0}|grep {1} ", oneFile.DirectoryName+"/", oneFile.Name.fixBracketInTerminal()),oneFile.device);
-            List<string> tmp = new List<string>();
-            string temp;
-            StringReader sr = new StringReader(cmd);
-
-            while (sr.Peek() >= 0)
+            string tmp = "";
+            List<int> listIndex = new List<int>();
+            for (int i = 0; i < txt.Length; i++)
             {
-                temp = sr.ReadLine();
-                if (temp.Contains("Permission denied") || temp.Contains("error"))
+                if (txt[i].ToString() == @"\" && i + 1 < txt.Length)
                 {
-                    continue;
+                    if (txt[i + 1] == ' ')
+                    {
+                        listIndex.Add(i);
+                        tmp += " ";
+                        continue;
+                    }
                 }
-                tmp.Add(temp);
+                tmp += txt[i];
             }
-
-            if (tmp.Count>0 && tmp.LastOrDefault()[0].ToString() == "d")
-            {
-                return true;
-            }
-            return false;
+            return tmp;
         }
 
-        public static string resultCommand(string Command,DeviceData device)
+        public static ADBFile returnFile(this string fullname, DeviceData device)
         {
-            try
-            {
-                var receiver = new ConsoleOutputReceiver();
-                AdbClient.Instance.ExecuteRemoteCommand(Command, device, receiver);
-                return receiver.ToString();
-            }
-            catch (Exception)
-            {
-                return "•••";
-            }
+            return new ADBFile(device, fullname);
         }
+        #endregion
 
+        #region DeviceData Extension Method
         public static string AndroidVersion(this DeviceData myDevice)
         {
             return resultCommand(@"getprop ro.build.version.release",myDevice);
@@ -188,6 +128,55 @@ namespace ADBProccessDLL
             return " - ";
 
         }
+
+
+        public static bool Shutdown(this DeviceData myDevice)
+        {
+            if (string.IsNullOrEmpty(resultCommand("reboot -p", myDevice)))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public static bool Bootloader(this DeviceData myDevice)
+        {
+            if (string.IsNullOrEmpty(resultCommand("reboot bootloader", myDevice)))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public static bool Recovery(this DeviceData myDevice)
+        {
+            if (string.IsNullOrEmpty(resultCommand("reboot recovery", myDevice)))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public static bool Reboot(this DeviceData myDevice)
+        {
+            if (string.IsNullOrEmpty(resultCommand("reboot sideload-auto-reboot", myDevice)))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        #endregion
+
+        #region work on File System
         public static int GetCountOfFilesAndDirectoriesInSystem(this string FileOrDirectory)
         {
             int counter = 0;
@@ -208,7 +197,6 @@ namespace ADBProccessDLL
             }
             return counter;
         }
-
         public static double GetSizeOfFilesAndDirectoriesInSystem(this string FileOrDirectory)
         {
             double sizeCount = 0;
@@ -237,8 +225,67 @@ namespace ADBProccessDLL
             }
             return sizeCount;
         }
+        #endregion
 
+        #region Fix Code in Adb
+        public static string FixForbidCharInTerminal(this string txt)
+        {
+            string result = "";
+            if (string.IsNullOrEmpty(txt))
+            {
+                return "";
+            }
+            foreach (char oneChar in txt.ToList())
+            {
+                if (oneChar == '\\')
+                {
+                    continue;
+                }
+                if (oneChar == '(' || oneChar == ')' || oneChar == ' ' || oneChar == '\'' || oneChar == '&')
+                {
+                    result += @"\";
+                }
+                result += oneChar;
+            }
+            return result;
+        }
+        public static string EncodingText(this string forEncodText)
+        {
+            return Encoding.GetEncoding("iso-8859-1").GetString(Encoding.UTF8.GetBytes(forEncodText));
+        }
+        public static string DecodingText(this string forDecodeText)
+        {
+            string tmp = forDecodeText.textDicoder();
+            if (tmp.Contains("?"))
+            {
+                return forDecodeText;
+            }
+            return tmp;
+        }
+        private static string textDicoder(this string forDecodText)
+        {
+            if (string.IsNullOrEmpty(forDecodText))
+            {
+                return "";
+            }
+            return Encoding.UTF8.GetString(Encoding.GetEncoding("iso-8859-1").GetBytes(forDecodText));
+        }
+        #endregion
 
+        #region Base Method
+        public static string resultCommand(string Command, DeviceData device)
+        {
+            try
+            {
+                var receiver = new ConsoleOutputReceiver();
+                AdbClient.Instance.ExecuteRemoteCommand(Command, device, receiver);
+                return receiver.ToString();
+            }
+            catch (Exception)
+            {
+                return "•••";
+            }
+        }
         public static string AdbCommand(string command)
         {
 
@@ -253,27 +300,6 @@ namespace ADBProccessDLL
             process.Start();
             return process.StandardOutput.ReadToEnd();
         }
-
-        public static string DecodingText(this string forDecodText)
-        {
-            if (string.IsNullOrEmpty(forDecodText))
-            {
-                return "";
-            }
-            return Encoding.UTF8.GetString(Encoding.GetEncoding("iso-8859-1").GetBytes(forDecodText));
-        }
-        public static string EncodingText(this string forEncodText)
-        {
-            return Encoding.GetEncoding("iso-8859-1").GetString(Encoding.UTF8.GetBytes(forEncodText));
-        }
-        public static string fixDecodePatch(this string forDecodeText)
-        {
-            string tmp = forDecodeText.DecodingText();
-            if (tmp.Contains("?"))
-            {
-                return forDecodeText;
-            }
-            return tmp;
-        }
+        #endregion
     }
 }

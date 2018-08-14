@@ -278,7 +278,7 @@
             this.button_software.TabIndex = 5;
             this.toolTip_fileManager.SetToolTip(this.button_software, "Package manager | you can install and unistall,backup apps...");
             this.button_software.UseVisualStyleBackColor = false;
-            this.button_software.Click += new System.EventHandler(this.pictureBox_software_Click);
+            this.button_software.Click += new System.EventHandler(this.button_software_Click);
             this.button_software.MouseLeave += new System.EventHandler(this.pictureBox_software_MouseLeave);
             this.button_software.MouseHover += new System.EventHandler(this.pictureBox_software_MouseHover);
             // 
@@ -312,7 +312,7 @@
             this.pictureBox_about.TabIndex = 1;
             this.pictureBox_about.TabStop = false;
             this.toolTip_fileManager.SetToolTip(this.pictureBox_about, "About | you can know more about developer and program");
-            this.pictureBox_about.Click += new System.EventHandler(this.pictureBox_about_Click);
+            this.pictureBox_about.Click += new System.EventHandler(this.button_about_Click);
             this.pictureBox_about.MouseLeave += new System.EventHandler(this.pictureBox_about_MouseLeave);
             this.pictureBox_about.MouseHover += new System.EventHandler(this.pictureBox_about_MouseHover);
             // 
@@ -383,7 +383,7 @@
             this.button_shutdown.Size = new System.Drawing.Size(55, 55);
             this.button_shutdown.TabIndex = 6;
             this.button_shutdown.UseVisualStyleBackColor = false;
-            this.button_shutdown.Click += new System.EventHandler(this.button_code_Click);
+            this.button_shutdown.Click += new System.EventHandler(this.button_shutdown_Click);
             this.button_shutdown.MouseLeave += new System.EventHandler(this.pictureBox_code_MouseLeave);
             this.button_shutdown.MouseHover += new System.EventHandler(this.pictureBox_code_MouseHover);
             // 

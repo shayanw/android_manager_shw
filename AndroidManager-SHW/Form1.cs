@@ -4,12 +4,9 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using SharpAdbClient;
 using ADBProccessDLL;
-using SharpAdbClient.DeviceCommands;
 using System.Net;
 using System.IO;
 
@@ -17,6 +14,7 @@ namespace AndroidManager_SHW
 {
     public partial class HomeForm : Form
     {
+        #region Filed And Prop
         int counterTimer = 0;
         AdbServer server;
         List<DeviceData> devices;
@@ -29,7 +27,9 @@ namespace AndroidManager_SHW
         List<string[]> ListStateInstalledApk;
         ApkManager AM;
         string lastLableState;
+        #endregion
 
+        #region Constructor
         public HomeForm()
         {
 
@@ -47,7 +47,9 @@ namespace AndroidManager_SHW
         {
             RefreshDevices();
         }
+        #endregion
 
+        #region Refresh Device
         void RefreshDevices()
         {
             //hame icon ha black and white she
@@ -108,8 +110,7 @@ namespace AndroidManager_SHW
         private void selectDevice()
         {
             if (devices.Count != 0)
-            {
-                
+            { 
                 //age currentDevice vojud dasht ama Model ro natunest neshun bede=>debuging active nist & timer_event start she
                 if (string.IsNullOrEmpty(currentDevice.Model))
                 {
@@ -136,6 +137,190 @@ namespace AndroidManager_SHW
                 }
 
             }
+        }
+
+        void TestDeviceConnect()
+        {
+            var monitor = new DeviceMonitor(new AdbSocket(new IPEndPoint(IPAddress.Loopback, AdbClient.AdbServerPort)));
+            monitor.DeviceConnected += Monitor_DeviceConnected;
+            monitor.DeviceDisconnected += Monitor_DeviceDisconnected;
+            monitor.Start();
+        }
+
+        /// <summary>
+        /// age device disconnect shod => IsDisconnect True mishe & timer_event Start mishe
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Monitor_DeviceDisconnected(object sender, DeviceDataEventArgs e)
+        {
+            DisposeAllChildForm();
+            IsDisconnect = true;
+            timer_event.Start();
+        }
+
+        /// <summary>
+        /// age device connect shod => IsConnect True mishe & timer_event Start mishe
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Monitor_DeviceConnected(object sender, DeviceDataEventArgs e)
+        {
+            IsConnect = true;
+            timer_event.Start();
+        }
+
+        private void timer_event_Tick(object sender, EventArgs e)
+        {
+            //age device(connect,disconnect,debuging)~taghir vaziat nadad... => kari nakon
+            if (!IsConnect && !IsDisconnect && !IsDebuging)
+            {
+                return;
+            }
+            //age taghir vaziat dad...=>hame vaziat haro false mikonim
+            counterTimer++;
+            IsConnect = IsDisconnect = IsDebuging = false;
+            RefreshDevices();
+        }
+        #endregion
+
+        #region buttons Right Panel
+        private void button_fileManager_Click(object sender, EventArgs e)
+        {
+            if (currentDevice == null)
+            {
+                return;
+            }
+            FileManagerForm fmf = new FileManagerForm(currentDevice);
+            fmf.ShowDialog();
+
+            //----- ezafi -----
+            childForms.Add(fmf);
+        }
+        private void button_software_Click(object sender, EventArgs e)
+        {
+            if (currentDevice == null)
+            {
+                return;
+            }
+            PackageManager.PMForm pmrf = new PackageManager.PMForm(currentDevice);
+            pmrf.ShowDialog();
+
+            //----- ezafi -----
+            childForms.Add(pmrf);
+
+        }
+        private void button_setting_Click(object sender, EventArgs e)
+        {
+            Setting.SettingForm stf = new Setting.SettingForm();
+            stf.ShowDialog();
+        }
+        private void button_shutdown_Click(object sender, EventArgs e)
+        {
+            if (currentDevice == null)
+            {
+                return;
+            }
+            contextMenuStrip_reboot.Show(button_shutdown, new Point(0, 0));
+
+            //AdbCommand.CommandForm cmdf = new AdbCommand.CommandForm(currentDevice);
+            //cmdf.ShowDialog();
+
+            ////----- ezafi -----
+            //childForms.Add(cmdf);
+        }
+        private void button_backupDirectory_Click(object sender, EventArgs e)
+        {
+            if (currentDevice == null)
+            {
+                try
+                {
+                    System.Diagnostics.Process.Start(Option.MainPath + "\\" + Option.MainLabelDirectoryName);
+                }
+                catch
+                {
+
+                }
+            }
+            else
+            {
+                Option opt = new Option(currentDevice);
+                try
+                {
+                    System.Diagnostics.Process.Start(opt.MainPathBackupProp);
+                }
+                catch
+                {
+
+                }
+            }
+        }
+        private void button_about_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Create By ShayanW" + "\n\n" + "shayan.worthy@msn.com" + "\n\n" + "CopyRight 2018-2019" + "\n\n" + "Version: 0.94.6 Beta", "About Me", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        #endregion
+
+        #region buttons ContextMenu Reboot 
+        private void rebootToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            currentDevice.Reboot();
+            RefreshDevices();
+        }
+        private void recoveryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            currentDevice.Recovery();
+            RefreshDevices();
+        }
+        private void bootloaderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            currentDevice.Bootloader();
+            RefreshDevices();
+        }
+        private void shutdownToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            currentDevice.Shutdown();
+            RefreshDevices();
+        }
+        #endregion
+
+        #region buttons other and all about these
+
+        /// <summary>
+        /// az Form_networkADB nemune sakhte mishe va ShowDialog mishe 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button_network_Click(object sender, EventArgs e)
+        {
+            Form_networkADB fnadb = new Form_networkADB();
+            fnadb.FormClosed += Fnadb_FormClosed;
+            fnadb.ShowDialog();
+
+        }
+        private void Fnadb_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (((Form_networkADB)sender).isChanged)
+            {
+                RefreshDevices();
+            }
+        }
+
+        private void button_reconnect_Click(object sender, EventArgs e)
+        {
+            string cmdadb = "";
+
+            if (currentDevice == null)
+            {
+                cmdadb = "reconnect";
+            }
+            else
+            {
+                cmdadb = string.Format("-s {0} reconnect", currentDevice.Serial);
+            }
+
+            ExternalMethod.AdbCommand(cmdadb);
+            RefreshDevices();
         }
 
         private void button_check_Click(object sender, EventArgs e)
@@ -166,255 +351,10 @@ namespace AndroidManager_SHW
             }
         }
 
-        /// <summary>
-        /// ye form az FileManagerForm besaz bad ShowDialog konesh...
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void button_fileManager_Click(object sender, EventArgs e)
+        private void comboBox_devices_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (currentDevice == null)
-            {
-                return;
-            }
-            FileManagerForm fmf = new FileManagerForm(currentDevice);
-            fmf.ShowDialog();
-
-            //----- ezafi -----
-            childForms.Add(fmf);
+            button_select_Click(sender, e);
         }
-
-        /// <summary>
-        /// ye form az PMForm besaz bad ShowDialog konesh...
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void pictureBox_software_Click(object sender, EventArgs e)
-        {
-
-            //PackageManager.PackageManagerForm pmf = new PackageManager.PackageManagerForm(currentDevice);
-            //pmf.Show();
-            if (currentDevice == null)
-            {
-                return;
-            }
-            PackageManager.PMForm pmrf = new PackageManager.PMForm(currentDevice);
-            pmrf.ShowDialog();
-
-            //----- ezafi -----
-            childForms.Add(pmrf);
-
-        }
-
-        private void rebootToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ExternalMethod.resultCommand("reboot sideload-auto-reboot", currentDevice);
-            RefreshDevices();
-        }
-        private void recoveryToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ExternalMethod.resultCommand("reboot recovery", currentDevice);
-            RefreshDevices();
-        }
-        private void bootloaderToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ExternalMethod.resultCommand("reboot bootloader", currentDevice);
-            RefreshDevices();
-        }
-        private void shutdownToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ExternalMethod.resultCommand("reboot -p", currentDevice);
-            //ExternalMethod.AdbCommand(string.Format("adb -s {0} shell reboot -p",currentDevice.Serial));
-            RefreshDevices();
-        }
-
-
-
-        void TestDeviceConnect()
-        {
-            var monitor = new DeviceMonitor(new AdbSocket(new IPEndPoint(IPAddress.Loopback, AdbClient.AdbServerPort)));
-            monitor.DeviceConnected += Monitor_DeviceConnected;
-            monitor.DeviceDisconnected += Monitor_DeviceDisconnected;
-            monitor.Start();
-        }
-
-        /// <summary>
-        /// age device disconnect shod => IsDisconnect True mishe & timer_event Start mishe
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void Monitor_DeviceDisconnected(object sender, DeviceDataEventArgs e)
-        {
-            DisposeAllChildForm();
-            IsDisconnect = true;
-            timer_event.Start();
-        }
-
-
-        /// <summary>
-        /// age device connect shod => IsConnect True mishe & timer_event Start mishe
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void Monitor_DeviceConnected(object sender, DeviceDataEventArgs e)
-        {
-            IsConnect = true;
-            timer_event.Start();
-        }
-
-
-        #region Animation_Icons
-        private void button_check_MouseHover(object sender, EventArgs e)
-        {
-            button_check.BackgroundImage = AndroidManager_SHW.Properties.Resources.refresh_shield8h;
-        }
-
-        private void button_check_MouseLeave(object sender, EventArgs e)
-        {
-            button_check.BackgroundImage = AndroidManager_SHW.Properties.Resources.refresh_shield8;
-        }
-        /// <summary>
-        /// hameye icon ha black And white mishe
-        /// </summary>
-        private void currentDeviceIsNullIcon()
-        {
-            button_fileManager.Enabled = button_software.Enabled = button_shutdown.Enabled /*= button_setting.Enabled*/ = false;
-            button_fileManager.BackgroundImage= AndroidManager_SHW.Properties.Resources.file8bw;
-            button_software.BackgroundImage = AndroidManager_SHW.Properties.Resources.soft8bw;
-            button_shutdown.BackgroundImage= AndroidManager_SHW.Properties.Resources.power8bw;
-            //button_setting.BackgroundImage = AndroidManager_SHW.Properties.Resources.sett8bw;
-
-            //pictureBox1.Image= AndroidManager_SHW.Properties.Resources.mobilebw;
-            button_mobileState.BackgroundImage = AndroidManager_SHW.Properties.Resources.mobileOffline;
-            button_backupDirectory.BackgroundImage = AndroidManager_SHW.Properties.Resources.backup8Orange;
-            //panel_upLeftSide.BackColor = Color.LightGray;
-            panel_upLeftSide.BackgroundImage = AndroidManager_SHW.Properties.Resources.walpaperbw;
-        }
-
-        /// <summary>
-        /// icon haye karbordi,rangi va ghabele estefade beshe
-        /// </summary>
-        /// 
-        private void currentDeviceIsOn()
-        {
-            button_fileManager.Enabled = button_software.Enabled = button_shutdown.Enabled = button_setting.Enabled = true;
-            button_fileManager.BackgroundImage = AndroidManager_SHW.Properties.Resources.file8;
-            button_software.BackgroundImage = AndroidManager_SHW.Properties.Resources.soft8;
-            button_shutdown.BackgroundImage = AndroidManager_SHW.Properties.Resources.power8;
-            button_setting.BackgroundImage = AndroidManager_SHW.Properties.Resources.sett8h;
-            //pictureBox1.Image = AndroidManager_SHW.Properties.Resources.mobile;
-            button_mobileState.BackgroundImage = AndroidManager_SHW.Properties.Resources.mobileOnline;
-            button_backupDirectory.BackgroundImage = AndroidManager_SHW.Properties.Resources.backup8;
-            //panel_upLeftSide.BackColor = Color.FromArgb(178, 230, 213/*168, 220, 203*/);
-            panel_upLeftSide.BackgroundImage = AndroidManager_SHW.Properties.Resources.walpapernew6;
-        }
-
-        private void pictureBox_fileManager_MouseHover(object sender, EventArgs e)
-        {
-            button_fileManager.BackgroundImage = AndroidManager_SHW.Properties.Resources.file8h;
-            //  pictureBox_fileManager.Size = new Size(60, 60);
-        }
-
-        private void pictureBox_fileManager_MouseLeave(object sender, EventArgs e)
-        {
-            if (currentDevice==null)
-            {
-                return;
-            }
-            button_fileManager.BackgroundImage = AndroidManager_SHW.Properties.Resources.file8;
-            // pictureBox_fileManager.Size = new Size(55, 55);
-        }
-
-        private void pictureBox_software_MouseHover(object sender, EventArgs e)
-        {
-            button_software.BackgroundImage = AndroidManager_SHW.Properties.Resources.soft8h;
-            // pictureBox_software.Size = new Size(60, 60);
-        }
-
-        private void pictureBox_software_MouseLeave(object sender, EventArgs e)
-        {
-            if (currentDevice == null)
-            {
-                return;
-            }
-            button_software.BackgroundImage = AndroidManager_SHW.Properties.Resources.soft8;
-            //pictureBox_software.Size = new Size(55, 55);
-        }
-
-        private void pictureBox_code_MouseHover(object sender, EventArgs e)
-        {
-            button_shutdown.BackgroundImage = AndroidManager_SHW.Properties.Resources.power8h;
-            //pictureBox_code.Size = new Size(60, 60);
-        }
-
-        private void pictureBox_code_MouseLeave(object sender, EventArgs e)
-        {
-            if (currentDevice == null)
-            {
-                return;
-            }
-            button_shutdown.BackgroundImage = AndroidManager_SHW.Properties.Resources.power8;
-            //  pictureBox_code.Size = new Size(55, 55);
-        }
-
-        private void pictureBox_setting_MouseHover(object sender, EventArgs e)
-        {
-            button_setting.BackgroundImage = AndroidManager_SHW.Properties.Resources.sett8h;
-            // pictureBox_setting.Size = new Size(60, 60);
-        }
-
-        private void pictureBox_setting_MouseLeave(object sender, EventArgs e)
-        {
-            if (currentDevice == null)
-            {
-                return;
-            }
-            button_setting.BackgroundImage = AndroidManager_SHW.Properties.Resources.sett8;
-            // pictureBox_setting.Size = new Size(55, 55);
-        }
-
-
-        private void button_backupDirectory_MouseHover(object sender, EventArgs e)
-        {
-            if (currentDevice!=null)
-            {
-                button_backupDirectory.BackgroundImage = AndroidManager_SHW.Properties.Resources.backup8h;
-            }
-            else
-            {
-                button_backupDirectory.BackgroundImage = AndroidManager_SHW.Properties.Resources.backup8Orangeh;
-            }
-        }
-
-        private void button_backupDirectory_MouseLeave(object sender, EventArgs e)
-        {
-            if (currentDevice != null)
-            {
-                button_backupDirectory.BackgroundImage = AndroidManager_SHW.Properties.Resources.backup8;
-            }
-            else
-            {
-                button_backupDirectory.BackgroundImage = AndroidManager_SHW.Properties.Resources.backup8Orange;
-            }
-        }
-
-        private void pictureBox_about_MouseHover(object sender, EventArgs e)
-        {
-            pictureBox_about.Image = AndroidManager_SHW.Properties.Resources.about8h;
-        }
-
-        private void pictureBox_about_MouseLeave(object sender, EventArgs e)
-        {
-            if (currentDevice == null)
-            {
-                return;
-            }
-            pictureBox_about.Image = AndroidManager_SHW.Properties.Resources.about8;
-        }
-
-
-        #endregion
-
         private void backgroundWorker_refreshCombo_DoWork(object sender, DoWorkEventArgs e)
         {
             devices = AdbClient.Instance.GetDevices();
@@ -423,7 +363,6 @@ namespace AndroidManager_SHW
 
             }
         }
-
         private void backgroundWorker_refreshCombo_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             comboBox_devices.Items.Clear();
@@ -438,118 +377,9 @@ namespace AndroidManager_SHW
                 comboBox_devices.SelectedIndex = 0;
             }
         }
+        #endregion
 
-        /// <summary>
-        /// dar surate taghir vaziat => RefreshDevice ejra mishe
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void timer_event_Tick(object sender, EventArgs e)
-        {
-            //age device(connect,disconnect,debuging)~taghir vaziat nadad... => kari nakon
-            if (!IsConnect && !IsDisconnect && !IsDebuging)
-            {
-                return;
-            }
-            //age taghir vaziat dad...=>hame vaziat haro false mikonim
-            counterTimer++;
-            IsConnect = IsDisconnect = IsDebuging = false;
-            RefreshDevices();
-        }
-
-        private void pictureBox_about_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("Create By ShayanW" + "\n\n" + "shayan.worthy@msn.com" + "\n\n" + "CopyRight 2018-2019" + "\n\n" + "Version: 0.94.3 Beta", "About Me", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-
-
-
-        /// <summary>
-        /// az Form_networkADB nemune sakhte mishe va ShowDialog mishe 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void button_network_Click(object sender, EventArgs e)
-        {
-            Form_networkADB fnadb = new Form_networkADB();
-            fnadb.FormClosed += Fnadb_FormClosed;
-            fnadb.ShowDialog();
-
-        }
-
-        private void Fnadb_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            if (((Form_networkADB)sender).isChanged)
-            {
-                RefreshDevices();
-            }
-        }
-
-        private void button_backupDirectory_Click(object sender, EventArgs e)
-        {
-            if (currentDevice == null)
-            {
-                try
-                {
-                    System.Diagnostics.Process.Start(Option.MainPath + "\\" + Option.MainLabelDirectoryName);
-                }
-                catch
-                {
-
-                }
-            }
-            else
-            {
-                Option opt = new Option(currentDevice);
-                try
-                {
-                    System.Diagnostics.Process.Start(opt.MainPathBackupProp);
-                }
-                catch
-                {
-
-                }
-            }
-        }
-
-        private void button_code_Click(object sender, EventArgs e)
-        {
-            if (currentDevice == null)
-            {
-                return;
-            }
-            contextMenuStrip_reboot.Show(button_shutdown,new Point(0,0));
-
-            //AdbCommand.CommandForm cmdf = new AdbCommand.CommandForm(currentDevice);
-            //cmdf.ShowDialog();
-
-            ////----- ezafi -----
-            //childForms.Add(cmdf);
-        }
-
-        private void button_reconnect_Click(object sender, EventArgs e)
-        {
-            string cmdadb = "";
-
-            if (currentDevice==null)
-            {
-                cmdadb = "reconnect";
-            }
-            else
-            {
-                cmdadb = string.Format("-s {0} reconnect", currentDevice.Serial);
-            }
-
-            ExternalMethod.AdbCommand(cmdadb);
-            RefreshDevices();
-        }
-
-        private void button_setting_Click(object sender, EventArgs e)
-        {
-            Setting.SettingForm stf = new Setting.SettingForm();
-            stf.ShowDialog();
-        }
-
+        #region Install Apk Drag&Drop
         private void panel_upLeftSide_DragEnter(object sender, DragEventArgs e)
         {
             
@@ -574,7 +404,6 @@ namespace AndroidManager_SHW
                 panel_upLeftSide.BackgroundImage = AndroidManager_SHW.Properties.Resources.walpapernew6;
             }
         }
-
         private void panel_upLeftSide_DragDrop(object sender, DragEventArgs e)
         {
             if (backgroundWorker_installApk.IsBusy)
@@ -666,13 +495,155 @@ namespace AndroidManager_SHW
             }
 
         }
+        #endregion
 
-
-
-        private void comboBox_devices_SelectedIndexChanged(object sender, EventArgs e)
+        #region Animation_Icons
+        private void button_check_MouseHover(object sender, EventArgs e)
         {
-            button_select_Click(sender, e);
+            button_check.BackgroundImage = AndroidManager_SHW.Properties.Resources.refresh_shield8h;
         }
+
+        private void button_check_MouseLeave(object sender, EventArgs e)
+        {
+            button_check.BackgroundImage = AndroidManager_SHW.Properties.Resources.refresh_shield8;
+        }
+        /// <summary>
+        /// hameye icon ha black And white mishe
+        /// </summary>
+        private void currentDeviceIsNullIcon()
+        {
+            button_fileManager.Enabled = button_software.Enabled = button_shutdown.Enabled = false;
+            button_fileManager.BackgroundImage = AndroidManager_SHW.Properties.Resources.file8bw;
+            button_software.BackgroundImage = AndroidManager_SHW.Properties.Resources.soft8bw;
+            button_shutdown.BackgroundImage = AndroidManager_SHW.Properties.Resources.power8bw;
+            button_mobileState.BackgroundImage = AndroidManager_SHW.Properties.Resources.mobileOffline;
+            button_backupDirectory.BackgroundImage = AndroidManager_SHW.Properties.Resources.backup8Orange;
+            panel_upLeftSide.BackgroundImage = AndroidManager_SHW.Properties.Resources.walpaperbw;
+        }
+
+        /// <summary>
+        /// icon haye karbordi,rangi va ghabele estefade beshe
+        /// </summary>
+        /// 
+        private void currentDeviceIsOn()
+        {
+            button_fileManager.Enabled = button_software.Enabled = button_shutdown.Enabled = button_setting.Enabled = true;
+            button_fileManager.BackgroundImage = AndroidManager_SHW.Properties.Resources.file8;
+            button_software.BackgroundImage = AndroidManager_SHW.Properties.Resources.soft8;
+            button_shutdown.BackgroundImage = AndroidManager_SHW.Properties.Resources.power8;
+            button_setting.BackgroundImage = AndroidManager_SHW.Properties.Resources.sett8h;
+            //pictureBox1.Image = AndroidManager_SHW.Properties.Resources.mobile;
+            button_mobileState.BackgroundImage = AndroidManager_SHW.Properties.Resources.mobileOnline;
+            button_backupDirectory.BackgroundImage = AndroidManager_SHW.Properties.Resources.backup8;
+            //panel_upLeftSide.BackColor = Color.FromArgb(178, 230, 213/*168, 220, 203*/);
+            panel_upLeftSide.BackgroundImage = AndroidManager_SHW.Properties.Resources.walpapernew6;
+        }
+
+        private void pictureBox_fileManager_MouseHover(object sender, EventArgs e)
+        {
+            button_fileManager.BackgroundImage = AndroidManager_SHW.Properties.Resources.file8h;
+            //  pictureBox_fileManager.Size = new Size(60, 60);
+        }
+
+        private void pictureBox_fileManager_MouseLeave(object sender, EventArgs e)
+        {
+            if (currentDevice == null)
+            {
+                return;
+            }
+            button_fileManager.BackgroundImage = AndroidManager_SHW.Properties.Resources.file8;
+            // pictureBox_fileManager.Size = new Size(55, 55);
+        }
+
+        private void pictureBox_software_MouseHover(object sender, EventArgs e)
+        {
+            button_software.BackgroundImage = AndroidManager_SHW.Properties.Resources.soft8h;
+            // pictureBox_software.Size = new Size(60, 60);
+        }
+
+        private void pictureBox_software_MouseLeave(object sender, EventArgs e)
+        {
+            if (currentDevice == null)
+            {
+                return;
+            }
+            button_software.BackgroundImage = AndroidManager_SHW.Properties.Resources.soft8;
+            //pictureBox_software.Size = new Size(55, 55);
+        }
+
+        private void pictureBox_code_MouseHover(object sender, EventArgs e)
+        {
+            button_shutdown.BackgroundImage = AndroidManager_SHW.Properties.Resources.power8h;
+            //pictureBox_code.Size = new Size(60, 60);
+        }
+
+        private void pictureBox_code_MouseLeave(object sender, EventArgs e)
+        {
+            if (currentDevice == null)
+            {
+                return;
+            }
+            button_shutdown.BackgroundImage = AndroidManager_SHW.Properties.Resources.power8;
+            //  pictureBox_code.Size = new Size(55, 55);
+        }
+
+        private void pictureBox_setting_MouseHover(object sender, EventArgs e)
+        {
+            button_setting.BackgroundImage = AndroidManager_SHW.Properties.Resources.sett8h;
+            // pictureBox_setting.Size = new Size(60, 60);
+        }
+
+        private void pictureBox_setting_MouseLeave(object sender, EventArgs e)
+        {
+            if (currentDevice == null)
+            {
+                return;
+            }
+            button_setting.BackgroundImage = AndroidManager_SHW.Properties.Resources.sett8;
+            // pictureBox_setting.Size = new Size(55, 55);
+        }
+
+
+        private void button_backupDirectory_MouseHover(object sender, EventArgs e)
+        {
+            if (currentDevice != null)
+            {
+                button_backupDirectory.BackgroundImage = AndroidManager_SHW.Properties.Resources.backup8h;
+            }
+            else
+            {
+                button_backupDirectory.BackgroundImage = AndroidManager_SHW.Properties.Resources.backup8Orangeh;
+            }
+        }
+
+        private void button_backupDirectory_MouseLeave(object sender, EventArgs e)
+        {
+            if (currentDevice != null)
+            {
+                button_backupDirectory.BackgroundImage = AndroidManager_SHW.Properties.Resources.backup8;
+            }
+            else
+            {
+                button_backupDirectory.BackgroundImage = AndroidManager_SHW.Properties.Resources.backup8Orange;
+            }
+        }
+
+        private void pictureBox_about_MouseHover(object sender, EventArgs e)
+        {
+            pictureBox_about.Image = AndroidManager_SHW.Properties.Resources.about8h;
+        }
+
+        private void pictureBox_about_MouseLeave(object sender, EventArgs e)
+        {
+            if (currentDevice == null)
+            {
+                return;
+            }
+            pictureBox_about.Image = AndroidManager_SHW.Properties.Resources.about8;
+        }
+
+
+        #endregion
 
 
         /// <summary>

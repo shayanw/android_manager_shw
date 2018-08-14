@@ -1,14 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using ADBProccessDLL;
-using SharpAdbClient;
 namespace AndroidManager_SHW
 {
     public partial class FileManager_CreateNewDir : Form
@@ -28,7 +20,7 @@ namespace AndroidManager_SHW
         {
             if (!string.IsNullOrEmpty(textBox_nameDir.Text))
             {
-                FM.CreateDirectory(Path, textBox_nameDir.Text.fixBracketInTerminal().EncodingText());
+                FM.CreateDirectory(Path, textBox_nameDir.Text.FixForbidCharInTerminal().EncodingText());
                 IsChangeValue = true;
             }
             this.Close();
