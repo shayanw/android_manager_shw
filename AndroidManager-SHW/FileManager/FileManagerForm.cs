@@ -379,7 +379,7 @@ namespace AndroidManager_SHW
             if (listView_files.SelectedItems.Count == 1)
             {
                 ADBFile tmpfile = ReturnAdbFileFromLVSelectItem(listView_files.SelectedItems[0]);
-                return "are you sure Delete" + " \"" + tmpfile.Name + " \"  ?\nSize: "+tmpfile.GetLengthDouble().humanReadable();
+                return "are you sure Delete" + " \"" + tmpfile.Name.DecodingText() + " \"  ?\nSize: "+tmpfile.GetLengthDouble().humanReadable();
             }
             else
             {
