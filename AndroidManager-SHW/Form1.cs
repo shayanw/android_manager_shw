@@ -27,6 +27,7 @@ namespace AndroidManager_SHW
         List<string[]> ListStateInstalledApk;
         ApkManager AM;
         string lastLableState;
+        string stateMessage;
         #endregion
 
         #region Constructor
@@ -40,6 +41,7 @@ namespace AndroidManager_SHW
             IsDisconnect = IsConnect = IsDebuging = false;
             TestDeviceConnect();
             st = new ADBProccessDLL.Setting();
+            stateMessage="";
 
         }
 
@@ -260,7 +262,7 @@ namespace AndroidManager_SHW
         private void button_about_Click(object sender, EventArgs e)
         {
             pictureBox_onMobileState_enable(sender);
-            if (MessageBox.Show("Create By ShayanW" + "\n\n" + "shayan.worthy@msn.com" + "\n\n" + "CopyRight 2018-2019" + "\n\n" + "Version: 0.95 Beta", "About Me", MessageBoxButtons.OK, MessageBoxIcon.Information)==DialogResult.OK)
+            if (MessageBox.Show("Create By ShayanW" + "\n\n" + "shayan.worthy@msn.com" + "\n\n" + "CopyRight 2018-2019" + "\n\n" + "Version: 0.95.2 Beta", "About Me", MessageBoxButtons.OK, MessageBoxIcon.Information)==DialogResult.OK)
             {
                 pictureBox_onMobileState.Visible = false;
             }
@@ -305,6 +307,15 @@ namespace AndroidManager_SHW
         #endregion
 
         #region buttons other and all about these
+
+        private void button_state_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show(stateMessage, "install status", MessageBoxButtons.OK, MessageBoxIcon.Information) == DialogResult.OK)
+            {
+                stateMessage = "";
+                button_state.Visible = false;
+            }
+        }
 
         /// <summary>
         /// az Form_networkADB nemune sakhte mishe va ShowDialog mishe 
@@ -506,20 +517,19 @@ namespace AndroidManager_SHW
 
         private void backgroundWorker_installApk_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-
+            label_state.Text = "Finished...";
             string tmpMessage = "";
             foreach (string[] item2 in ListStateInstalledApk)
             {
                 tmpMessage += string.Format("{0}     > {1} \n",item2[0],item2[1]);
             }
-            if (MessageBox.Show(tmpMessage, "install status", MessageBoxButtons.OK, MessageBoxIcon.Information)==DialogResult.OK)
-            {
-                label_state.Text = lastLableState;
-                panel_downLeftSide.BackColor = Color.GreenYellow;
-                panel_upLeftSide.BackgroundImage = AndroidManager_SHW.Properties.Resources.walpapernew6;
-                pictureBox_onMobileState.Visible = false;
-            }
+            stateMessage += tmpMessage;
+            button_state.Visible = true;
 
+            label_state.Text = lastLableState;
+            panel_downLeftSide.BackColor = Color.GreenYellow;
+            panel_upLeftSide.BackgroundImage = AndroidManager_SHW.Properties.Resources.walpapernew6;
+            pictureBox_onMobileState.Visible = false;
         }
         #endregion
 
@@ -658,6 +668,18 @@ namespace AndroidManager_SHW
         {
             button_about.BackgroundImage = AndroidManager_SHW.Properties.Resources.about8h;
         }
+
+        private void button_state_MouseHover(object sender, EventArgs e)
+        {
+            button_state.BackgroundImage = AndroidManager_SHW.Properties.Resources.infoh;
+        }
+
+        private void button_state_MouseLeave(object sender, EventArgs e)
+        {
+            button_state.BackgroundImage = AndroidManager_SHW.Properties.Resources.info;
+        }
+
+
 
         private void button_about_MouseLeave(object sender, EventArgs e)
         {
