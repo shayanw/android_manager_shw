@@ -434,7 +434,7 @@ namespace AndroidManager_SHW
                 List<ADBFile> listFilesTmp = new List<ADBFile>();
                 foreach (ListViewItem item in listView_files.SelectedItems)
                 {
-                    listFilesTmp.Add(new ADBFile(device, item.Name.FixForbidCharInTerminal()));
+                    listFilesTmp.Add(ReturnAdbFileFromLVSelectItem(item));
                 }
                 TransferForm transferform = new TransferForm(TransferType.BackingUp, listFilesTmp, backupPath, fm);
                 IsTransfer = true;
@@ -1015,14 +1015,6 @@ namespace AndroidManager_SHW
 
         private void backgroundWorker_ProccessSize_DoWork(object sender, DoWorkEventArgs e)
         {
-            //if (fm.ListAdbFiles.Count > 50 || !IsShowSize)
-            //{
-            //    return;
-            //}
-            //foreach (ADBFile tmpfile in fm.ListAdbFiles)
-            //{
-            //    tmpfile.GetLengthDouble();
-            //}
             backgroundWorker_ProccessSize.ReportProgress(-1,"Size: "+tmpAdbFile.GetLengthDouble().humanReadable());
         }
 
