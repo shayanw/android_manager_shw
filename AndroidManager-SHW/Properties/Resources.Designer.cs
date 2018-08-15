@@ -413,6 +413,16 @@ namespace AndroidManager_SHW.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap mobileNewOnline {
+            get {
+                object obj = ResourceManager.GetObject("mobileNewOnline", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap mobileOffline {
             get {
                 object obj = ResourceManager.GetObject("mobileOffline", resourceCulture);

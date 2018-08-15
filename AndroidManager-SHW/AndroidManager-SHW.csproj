@@ -227,6 +227,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="if_android_1220337.ico" />
+    <None Include="Resources\mobileNewOnline.png" />
     <None Include="Resources\infoh.png" />
     <None Include="Resources\info.png" />
     <None Include="Resources\network.png" />

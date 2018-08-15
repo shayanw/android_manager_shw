@@ -33,8 +33,6 @@
             this.label_state = new System.Windows.Forms.Label();
             this.panel_leftSide = new System.Windows.Forms.Panel();
             this.panel_upLeftSide = new System.Windows.Forms.Panel();
-            this.pictureBox_onMobileState = new System.Windows.Forms.PictureBox();
-            this.button_mobileState = new System.Windows.Forms.Button();
             this.label_devices = new System.Windows.Forms.Label();
             this.comboBox_devices = new System.Windows.Forms.ComboBox();
             this.label_serial = new System.Windows.Forms.Label();
@@ -43,35 +41,37 @@
             this.label_battery = new System.Windows.Forms.Label();
             this.button_network = new System.Windows.Forms.Button();
             this.button_reconnect = new System.Windows.Forms.Button();
-            this.button_check = new System.Windows.Forms.Button();
             this.panel_downLeftSide = new System.Windows.Forms.Panel();
             this.panel_dslL = new System.Windows.Forms.Panel();
             this.panel_dlsR = new System.Windows.Forms.Panel();
-            this.button_state = new System.Windows.Forms.Button();
             this.toolTip_fileManager = new System.Windows.Forms.ToolTip(this.components);
-            this.button_software = new System.Windows.Forms.Button();
-            this.button_fileManager = new System.Windows.Forms.Button();
             this.panel_rightSide = new System.Windows.Forms.Panel();
+            this.backgroundWorker_refreshCombo = new System.ComponentModel.BackgroundWorker();
+            this.timer_event = new System.Windows.Forms.Timer(this.components);
+            this.contextMenuStrip_reboot = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.backgroundWorker_installApk = new System.ComponentModel.BackgroundWorker();
             this.button_backupDirectory = new System.Windows.Forms.Button();
             this.button_about = new System.Windows.Forms.Button();
             this.button_setting = new System.Windows.Forms.Button();
             this.button_shutdown = new System.Windows.Forms.Button();
-            this.backgroundWorker_refreshCombo = new System.ComponentModel.BackgroundWorker();
-            this.timer_event = new System.Windows.Forms.Timer(this.components);
-            this.contextMenuStrip_reboot = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.button_software = new System.Windows.Forms.Button();
+            this.button_fileManager = new System.Windows.Forms.Button();
+            this.pictureBox_onMobileState = new System.Windows.Forms.PictureBox();
+            this.button_mobileState = new System.Windows.Forms.Button();
+            this.button_check = new System.Windows.Forms.Button();
+            this.button_state = new System.Windows.Forms.Button();
             this.rebootToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.recoveryToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.bootloaderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.shutdownToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.backgroundWorker_installApk = new System.ComponentModel.BackgroundWorker();
             this.panel_leftSide.SuspendLayout();
             this.panel_upLeftSide.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_onMobileState)).BeginInit();
             this.panel_downLeftSide.SuspendLayout();
             this.panel_dslL.SuspendLayout();
             this.panel_dlsR.SuspendLayout();
             this.panel_rightSide.SuspendLayout();
             this.contextMenuStrip_reboot.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_onMobileState)).BeginInit();
             this.SuspendLayout();
             // 
             // label_state
@@ -120,32 +120,6 @@
             this.panel_upLeftSide.DragDrop += new System.Windows.Forms.DragEventHandler(this.panel_upLeftSide_DragDrop);
             this.panel_upLeftSide.DragEnter += new System.Windows.Forms.DragEventHandler(this.panel_upLeftSide_DragEnter);
             this.panel_upLeftSide.DragLeave += new System.EventHandler(this.panel_upLeftSide_DragLeave);
-            // 
-            // pictureBox_onMobileState
-            // 
-            this.pictureBox_onMobileState.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox_onMobileState.Image = global::AndroidManager_SHW.Properties.Resources.network;
-            this.pictureBox_onMobileState.Location = new System.Drawing.Point(85, 320);
-            this.pictureBox_onMobileState.Name = "pictureBox_onMobileState";
-            this.pictureBox_onMobileState.Size = new System.Drawing.Size(130, 193);
-            this.pictureBox_onMobileState.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox_onMobileState.TabIndex = 4;
-            this.pictureBox_onMobileState.TabStop = false;
-            this.pictureBox_onMobileState.Visible = false;
-            // 
-            // button_mobileState
-            // 
-            this.button_mobileState.BackColor = System.Drawing.Color.Transparent;
-            this.button_mobileState.BackgroundImage = global::AndroidManager_SHW.Properties.Resources.mobileOnline;
-            this.button_mobileState.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button_mobileState.Enabled = false;
-            this.button_mobileState.FlatAppearance.BorderSize = 0;
-            this.button_mobileState.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_mobileState.Location = new System.Drawing.Point(25, 288);
-            this.button_mobileState.Name = "button_mobileState";
-            this.button_mobileState.Size = new System.Drawing.Size(256, 256);
-            this.button_mobileState.TabIndex = 3;
-            this.button_mobileState.UseVisualStyleBackColor = false;
             // 
             // label_devices
             // 
@@ -246,25 +220,6 @@
             this.button_reconnect.UseVisualStyleBackColor = false;
             this.button_reconnect.Click += new System.EventHandler(this.button_reconnect_Click);
             // 
-            // button_check
-            // 
-            this.button_check.BackColor = System.Drawing.Color.Transparent;
-            this.button_check.BackgroundImage = global::AndroidManager_SHW.Properties.Resources.refresh_shield8;
-            this.button_check.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button_check.FlatAppearance.BorderColor = System.Drawing.Color.DimGray;
-            this.button_check.FlatAppearance.BorderSize = 0;
-            this.button_check.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_check.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_check.Location = new System.Drawing.Point(264, 38);
-            this.button_check.Name = "button_check";
-            this.button_check.Size = new System.Drawing.Size(28, 28);
-            this.button_check.TabIndex = 1;
-            this.toolTip_fileManager.SetToolTip(this.button_check, "Refresh Device List");
-            this.button_check.UseVisualStyleBackColor = false;
-            this.button_check.Click += new System.EventHandler(this.button_check_Click);
-            this.button_check.MouseLeave += new System.EventHandler(this.button_check_MouseLeave);
-            this.button_check.MouseHover += new System.EventHandler(this.button_check_MouseHover);
-            // 
             // panel_downLeftSide
             // 
             this.panel_downLeftSide.BackColor = System.Drawing.Color.Silver;
@@ -297,71 +252,12 @@
             this.panel_dlsR.Size = new System.Drawing.Size(35, 35);
             this.panel_dlsR.TabIndex = 0;
             // 
-            // button_state
-            // 
-            this.button_state.BackColor = System.Drawing.Color.Transparent;
-            this.button_state.BackgroundImage = global::AndroidManager_SHW.Properties.Resources.info;
-            this.button_state.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button_state.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button_state.FlatAppearance.BorderSize = 0;
-            this.button_state.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.button_state.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.button_state.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_state.Location = new System.Drawing.Point(0, 0);
-            this.button_state.Name = "button_state";
-            this.button_state.Size = new System.Drawing.Size(35, 35);
-            this.button_state.TabIndex = 8;
-            this.toolTip_fileManager.SetToolTip(this.button_state, "informations about instaltions state");
-            this.button_state.UseVisualStyleBackColor = false;
-            this.button_state.Visible = false;
-            this.button_state.Click += new System.EventHandler(this.button_state_Click);
-            this.button_state.MouseLeave += new System.EventHandler(this.button_state_MouseLeave);
-            this.button_state.MouseHover += new System.EventHandler(this.button_state_MouseHover);
-            // 
             // toolTip_fileManager
             // 
             this.toolTip_fileManager.BackColor = System.Drawing.Color.MediumAquamarine;
             this.toolTip_fileManager.ForeColor = System.Drawing.SystemColors.ControlText;
             this.toolTip_fileManager.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             this.toolTip_fileManager.ToolTipTitle = "details";
-            // 
-            // button_software
-            // 
-            this.button_software.BackColor = System.Drawing.Color.Transparent;
-            this.button_software.BackgroundImage = global::AndroidManager_SHW.Properties.Resources.soft8h;
-            this.button_software.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button_software.FlatAppearance.BorderSize = 0;
-            this.button_software.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.button_software.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.button_software.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_software.Location = new System.Drawing.Point(15, 113);
-            this.button_software.Name = "button_software";
-            this.button_software.Size = new System.Drawing.Size(55, 55);
-            this.button_software.TabIndex = 5;
-            this.toolTip_fileManager.SetToolTip(this.button_software, "Package manager | you can install and unistall,backup apps...");
-            this.button_software.UseVisualStyleBackColor = false;
-            this.button_software.Click += new System.EventHandler(this.button_software_Click);
-            this.button_software.MouseLeave += new System.EventHandler(this.pictureBox_software_MouseLeave);
-            this.button_software.MouseHover += new System.EventHandler(this.pictureBox_software_MouseHover);
-            // 
-            // button_fileManager
-            // 
-            this.button_fileManager.BackColor = System.Drawing.Color.Transparent;
-            this.button_fileManager.BackgroundImage = global::AndroidManager_SHW.Properties.Resources.file8h;
-            this.button_fileManager.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button_fileManager.FlatAppearance.BorderSize = 0;
-            this.button_fileManager.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.button_fileManager.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.button_fileManager.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_fileManager.Location = new System.Drawing.Point(15, 26);
-            this.button_fileManager.Name = "button_fileManager";
-            this.button_fileManager.Size = new System.Drawing.Size(55, 55);
-            this.button_fileManager.TabIndex = 4;
-            this.toolTip_fileManager.SetToolTip(this.button_fileManager, "File manager | you can copy,cut,delete,upload,backup ...");
-            this.button_fileManager.UseVisualStyleBackColor = false;
-            this.button_fileManager.Click += new System.EventHandler(this.button_fileManager_Click);
-            this.button_fileManager.MouseLeave += new System.EventHandler(this.pictureBox_fileManager_MouseLeave);
-            this.button_fileManager.MouseHover += new System.EventHandler(this.pictureBox_fileManager_MouseHover);
             // 
             // panel_rightSide
             // 
@@ -379,6 +275,38 @@
             this.panel_rightSide.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.panel_rightSide.Size = new System.Drawing.Size(81, 603);
             this.panel_rightSide.TabIndex = 5;
+            // 
+            // backgroundWorker_refreshCombo
+            // 
+            this.backgroundWorker_refreshCombo.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker_refreshCombo_DoWork);
+            this.backgroundWorker_refreshCombo.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker_refreshCombo_RunWorkerCompleted);
+            // 
+            // timer_event
+            // 
+            this.timer_event.Enabled = true;
+            this.timer_event.Interval = 1000;
+            this.timer_event.Tick += new System.EventHandler(this.timer_event_Tick);
+            // 
+            // contextMenuStrip_reboot
+            // 
+            this.contextMenuStrip_reboot.BackColor = System.Drawing.Color.White;
+            this.contextMenuStrip_reboot.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.contextMenuStrip_reboot.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.rebootToolStripMenuItem1,
+            this.recoveryToolStripMenuItem1,
+            this.bootloaderToolStripMenuItem,
+            this.shutdownToolStripMenuItem1});
+            this.contextMenuStrip_reboot.Name = "contextMenuStrip_reboot";
+            this.contextMenuStrip_reboot.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
+            this.contextMenuStrip_reboot.Size = new System.Drawing.Size(158, 108);
+            // 
+            // backgroundWorker_installApk
+            // 
+            this.backgroundWorker_installApk.WorkerReportsProgress = true;
+            this.backgroundWorker_installApk.WorkerSupportsCancellation = true;
+            this.backgroundWorker_installApk.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker_installApk_DoWork);
+            this.backgroundWorker_installApk.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker_installApk_ProgressChanged);
+            this.backgroundWorker_installApk.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker_installApk_RunWorkerCompleted);
             // 
             // button_backupDirectory
             // 
@@ -456,29 +384,109 @@
             this.button_shutdown.MouseLeave += new System.EventHandler(this.pictureBox_code_MouseLeave);
             this.button_shutdown.MouseHover += new System.EventHandler(this.pictureBox_code_MouseHover);
             // 
-            // backgroundWorker_refreshCombo
+            // button_software
             // 
-            this.backgroundWorker_refreshCombo.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker_refreshCombo_DoWork);
-            this.backgroundWorker_refreshCombo.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker_refreshCombo_RunWorkerCompleted);
+            this.button_software.BackColor = System.Drawing.Color.Transparent;
+            this.button_software.BackgroundImage = global::AndroidManager_SHW.Properties.Resources.soft8h;
+            this.button_software.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button_software.FlatAppearance.BorderSize = 0;
+            this.button_software.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.button_software.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.button_software.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_software.Location = new System.Drawing.Point(15, 113);
+            this.button_software.Name = "button_software";
+            this.button_software.Size = new System.Drawing.Size(55, 55);
+            this.button_software.TabIndex = 5;
+            this.toolTip_fileManager.SetToolTip(this.button_software, "Package manager | you can install and unistall,backup apps...");
+            this.button_software.UseVisualStyleBackColor = false;
+            this.button_software.Click += new System.EventHandler(this.button_software_Click);
+            this.button_software.MouseLeave += new System.EventHandler(this.pictureBox_software_MouseLeave);
+            this.button_software.MouseHover += new System.EventHandler(this.pictureBox_software_MouseHover);
             // 
-            // timer_event
+            // button_fileManager
             // 
-            this.timer_event.Enabled = true;
-            this.timer_event.Interval = 1000;
-            this.timer_event.Tick += new System.EventHandler(this.timer_event_Tick);
+            this.button_fileManager.BackColor = System.Drawing.Color.Transparent;
+            this.button_fileManager.BackgroundImage = global::AndroidManager_SHW.Properties.Resources.file8h;
+            this.button_fileManager.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button_fileManager.FlatAppearance.BorderSize = 0;
+            this.button_fileManager.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.button_fileManager.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.button_fileManager.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_fileManager.Location = new System.Drawing.Point(15, 26);
+            this.button_fileManager.Name = "button_fileManager";
+            this.button_fileManager.Size = new System.Drawing.Size(55, 55);
+            this.button_fileManager.TabIndex = 4;
+            this.toolTip_fileManager.SetToolTip(this.button_fileManager, "File manager | you can copy,cut,delete,upload,backup ...");
+            this.button_fileManager.UseVisualStyleBackColor = false;
+            this.button_fileManager.Click += new System.EventHandler(this.button_fileManager_Click);
+            this.button_fileManager.MouseLeave += new System.EventHandler(this.pictureBox_fileManager_MouseLeave);
+            this.button_fileManager.MouseHover += new System.EventHandler(this.pictureBox_fileManager_MouseHover);
             // 
-            // contextMenuStrip_reboot
+            // pictureBox_onMobileState
             // 
-            this.contextMenuStrip_reboot.BackColor = System.Drawing.Color.White;
-            this.contextMenuStrip_reboot.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.contextMenuStrip_reboot.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.rebootToolStripMenuItem1,
-            this.recoveryToolStripMenuItem1,
-            this.bootloaderToolStripMenuItem,
-            this.shutdownToolStripMenuItem1});
-            this.contextMenuStrip_reboot.Name = "contextMenuStrip_reboot";
-            this.contextMenuStrip_reboot.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.contextMenuStrip_reboot.Size = new System.Drawing.Size(158, 108);
+            this.pictureBox_onMobileState.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox_onMobileState.Image = global::AndroidManager_SHW.Properties.Resources.network;
+            this.pictureBox_onMobileState.Location = new System.Drawing.Point(90, 321);
+            this.pictureBox_onMobileState.Name = "pictureBox_onMobileState";
+            this.pictureBox_onMobileState.Size = new System.Drawing.Size(126, 190);
+            this.pictureBox_onMobileState.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox_onMobileState.TabIndex = 4;
+            this.pictureBox_onMobileState.TabStop = false;
+            this.pictureBox_onMobileState.Visible = false;
+            // 
+            // button_mobileState
+            // 
+            this.button_mobileState.BackColor = System.Drawing.Color.Transparent;
+            this.button_mobileState.BackgroundImage = global::AndroidManager_SHW.Properties.Resources.mobileNewOnline;
+            this.button_mobileState.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button_mobileState.Enabled = false;
+            this.button_mobileState.FlatAppearance.BorderSize = 0;
+            this.button_mobileState.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_mobileState.Location = new System.Drawing.Point(25, 288);
+            this.button_mobileState.Name = "button_mobileState";
+            this.button_mobileState.Size = new System.Drawing.Size(256, 256);
+            this.button_mobileState.TabIndex = 3;
+            this.button_mobileState.UseVisualStyleBackColor = false;
+            // 
+            // button_check
+            // 
+            this.button_check.BackColor = System.Drawing.Color.Transparent;
+            this.button_check.BackgroundImage = global::AndroidManager_SHW.Properties.Resources.refresh_shield8;
+            this.button_check.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button_check.FlatAppearance.BorderColor = System.Drawing.Color.DimGray;
+            this.button_check.FlatAppearance.BorderSize = 0;
+            this.button_check.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_check.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_check.Location = new System.Drawing.Point(264, 38);
+            this.button_check.Name = "button_check";
+            this.button_check.Size = new System.Drawing.Size(28, 28);
+            this.button_check.TabIndex = 1;
+            this.toolTip_fileManager.SetToolTip(this.button_check, "Refresh Device List");
+            this.button_check.UseVisualStyleBackColor = false;
+            this.button_check.Click += new System.EventHandler(this.button_check_Click);
+            this.button_check.MouseLeave += new System.EventHandler(this.button_check_MouseLeave);
+            this.button_check.MouseHover += new System.EventHandler(this.button_check_MouseHover);
+            // 
+            // button_state
+            // 
+            this.button_state.BackColor = System.Drawing.Color.Transparent;
+            this.button_state.BackgroundImage = global::AndroidManager_SHW.Properties.Resources.info;
+            this.button_state.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button_state.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button_state.FlatAppearance.BorderSize = 0;
+            this.button_state.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.button_state.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.button_state.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_state.Location = new System.Drawing.Point(0, 0);
+            this.button_state.Name = "button_state";
+            this.button_state.Size = new System.Drawing.Size(35, 35);
+            this.button_state.TabIndex = 8;
+            this.toolTip_fileManager.SetToolTip(this.button_state, "informations about instaltions state");
+            this.button_state.UseVisualStyleBackColor = false;
+            this.button_state.Visible = false;
+            this.button_state.Click += new System.EventHandler(this.button_state_Click);
+            this.button_state.MouseLeave += new System.EventHandler(this.button_state_MouseLeave);
+            this.button_state.MouseHover += new System.EventHandler(this.button_state_MouseHover);
             // 
             // rebootToolStripMenuItem1
             // 
@@ -512,14 +520,6 @@
             this.shutdownToolStripMenuItem1.Text = "Shutdown";
             this.shutdownToolStripMenuItem1.Click += new System.EventHandler(this.shutdownToolStripMenuItem_Click);
             // 
-            // backgroundWorker_installApk
-            // 
-            this.backgroundWorker_installApk.WorkerReportsProgress = true;
-            this.backgroundWorker_installApk.WorkerSupportsCancellation = true;
-            this.backgroundWorker_installApk.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker_installApk_DoWork);
-            this.backgroundWorker_installApk.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker_installApk_ProgressChanged);
-            this.backgroundWorker_installApk.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker_installApk_RunWorkerCompleted);
-            // 
             // HomeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -536,12 +536,12 @@
             this.Load += new System.EventHandler(this.HomeForm_Load);
             this.panel_leftSide.ResumeLayout(false);
             this.panel_upLeftSide.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_onMobileState)).EndInit();
             this.panel_downLeftSide.ResumeLayout(false);
             this.panel_dslL.ResumeLayout(false);
             this.panel_dlsR.ResumeLayout(false);
             this.panel_rightSide.ResumeLayout(false);
             this.contextMenuStrip_reboot.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_onMobileState)).EndInit();
             this.ResumeLayout(false);
 
         }

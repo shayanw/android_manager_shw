@@ -263,7 +263,7 @@ namespace AndroidManager_SHW
         private void button_about_Click(object sender, EventArgs e)
         {
             pictureBox_onMobileState_enable(sender);
-            if (MessageBox.Show("Create By ShayanW" + "\n\n" + "shayan.worthy@msn.com" + "\n\n" + "CopyRight 2018-2019" + "\n\n" + "Version: 0.95.8 Beta", "About Me", MessageBoxButtons.OK, MessageBoxIcon.Information)==DialogResult.OK)
+            if (MessageBox.Show("Create By ShayanW" + "\n\n" + "shayan.worthy@msn.com" + "\n\n" + "CopyRight 2018-2019" + "\n\n" + "Version: 0.95.9 Beta", "About Me", MessageBoxButtons.OK, MessageBoxIcon.Information)==DialogResult.OK)
             {
                 pictureBox_onMobileState.Visible = false;
             }
@@ -571,7 +571,7 @@ namespace AndroidManager_SHW
             button_shutdown.BackgroundImage = AndroidManager_SHW.Properties.Resources.power8;
             button_setting.BackgroundImage = AndroidManager_SHW.Properties.Resources.sett8h;
             //pictureBox1.Image = AndroidManager_SHW.Properties.Resources.mobile;
-            button_mobileState.BackgroundImage = AndroidManager_SHW.Properties.Resources.mobileOnline;
+            button_mobileState.BackgroundImage = AndroidManager_SHW.Properties.Resources.mobileNewOnline;
             button_backupDirectory.BackgroundImage = AndroidManager_SHW.Properties.Resources.backup8;
             //panel_upLeftSide.BackColor = Color.FromArgb(178, 230, 213/*168, 220, 203*/);
             panel_upLeftSide.BackgroundImage = AndroidManager_SHW.Properties.Resources.walpapernew6;
