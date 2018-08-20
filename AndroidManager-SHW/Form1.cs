@@ -21,6 +21,7 @@ namespace AndroidManager_SHW
         public static DeviceData currentDevice;
         List<Form> childForms = new List<Form>();
         bool IsDisconnect, IsConnect, IsDebuging;
+        bool EnterButtonReconnect = false;
         ADBProccessDLL.Setting st;
 
         List<FileInfo> listTmpApks;
@@ -33,20 +34,26 @@ namespace AndroidManager_SHW
         #region Constructor
         public HomeForm()
         {
-
             InitializeComponent();
             server = new AdbServer();
             currentDevice = null;
             IsDisconnect = IsConnect = IsDebuging = false;
-            TestDeviceConnect();
             st = new ADBProccessDLL.Setting();
             stateMessage="";
-
+            backgroundWorker_reconnectDevice.RunWorkerAsync();
         }
 
         private void HomeForm_Load(object sender, EventArgs e)
         {
             RefreshDevices();
+            try
+            {
+                TestDeviceConnect();
+            }
+            catch
+            {
+                panel_errorDeviceTest.Visible = panel_errorDeviceTest.Enabled = true;
+            }
         }
         #endregion
 
@@ -56,6 +63,23 @@ namespace AndroidManager_SHW
             //hame icon ha black and white she
             currentDeviceIsNullIcon();
             panel_upLeftSide.AllowDrop = false;
+
+
+
+            //item haye combobox pak she
+            comboBox_devices.Items.Clear();
+
+            //arzeshe item ha va namayeshe una bar asase Model Device bashe...
+            comboBox_devices.ValueMember = "Model";
+            comboBox_devices.DisplayMember = "Model";
+
+            //tamame label ha vaziat nabud dastgah ro neshun midan
+            label_model.Text = "[ No Device ! ]";
+            label_vAndroid.Text = label_battery.Text = label_serial.Text = " ";
+            panel_downLeftSide.BackColor = Color.Silver;
+            label_state.Text = "State: Offline";
+
+
             //liste device haye motasel dar devices entesab mishe
             try
             {
@@ -63,8 +87,10 @@ namespace AndroidManager_SHW
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                
+                //MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                currentDevice = null;
+                currentDeviceIsNullIcon();
+                return;
             }
 
             //age currentDevice vujud dasht...
@@ -77,30 +103,23 @@ namespace AndroidManager_SHW
                     currentDeviceIsNullIcon();
                 }
             }
-            
-            //item haye combobox pak she
-            comboBox_devices.Items.Clear();
 
-            //tamame item haye devices tuye item haye comboBox entesab she
-            comboBox_devices.Items.AddRange(devices.ToArray());
 
-            //arzeshe item ha va namayeshe una bar asase Model Device bashe...
-            comboBox_devices.ValueMember = "Model";
-            comboBox_devices.DisplayMember = "Model";
 
-            //tamame label ha vaziat nabud dastgah ro neshun midan
-            label_model.Text = "[ No Device ! ]";
-            label_vAndroid.Text = label_battery.Text =label_serial.Text = " ";
-            panel_downLeftSide.BackColor = Color.Silver;
-            label_state.Text = "State: Offline";
-
-            //age dastgahi vojud dasht va currentDevice null bud=> avalin dastgah ro currentDevice entesab kon
-            if (devices.Count > 0 && currentDevice == null)
+            if (devices!=null)
             {
-                currentDevice = devices[0];
+                //tamame item haye devices tuye item haye comboBox entesab she
+                comboBox_devices.Items.AddRange(devices.ToArray());
+
+                //age dastgahi vojud dasht va currentDevice null bud=> avalin dastgah ro currentDevice entesab kon
+                if (devices.Count > 0 && currentDevice == null)
+                {
+                    currentDevice = devices[0];
+                }
+                selectDevice();
             }
 
-            selectDevice();
+           
 
         }
 
@@ -263,7 +282,7 @@ namespace AndroidManager_SHW
         private void button_about_Click(object sender, EventArgs e)
         {
             pictureBox_onMobileState_enable(sender);
-            if (MessageBox.Show("Create By ShayanW" + "\n\n" + "shayan.worthy@msn.com" + "\n\n" + "CopyRight 2018-2019" + "\n\n" + "Version: 0.95.10 Beta", "About Me", MessageBoxButtons.OK, MessageBoxIcon.Information)==DialogResult.OK)
+            if (MessageBox.Show("Create By ShayanW" + "\n\n" + "shayan.worthy@msn.com" + "\n\n" + "CopyRight 2018-2019" + "\n\n" + "Version: 0.96 Beta", "About Me", MessageBoxButtons.OK, MessageBoxIcon.Information)==DialogResult.OK)
             {
                 pictureBox_onMobileState.Visible = false;
             }
@@ -343,19 +362,8 @@ namespace AndroidManager_SHW
 
         private void button_reconnect_Click(object sender, EventArgs e)
         {
-            string cmdadb = "";
-
-            if (currentDevice == null)
-            {
-                cmdadb = "reconnect";
-            }
-            else
-            {
-                cmdadb = string.Format("-s {0} reconnect", currentDevice.Serial);
-            }
-
-            ExternalMethod.AdbCommand(cmdadb);
-            RefreshDevices();
+            EnterButtonReconnect = true;
+            backgroundWorker_reconnectDevice.RunWorkerAsync();
         }
 
         private void button_check_Click(object sender, EventArgs e)
@@ -672,6 +680,36 @@ namespace AndroidManager_SHW
         private void button_state_MouseHover(object sender, EventArgs e)
         {
             button_state.BackgroundImage = AndroidManager_SHW.Properties.Resources.infoh;
+        }
+
+        private void backgroundWorker_reconnectDevice_DoWork(object sender, DoWorkEventArgs e)
+        {
+            string cmdadb = "";
+
+            if (currentDevice == null)
+            {
+                cmdadb = "reconnect";
+            }
+            else
+            {
+                cmdadb = string.Format("-s {0} reconnect", currentDevice.Serial);
+            }
+
+            ExternalMethod.AdbCommand(cmdadb);
+        }
+
+        private void backgroundWorker_reconnectDevice_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if (EnterButtonReconnect)
+            {
+                EnterButtonReconnect = false;
+                RefreshDevices();
+            }
+        }
+
+        private void panel_upLeftSide_Paint(object sender, PaintEventArgs e)
+        {
+
         }
 
         private void button_state_MouseLeave(object sender, EventArgs e)
