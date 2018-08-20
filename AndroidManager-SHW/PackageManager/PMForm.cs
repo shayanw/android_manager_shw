@@ -93,7 +93,7 @@ namespace AndroidManager_SHW.PackageManager
             label_statePackage.Text = "Proccess " + e.ProgressPercentage + "/" + TotalPackage + " Packages";
             string[] tmpList = (string[])e.UserState;
 
-            int indexRow= dataGridView_devicePackages.Rows.Add(tmpList[0], tmpList[1]);
+            int indexRow = dataGridView_devicePackages.Rows.Add(tmpList[0], tmpList[1]);
             int stateExistBackup = am.ExistBackup(tmpList[1], tmpList[0]);
             if (stateExistBackup == 0)
             {
@@ -114,7 +114,7 @@ namespace AndroidManager_SHW.PackageManager
 
             }
 
-            
+
 
         }
         private void backgroundWorker_setDataGridView_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -138,12 +138,24 @@ namespace AndroidManager_SHW.PackageManager
         private void button_unistallDevicePackages_Click(object sender, EventArgs e)
         {
             int countrows = dataGridView_devicePackages.SelectedRows.Count;
+            string tmpMessage = "";
             if (countrows == 0)
             {
                 return;
             }
 
-            if (DialogResult.Yes == MessageBox.Show("Are You Sure Delete " + countrows + " Packages?", "Unistall...", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
+            if (countrows == 1)
+            {
+                string k = dataGridView_devicePackages.SelectedRows[0].Cells["Name"].Value.ToString();
+                string nameAppTmp = MyPackages.Where(a => a.Key == k).FirstOrDefault().Key;
+                tmpMessage = "Are You Sure Delete " + nameAppTmp + " ?";
+            }
+            else
+            {
+                tmpMessage = "Are You Sure Delete " + countrows + " Application?";
+            }
+
+            if (DialogResult.Yes == MessageBox.Show(tmpMessage, "Unistall...", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
             {
                 SelectedItemsForUnistall.Clear();
                 foreach (DataGridViewRow oneRow in dataGridView_devicePackages.SelectedRows)
@@ -191,7 +203,8 @@ namespace AndroidManager_SHW.PackageManager
 
         private void dataGridView_devicePackages_SelectionChanged(object sender, EventArgs e)
         {
-            if (dataGridView_devicePackages.SelectedRows.Count == 1)
+            int countrows = dataGridView_devicePackages.SelectedRows.Count;
+            if (countrows == 1)
             {
                 try
                 {
@@ -204,6 +217,12 @@ namespace AndroidManager_SHW.PackageManager
                 {
                     return;
                 }
+            }
+            else if (countrows > 1)
+            {
+
+                label_addressPackage.Text = "";
+                label_namePackage.Text = countrows + " Application Selected";
             }
         }
 
@@ -346,12 +365,23 @@ namespace AndroidManager_SHW.PackageManager
         private void backupToolStripMenuItem_Click(object sender, EventArgs e)
         {
             int countrows = dataGridView_devicePackages.SelectedRows.Count;
+            string tmpMessage = "";
             if (countrows == 0)
             {
                 return;
             }
-
-            if (DialogResult.Yes == MessageBox.Show("Are You Sure Backup " + countrows + " Packages?", "Backing Up...", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
+            if (countrows == 1)
+            {
+                string k = dataGridView_devicePackages.SelectedRows[0].Cells["Name"].Value.ToString();
+                string nameAppTmp = MyPackages.Where(a => a.Key == k).FirstOrDefault().Key;
+                tmpMessage = "Are You Sure Backup " + nameAppTmp + " ?";
+            }
+            else
+            {
+                tmpMessage = "Are You Sure Backup " + countrows + " Application?";
+            }
+            
+            if (DialogResult.Yes == MessageBox.Show(tmpMessage, "Backing Up...", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
             {
                 SelectedItemsForBackup.Clear();
                 foreach (DataGridViewRow oneRow in dataGridView_devicePackages.SelectedRows)
@@ -379,7 +409,7 @@ namespace AndroidManager_SHW.PackageManager
                 string k = oneRow.Cells["Name"].Value.ToString();
                 string addressPackage = MyPackages.Where(a => a.Key == k).FirstOrDefault().Value;
                 string namePackage = MyPackages.Where(a => a.Key == k).FirstOrDefault().Key;
-      
+
                 if (am.BackupApk(addressPackage, versionPackage, namePackage))
                 {
                     success++;
@@ -431,7 +461,7 @@ namespace AndroidManager_SHW.PackageManager
         {
             string[] files = (string[])e.Data.GetData(DataFormats.FileDrop, false);
             foreach (string itemFile in files)
-            { 
+            {
                 if (File.Exists(itemFile))
                 {
                     addToListBox_TempPackages(itemFile);
