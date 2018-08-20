@@ -33,6 +33,7 @@
             this.label_state = new System.Windows.Forms.Label();
             this.panel_leftSide = new System.Windows.Forms.Panel();
             this.panel_upLeftSide = new System.Windows.Forms.Panel();
+            this.panel_errorDeviceTest = new System.Windows.Forms.Panel();
             this.pictureBox_onMobileState = new System.Windows.Forms.PictureBox();
             this.button_mobileState = new System.Windows.Forms.Button();
             this.label_devices = new System.Windows.Forms.Label();
@@ -65,7 +66,7 @@
             this.shutdownToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.backgroundWorker_installApk = new System.ComponentModel.BackgroundWorker();
             this.backgroundWorker_reconnectDevice = new System.ComponentModel.BackgroundWorker();
-            this.panel_errorDeviceTest = new System.Windows.Forms.Panel();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.panel_leftSide.SuspendLayout();
             this.panel_upLeftSide.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_onMobileState)).BeginInit();
@@ -124,6 +125,17 @@
             this.panel_upLeftSide.DragEnter += new System.Windows.Forms.DragEventHandler(this.panel_upLeftSide_DragEnter);
             this.panel_upLeftSide.DragLeave += new System.EventHandler(this.panel_upLeftSide_DragLeave);
             this.panel_upLeftSide.Paint += new System.Windows.Forms.PaintEventHandler(this.panel_upLeftSide_Paint);
+            // 
+            // panel_errorDeviceTest
+            // 
+            this.panel_errorDeviceTest.BackColor = System.Drawing.Color.Crimson;
+            this.panel_errorDeviceTest.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel_errorDeviceTest.Enabled = false;
+            this.panel_errorDeviceTest.Location = new System.Drawing.Point(0, 565);
+            this.panel_errorDeviceTest.Name = "panel_errorDeviceTest";
+            this.panel_errorDeviceTest.Size = new System.Drawing.Size(301, 3);
+            this.panel_errorDeviceTest.TabIndex = 5;
+            this.panel_errorDeviceTest.Visible = false;
             // 
             // pictureBox_onMobileState
             // 
@@ -477,18 +489,19 @@
             this.contextMenuStrip_reboot.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip_reboot.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.rebootToolStripMenuItem1,
+            this.shutdownToolStripMenuItem1,
+            this.toolStripSeparator1,
             this.recoveryToolStripMenuItem1,
-            this.bootloaderToolStripMenuItem,
-            this.shutdownToolStripMenuItem1});
+            this.bootloaderToolStripMenuItem});
             this.contextMenuStrip_reboot.Name = "contextMenuStrip_reboot";
             this.contextMenuStrip_reboot.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.contextMenuStrip_reboot.Size = new System.Drawing.Size(158, 108);
+            this.contextMenuStrip_reboot.Size = new System.Drawing.Size(215, 142);
             // 
             // rebootToolStripMenuItem1
             // 
             this.rebootToolStripMenuItem1.Image = global::AndroidManager_SHW.Properties.Resources.con_reboot;
             this.rebootToolStripMenuItem1.Name = "rebootToolStripMenuItem1";
-            this.rebootToolStripMenuItem1.Size = new System.Drawing.Size(157, 26);
+            this.rebootToolStripMenuItem1.Size = new System.Drawing.Size(214, 26);
             this.rebootToolStripMenuItem1.Text = "Reboot";
             this.rebootToolStripMenuItem1.Click += new System.EventHandler(this.rebootToolStripMenuItem_Click);
             // 
@@ -496,7 +509,7 @@
             // 
             this.recoveryToolStripMenuItem1.Image = global::AndroidManager_SHW.Properties.Resources.con_recovery;
             this.recoveryToolStripMenuItem1.Name = "recoveryToolStripMenuItem1";
-            this.recoveryToolStripMenuItem1.Size = new System.Drawing.Size(157, 26);
+            this.recoveryToolStripMenuItem1.Size = new System.Drawing.Size(214, 26);
             this.recoveryToolStripMenuItem1.Text = "Recovery";
             this.recoveryToolStripMenuItem1.Click += new System.EventHandler(this.recoveryToolStripMenuItem_Click);
             // 
@@ -504,7 +517,7 @@
             // 
             this.bootloaderToolStripMenuItem.Image = global::AndroidManager_SHW.Properties.Resources.con_bootloader;
             this.bootloaderToolStripMenuItem.Name = "bootloaderToolStripMenuItem";
-            this.bootloaderToolStripMenuItem.Size = new System.Drawing.Size(157, 26);
+            this.bootloaderToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
             this.bootloaderToolStripMenuItem.Text = "Bootloader";
             this.bootloaderToolStripMenuItem.Click += new System.EventHandler(this.bootloaderToolStripMenuItem_Click);
             // 
@@ -512,7 +525,7 @@
             // 
             this.shutdownToolStripMenuItem1.Image = global::AndroidManager_SHW.Properties.Resources.con_shutdown;
             this.shutdownToolStripMenuItem1.Name = "shutdownToolStripMenuItem1";
-            this.shutdownToolStripMenuItem1.Size = new System.Drawing.Size(157, 26);
+            this.shutdownToolStripMenuItem1.Size = new System.Drawing.Size(214, 26);
             this.shutdownToolStripMenuItem1.Text = "Shutdown";
             this.shutdownToolStripMenuItem1.Click += new System.EventHandler(this.shutdownToolStripMenuItem_Click);
             // 
@@ -529,16 +542,10 @@
             this.backgroundWorker_reconnectDevice.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker_reconnectDevice_DoWork);
             this.backgroundWorker_reconnectDevice.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker_reconnectDevice_RunWorkerCompleted);
             // 
-            // panel_errorDeviceTest
+            // toolStripSeparator1
             // 
-            this.panel_errorDeviceTest.BackColor = System.Drawing.Color.Crimson;
-            this.panel_errorDeviceTest.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel_errorDeviceTest.Enabled = false;
-            this.panel_errorDeviceTest.Location = new System.Drawing.Point(0, 565);
-            this.panel_errorDeviceTest.Name = "panel_errorDeviceTest";
-            this.panel_errorDeviceTest.Size = new System.Drawing.Size(301, 3);
-            this.panel_errorDeviceTest.TabIndex = 5;
-            this.panel_errorDeviceTest.Visible = false;
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(211, 6);
             // 
             // HomeForm
             // 
@@ -603,6 +610,7 @@
         private System.Windows.Forms.Panel panel_dlsR;
         private System.ComponentModel.BackgroundWorker backgroundWorker_reconnectDevice;
         private System.Windows.Forms.Panel panel_errorDeviceTest;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
     }
 }
 
