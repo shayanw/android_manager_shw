@@ -32,6 +32,10 @@ namespace AndroidManager_SHW.Setting
                 buttonToggleProccess(ref button_showFileSize, ref st.isShowSizeFM);
                 buttonToggleProccess(ref button_showHiddenFile,ref st.isShowHiddenFile);
                 buttonToggleProccess(ref button_keepLatestApk, ref st.isKeepLatestApk);
+                if (st.isKeepLatestApk)
+                {
+                    backgroundWorker_KeepLatestApkBackup.RunWorkerAsync();
+                }
             }
             catch
             {
@@ -75,6 +79,10 @@ namespace AndroidManager_SHW.Setting
                     RefreshDataGridView();
                     button_save.BackColor = Color.WhiteSmoke;
                     button_reset.BackColor = Color.LightPink;
+                    if (st.isKeepLatestApk)
+                    {
+                        backgroundWorker_KeepLatestApkBackup.RunWorkerAsync();
+                    }
                     MessageBox.Show("Save Successfully", "info", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 }
@@ -128,8 +136,6 @@ namespace AndroidManager_SHW.Setting
 
             st.isKeepLatestApk = Option.IsKeepLatestApk = false;
             buttonToggleProccess(ref button_keepLatestApk, ref st.isKeepLatestApk);
-            //button_showFileSize.BackgroundImage = AndroidManager_SHW.Properties.Resources.toggleOn;
-            //button_showHiddenFile.BackgroundImage = AndroidManager_SHW.Properties.Resources.toggleOff;
 
 
             st.saveChanged();
@@ -244,6 +250,34 @@ namespace AndroidManager_SHW.Setting
         private void button_keepLatestApk_Click(object sender, EventArgs e)
         {
             buttonToggleProccess(ref button_keepLatestApk, ref st.isKeepLatestApk, true);
+        }
+
+        private void backgroundWorker_KeepLatestApkBackup_DoWork(object sender, DoWorkEventArgs e)
+        {
+            string path = Option.MainPath + "\\" + Option.MainLabelDirectoryName;
+            if (!Directory.Exists(path))
+            {
+                return;
+            }
+
+            foreach (DirectoryInfo diTemp in new DirectoryInfo(path).GetDirectories())
+            {
+                string tmpPathBackup = diTemp.FullName + "\\" + Option.DirNameBackupApk;
+                if (!Directory.Exists(tmpPathBackup))
+                {
+                    continue;
+                }
+                ExternalMethod.KeepLatestVersionApkBackup(tmpPathBackup);
+            }
+        }
+
+        private void backgroundWorker_KeepLatestApkBackup_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if (backgroundWorker_refreshDGV.IsBusy)
+            {
+                return;
+            }
+            backgroundWorker_refreshDGV.RunWorkerAsync();
         }
     }
 }

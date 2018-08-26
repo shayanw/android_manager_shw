@@ -24,6 +24,7 @@ namespace ADBProccessDLL
         static public bool IsShowSizeFM = true;
         static public bool IsShowHiddenFile = false;
         static public bool IsKeepLatestApk = false;
+        static public DeviceData currentDeviceStatic=null;
 
 
         /// <summary>

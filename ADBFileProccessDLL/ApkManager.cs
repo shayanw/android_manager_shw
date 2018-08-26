@@ -4,6 +4,7 @@ using SharpAdbClient;
 using System.IO;
 using System.Net;
 using System.Threading;
+using System.Collections.Generic;
 
 namespace ADBProccessDLL
 {
@@ -119,15 +120,14 @@ namespace ADBProccessDLL
                 return 2;
             }
 
-            
-
-
         }
         private string apkVersion(string apk,string version)
         {
             apk=apk.ToLower();
             return apk.Replace(".apk",string.Empty)+"_"+version+".apk";
         }
+
+
         #endregion
     }
 }

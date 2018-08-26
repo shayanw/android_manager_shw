@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel_setting = new System.Windows.Forms.Panel();
             this.panel_filemanagerSett = new System.Windows.Forms.Panel();
             this.button_showHiddenFile = new System.Windows.Forms.Button();
@@ -42,8 +42,10 @@
             this.label_titleFilemanager = new System.Windows.Forms.Label();
             this.panelPath = new System.Windows.Forms.Panel();
             this.textBox_backupPath = new System.Windows.Forms.TextBox();
+            this.button_keepLatestApk = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.button_backupPath = new System.Windows.Forms.Button();
+            this.label_pm_keepLatestApk = new System.Windows.Forms.Label();
             this.panel_saveResetSetting = new System.Windows.Forms.Panel();
             this.button_save = new System.Windows.Forms.Button();
             this.button_reset = new System.Windows.Forms.Button();
@@ -64,8 +66,7 @@
             this.saveFileDialog_path = new System.Windows.Forms.SaveFileDialog();
             this.folderBrowserDialog_path = new System.Windows.Forms.FolderBrowserDialog();
             this.backgroundWorker_refreshDGV = new System.ComponentModel.BackgroundWorker();
-            this.label_pm_keepLatestApk = new System.Windows.Forms.Label();
-            this.button_keepLatestApk = new System.Windows.Forms.Button();
+            this.backgroundWorker_KeepLatestApkBackup = new System.ComponentModel.BackgroundWorker();
             this.panel_setting.SuspendLayout();
             this.panel_filemanagerSett.SuspendLayout();
             this.panel_titleFilemanager.SuspendLayout();
@@ -197,6 +198,20 @@
             this.textBox_backupPath.TabIndex = 1;
             this.textBox_backupPath.TextChanged += new System.EventHandler(this.textBox_backupPath_TextChanged);
             // 
+            // button_keepLatestApk
+            // 
+            this.button_keepLatestApk.BackColor = System.Drawing.Color.Transparent;
+            this.button_keepLatestApk.BackgroundImage = global::AndroidManager_SHW.Properties.Resources.toggleOff;
+            this.button_keepLatestApk.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button_keepLatestApk.FlatAppearance.BorderSize = 0;
+            this.button_keepLatestApk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_keepLatestApk.Location = new System.Drawing.Point(294, 61);
+            this.button_keepLatestApk.Name = "button_keepLatestApk";
+            this.button_keepLatestApk.Size = new System.Drawing.Size(48, 48);
+            this.button_keepLatestApk.TabIndex = 11;
+            this.button_keepLatestApk.UseVisualStyleBackColor = false;
+            this.button_keepLatestApk.Click += new System.EventHandler(this.button_keepLatestApk_Click);
+            // 
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -219,6 +234,16 @@
             this.button_backupPath.Text = "...";
             this.button_backupPath.UseVisualStyleBackColor = false;
             this.button_backupPath.Click += new System.EventHandler(this.button_backupPath_Click);
+            // 
+            // label_pm_keepLatestApk
+            // 
+            this.label_pm_keepLatestApk.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_pm_keepLatestApk.Location = new System.Drawing.Point(15, 74);
+            this.label_pm_keepLatestApk.Name = "label_pm_keepLatestApk";
+            this.label_pm_keepLatestApk.Size = new System.Drawing.Size(286, 23);
+            this.label_pm_keepLatestApk.TabIndex = 9;
+            this.label_pm_keepLatestApk.Text = "just Keep Latest Version apk\'s Backup:";
+            this.label_pm_keepLatestApk.Click += new System.EventHandler(this.button_showFileSize_Click);
             // 
             // panel_saveResetSetting
             // 
@@ -330,39 +355,39 @@
             this.dataGridView_Device.AllowUserToDeleteRows = false;
             this.dataGridView_Device.AllowUserToResizeColumns = false;
             this.dataGridView_Device.AllowUserToResizeRows = false;
-            dataGridViewCellStyle25.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            dataGridViewCellStyle25.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle25.Padding = new System.Windows.Forms.Padding(5, 5, 5, 0);
-            this.dataGridView_Device.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle25;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.Padding = new System.Windows.Forms.Padding(5, 5, 5, 0);
+            this.dataGridView_Device.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridView_Device.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dataGridView_Device.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridView_Device.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
             this.dataGridView_Device.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridView_Device.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            dataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle26.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(255)))), ((int)(((byte)(250)))));
-            dataGridViewCellStyle26.Font = new System.Drawing.Font("Segoe UI Semibold", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle26.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle26.Padding = new System.Windows.Forms.Padding(8, 8, 8, 0);
-            dataGridViewCellStyle26.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle26.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle26.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView_Device.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle26;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(255)))), ((int)(((byte)(250)))));
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI Semibold", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.Padding = new System.Windows.Forms.Padding(8, 8, 8, 0);
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView_Device.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridView_Device.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_Device.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Model,
             this.SizePath,
             this.CountFiles,
             this.PathBackup});
-            dataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle27.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle27.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle27.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle27.Padding = new System.Windows.Forms.Padding(5, 5, 5, 0);
-            dataGridViewCellStyle27.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle27.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle27.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView_Device.DefaultCellStyle = dataGridViewCellStyle27;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle7.Padding = new System.Windows.Forms.Padding(5, 5, 5, 0);
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView_Device.DefaultCellStyle = dataGridViewCellStyle7;
             this.dataGridView_Device.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView_Device.EnableHeadersVisualStyles = false;
             this.dataGridView_Device.Location = new System.Drawing.Point(0, 0);
@@ -370,15 +395,15 @@
             this.dataGridView_Device.Name = "dataGridView_Device";
             this.dataGridView_Device.ReadOnly = true;
             this.dataGridView_Device.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle28.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
-            dataGridViewCellStyle28.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle28.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle28.Padding = new System.Windows.Forms.Padding(5);
-            dataGridViewCellStyle28.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle28.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle28.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView_Device.RowHeadersDefaultCellStyle = dataGridViewCellStyle28;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.Padding = new System.Windows.Forms.Padding(5);
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView_Device.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.dataGridView_Device.RowHeadersVisible = false;
             this.dataGridView_Device.RowTemplate.Height = 24;
             this.dataGridView_Device.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -476,29 +501,10 @@
             this.backgroundWorker_refreshDGV.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker_refreshDGV_DoWork);
             this.backgroundWorker_refreshDGV.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker_refreshDGV_RunWorkerCompleted);
             // 
-            // label_pm_keepLatestApk
+            // backgroundWorker_KeepLatestApkBackup
             // 
-            this.label_pm_keepLatestApk.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_pm_keepLatestApk.Location = new System.Drawing.Point(15, 74);
-            this.label_pm_keepLatestApk.Name = "label_pm_keepLatestApk";
-            this.label_pm_keepLatestApk.Size = new System.Drawing.Size(286, 23);
-            this.label_pm_keepLatestApk.TabIndex = 9;
-            this.label_pm_keepLatestApk.Text = "just Keep Latest Version apk\'s Backup:";
-            this.label_pm_keepLatestApk.Click += new System.EventHandler(this.button_showFileSize_Click);
-            // 
-            // button_keepLatestApk
-            // 
-            this.button_keepLatestApk.BackColor = System.Drawing.Color.Transparent;
-            this.button_keepLatestApk.BackgroundImage = global::AndroidManager_SHW.Properties.Resources.toggleOff;
-            this.button_keepLatestApk.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button_keepLatestApk.FlatAppearance.BorderSize = 0;
-            this.button_keepLatestApk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_keepLatestApk.Location = new System.Drawing.Point(294, 61);
-            this.button_keepLatestApk.Name = "button_keepLatestApk";
-            this.button_keepLatestApk.Size = new System.Drawing.Size(48, 48);
-            this.button_keepLatestApk.TabIndex = 11;
-            this.button_keepLatestApk.UseVisualStyleBackColor = false;
-            this.button_keepLatestApk.Click += new System.EventHandler(this.button_keepLatestApk_Click);
+            this.backgroundWorker_KeepLatestApkBackup.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker_KeepLatestApkBackup_DoWork);
+            this.backgroundWorker_KeepLatestApkBackup.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker_KeepLatestApkBackup_RunWorkerCompleted);
             // 
             // SettingForm
             // 
@@ -566,5 +572,6 @@
         private System.Windows.Forms.Label label_titleFilemanager;
         private System.Windows.Forms.Button button_keepLatestApk;
         private System.Windows.Forms.Label label_pm_keepLatestApk;
+        private System.ComponentModel.BackgroundWorker backgroundWorker_KeepLatestApkBackup;
     }
 }

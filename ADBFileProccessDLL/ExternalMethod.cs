@@ -301,5 +301,106 @@ namespace ADBProccessDLL
             return process.StandardOutput.ReadToEnd();
         }
         #endregion
+
+        #region keep Latest apk version
+        private static FileInfo GetLatestVersionOnName(FileInfo apk1, FileInfo apk2)
+        {
+            string version_Apk1 = apk1.Name.Split('_')[1];
+            string version_Apk2 = apk2.Name.Split('_')[1];
+            string tmpUpperVersion = ReturnUpperVersion(version_Apk1, version_Apk2);
+
+            if (version_Apk1==tmpUpperVersion)
+            {
+                return apk1;
+            }
+            else
+            {
+                return apk2;
+            }
+        }
+
+        private static string ReturnUpperVersion(string vr1, string vr2)
+        {
+            List<char> v1 = vr1.ToList();
+            List<char> v2 = vr2.ToList();
+            for (int i = 0; i < v1.Count; i++)
+            {
+                try
+                {
+                    int tmpNumber1 = Convert.ToInt32(v1[i]);
+                    int tmpNumber2 = Convert.ToInt32(v2[i]);
+                    if (tmpNumber1 == tmpNumber2)
+                    {
+                        continue;
+                    }
+                    if (tmpNumber1 > tmpNumber2)
+                    {
+                        return vr1;
+                    }
+                    else
+                    {
+                        return vr2;
+                    }
+                }
+                catch
+                {
+                    continue;
+                }
+            }
+            return vr1;
+        }
+
+        public static bool KeepLatestVersionApkBackup(string pathApkBackup)
+        {
+            try
+            {
+                if (Directory.Exists(pathApkBackup))
+                 {
+                    List<string> listApkStrings = Directory.GetFiles(pathApkBackup).Where(a => new FileInfo(a).Extension.ToLower() == ".apk").ToList();
+                    if (listApkStrings.Count==0)
+                    {
+                        return true;
+                    }
+
+                    List<FileInfo> listApkFiles = new List<FileInfo>();
+                    foreach (string tmpfileFullname in listApkStrings)
+                    {
+                        listApkFiles.Add(new FileInfo(tmpfileFullname));
+                    }
+                    if (listApkFiles.Count == 1)
+                    {
+                        return true;
+                    }
+
+                    List<FileInfo> tmpPackApksSameName = new List<FileInfo>();
+                    FileInfo LatestVersionTmp;
+                    foreach (FileInfo tmpFile in listApkFiles)
+                    {
+                        tmpPackApksSameName = listApkFiles.Where(a => a.Name==tmpFile.Name.Split('_')[0]).ToList();
+                        if (tmpPackApksSameName.Count==1)
+                        {
+                            continue;
+                        }
+                        LatestVersionTmp = tmpPackApksSameName[0];
+                        for (int i = 0; i < tmpPackApksSameName.Count; i++)
+                        {
+                            LatestVersionTmp = GetLatestVersionOnName(LatestVersionTmp, tmpPackApksSameName[i]);
+                        }
+                        tmpPackApksSameName.Remove(LatestVersionTmp);
+                        foreach (FileInfo RemoveApkFile in tmpPackApksSameName)
+                        {
+                            RemoveApkFile.Delete();
+                        }
+                    }
+                }
+                    
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+        #endregion
     }
 }
