@@ -1028,17 +1028,19 @@ namespace AndroidManager_SHW
 
         private void button_showSize_Click(object sender, EventArgs e)
         {
-            if (IsShowSize)
-            {
-                button_showSize.BackgroundImage = AndroidManager_SHW.Properties.Resources.toggleOff;
-                IsShowSize = false;
-                label_size.Text = "";
-            }
-            else
-            {
-                button_showSize.BackgroundImage = AndroidManager_SHW.Properties.Resources.toggleOn;
-                IsShowSize = true;
-            }
+            //if (IsShowSize)
+            //{
+            //    button_showSize.BackgroundImage = AndroidManager_SHW.Properties.Resources.toggleOff;
+            //    IsShowSize = false;
+            //    label_size.Text = "";
+            //}
+            //else
+            //{
+            //    button_showSize.BackgroundImage = AndroidManager_SHW.Properties.Resources.toggleOn;
+            //    IsShowSize = true;
+            //}
+            buttonToggleProccess(ref button_showSize, ref IsShowSize, true);
+            label_size.Text = "";
         }
 
         private void backgroundWorker_refreshListView_DoWork(object sender, DoWorkEventArgs e)
@@ -1177,16 +1179,18 @@ namespace AndroidManager_SHW
 
         private void button_showHidden_Click(object sender, EventArgs e)
         {
-            if (Option.IsShowHiddenFile)
-            {
-                button_showHidden.BackgroundImage = AndroidManager_SHW.Properties.Resources.toggleOff;
-                Option.IsShowHiddenFile = false;
-            }
-            else
-            {
-                button_showHidden.BackgroundImage = AndroidManager_SHW.Properties.Resources.toggleOn;
-                Option.IsShowHiddenFile = true;
-            }
+            //if (Option.IsShowHiddenFile)
+            //{
+            //    button_showHidden.BackgroundImage = AndroidManager_SHW.Properties.Resources.toggleOff;
+            //    Option.IsShowHiddenFile = false;
+            //}
+            //else
+            //{
+            //    button_showHidden.BackgroundImage = AndroidManager_SHW.Properties.Resources.toggleOn;
+            //    Option.IsShowHiddenFile = true;
+            //}
+
+            buttonToggleProccess(ref button_showHidden, ref Option.IsShowHiddenFile, true);
             refreshListView();
         }
 
@@ -1206,6 +1210,26 @@ namespace AndroidManager_SHW
             foreach (ListViewItem lvi in listView_files.Items)
             {
                 lvi.Selected = IsChecked;
+            }
+        }
+
+        private void buttonToggleProccess(ref Button btnToggle, ref bool SettStatus, bool isClick = false)
+        {
+            bool tempSettStatus = SettStatus;
+            if (isClick)
+            {
+                tempSettStatus = !SettStatus;
+            }
+
+            if (tempSettStatus)
+            {
+                btnToggle.BackgroundImage = AndroidManager_SHW.Properties.Resources.toggleOn;
+                SettStatus = true;
+            }
+            else
+            {
+                btnToggle.BackgroundImage = AndroidManager_SHW.Properties.Resources.toggleOff;
+                SettStatus = false;
             }
         }
     }

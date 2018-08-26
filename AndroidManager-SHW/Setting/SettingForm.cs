@@ -31,6 +31,7 @@ namespace AndroidManager_SHW.Setting
 
                 buttonToggleProccess(ref button_showFileSize, ref st.isShowSizeFM);
                 buttonToggleProccess(ref button_showHiddenFile,ref st.isShowHiddenFile);
+                buttonToggleProccess(ref button_keepLatestApk, ref st.isKeepLatestApk);
             }
             catch
             {
@@ -66,7 +67,7 @@ namespace AndroidManager_SHW.Setting
             {
                 if (st.changeBackupPath(textBox_backupPath.Text))
                 {
-                    if (textBox_backupPath.Text == Option.MainPath && st.isShowSizeFM == Option.IsShowSizeFM && st.isShowHiddenFile==Option.IsShowHiddenFile)
+                    if (textBox_backupPath.Text == Option.MainPath && st.isShowSizeFM == Option.IsShowSizeFM && st.isShowHiddenFile==Option.IsShowHiddenFile && st.isKeepLatestApk == Option.IsKeepLatestApk)
                     {
                         return;
                     }
@@ -120,9 +121,16 @@ namespace AndroidManager_SHW.Setting
             st.changeBackupPath(textBox_backupPath.Text);
 
             st.isShowSizeFM = Option.IsShowSizeFM = true;
+            buttonToggleProccess(ref button_showFileSize, ref st.isShowSizeFM);
+
             st.isShowHiddenFile = Option.IsShowHiddenFile = false;
-            button_showFileSize.BackgroundImage = AndroidManager_SHW.Properties.Resources.toggleOn;
-            button_showHiddenFile.BackgroundImage = AndroidManager_SHW.Properties.Resources.toggleOff;
+            buttonToggleProccess(ref button_showHiddenFile, ref st.isShowHiddenFile);
+
+            st.isKeepLatestApk = Option.IsKeepLatestApk = false;
+            buttonToggleProccess(ref button_keepLatestApk, ref st.isKeepLatestApk);
+            //button_showFileSize.BackgroundImage = AndroidManager_SHW.Properties.Resources.toggleOn;
+            //button_showHiddenFile.BackgroundImage = AndroidManager_SHW.Properties.Resources.toggleOff;
+
 
             st.saveChanged();
         }
@@ -231,6 +239,11 @@ namespace AndroidManager_SHW.Setting
                 panel_filemanagerSett.Visible = true;
 
             }
+        }
+
+        private void button_keepLatestApk_Click(object sender, EventArgs e)
+        {
+            buttonToggleProccess(ref button_keepLatestApk, ref st.isKeepLatestApk, true);
         }
     }
 }

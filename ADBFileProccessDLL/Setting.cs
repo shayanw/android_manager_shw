@@ -8,6 +8,7 @@ namespace ADBProccessDLL
     {
         public string backupPath;
         public string updatePackagePath;
+        public bool isKeepLatestApk;
         public bool isShowSizeFM;
         public bool isShowHiddenFile;
         public Setting()
@@ -63,6 +64,19 @@ namespace ADBProccessDLL
                             Option.IsShowHiddenFile = isShowHiddenFile;
                         }
                     }
+                    else if (tmp.Contains("isKeepLatestApk:"))
+                    {
+                        isKeepLatestApk = Convert.ToBoolean(tmp.Replace("isKeepLatestApk:", ""));
+
+                        if (string.IsNullOrEmpty(isKeepLatestApk.ToString()))
+                        {
+                            isKeepLatestApk = Option.IsKeepLatestApk;
+                        }
+                        else
+                        {
+                            Option.IsKeepLatestApk = isKeepLatestApk;
+                        }
+                    }
 
                 }
                 sr.Close();
@@ -72,6 +86,7 @@ namespace ADBProccessDLL
                 backupPath = Option.MainPath;
                 isShowSizeFM = Option.IsShowSizeFM;
                 isShowHiddenFile = Option.IsShowHiddenFile;
+                isKeepLatestApk = Option.IsKeepLatestApk;
             }
         }
 
@@ -131,6 +146,9 @@ namespace ADBProccessDLL
 
             Option.IsShowHiddenFile = isShowHiddenFile;
             sw.WriteLine("isShowHiddenFile:" + isShowHiddenFile);
+
+            Option.IsKeepLatestApk = isKeepLatestApk;
+            sw.WriteLine("isKeepLatestApk:" + isKeepLatestApk);
 
             sw.Close();
         }
