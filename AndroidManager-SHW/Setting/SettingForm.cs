@@ -29,29 +29,8 @@ namespace AndroidManager_SHW.Setting
             {
                 RefreshDataGridView();
 
-
-                if (st.isShowSizeFM)
-                {
-                    button_showFileSize.BackgroundImage = AndroidManager_SHW.Properties.Resources.toggleOn;
-                    st.isShowSizeFM = true;
-                }
-                else
-                {
-                    button_showFileSize.BackgroundImage = AndroidManager_SHW.Properties.Resources.toggleOff;
-                    st.isShowSizeFM = false;
-                }
-
-                if (st.isShowHiddenFile)
-                {
-                    button_showHiddenFile.BackgroundImage = AndroidManager_SHW.Properties.Resources.toggleOn;
-                    st.isShowHiddenFile = true;
-                }
-                else
-                {
-                    button_showHiddenFile.BackgroundImage = AndroidManager_SHW.Properties.Resources.toggleOff;
-                    st.isShowHiddenFile = false;
-                }
-
+                buttonToggleProccess(ref button_showFileSize, ref st.isShowSizeFM);
+                buttonToggleProccess(ref button_showHiddenFile,ref st.isShowHiddenFile);
             }
             catch
             {
@@ -61,11 +40,26 @@ namespace AndroidManager_SHW.Setting
             }
         }
 
-        private void label1_Click(object sender, EventArgs e)
+
+        private void buttonToggleProccess(ref Button btnToggle, ref bool SettStatus, bool isClick = false)
         {
+            bool tempSettStatus = SettStatus;
+            if (isClick)
+            {
+                tempSettStatus = !SettStatus;
+            }
 
+            if (tempSettStatus)
+            {
+                btnToggle.BackgroundImage = AndroidManager_SHW.Properties.Resources.toggleOn;
+                SettStatus = true;
+            }
+            else
+            {
+                btnToggle.BackgroundImage = AndroidManager_SHW.Properties.Resources.toggleOff;
+                SettStatus = false;
+            }
         }
-
         private void button_save_Click(object sender, EventArgs e)
         {
             try
@@ -104,10 +98,6 @@ namespace AndroidManager_SHW.Setting
                 textBox_backupPath.Text = folderBrowserDialog_path.SelectedPath;
             }
         }
-        private void button_updatePath_Click(object sender, EventArgs e)
-        {
-
-        }
         private void button_reset_Click(object sender, EventArgs e)
         {
             try
@@ -140,20 +130,6 @@ namespace AndroidManager_SHW.Setting
 
         private void RefreshDataGridView()
         {
-            //List<deviceSettingBackup> dsbl = new List<deviceSettingBackup>();
-            //string path = Option.MainPath + "\\" + Option.MainLabelDirectoryName;
-            //DirectoryInfo di = new DirectoryInfo(path);
-            //Regex rgx = new Regex(@"^.*_.*\[.*\]$");
-
-            //foreach (DirectoryInfo tmpdi in di.GetDirectories())
-            //{
-            //    if (rgx.IsMatch(tmpdi.Name))
-            //    {
-            //        dsbl.Add(new deviceSettingBackup(tmpdi));
-            //    }
-            //}
-
-            //dataGridView_Device.DataSource = dsbl;
             backgroundWorker_refreshDGV.RunWorkerAsync();
         }
 
@@ -212,16 +188,7 @@ namespace AndroidManager_SHW.Setting
 
         private void button_showFileSize_Click(object sender, EventArgs e)
         {
-            if (st.isShowSizeFM)
-            {
-                button_showFileSize.BackgroundImage = AndroidManager_SHW.Properties.Resources.toggleOff;
-                st.isShowSizeFM = false;
-            }
-            else
-            {
-                button_showFileSize.BackgroundImage = AndroidManager_SHW.Properties.Resources.toggleOn;
-                st.isShowSizeFM = true;
-            }
+            buttonToggleProccess(ref button_showFileSize,ref st.isShowSizeFM, true);
         }
 
         private void backgroundWorker_refreshDGV_DoWork(object sender, DoWorkEventArgs e)
@@ -248,16 +215,7 @@ namespace AndroidManager_SHW.Setting
 
         private void button_showHiddenFile_Click(object sender, EventArgs e)
         {
-            if (st.isShowHiddenFile)
-            {
-                button_showHiddenFile.BackgroundImage = AndroidManager_SHW.Properties.Resources.toggleOff;
-                st.isShowHiddenFile = false;
-            }
-            else
-            {
-                button_showHiddenFile.BackgroundImage = AndroidManager_SHW.Properties.Resources.toggleOn;
-                st.isShowHiddenFile = true;
-            }
+            buttonToggleProccess(ref button_showHiddenFile, ref st.isShowHiddenFile, true);
         }
 
         private void button_updatePath_Click_1(object sender, EventArgs e)
