@@ -72,6 +72,7 @@
             this.backgroundWorker_unistallPackages = new System.ComponentModel.BackgroundWorker();
             this.backgroundWorker_installPackages = new System.ComponentModel.BackgroundWorker();
             this.backgroundWorker_backupPackages = new System.ComponentModel.BackgroundWorker();
+            this.backgroundWorker_KeepLatestApkBackup = new System.ComponentModel.BackgroundWorker();
             this.panel_details.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel_rightSide.SuspendLayout();
@@ -584,6 +585,10 @@
             this.backgroundWorker_backupPackages.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker_backupPackages_ProgressChanged);
             this.backgroundWorker_backupPackages.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker_backupPackages_RunWorkerCompleted);
             // 
+            // backgroundWorker_KeepLatestApkBackup
+            // 
+            this.backgroundWorker_KeepLatestApkBackup.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker_KeepLatestApkBackup_DoWork);
+            // 
             // PMForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -666,5 +671,6 @@
         private System.Windows.Forms.Panel panel_leftButton;
         private System.Windows.Forms.Panel panel_righteButton;
         private System.Windows.Forms.RadioButton radioButton_isExternal;
+        private System.ComponentModel.BackgroundWorker backgroundWorker_KeepLatestApkBackup;
     }
 }

@@ -40,6 +40,10 @@ namespace AndroidManager_SHW.PackageManager
             packageKeys = new Stack<string>();
             RefreshDataGridView();
             ClosedForm = false;
+            if (!backgroundWorker_KeepLatestApkBackup.IsBusy)
+            {
+                backgroundWorker_KeepLatestApkBackup.RunWorkerAsync();
+            }
         }
 
 
@@ -437,6 +441,7 @@ namespace AndroidManager_SHW.PackageManager
         }
         private void backgroundWorker_backupPackages_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+            System.Diagnostics.Process.Start(Option.FullAddressBackupApk);
             if (progressBar_statePackage.Value == progressBar_statePackage.Maximum)
             {
                 label_statePackage.Text = "Backup is Successed";
@@ -446,7 +451,10 @@ namespace AndroidManager_SHW.PackageManager
                 label_statePackage.Text = "Backup is Failed";
             }
             progressBar_statePackage.Visible = false;
-            System.Diagnostics.Process.Start(Option.FullAddressBackupApk);
+            if (!backgroundWorker_KeepLatestApkBackup.IsBusy)
+            {
+                backgroundWorker_KeepLatestApkBackup.RunWorkerAsync();
+            }
         }
 
         private void listBox_tempPackages_DragEnter(object sender, DragEventArgs e)
@@ -499,6 +507,21 @@ namespace AndroidManager_SHW.PackageManager
             {
                 radioButton_isExternal.BackgroundImage = AndroidManager_SHW.Properties.Resources.internalMemory;
             }
+        }
+
+        private void backgroundWorker_KeepLatestApkBackup_DoWork(object sender, DoWorkEventArgs e)
+        {
+            if (!Option.IsKeepLatestApk)
+            {
+                return;
+            }
+            Option opt = new Option(Device);
+            string path = opt.intoApkBackupDirectory();
+            if (!Directory.Exists(path))
+            {
+                return;
+            }
+            ExternalMethod.KeepLatestVersionApkBackup(path);
         }
 
         private void button_installTempPackages_Click(object sender, EventArgs e)
