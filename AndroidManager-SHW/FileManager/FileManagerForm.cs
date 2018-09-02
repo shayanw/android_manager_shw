@@ -109,7 +109,7 @@ namespace AndroidManager_SHW
                 if (listView_files.SelectedItems[0].Tag.ToString() == "d" || listView_files.SelectedItems[0].Tag.ToString() == "l")
                 {
                     BackwardPath.Push(currentPath);
-                    currentPath = listView_files.SelectedItems[0].Name;
+                    currentPath = listView_files.SelectedItems[0].Name.FixForbidCharInTerminal().EncodingText();
                     refreshListView();
                 }
             }

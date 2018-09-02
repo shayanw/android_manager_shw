@@ -29,6 +29,7 @@ namespace AndroidManager_SHW
         ApkManager AM;
         string lastLableState;
         string stateMessage;
+        string versionProgramm = "0.97.9 Beta";
         #endregion
 
         #region Constructor
@@ -284,7 +285,7 @@ namespace AndroidManager_SHW
         private void button_about_Click(object sender, EventArgs e)
         {
             pictureBox_onMobileState_enable(sender);
-            if (MessageBox.Show("Create By ShayanW" + "\n\n" + "shayan.worthy@msn.com" + "\n\n" + "CopyRight 2018-2019" + "\n\n" + "Version: 0.97.8 Beta", "About Me", MessageBoxButtons.OK, MessageBoxIcon.Information)==DialogResult.OK)
+            if (MessageBox.Show("Create By ShayanW" + "\n\n" + "shayan.worthy@msn.com" + "\n\n" + "CopyRight 2018-2019" + "\n\n" + "Version: "+versionProgramm, "About Me", MessageBoxButtons.OK, MessageBoxIcon.Information)==DialogResult.OK)
             {
                 pictureBox_onMobileState.Visible = false;
             }
