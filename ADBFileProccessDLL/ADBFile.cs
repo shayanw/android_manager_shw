@@ -110,7 +110,7 @@ namespace ADBProccessDLL
             {
                 return Size;
             }
-            string fixName = Name.FixForbidCharInTerminal();
+            string fixName = Name/*.FixForbidCharInTerminal()*/;
             string cmd = "";
             if (!string.IsNullOrEmpty(LineLsForFile))
             {

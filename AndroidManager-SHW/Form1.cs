@@ -29,7 +29,7 @@ namespace AndroidManager_SHW
         ApkManager AM;
         string lastLableState;
         string stateMessage;
-        string versionProgramm = "0.97.9 Beta";
+        string versionProgramm = "0.98 Beta";
         #endregion
 
         #region Constructor
@@ -52,8 +52,8 @@ namespace AndroidManager_SHW
             }
             catch
             {
-                backgroundWorker_reconnectDevice.RunWorkerAsync();
                 panel_errorDeviceTest.Visible = panel_errorDeviceTest.Enabled = true;
+                backgroundWorker_reconnectDevice.RunWorkerAsync(); 
             }
         }
         #endregion
@@ -707,6 +707,19 @@ namespace AndroidManager_SHW
             {
                 EnterButtonReconnect = false;
                 RefreshDevices();
+            }
+
+            if (panel_errorDeviceTest.Enabled)
+            {
+                try
+                {
+                    TestDeviceConnect();
+                    panel_errorDeviceTest.Visible = panel_errorDeviceTest.Enabled = false;
+                }
+                catch
+                {
+
+                }
             }
         }
 
