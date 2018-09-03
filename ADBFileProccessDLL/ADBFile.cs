@@ -130,7 +130,7 @@ namespace ADBProccessDLL
             else
             {
                 //in byte
-                cmd = ReturnResultCommand(@"du -s " + FullName);
+                cmd = ReturnResultCommand(@"du -s " + FullName.FixForbidCharInTerminal()/*.EncodingText()*/);
                 try
                 {
                     result = Convert.ToDouble(ReturnResultDu(cmd));
@@ -309,10 +309,9 @@ namespace ADBProccessDLL
                 return new string[] { "d", "0" };
             }
 
-
-
+            string tmpvalidlsline=ValidLsLines.LastOrDefault().Replace(this.Name.Replace("\\",""), "");
             //Seprate null and Directory from File------------------------------
-            foreach (string word in ValidLsLines.LastOrDefault().Split(' '))
+            foreach (string word in tmpvalidlsline.Split(' '))
             {
                 if (word.isDigits())
                 {
