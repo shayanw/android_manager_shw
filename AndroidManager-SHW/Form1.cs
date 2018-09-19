@@ -29,7 +29,7 @@ namespace AndroidManager_SHW
         ApkManager AM;
         string lastLableState;
         string stateMessage;
-        string versionProgramm = "0.98.7 Beta";
+        string versionProgramm = "0.98.8 Beta";
         #endregion
 
         #region Constructor

@@ -254,7 +254,7 @@ namespace AndroidManager_SHW
                 label_transferBase.Text = PreLine_CopyCutBackup + " " + GetParentDirectory(FilesAndDirecoriesForUpload[0]);
             }
             label_totalFiles.Text = "Total Files: " + CountFilesForTransfer.ToString();
-            progressBar_transfer.Maximum = CountFilesForTransfer*100+1;
+            progressBar_transfer.Maximum = (CountFilesForTransfer+ 1 )* 100;
             label_totalSize.Text = "Total Size: " + TotalLengthFiles.humanReadable();
             backgroundWorker_transfer.RunWorkerAsync();
         }
