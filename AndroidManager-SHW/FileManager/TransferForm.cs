@@ -35,7 +35,7 @@ namespace AndroidManager_SHW
             MyFiles = myfiles;
             FM = fm;
             TransferTp = tt;
-            progressBar_transfer.Maximum = 100;
+            progressBar_transfer.Maximum = 10000;
             timer_5s.Start();
             label_totalFiles.Text = label_totalSize.Text = "•••";
             if (tt == TransferType.BackingUp)
@@ -60,7 +60,7 @@ namespace AndroidManager_SHW
             FilesAndDirecoriesForUpload = FilesForUpload;
             FM = new FileManager(device);
             TransferTp = transfer_type;
-            progressBar_transfer.Maximum = 100;
+            progressBar_transfer.Maximum = 10000;
             timer_5s.Interval = 500;
             timer_5s.Start();
             label_totalFiles.Text = label_totalSize.Text = "•••";
@@ -135,8 +135,8 @@ namespace AndroidManager_SHW
 
 
             button_cancel.Text = "OK";
-            label_Status.Text = "Transfer " + progressBar_transfer.Value + " Files In " + (MyTime * timer_5s.Interval / 1000).getStringTime();
-
+            label_Status.Text = "Transfer " + ExternalMethod.CounterEx + " Files In " + (MyTime * timer_5s.Interval / 1000).getStringTime();
+            label_percent.Text ="100 %";
             MessageBox.Show(TransferTp.ToString() + " Successfully", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
             IsChangeValue = true;
             if (TransferType.BackingUp == TransferTp)
@@ -164,10 +164,6 @@ namespace AndroidManager_SHW
             }
         }
 
-        private void backgroundWorker_SetProgress_DoWork(object sender, DoWorkEventArgs e)
-        {
-            // CountFilesNow = GetCountFiles();
-        }
 
         private void timer_5s_Tick(object sender, EventArgs e)
         {
@@ -181,11 +177,52 @@ namespace AndroidManager_SHW
                 label_transferBase.Text = PreLine_CopyCutBackup + " " + MyFiles[0].Name.DecodingText().Replace(@"\", "");
             }
             //------------------------------------------------------------------------------
-            if (ExternalMethod.CounterEx < progressBar_transfer.Maximum)
+            if ((ExternalMethod.CounterEx-1)*100 < progressBar_transfer.Maximum)
             {
-                progressBar_transfer.Value = ExternalMethod.CounterEx;
+                if ((ExternalMethod.CounterEx - 1) * 100 == progressBar_transfer.Value- progressBar_transfer.Value%100)
+                {
+                    int tmpProgressInt = progressBar_transfer.Value % 100;
+                    if (tmpProgressInt < 99 && MyTime%2==0)
+                    {
+                        if (progressBar_transfer.Value!=progressBar_transfer.Maximum)
+                        {
+                            if (tmpProgressInt<15)
+                            {
+                                progressBar_transfer.Value += 3;
+                            }
+                            else if (tmpProgressInt < 50)
+                            {
+                                progressBar_transfer.Value += 1;
+                            }
+                            else if (tmpProgressInt < 60)
+                            {
+                                progressBar_transfer.Value += 3;
+                            }
+                            else if (tmpProgressInt < 75)
+                            {
+                                progressBar_transfer.Value += 1;
+                            }
+                            else if (tmpProgressInt < 90)
+                            {
+                                progressBar_transfer.Value += 2;
+                            }
+                            else if (tmpProgressInt < 99)
+                            {
+                                progressBar_transfer.Value += 1;
+                            }
+
+                        }
+                    }
+                }
+                else
+                {
+                    progressBar_transfer.Value = ExternalMethod.CounterEx * 100;
+                }
+                
             }
-            label_Status.Text = "Transfer " + progressBar_transfer.Value + " Files";
+            label_Status.Text = "Transfer " + ExternalMethod.CounterEx + " Files";
+            float pr = float.Parse(progressBar_transfer.Value.ToString())/ float.Parse(progressBar_transfer.Maximum.ToString());
+            label_percent.Text = (pr*100).ToString("0")+ " %";
         }
 
 
@@ -217,7 +254,7 @@ namespace AndroidManager_SHW
                 label_transferBase.Text = PreLine_CopyCutBackup + " " + GetParentDirectory(FilesAndDirecoriesForUpload[0]);
             }
             label_totalFiles.Text = "Total Files: " + CountFilesForTransfer.ToString();
-            progressBar_transfer.Maximum = CountFilesForTransfer;
+            progressBar_transfer.Maximum = CountFilesForTransfer*100+1;
             label_totalSize.Text = "Total Size: " + TotalLengthFiles.humanReadable();
             backgroundWorker_transfer.RunWorkerAsync();
         }
