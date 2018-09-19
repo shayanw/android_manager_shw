@@ -98,7 +98,9 @@ namespace ADBProccessDLL
             }
             else
             {
-                cmd = ReturnResultCommand("ls -l " + FullName + "/");
+                cmd = ReturnResultCommand("ls -l " + FullName.Replace(@"\","").FixForbidCharInTerminal() + "/");
+                //old code
+                //cmd = ReturnResultCommand("ls -l " + FullName + "/");
             }
 
             return ReturnListAdbFile_LinesLs(cmd, FullName);
