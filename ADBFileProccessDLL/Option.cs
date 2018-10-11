@@ -20,6 +20,7 @@ namespace ADBProccessDLL
         static public string DirNameBackupApk = "ApkBackups_" + "SHW";
         static public string FullAddressBackupApk = "";
         static public string DeviceDirectoryName;
+        static public string PlatformToolsPath = @".\platform-tools\adb.exe";
 
         static public bool IsShowSizeFM = true;
         static public bool IsShowHiddenFile = false;

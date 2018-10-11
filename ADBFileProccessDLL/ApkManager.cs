@@ -30,7 +30,7 @@ namespace ADBProccessDLL
             System.Diagnostics.Process process = new System.Diagnostics.Process();
 
             string preCode = @"-s " + Device.Serial + " ";
-            process.StartInfo.FileName = @".\platform-tools\adb.exe";
+            process.StartInfo.FileName = Option.PlatformToolsPath;
             if (IsOnInternalMemory && IsReInstall)
             {
                 process.StartInfo.Arguments = @"install -r "+"\""+ AddressApk + "\"";

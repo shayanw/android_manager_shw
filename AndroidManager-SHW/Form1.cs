@@ -29,7 +29,7 @@ namespace AndroidManager_SHW
         ApkManager AM;
         string lastLableState;
         string stateMessage;
-        string versionProgramm = "0.98.8 Beta";
+        string versionProgramm = "0.98.9 Beta";
         #endregion
 
         #region Constructor
@@ -240,7 +240,7 @@ namespace AndroidManager_SHW
         }
         private void button_setting_Click(object sender, EventArgs e)
         {
-            Setting.SettingForm stf = new Setting.SettingForm();
+            Setting.SettingNewForm stf = new Setting.SettingNewForm();
             pictureBox_onMobileState_enable(sender);
             stf.FormClosed += allFormClosed;
             stf.ShowDialog();

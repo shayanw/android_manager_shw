@@ -290,7 +290,7 @@ namespace ADBProccessDLL
         {
 
             System.Diagnostics.Process process = new System.Diagnostics.Process();
-            process.StartInfo.FileName = @".\platform-tools\adb.exe";
+            process.StartInfo.FileName = Option.PlatformToolsPath;
             process.StartInfo.Arguments = command;
 
             process.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;

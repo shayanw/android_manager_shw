@@ -8,6 +8,7 @@ namespace ADBProccessDLL
     {
         public string backupPath;
         public string updatePackagePath;
+        public string platformToolsPath;
         public bool isKeepLatestApk;
         public bool isShowSizeFM;
         public bool isShowHiddenFile;
@@ -32,6 +33,19 @@ namespace ADBProccessDLL
                         else
                         {
                             Option.MainPath = backupPath;
+                        }
+                    }
+                    else if (tmp.Contains("platformToolsPath:"))
+                    {
+                        platformToolsPath = tmp.Replace("platformToolsPath:", "");
+
+                        if (string.IsNullOrEmpty(platformToolsPath))
+                        {
+                            platformToolsPath = Option.PlatformToolsPath;
+                        }
+                        else
+                        {
+                            Option.PlatformToolsPath = platformToolsPath;
                         }
                     }
                     else if (tmp.Contains("updatePackagePath:"))
@@ -84,6 +98,7 @@ namespace ADBProccessDLL
             catch
             {
                 backupPath = Option.MainPath;
+                platformToolsPath = Option.PlatformToolsPath;
                 isShowSizeFM = Option.IsShowSizeFM;
                 isShowHiddenFile = Option.IsShowHiddenFile;
                 isKeepLatestApk = Option.IsKeepLatestApk;
@@ -103,6 +118,29 @@ namespace ADBProccessDLL
 
                     backupPath = DirectoryAddress;
                     return true;
+                }
+                catch
+                { }
+            }
+            return false;
+        }
+
+        public bool changePlatformToolsPath(string DirectoryAddress)
+        {
+            if (Directory.Exists(DirectoryAddress))
+            {
+                try
+                {
+                    Directory.CreateDirectory(DirectoryAddress + "\\test");
+                    Directory.Delete(DirectoryAddress + "\\test");
+
+                    
+                    if (File.Exists(DirectoryAddress + "\\adb.exe"))
+                    {
+                        platformToolsPath = DirectoryAddress;
+                        return true;
+                    }
+                    
                 }
                 catch
                 { }
@@ -138,6 +176,8 @@ namespace ADBProccessDLL
             Option.MainPath = backupPath;
             sw.WriteLine("backupPath:" + backupPath);
 
+            Option.PlatformToolsPath = platformToolsPath;
+            sw.WriteLine("platformToolsPath:" + platformToolsPath);
 
             sw.WriteLine("updatePackagePath:" + updatePackagePath);
 
@@ -149,7 +189,7 @@ namespace ADBProccessDLL
 
             Option.IsKeepLatestApk = isKeepLatestApk;
             sw.WriteLine("isKeepLatestApk:" + isKeepLatestApk);
-
+            
             sw.Close();
         }
 
