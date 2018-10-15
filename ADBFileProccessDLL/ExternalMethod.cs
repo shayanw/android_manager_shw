@@ -323,17 +323,59 @@ namespace ADBProccessDLL
         {
             List<char> v1 = vr1.ToList();
             List<char> v2 = vr2.ToList();
+            string higher=vr1;
+            bool existHigher = false;
             for (int i = 0; i < v1.Count; i++)
             {
                 try
                 {
-                    int tmpNumber1 = Convert.ToInt32(v1[i]);
-                    int tmpNumber2 = Convert.ToInt32(v2[i]);
+                    double tmpNumber1 = Convert.ToDouble(v1[i]);
+                    double tmpNumber2 = Convert.ToDouble(v2[i]);
+
+                    if (existHigher)
+                    {
+                        return higher;
+                    }
+
                     if (tmpNumber1 == tmpNumber2)
                     {
                         continue;
                     }
-                    if (tmpNumber1 > tmpNumber2)
+                    else if (tmpNumber1 > tmpNumber2)
+                    {
+                        higher= vr1;
+                    }
+                    else
+                    {
+                        higher= vr2;
+                    }
+                    existHigher = true;
+                }
+                catch
+                {
+                    bool t1, t2;
+                    if (("1234567890").Contains(v1[i]))
+                    {
+                        t1 = true;
+                    }
+                    else
+                    {
+                        t1 = false;
+                    }
+                    if(("1234567890").Contains(v2[i]))
+                    {
+                        t2 = true;
+                    }
+                    else
+                    {
+                        t2 = false;
+                    }
+
+                    if (!t1 && !t2)
+                    {
+                        continue;
+                    }
+                    else if (t1)
                     {
                         return vr1;
                     }
@@ -341,14 +383,13 @@ namespace ADBProccessDLL
                     {
                         return vr2;
                     }
-                }
-                catch
-                {
-                    continue;
+
+                    
                 }
             }
             return vr1;
         }
+
 
         public static bool KeepLatestVersionApkBackup(string pathApkBackup)
         {
@@ -376,8 +417,8 @@ namespace ADBProccessDLL
                     FileInfo LatestVersionTmp;
                     foreach (FileInfo tmpFile in listApkFiles)
                     {
-                        tmpPackApksSameName = listApkFiles.Where(a => a.Name==tmpFile.Name.Split('_')[0]).ToList();
-                        if (tmpPackApksSameName.Count==1)
+                        tmpPackApksSameName = listApkFiles.Where(a => a.Name.Split('_')[0]== tmpFile.Name.Split('_')[0]).ToList();
+                        if (tmpPackApksSameName.Count<=1)
                         {
                             continue;
                         }

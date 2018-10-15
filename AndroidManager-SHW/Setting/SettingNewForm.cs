@@ -222,11 +222,6 @@ namespace AndroidManager_SHW.Setting
             buttonToggleProccess(ref button_keepLatestApk, ref st.isKeepLatestApk, true);
         }
 
-        private void backgroundWorker_KeepLatestApkBackup_DoWork(object sender, DoWorkEventArgs e)
-        {
-
-        }
-
         private void backgroundWorker_refreshDGV_DoWork(object sender, DoWorkEventArgs e)
         {
             dsbl = new List<deviceSettingBackup>();
@@ -257,6 +252,25 @@ namespace AndroidManager_SHW.Setting
             if (folderBrowserDialog_path.ShowDialog() == DialogResult.OK)
             {
                 textBox_platformToolsPath.Text = folderBrowserDialog_path.SelectedPath;
+            }
+        }
+
+        private void backgroundWorker_KeepLatestApkBackup_DoWork(object sender, DoWorkEventArgs e)
+        {
+            string path = Option.MainPath + "\\" + Option.MainLabelDirectoryName;
+            if (!Directory.Exists(path))
+            {
+                return;
+            }
+
+            foreach (DirectoryInfo diTemp in new DirectoryInfo(path).GetDirectories())
+            {
+                string tmpPathBackup = diTemp.FullName + "\\" + Option.DirNameBackupApk;
+                if (!Directory.Exists(tmpPathBackup))
+                {
+                    continue;
+                }
+                ExternalMethod.KeepLatestVersionApkBackup(tmpPathBackup);
             }
         }
     }

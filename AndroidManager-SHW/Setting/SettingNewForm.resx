@@ -130,15 +130,15 @@
     <value>True</value>
   </metadata>
   <metadata name="saveFileDialog_path.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 60</value>
+    <value>13, 9</value>
   </metadata>
   <metadata name="folderBrowserDialog_path.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>208, 60</value>
+    <value>204, 9</value>
   </metadata>
   <metadata name="backgroundWorker_refreshDGV.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>441, 60</value>
+    <value>437, 9</value>
   </metadata>
   <metadata name="backgroundWorker_KeepLatestApkBackup.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>714, 60</value>
+    <value>710, 9</value>
   </metadata>
 </root>
