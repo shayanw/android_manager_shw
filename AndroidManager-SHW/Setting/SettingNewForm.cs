@@ -70,7 +70,7 @@ namespace AndroidManager_SHW.Setting
         {
             try
             {
-                if (st.changeBackupPath(textBox_backupPath.Text) || st.changePlatformToolsPath(textBox_platformToolsPath.Text))
+                if (st.changeBackupPath(textBox_backupPath.Text) && st.changePlatformToolsPath(textBox_platformToolsPath.Text))
                 {
                     if (textBox_backupPath.Text == Option.MainPath && textBox_platformToolsPath.Text == Option.PlatformToolsPath && st.isShowSizeFM == Option.IsShowSizeFM && st.isShowHiddenFile == Option.IsShowHiddenFile && st.isKeepLatestApk == Option.IsKeepLatestApk)
                     {
@@ -89,7 +89,15 @@ namespace AndroidManager_SHW.Setting
                 }
                 else
                 {
-                    MessageBox.Show("this address is Not Valid !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    if (!st.changeBackupPath(textBox_backupPath.Text))
+                    {
+                        MessageBox.Show("backup address is Not Valid !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Platform-tools address is Not Valid !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    
                 }
 
             }
