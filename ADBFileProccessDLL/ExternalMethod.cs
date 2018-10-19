@@ -307,7 +307,7 @@ namespace ADBProccessDLL
         {
             string version_Apk1 = apk1.Name.Split('_')[1];
             string version_Apk2 = apk2.Name.Split('_')[1];
-            string tmpUpperVersion = ReturnUpperVersion(version_Apk1, version_Apk2);
+            string tmpUpperVersion = ReturnUpperVersionNew(version_Apk1, version_Apk2);
 
             if (version_Apk1==tmpUpperVersion)
             {
@@ -319,75 +319,62 @@ namespace ADBProccessDLL
             }
         }
 
-        private static string ReturnUpperVersion(string vr1, string vr2)
+        private static string ReturnUpperVersionNew(string vr1, string vr2)
         {
-            List<char> v1 = vr1.ToList();
-            List<char> v2 = vr2.ToList();
-            string higher=vr1;
-            bool existHigher = false;
-            for (int i = 0; i < v1.Count; i++)
+            List<decimal> dvr1 = ReturnDecimalList(vr1);
+            List<decimal> dvr2 = ReturnDecimalList(vr2);
+
+            try
             {
-                try
+                for (int i = 0; i < dvr1.Count; i++)
                 {
-                    double tmpNumber1 = Convert.ToDouble(v1[i]);
-                    double tmpNumber2 = Convert.ToDouble(v2[i]);
-
-                    if (existHigher)
-                    {
-                        return higher;
-                    }
-
-                    if (tmpNumber1 == tmpNumber2)
-                    {
-                        continue;
-                    }
-                    else if (tmpNumber1 > tmpNumber2)
-                    {
-                        higher= vr1;
-                    }
-                    else
-                    {
-                        higher= vr2;
-                    }
-                    existHigher = true;
-                }
-                catch
-                {
-                    bool t1, t2;
-                    if (("1234567890").Contains(v1[i]))
-                    {
-                        t1 = true;
-                    }
-                    else
-                    {
-                        t1 = false;
-                    }
-                    if(("1234567890").Contains(v2[i]))
-                    {
-                        t2 = true;
-                    }
-                    else
-                    {
-                        t2 = false;
-                    }
-
-                    if (!t1 && !t2)
-                    {
-                        continue;
-                    }
-                    else if (t1)
+                    if (dvr1[i]>dvr2[i])
                     {
                         return vr1;
                     }
-                    else
+                    else if (dvr1[i] < dvr2[i])
                     {
                         return vr2;
                     }
-
-                    
+                    else
+                    {
+                        continue;
+                    }
+                }
+                return vr1;
+            }
+            catch (Exception)
+            {
+                if (dvr1.Count>=dvr2.Count)
+                {
+                    return vr1;
+                }
+                else
+                {
+                    return vr2;
                 }
             }
-            return vr1;
+            
+        }
+        private static List<decimal> ReturnDecimalList(string vr)
+        {
+            List<decimal> versionDecimal = new List<decimal>();
+            List<char> vrList = vr.ToList();
+            string numbers = "0123456789";
+            string decimalValueString = "";
+            foreach (char tmpCr in vrList)
+            {
+                if (!tmpCr.ToString().Contains(numbers))
+                {
+                    if (string.IsNullOrEmpty(decimalValueString))
+                    {
+                        versionDecimal.Add(Convert.ToDecimal(decimalValueString));
+                        decimalValueString = "";
+                    }
+                }
+                decimalValueString += tmpCr;
+            }
+            return versionDecimal;
         }
 
 
