@@ -137,7 +137,7 @@ namespace AndroidManager_SHW
             button_cancel.Text = "OK";
             label_Status.Text = "Transfer " + ExternalMethod.CounterEx + " Files In " + (MyTime * timer_5s.Interval / 1000).getStringTime();
             label_percent.Text ="100 %";
-            MessageBox.Show(TransferTp.ToString() + " Successfully", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
             IsChangeValue = true;
             if (TransferType.BackingUp == TransferTp)
             {
@@ -149,6 +149,11 @@ namespace AndroidManager_SHW
                 {
                     FM.DeleteDirectoryAndFiles(item.FullName);
                 }
+            }
+
+            if (MessageBox.Show(TransferTp.ToString() + " Successfully", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information)==DialogResult.OK)
+            {
+                timer_closeForm.Start();
             }
         }
 
@@ -277,6 +282,12 @@ namespace AndroidManager_SHW
             {
                 return (new FileInfo(Address)).DirectoryName;
             }
+        }
+
+        private void timer_closeForm_Tick(object sender, EventArgs e)
+        {
+            timer_closeForm.Stop();
+            this.Close();
         }
     }
 }

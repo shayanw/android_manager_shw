@@ -40,6 +40,7 @@
             this.timer_5s = new System.Windows.Forms.Timer(this.components);
             this.backgroundWorker_SetLabels = new System.ComponentModel.BackgroundWorker();
             this.label_percent = new System.Windows.Forms.Label();
+            this.timer_closeForm = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // progressBar_transfer
@@ -149,6 +150,11 @@
             this.label_percent.Text = "%";
             this.label_percent.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // timer_closeForm
+            // 
+            this.timer_closeForm.Interval = 5000;
+            this.timer_closeForm.Tick += new System.EventHandler(this.timer_closeForm_Tick);
+            // 
             // TransferForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -186,5 +192,6 @@
         private System.Windows.Forms.Timer timer_5s;
         private System.ComponentModel.BackgroundWorker backgroundWorker_SetLabels;
         private System.Windows.Forms.Label label_percent;
+        private System.Windows.Forms.Timer timer_closeForm;
     }
 }
