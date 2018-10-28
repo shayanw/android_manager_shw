@@ -12,7 +12,7 @@ namespace AndroidManager_SHW
     {
         //Local DataType
         DeviceData device;
-        FileManager fm;
+       ADBProccessDLL.FileManager fm;
         ADBFile tmpAdbFile;
 
         //String
@@ -75,7 +75,7 @@ namespace AndroidManager_SHW
 
 
             device = currentDevice;
-            fm = new FileManager(device);
+            fm = new ADBProccessDLL.FileManager(device);
             backupPath = fm.option.MainPathBackupProp;
         }
 

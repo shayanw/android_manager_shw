@@ -16,7 +16,8 @@ namespace AndroidManager_SHW
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new HomeForm());
+            //Application.Run(new HomeForm());
+            Application.Run(new FileManagerDir.ControlDir.testUc());
         }
     }
 }

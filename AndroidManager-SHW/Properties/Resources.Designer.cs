@@ -93,6 +93,16 @@ namespace AndroidManager_SHW.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap backup_UC {
+            get {
+                object obj = ResourceManager.GetObject("backup_UC", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap backup8 {
             get {
                 object obj = ResourceManager.GetObject("backup8", resourceCulture);
@@ -136,6 +146,16 @@ namespace AndroidManager_SHW.Properties {
         internal static System.Drawing.Bitmap backup8Orangeh {
             get {
                 object obj = ResourceManager.GetObject("backup8Orangeh", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap backupLight_UC {
+            get {
+                object obj = ResourceManager.GetObject("backupLight_UC", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -206,6 +226,16 @@ namespace AndroidManager_SHW.Properties {
         internal static System.Drawing.Bitmap con_shutdown {
             get {
                 object obj = ResourceManager.GetObject("con_shutdown", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap default_UC {
+            get {
+                object obj = ResourceManager.GetObject("default_UC", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -563,6 +593,16 @@ namespace AndroidManager_SHW.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap selected_UC {
+            get {
+                object obj = ResourceManager.GetObject("selected_UC", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap sett8 {
             get {
                 object obj = ResourceManager.GetObject("sett8", resourceCulture);
@@ -636,6 +676,26 @@ namespace AndroidManager_SHW.Properties {
         internal static System.Drawing.Bitmap toggleOn {
             get {
                 object obj = ResourceManager.GetObject("toggleOn", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap unistall_UC {
+            get {
+                object obj = ResourceManager.GetObject("unistall_UC", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap unistallLight_UC {
+            get {
+                object obj = ResourceManager.GetObject("unistallLight_UC", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

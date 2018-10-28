@@ -5,10 +5,10 @@ namespace AndroidManager_SHW
 {
     public partial class FileManager_CreateNewDir : Form
     {
-        FileManager FM;
+        ADBProccessDLL.FileManager FM;
         string Path;
         public bool IsChangeValue;
-        public FileManager_CreateNewDir(FileManager fm, string path)
+        public FileManager_CreateNewDir(ADBProccessDLL.FileManager fm, string path)
         {
             InitializeComponent();
             FM = fm;

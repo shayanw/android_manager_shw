@@ -75,16 +75,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FileManager\FileManagerForm.cs">
+    <Compile Include="FileManagerDir\ControlDir\apkPackageUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FileManagerDir\ControlDir\apkPackageUserControl.Designer.cs">
+      <DependentUpon>apkPackageUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FileManagerDir\ControlDir\testUc.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FileManager\FileManagerForm.Designer.cs">
+    <Compile Include="FileManagerDir\ControlDir\testUc.Designer.cs">
+      <DependentUpon>testUc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FileManagerDir\FileManagerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FileManagerDir\FileManagerForm.Designer.cs">
       <DependentUpon>FileManagerForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="FileManager\FileManager_CreateNewDir.cs">
+    <Compile Include="FileManagerDir\FileManager_CreateNewDir.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FileManager\FileManager_CreateNewDir.Designer.cs">
+    <Compile Include="FileManagerDir\FileManager_CreateNewDir.Designer.cs">
       <DependentUpon>FileManager_CreateNewDir.cs</DependentUpon>
     </Compile>
     <Compile Include="Form1.cs">
@@ -99,23 +111,23 @@
     <Compile Include="Form_networkADB.Designer.cs">
       <DependentUpon>Form_networkADB.cs</DependentUpon>
     </Compile>
-    <Compile Include="PackageManager\PMForm.cs">
+    <Compile Include="PackageManagerDir\PMForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PackageManager\PMForm.Designer.cs">
+    <Compile Include="PackageManagerDir\PMForm.Designer.cs">
       <DependentUpon>PMForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
-    <Compile Include="FileManager\PropertiesForm.cs">
+    <Compile Include="FileManagerDir\PropertiesForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FileManager\PropertiesForm.Designer.cs">
+    <Compile Include="FileManagerDir\PropertiesForm.Designer.cs">
       <DependentUpon>PropertiesForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="FileManager\TransferForm.cs">
+    <Compile Include="FileManagerDir\TransferForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FileManager\TransferForm.Designer.cs">
+    <Compile Include="FileManagerDir\TransferForm.Designer.cs">
       <DependentUpon>TransferForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
@@ -123,29 +135,35 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Setting\deviceSettingBackup.cs" />
-    <Compile Include="Setting\SettingNewForm.cs">
+    <Compile Include="SettingDir\deviceSettingBackup.cs" />
+    <Compile Include="SettingDir\SettingNewForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Setting\SettingNewForm.Designer.cs">
+    <Compile Include="SettingDir\SettingNewForm.Designer.cs">
       <DependentUpon>SettingNewForm.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="FileManager\FileManagerForm.resx">
+    <EmbeddedResource Include="FileManagerDir\ControlDir\apkPackageUserControl.resx">
+      <DependentUpon>apkPackageUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FileManagerDir\ControlDir\testUc.resx">
+      <DependentUpon>testUc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FileManagerDir\FileManagerForm.resx">
       <DependentUpon>FileManagerForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FileManager\FileManager_CreateNewDir.resx">
+    <EmbeddedResource Include="FileManagerDir\FileManager_CreateNewDir.resx">
       <DependentUpon>FileManager_CreateNewDir.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FileManager\PropertiesForm.resx">
+    <EmbeddedResource Include="FileManagerDir\PropertiesForm.resx">
       <DependentUpon>PropertiesForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_networkADB.resx">
       <DependentUpon>Form_networkADB.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PackageManager\PMForm.resx">
+    <EmbeddedResource Include="PackageManagerDir\PMForm.resx">
       <DependentUpon>PMForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -153,10 +171,10 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="FileManager\TransferForm.resx">
+    <EmbeddedResource Include="FileManagerDir\TransferForm.resx">
       <DependentUpon>TransferForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Setting\SettingNewForm.resx">
+    <EmbeddedResource Include="SettingDir\SettingNewForm.resx">
       <DependentUpon>SettingNewForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
@@ -227,6 +245,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="if_android_1220337.ico" />
+    <None Include="Resources\selected_UC.png" />
+    <None Include="Resources\default_UC.png" />
+    <None Include="Resources\unistallLight_UC.png" />
+    <None Include="Resources\backupLight_UC.png" />
+    <None Include="Resources\backup_UC.png" />
+    <None Include="Resources\unistall_UC.png" />
     <None Include="Resources\mobileNewOnline.png" />
     <None Include="Resources\infoh.png" />
     <None Include="Resources\info.png" />
@@ -285,6 +309,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Nerdbank.GitVersioning.2.1.23\build\Nerdbank.GitVersioning.targets" Condition="Exists('..\packages\Nerdbank.GitVersioning.2.1.23\build\Nerdbank.GitVersioning.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

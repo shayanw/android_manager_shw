@@ -13,7 +13,7 @@ namespace AndroidManager_SHW
         double SizeDouble;
         bool isOneFile;
         ADBFile oneFile;
-        FileManager FM;
+        ADBProccessDLL.FileManager FM;
         public bool IsChangeValue;
 
         string tmpName;
@@ -27,7 +27,7 @@ namespace AndroidManager_SHW
             CountFilesInt = 0;
             isOneFile = true;
             oneFile = myFile;
-            FM = new FileManager(myFile.device);
+            FM = new ADBProccessDLL.FileManager(myFile.device);
             TypeFile = getTypeFile(myFile);
             Location = myFile.DirectoryName;
             pictureBox_iconFile.Image = img;
@@ -61,7 +61,7 @@ namespace AndroidManager_SHW
             CountFilesInt = 0;
             SizeDouble = 0;
             multiFiles = myFiles;
-            FM = new FileManager(myFiles[0].device);
+            FM = new ADBProccessDLL.FileManager(myFiles[0].device);
             pictureBox_iconFile.Image = img;
             label_locationValue.Text = myFiles[0].DirectoryName.DecodingText();
             label_sizeValue.Text = label_countValue.Text = "•••";

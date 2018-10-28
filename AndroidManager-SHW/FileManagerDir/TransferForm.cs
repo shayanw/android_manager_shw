@@ -14,7 +14,7 @@ namespace AndroidManager_SHW
     {
         string Path;
         List<ADBFile> MyFiles;
-        FileManager FM;
+        ADBProccessDLL.FileManager FM;
         TransferType TransferTp;
         int CountFilesForTransfer = 0;
         double TotalLengthFiles = 0;
@@ -24,7 +24,7 @@ namespace AndroidManager_SHW
         public bool IsChangeValue;
 
 
-        public TransferForm(TransferType tt, List<ADBFile> myfiles, string path, FileManager fm)
+        public TransferForm(TransferType tt, List<ADBFile> myfiles, string path, ADBProccessDLL.FileManager fm)
         {
 
             InitializeComponent();
@@ -58,7 +58,7 @@ namespace AndroidManager_SHW
             progressBar_transfer.Value = 0;
             Path = path;
             FilesAndDirecoriesForUpload = FilesForUpload;
-            FM = new FileManager(device);
+            FM = new ADBProccessDLL.FileManager(device);
             TransferTp = transfer_type;
             progressBar_transfer.Maximum = 10000;
             timer_5s.Interval = 500;
