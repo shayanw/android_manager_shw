@@ -598,6 +598,7 @@
             this.Controls.Add(this.panel_rightSide);
             this.Controls.Add(this.panel_details);
             this.MinimumSize = new System.Drawing.Size(728, 500);
+            //this.Name = "PMForm";
             this.ShowIcon = false;
             this.Text = "Package Manager";
             this.Load += new System.EventHandler(this.PMForm_Load);

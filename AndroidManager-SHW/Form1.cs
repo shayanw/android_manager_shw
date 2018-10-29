@@ -9,6 +9,7 @@ using SharpAdbClient;
 using ADBProccessDLL;
 using System.Net;
 using System.IO;
+using AndroidManager_SHW.PackageManagerDir;
 
 namespace AndroidManager_SHW
 {
@@ -229,7 +230,8 @@ namespace AndroidManager_SHW
             {
                 return;
             }
-            PackageManager.PMForm pmrf = new PackageManager.PMForm(currentDevice);
+            //PackageManager.PM_Form pmrf = new PackageManager.PM_Form(currentDevice);
+            PMFormNew pmrf = new PMFormNew(currentDevice);
             pictureBox_onMobileState_enable(sender);
             pmrf.FormClosed += allFormClosed;
             pmrf.ShowDialog();

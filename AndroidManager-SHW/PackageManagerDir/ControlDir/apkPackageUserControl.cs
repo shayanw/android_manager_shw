@@ -12,7 +12,7 @@ namespace AndroidManager_SHW.FileManager.Control
 {
     public partial class apkPackageUserControl : UserControl
     {
-        string version, packageName, iconPackagePath;
+        string Version, PackageName, IconPackagePath;
         bool isPanelButtonVisible = false;
         bool isSelected = false;
 
@@ -22,16 +22,29 @@ namespace AndroidManager_SHW.FileManager.Control
         public event EventHandler backupPackageClick;
         public event EventHandler packageSelected;
 
-        public string VersionProp { get { return version; } set { version = value; } }
-        public string PackageNameProp { get { return packageName; } set { packageName = value; } }
-        public string IconPackagePathProp { get { return iconPackagePath; } set { iconPackagePath = value; } }
+        public string VersionProp { get { return Version; } set { Version = value; } }
+        public string PackageNameProp { get { return PackageName; } set { PackageName = value; } }
+        public string IconPackagePathProp { get { return IconPackagePath; } set
+            {
+                try
+                {
+                    pictureBox_iconPackage.BackgroundImage = Image.FromFile(value);
+                    IconPackagePath = value;
+                }
+                catch
+                {
+                    pictureBox_iconPackage.BackgroundImage = AndroidManager_SHW.Properties.Resources.default_UC;
+                }
+            } }
         public bool isPanelButtonVisibleProp { get { return isPanelButtonVisible; }
             set {
                 isPanelButtonVisible = button_removePackage.Visible=button_backupPackage.Visible = value;
             } }
 
         public bool isSelectedProp { get { label_package_Click(new object(), new EventArgs()); return isSelected; } set { isSelected = value; } }
-
+        Color lastColor;
+        public Color BackColorProp { get { return this.BackColor; } set { this.BackColor =lastColor= value; } }
+        
 
         #region animation icon
         private void button_removePackage_MouseHover(object sender, EventArgs e)
@@ -57,21 +70,36 @@ namespace AndroidManager_SHW.FileManager.Control
         public apkPackageUserControl()
         {
             InitializeComponent();
-        }
+            pictureBox_iconPackage.BackgroundImage = AndroidManager_SHW.Properties.Resources.default_UC;
 
-        private void apkPackageUserControl_Load(object sender, EventArgs e)
+        }
+        public apkPackageUserControl(string packagename,string version,string backcolor="default", string iconPath = "default")
         {
-            label_package.Text = packageName;
-            label_version.Text = version;
-            string pathImage = iconPackagePath;
-            try
+            InitializeComponent();
+
+            PackageName = packagename;
+            Version = version;
+            if (backcolor == "default")
             {
-                pictureBox_iconPackage.BackgroundImage = Image.FromFile(pathImage);
+                this.BackColorProp = Color.Transparent;
             }
-            catch
+            else
+            {
+                this.BackColorProp = Color.FromName(backcolor);
+            }
+            if (iconPath == "default")
             {
                 pictureBox_iconPackage.BackgroundImage = AndroidManager_SHW.Properties.Resources.default_UC;
             }
+            else
+            {
+                pictureBox_iconPackage.BackgroundImage = Image.FromFile(iconPath);
+            }
+        }
+        private void apkPackageUserControl_Load(object sender, EventArgs e)
+        {
+            label_package.Text = PackageName;
+            label_version.Text = Version; 
         }
 
 
@@ -80,11 +108,13 @@ namespace AndroidManager_SHW.FileManager.Control
 
         private void button_removePackage_Click(object sender, EventArgs e)
         {
+            return;
             removePackageClick(sender, e);
         }
 
         private void button_backupPackage_Click(object sender, EventArgs e)
         {
+            return;
             backupPackageClick(sender, e);
         }
 
@@ -92,7 +122,7 @@ namespace AndroidManager_SHW.FileManager.Control
         {
             if (isSelected)
             {
-                this.BackColor = Color.Transparent;
+                this.BackColor =lastColor ;
                 button_selectedPackage.Visible = false;
                 isSelected = false;
                 
@@ -103,6 +133,7 @@ namespace AndroidManager_SHW.FileManager.Control
                 button_selectedPackage.Visible = true;
                 isSelected = true;
             }
+            return;
             packageSelected(sender, e);
         }
 
