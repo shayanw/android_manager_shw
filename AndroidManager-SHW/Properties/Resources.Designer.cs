@@ -103,6 +103,16 @@ namespace AndroidManager_SHW.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap backup20_UC {
+            get {
+                object obj = ResourceManager.GetObject("backup20_UC", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap backup8 {
             get {
                 object obj = ResourceManager.GetObject("backup8", resourceCulture);
@@ -236,6 +246,16 @@ namespace AndroidManager_SHW.Properties {
         internal static System.Drawing.Bitmap default_UC {
             get {
                 object obj = ResourceManager.GetObject("default_UC", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap dropDown_PM {
+            get {
+                object obj = ResourceManager.GetObject("dropDown_PM", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -406,6 +426,16 @@ namespace AndroidManager_SHW.Properties {
         internal static System.Drawing.Bitmap infoh {
             get {
                 object obj = ResourceManager.GetObject("infoh", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap install_PM {
+            get {
+                object obj = ResourceManager.GetObject("install_PM", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -686,6 +716,16 @@ namespace AndroidManager_SHW.Properties {
         internal static System.Drawing.Bitmap unistall_UC {
             get {
                 object obj = ResourceManager.GetObject("unistall_UC", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap unistall24_UC {
+            get {
+                object obj = ResourceManager.GetObject("unistall24_UC", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

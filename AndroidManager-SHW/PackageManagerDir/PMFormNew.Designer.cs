@@ -28,146 +28,71 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox_search = new System.Windows.Forms.TextBox();
-            this.panel_sdcardInstall = new System.Windows.Forms.Panel();
-            this.panel_phoneInstall = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.button_selectNone = new System.Windows.Forms.Button();
+            this.button_selectAll = new System.Windows.Forms.Button();
             this.flowLayoutPanel_packages = new System.Windows.Forms.FlowLayoutPanel();
             this.progressBar_Load = new System.Windows.Forms.ProgressBar();
             this.panel_bottom = new System.Windows.Forms.Panel();
+            this.panel_phoneInstall = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.panel_sdcardInstall = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel_bottomProgress = new System.Windows.Forms.Panel();
             this.label_status = new System.Windows.Forms.Label();
             this.panel_top = new System.Windows.Forms.Panel();
+            this.searchUserControl = new AndroidManager_SHW.PackageManagerDir.ControlDir.searchUserControl();
+            this.button_backup = new System.Windows.Forms.Button();
+            this.button_unistall = new System.Windows.Forms.Button();
             this.panel_fill = new System.Windows.Forms.Panel();
             this.backgroundWorker_flowLayoutPanel = new System.ComponentModel.BackgroundWorker();
             this.panel_bottomStatus = new System.Windows.Forms.Panel();
             this.backgroundWorker_addControlFLP = new System.ComponentModel.BackgroundWorker();
             this.backgroundWorker_setIcon = new System.ComponentModel.BackgroundWorker();
-            this.panel_sdcardInstall.SuspendLayout();
-            this.panel_phoneInstall.SuspendLayout();
+            this.backgroundWorker_unistallPackages = new System.ComponentModel.BackgroundWorker();
+            this.backgroundWorker_backupPackages = new System.ComponentModel.BackgroundWorker();
+            this.backgroundWorker_KeepLatestApkBackup = new System.ComponentModel.BackgroundWorker();
+            this.backgroundWorker_installApk = new System.ComponentModel.BackgroundWorker();
             this.panel_bottom.SuspendLayout();
+            this.panel_phoneInstall.SuspendLayout();
+            this.panel_sdcardInstall.SuspendLayout();
             this.panel_bottomProgress.SuspendLayout();
             this.panel_top.SuspendLayout();
             this.panel_fill.SuspendLayout();
             this.panel_bottomStatus.SuspendLayout();
             this.SuspendLayout();
             // 
-            // textBox_search
+            // button_selectNone
             // 
-            this.textBox_search.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox_search.BackColor = System.Drawing.Color.White;
-            this.textBox_search.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox_search.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_search.ForeColor = System.Drawing.Color.Black;
-            this.textBox_search.Location = new System.Drawing.Point(570, 12);
-            this.textBox_search.Name = "textBox_search";
-            this.textBox_search.Size = new System.Drawing.Size(222, 23);
-            this.textBox_search.TabIndex = 4;
-            this.textBox_search.Text = "  Search Now •••";
+            this.button_selectNone.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.button_selectNone.BackgroundImage = global::AndroidManager_SHW.Properties.Resources.checkNone;
+            this.button_selectNone.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button_selectNone.FlatAppearance.BorderSize = 0;
+            this.button_selectNone.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_selectNone.Location = new System.Drawing.Point(12, 7);
+            this.button_selectNone.Name = "button_selectNone";
+            this.button_selectNone.Size = new System.Drawing.Size(32, 32);
+            this.button_selectNone.TabIndex = 5;
+            this.button_selectNone.UseVisualStyleBackColor = false;
+            this.button_selectNone.Click += new System.EventHandler(this.button_selectNone_Click);
             // 
-            // panel_sdcardInstall
+            // button_selectAll
             // 
-            this.panel_sdcardInstall.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.panel_sdcardInstall.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.panel_sdcardInstall.BackgroundImage = global::AndroidManager_SHW.Properties.Resources.exteralMemory;
-            this.panel_sdcardInstall.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.panel_sdcardInstall.Controls.Add(this.label1);
-            this.panel_sdcardInstall.Location = new System.Drawing.Point(405, 9);
-            this.panel_sdcardInstall.Name = "panel_sdcardInstall";
-            this.panel_sdcardInstall.Size = new System.Drawing.Size(387, 132);
-            this.panel_sdcardInstall.TabIndex = 0;
-            // 
-            // panel_phoneInstall
-            // 
-            this.panel_phoneInstall.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.panel_phoneInstall.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.panel_phoneInstall.BackgroundImage = global::AndroidManager_SHW.Properties.Resources.internalMemory;
-            this.panel_phoneInstall.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.panel_phoneInstall.Controls.Add(this.label2);
-            this.panel_phoneInstall.Location = new System.Drawing.Point(12, 9);
-            this.panel_phoneInstall.Name = "panel_phoneInstall";
-            this.panel_phoneInstall.Size = new System.Drawing.Size(387, 132);
-            this.panel_phoneInstall.TabIndex = 0;
-            // 
-            // label1
-            // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(0, 91);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(384, 31);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Drag to install on SD Card";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label2
-            // 
-            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(3, 91);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(384, 31);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Drag to install on Phone";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(12, 7);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(32, 32);
-            this.button1.TabIndex = 5;
-            this.button1.UseVisualStyleBackColor = false;
-            // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Location = new System.Drawing.Point(50, 7);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(32, 32);
-            this.button2.TabIndex = 5;
-            this.button2.UseVisualStyleBackColor = false;
-            // 
-            // button3
-            // 
-            this.button3.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Image = global::AndroidManager_SHW.Properties.Resources.fm_con_delete;
-            this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button3.Location = new System.Drawing.Point(97, 7);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(134, 32);
-            this.button3.TabIndex = 5;
-            this.button3.Text = "Unistall";
-            this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button3.UseVisualStyleBackColor = false;
-            // 
-            // button4
-            // 
-            this.button4.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Image = global::AndroidManager_SHW.Properties.Resources.fm_con_details;
-            this.button4.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button4.Location = new System.Drawing.Point(237, 7);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(134, 32);
-            this.button4.TabIndex = 5;
-            this.button4.Text = "Backup";
-            this.button4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button4.UseVisualStyleBackColor = false;
+            this.button_selectAll.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.button_selectAll.BackgroundImage = global::AndroidManager_SHW.Properties.Resources.checkAll;
+            this.button_selectAll.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button_selectAll.FlatAppearance.BorderSize = 0;
+            this.button_selectAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_selectAll.Location = new System.Drawing.Point(50, 7);
+            this.button_selectAll.Name = "button_selectAll";
+            this.button_selectAll.Size = new System.Drawing.Size(32, 32);
+            this.button_selectAll.TabIndex = 5;
+            this.button_selectAll.UseVisualStyleBackColor = false;
+            this.button_selectAll.Click += new System.EventHandler(this.button_selectAll_Click);
             // 
             // flowLayoutPanel_packages
             // 
             this.flowLayoutPanel_packages.AutoScroll = true;
-            this.flowLayoutPanel_packages.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.flowLayoutPanel_packages.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(253)))), ((int)(((byte)(253)))));
             this.flowLayoutPanel_packages.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel_packages.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel_packages.Margin = new System.Windows.Forms.Padding(10);
@@ -197,6 +122,57 @@
             this.panel_bottom.Size = new System.Drawing.Size(803, 151);
             this.panel_bottom.TabIndex = 8;
             // 
+            // panel_phoneInstall
+            // 
+            this.panel_phoneInstall.AllowDrop = true;
+            this.panel_phoneInstall.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.panel_phoneInstall.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel_phoneInstall.BackgroundImage = global::AndroidManager_SHW.Properties.Resources.internalMemory;
+            this.panel_phoneInstall.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.panel_phoneInstall.Controls.Add(this.label2);
+            this.panel_phoneInstall.Location = new System.Drawing.Point(12, 9);
+            this.panel_phoneInstall.Name = "panel_phoneInstall";
+            this.panel_phoneInstall.Size = new System.Drawing.Size(387, 132);
+            this.panel_phoneInstall.TabIndex = 0;
+            this.panel_phoneInstall.DragDrop += new System.Windows.Forms.DragEventHandler(this.panel_phoneInstall_DragDrop);
+            this.panel_phoneInstall.DragEnter += new System.Windows.Forms.DragEventHandler(this.panel_phoneInstall_DragEnter);
+            this.panel_phoneInstall.DragLeave += new System.EventHandler(this.panel_phoneInstall_DragLeave);
+            // 
+            // label2
+            // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(3, 91);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(384, 31);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Drag to install on Phone";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // panel_sdcardInstall
+            // 
+            this.panel_sdcardInstall.AllowDrop = true;
+            this.panel_sdcardInstall.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.panel_sdcardInstall.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.panel_sdcardInstall.BackgroundImage = global::AndroidManager_SHW.Properties.Resources.exteralMemory;
+            this.panel_sdcardInstall.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.panel_sdcardInstall.Controls.Add(this.label1);
+            this.panel_sdcardInstall.Location = new System.Drawing.Point(405, 9);
+            this.panel_sdcardInstall.Name = "panel_sdcardInstall";
+            this.panel_sdcardInstall.Size = new System.Drawing.Size(387, 132);
+            this.panel_sdcardInstall.TabIndex = 0;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(0, 91);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(384, 31);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Drag to install on SD Card";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // panel_bottomProgress
             // 
             this.panel_bottomProgress.BackColor = System.Drawing.SystemColors.ControlLight;
@@ -217,23 +193,67 @@
             this.label_status.Name = "label_status";
             this.label_status.Size = new System.Drawing.Size(803, 30);
             this.label_status.TabIndex = 8;
-            this.label_status.Text = "Say Status...     |     Progress 58%     |     Package Name: sd\\dfd\\dfdsf\\dfsf\\aa" +
-    "p.apk";
-            this.label_status.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label_status.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // panel_top
             // 
             this.panel_top.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.panel_top.Controls.Add(this.button4);
-            this.panel_top.Controls.Add(this.button3);
-            this.panel_top.Controls.Add(this.textBox_search);
-            this.panel_top.Controls.Add(this.button1);
-            this.panel_top.Controls.Add(this.button2);
+            this.panel_top.Controls.Add(this.searchUserControl);
+            this.panel_top.Controls.Add(this.button_backup);
+            this.panel_top.Controls.Add(this.button_unistall);
+            this.panel_top.Controls.Add(this.button_selectNone);
+            this.panel_top.Controls.Add(this.button_selectAll);
             this.panel_top.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel_top.Location = new System.Drawing.Point(0, 0);
             this.panel_top.Name = "panel_top";
             this.panel_top.Size = new System.Drawing.Size(803, 49);
             this.panel_top.TabIndex = 10;
+            // 
+            // searchUserControl
+            // 
+            this.searchUserControl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.searchUserControl.BackColor = System.Drawing.SystemColors.Window;
+            this.searchUserControl.DefaultTextProp = "Search Package...";
+            this.searchUserControl.Location = new System.Drawing.Point(539, 12);
+            this.searchUserControl.Name = "searchUserControl";
+            this.searchUserControl.SearchTextProp = null;
+            this.searchUserControl.Size = new System.Drawing.Size(250, 27);
+            this.searchUserControl.TabIndex = 6;
+            this.searchUserControl.TextChangedEvent += new System.EventHandler(this.searchUserControl_TextChangedEvent);
+            // 
+            // button_backup
+            // 
+            this.button_backup.BackColor = System.Drawing.Color.LightCyan;
+            this.button_backup.FlatAppearance.BorderSize = 0;
+            this.button_backup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_backup.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_backup.Image = global::AndroidManager_SHW.Properties.Resources.backup20_UC;
+            this.button_backup.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button_backup.Location = new System.Drawing.Point(221, 7);
+            this.button_backup.Name = "button_backup";
+            this.button_backup.Size = new System.Drawing.Size(122, 36);
+            this.button_backup.TabIndex = 5;
+            this.button_backup.Text = "Backup";
+            this.button_backup.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button_backup.UseVisualStyleBackColor = false;
+            this.button_backup.Click += new System.EventHandler(this.button_backup_Click);
+            // 
+            // button_unistall
+            // 
+            this.button_unistall.BackColor = System.Drawing.Color.Bisque;
+            this.button_unistall.FlatAppearance.BorderSize = 0;
+            this.button_unistall.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_unistall.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_unistall.Image = global::AndroidManager_SHW.Properties.Resources.unistall24_UC;
+            this.button_unistall.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button_unistall.Location = new System.Drawing.Point(93, 7);
+            this.button_unistall.Name = "button_unistall";
+            this.button_unistall.Size = new System.Drawing.Size(122, 36);
+            this.button_unistall.TabIndex = 5;
+            this.button_unistall.Text = "Unistall";
+            this.button_unistall.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button_unistall.UseVisualStyleBackColor = false;
+            this.button_unistall.Click += new System.EventHandler(this.button_unistall_Click);
             // 
             // panel_fill
             // 
@@ -273,6 +293,34 @@
             // 
             this.backgroundWorker_setIcon.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker_setIcon_DoWork);
             // 
+            // backgroundWorker_unistallPackages
+            // 
+            this.backgroundWorker_unistallPackages.WorkerReportsProgress = true;
+            this.backgroundWorker_unistallPackages.WorkerSupportsCancellation = true;
+            this.backgroundWorker_unistallPackages.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker_unistallPackages_DoWork);
+            this.backgroundWorker_unistallPackages.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker_unistallPackages_ProgressChanged);
+            this.backgroundWorker_unistallPackages.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker_unistallPackages_RunWorkerCompleted);
+            // 
+            // backgroundWorker_backupPackages
+            // 
+            this.backgroundWorker_backupPackages.WorkerReportsProgress = true;
+            this.backgroundWorker_backupPackages.WorkerSupportsCancellation = true;
+            this.backgroundWorker_backupPackages.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker_backupPackages_DoWork);
+            this.backgroundWorker_backupPackages.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker_backupPackages_ProgressChanged);
+            this.backgroundWorker_backupPackages.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker_backupPackages_RunWorkerCompleted);
+            // 
+            // backgroundWorker_KeepLatestApkBackup
+            // 
+            this.backgroundWorker_KeepLatestApkBackup.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker_KeepLatestApkBackup_DoWork);
+            // 
+            // backgroundWorker_installApk
+            // 
+            this.backgroundWorker_installApk.WorkerReportsProgress = true;
+            this.backgroundWorker_installApk.WorkerSupportsCancellation = true;
+            this.backgroundWorker_installApk.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker_installApk_DoWork);
+            this.backgroundWorker_installApk.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker_installApk_ProgressChanged);
+            this.backgroundWorker_installApk.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker_installApk_RunWorkerCompleted);
+            // 
             // PMFormNew
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -284,14 +332,13 @@
             this.Controls.Add(this.panel_bottomProgress);
             this.Controls.Add(this.panel_bottom);
             this.Name = "PMFormNew";
-            this.Text = "PMFormNew";
-            this.Load += new System.EventHandler(this.PMFormNew_Load);
-            this.panel_sdcardInstall.ResumeLayout(false);
-            this.panel_phoneInstall.ResumeLayout(false);
+            this.ShowIcon = false;
+            this.Text = "Package Manager";
             this.panel_bottom.ResumeLayout(false);
+            this.panel_phoneInstall.ResumeLayout(false);
+            this.panel_sdcardInstall.ResumeLayout(false);
             this.panel_bottomProgress.ResumeLayout(false);
             this.panel_top.ResumeLayout(false);
-            this.panel_top.PerformLayout();
             this.panel_fill.ResumeLayout(false);
             this.panel_bottomStatus.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -303,11 +350,10 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel_sdcardInstall;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox_search;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button_selectNone;
+        private System.Windows.Forms.Button button_selectAll;
+        private System.Windows.Forms.Button button_unistall;
+        private System.Windows.Forms.Button button_backup;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel_packages;
         private System.Windows.Forms.ProgressBar progressBar_Load;
         private System.Windows.Forms.Panel panel_bottom;
@@ -319,5 +365,10 @@
         private System.Windows.Forms.Panel panel_bottomStatus;
         private System.ComponentModel.BackgroundWorker backgroundWorker_addControlFLP;
         private System.ComponentModel.BackgroundWorker backgroundWorker_setIcon;
+        private ControlDir.searchUserControl searchUserControl;
+        private System.ComponentModel.BackgroundWorker backgroundWorker_unistallPackages;
+        private System.ComponentModel.BackgroundWorker backgroundWorker_backupPackages;
+        private System.ComponentModel.BackgroundWorker backgroundWorker_KeepLatestApkBackup;
+        private System.ComponentModel.BackgroundWorker backgroundWorker_installApk;
     }
 }

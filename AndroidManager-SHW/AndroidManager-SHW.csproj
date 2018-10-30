@@ -81,6 +81,12 @@
     <Compile Include="PackageManagerDir\ControlDir\apkPackageUserControl.Designer.cs">
       <DependentUpon>apkPackageUserControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="PackageManagerDir\ControlDir\searchUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PackageManagerDir\ControlDir\searchUserControl.Designer.cs">
+      <DependentUpon>searchUserControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="PackageManagerDir\ControlDir\testUc.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -150,6 +156,9 @@
     </Compile>
     <EmbeddedResource Include="PackageManagerDir\ControlDir\apkPackageUserControl.resx">
       <DependentUpon>apkPackageUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PackageManagerDir\ControlDir\searchUserControl.resx">
+      <DependentUpon>searchUserControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PackageManagerDir\ControlDir\testUc.resx">
       <DependentUpon>testUc.cs</DependentUpon>
@@ -254,6 +263,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="if_android_1220337.ico" />
+    <None Include="Resources\install_PM.png" />
+    <None Include="Resources\dropDown_PM.png" />
+    <None Include="Resources\backup20_UC.png" />
+    <None Include="Resources\unistall24_UC.png" />
     <None Include="Resources\selected_UC.png" />
     <None Include="Resources\default_UC.png" />
     <None Include="Resources\unistallLight_UC.png" />

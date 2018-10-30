@@ -47,7 +47,7 @@
             this.label_package.TabIndex = 0;
             this.label_package.Text = "com.google.android.googlequicksearchbox";
             this.label_package.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label_package.Click += new System.EventHandler(this.label_package_Click);
+            this.label_package.Click += new System.EventHandler(this.package_Click);
             // 
             // label_version
             // 
@@ -60,7 +60,7 @@
             this.label_version.TabIndex = 0;
             this.label_version.Text = "Version 8.20.13.21";
             this.label_version.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label_version.Click += new System.EventHandler(this.label_package_Click);
+            this.label_version.Click += new System.EventHandler(this.package_Click);
             // 
             // pictureBox_iconPackage
             // 
@@ -70,7 +70,7 @@
             this.pictureBox_iconPackage.Size = new System.Drawing.Size(64, 64);
             this.pictureBox_iconPackage.TabIndex = 0;
             this.pictureBox_iconPackage.TabStop = false;
-            this.pictureBox_iconPackage.Click += new System.EventHandler(this.label_package_Click);
+            this.pictureBox_iconPackage.Click += new System.EventHandler(this.package_Click);
             // 
             // button_selectedPackage
             // 
@@ -123,6 +123,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.BackColor = System.Drawing.Color.Transparent;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.Controls.Add(this.pictureBox_iconPackage);
             this.Controls.Add(this.button_selectedPackage);
             this.Controls.Add(this.button_removePackage);
@@ -134,7 +135,7 @@
             this.Padding = new System.Windows.Forms.Padding(5);
             this.Size = new System.Drawing.Size(170, 150);
             this.Load += new System.EventHandler(this.apkPackageUserControl_Load);
-            this.Click += new System.EventHandler(this.label_package_Click);
+            this.Click += new System.EventHandler(this.package_Click);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_iconPackage)).EndInit();
             this.ResumeLayout(false);
 

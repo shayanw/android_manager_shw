@@ -41,7 +41,20 @@ namespace AndroidManager_SHW.FileManager.Control
                 isPanelButtonVisible = button_removePackage.Visible=button_backupPackage.Visible = value;
             } }
 
-        public bool isSelectedProp { get { label_package_Click(new object(), new EventArgs()); return isSelected; } set { isSelected = value; } }
+        public bool isSelectedProp { get {return isSelected; } set
+            {
+                isSelected = value;
+                if (isSelected)
+                {
+                    this.BackColor = Color.Gainsboro;
+                    button_selectedPackage.Visible = true;
+                }
+                else
+                {
+                    this.BackColor = lastColor;
+                    button_selectedPackage.Visible = false;
+                }
+            } }
         Color lastColor;
         public Color BackColorProp { get { return this.BackColor; } set { this.BackColor =lastColor= value; } }
         
@@ -108,31 +121,18 @@ namespace AndroidManager_SHW.FileManager.Control
 
         private void button_removePackage_Click(object sender, EventArgs e)
         {
-            return;
-            removePackageClick(sender, e);
+            removePackageClick(this, e);
         }
 
         private void button_backupPackage_Click(object sender, EventArgs e)
         {
-            return;
-            backupPackageClick(sender, e);
+            backupPackageClick(this, e);
         }
 
-        private void label_package_Click(object sender, EventArgs e)
+        private void package_Click(object sender, EventArgs e)
         {
-            if (isSelected)
-            {
-                this.BackColor =lastColor ;
-                button_selectedPackage.Visible = false;
-                isSelected = false;
-                
-            }
-            else
-            {
-                this.BackColor = Color.Gainsboro;
-                button_selectedPackage.Visible = true;
-                isSelected = true;
-            }
+            isSelectedProp = !isSelected;
+
             return;
             packageSelected(sender, e);
         }
