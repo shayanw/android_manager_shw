@@ -81,7 +81,7 @@ namespace ADBProccessDLL
         }
         public bool BackupApk(string PackageFullName,string version="0V",string packageName="oneApp.apk")
         {
-            string fullnamebackup = option.intoApkBackupDirectory() + @"\" + apkVersion(packageName, version);
+            string fullnamebackup = option.IntoApkBackupDirectory() + @"\" + apkVersion(packageName, version);
             if (File.Exists(fullnamebackup))
             {
                 return true;
@@ -105,13 +105,13 @@ namespace ADBProccessDLL
         #region extra method
         public int ExistBackup(string version = "0V", string packageName = "oneApp.apk")
         {
-            string fullnamebackup = option.intoApkBackupDirectory() + @"\" + apkVersion(packageName, version);
+            string fullnamebackup = option.IntoApkBackupDirectory() + @"\" + apkVersion(packageName, version);
             packageName = packageName.Replace(".apk", string.Empty);
             if (File.Exists(fullnamebackup))
             {
                 return 0;
             }
-            else if (Directory.GetFiles(option.intoApkBackupDirectory(), "*"+packageName+"*").Count()>0)
+            else if (Directory.GetFiles(option.IntoApkBackupDirectory(), "*"+packageName+"*").Count()>0)
             {
                 return 1; 
             }

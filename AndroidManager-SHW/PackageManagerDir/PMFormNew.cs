@@ -38,6 +38,7 @@ namespace AndroidManager_SHW.PackageManagerDir
             ListControl = ListSelectedControl = new List<Control>();
             MyPackages = new List<KeyValuePair<string, string>>();
             RefreshFlowLayoutPanel();
+            
         }
         private void RefreshFlowLayoutPanel()
         {
@@ -52,6 +53,7 @@ namespace AndroidManager_SHW.PackageManagerDir
             {
                 backgroundWorker_flowLayoutPanel.RunWorkerAsync();
             }
+            backgroundWorker_KeepLatestApkBackup.RunWorkerAsync();
         }
 
 
@@ -134,7 +136,7 @@ namespace AndroidManager_SHW.PackageManagerDir
         {
             flowLayoutPanel_packages.Controls.Add((apkPackageUserControl)e.UserState);
         }
-        private void backgroundWorker_addControlFLP_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        private void BackgroundWorker_addControlFLP_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             if (!backgroundWorker_setIcon.IsBusy)
             {
@@ -385,7 +387,7 @@ namespace AndroidManager_SHW.PackageManagerDir
                 return;
             }
             Option opt = new Option(Device);
-            string path = opt.intoApkBackupDirectory();
+            string path = opt.IntoApkBackupDirectory();
             if (!Directory.Exists(path))
             {
                 return;
@@ -464,6 +466,8 @@ namespace AndroidManager_SHW.PackageManagerDir
             {
                 if (QueueApksFullNameForInstall.Count == 0)
                 {
+                    panel_phoneInstall.BackgroundImage = AndroidManager_SHW.Properties.Resources.internalMemory;
+                    panel_phoneInstall.BackColor = Color.FromKnownColor(KnownColor.ActiveCaption);
                     return;
                 }
                 label_status.Text = "installing Package...";

@@ -35,14 +35,14 @@ namespace AndroidManager_SHW.PackageManagerDir.ControlDir
             }
         }
 
-        private void textBox_search_Enter(object sender, EventArgs e)
+        private void TextBox_search_Enter(object sender, EventArgs e)
         {
             if (isDefault)
             {
                 LeaveDefaultState();
             }
         }
-        private void textBox_search_Leave(object sender, EventArgs e)
+        private void TextBox_search_Leave(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(textBox_search.Text))
             {

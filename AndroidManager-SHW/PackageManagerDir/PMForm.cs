@@ -251,7 +251,7 @@ namespace AndroidManager_SHW.PackageManager
             listBox_tempPackages.Items.Clear();
         }
 
-        private void textBox_search_KeyDown(object sender, KeyEventArgs e)
+        private void TextBox_search_KeyDown(object sender, KeyEventArgs e)
         {
             if (Keys.Enter == e.KeyCode)
             {
@@ -293,7 +293,7 @@ namespace AndroidManager_SHW.PackageManager
 
         }
 
-        private void backgroundWorker_installPackages_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        private void BackgroundWorker_installPackages_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             label_statePackage.Text = "Installing " + ((int[])e.UserState)[0] + "/" + progressBar_statePackage.Maximum + " Packages...";
             if (((int[])e.UserState)[1] == 0)
@@ -361,7 +361,7 @@ namespace AndroidManager_SHW.PackageManager
             textBox_search.Text = "";
         }
 
-        private void textBox_search_Leave(object sender, EventArgs e)
+        private void TextBox_search_Leave(object sender, EventArgs e)
         {
             textBox_search.Text = "Search Now •••";
         }
@@ -472,11 +472,11 @@ namespace AndroidManager_SHW.PackageManager
             {
                 if (File.Exists(itemFile))
                 {
-                    addToListBox_TempPackages(itemFile);
+                    AddToListBox_TempPackages(itemFile);
                 }
             }
         }
-        private void addToListBox_TempPackages(string addressFile)
+        private void AddToListBox_TempPackages(string addressFile)
         {
             if ((new FileInfo(addressFile).Extension.ToLower() == ".apk"))
             {
@@ -516,7 +516,7 @@ namespace AndroidManager_SHW.PackageManager
                 return;
             }
             Option opt = new Option(Device);
-            string path = opt.intoApkBackupDirectory();
+            string path = opt.IntoApkBackupDirectory();
             if (!Directory.Exists(path))
             {
                 return;

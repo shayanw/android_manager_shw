@@ -16,12 +16,24 @@ namespace ADBProccessDLL
         }
 
         static public string MainPath = System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+
         static public string MainLabelDirectoryName = "Android Manager SHW";
         static public string DirNameBackupApk = "ApkBackups_" + "SHW";
         static public string FullAddressBackupApk = "";
         static public string DeviceDirectoryName;
         static public string PlatformToolsPath = @".\platform-tools\adb.exe";
-
+        static private string IconPath = MainPath + "\\" + MainLabelDirectoryName + "\\Icons";
+        public static string IconPathProp
+        {
+            get
+            {
+                if (!Directory.Exists(IconPath))
+                {
+                    Directory.CreateDirectory(IconPath);
+                }
+                return IconPath;
+            }
+        }
         static public bool IsShowSizeFM = true;
         static public bool IsShowHiddenFile = false;
         static public bool IsKeepLatestApk = false;
@@ -54,15 +66,20 @@ namespace ADBProccessDLL
                     name = DeviceDirectoryName;
                 }
 
-                if (!Directory.Exists(MainPath + "\\" + MainLabelDirectoryName))
+                //if (!Directory.Exists(MainPath + "\\" + MainLabelDirectoryName))
+                //{
+                //    Directory.CreateDirectory(MainPath + "\\" + MainLabelDirectoryName);
+                //}
+                //if (!Directory.Exists(MainPath + "\\" + MainLabelDirectoryName + "\\" + name))
+                //{
+                //    Directory.CreateDirectory(MainPath + "\\" + MainLabelDirectoryName + "\\" + name);
+                //}
+                string mainPathBackupFullName = MainPath + "\\" + MainLabelDirectoryName + "\\" + name;
+                if (!Directory.Exists(mainPathBackupFullName))
                 {
-                    Directory.CreateDirectory(MainPath + "\\" + MainLabelDirectoryName);
+                    Directory.CreateDirectory(mainPathBackupFullName);
                 }
-                if (!Directory.Exists(MainPath + "\\" + MainLabelDirectoryName + "\\" + name))
-                {
-                    Directory.CreateDirectory(MainPath + "\\" + MainLabelDirectoryName + "\\" + name);
-                }
-                return MainPath + "\\" + MainLabelDirectoryName + "\\" + name;
+                return mainPathBackupFullName;
             }
             set
             {
@@ -72,7 +89,7 @@ namespace ADBProccessDLL
                 }
             }
         }
-        public string intoApkBackupDirectory()
+        public string IntoApkBackupDirectory()
         {
             //Set Directory Name
             string name;
@@ -87,19 +104,23 @@ namespace ADBProccessDLL
             }
 
 
-            if (!Directory.Exists(MainPath + "\\" + MainLabelDirectoryName))
-            {
-                Directory.CreateDirectory(MainPath + "\\" + MainLabelDirectoryName);
-            }
-            if (!Directory.Exists(MainPath + "\\" + MainLabelDirectoryName + "\\" + name))
-            {
-                Directory.CreateDirectory(MainPath + "\\" + MainLabelDirectoryName + "\\" + name);
-            }
-            if (!Directory.Exists(MainPath + "\\" + MainLabelDirectoryName + "\\" + name + "\\" + DirNameBackupApk))
-            {
-                Directory.CreateDirectory(MainPath + "\\" + MainLabelDirectoryName + "\\" + name + "\\" + DirNameBackupApk);
-            }
+            //if (!Directory.Exists(MainPath + "\\" + MainLabelDirectoryName))
+            //{
+            //    Directory.CreateDirectory(MainPath + "\\" + MainLabelDirectoryName);
+            //}
+            //if (!Directory.Exists(MainPath + "\\" + MainLabelDirectoryName + "\\" + name))
+            //{
+            //    Directory.CreateDirectory(MainPath + "\\" + MainLabelDirectoryName + "\\" + name);
+            //}
+            //if (!Directory.Exists(MainPath + "\\" + MainLabelDirectoryName + "\\" + name + "\\" + DirNameBackupApk))
+            //{
+            //    Directory.CreateDirectory(MainPath + "\\" + MainLabelDirectoryName + "\\" + name + "\\" + DirNameBackupApk);
+            //}
             FullAddressBackupApk = MainPath + "\\" + MainLabelDirectoryName + "\\" + name + "\\" + DirNameBackupApk;
+            if (!Directory.Exists(FullAddressBackupApk))
+            {
+                Directory.CreateDirectory(FullAddressBackupApk);
+            }
             return FullAddressBackupApk;
         }
 

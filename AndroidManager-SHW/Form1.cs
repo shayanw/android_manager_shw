@@ -10,11 +10,13 @@ using ADBProccessDLL;
 using System.Net;
 using System.IO;
 using AndroidManager_SHW.PackageManagerDir;
+using ApkReaderShwDll;
 
 namespace AndroidManager_SHW
 {
     public partial class HomeForm : Form
     {
+       
         #region Filed And Prop
         int counterTimer = 0;
         AdbServer server;
@@ -30,7 +32,7 @@ namespace AndroidManager_SHW
         ApkManager AM;
         string lastLableState;
         string stateMessage;
-        string versionProgramm = "0.99.10 Beta";
+        string versionProgramm = "0.99.89 Beta";
         #endregion
 
         #region Constructor
@@ -42,11 +44,13 @@ namespace AndroidManager_SHW
             IsDisconnect = IsConnect = IsDebuging = false;
             st = new ADBProccessDLL.Setting();
             stateMessage="";
+            
         }
 
         private void HomeForm_Load(object sender, EventArgs e)
         {
             RefreshDevices();
+        
             try
             {
                 TestDeviceConnect();
@@ -56,6 +60,7 @@ namespace AndroidManager_SHW
                 panel_errorDeviceTest.Visible = panel_errorDeviceTest.Enabled = true;
                 backgroundWorker_reconnectDevice.RunWorkerAsync(); 
             }
+            backgroundWorker_getIconApk.RunWorkerAsync();
         }
         #endregion
 
@@ -195,7 +200,7 @@ namespace AndroidManager_SHW
             timer_event.Start();
         }
 
-        private void timer_event_Tick(object sender, EventArgs e)
+        private void Timer_event_Tick(object sender, EventArgs e)
         {
             //age device(connect,disconnect,debuging)~taghir vaziat nadad... => kari nakon
             if (!IsConnect && !IsDisconnect && !IsDebuging)
@@ -218,7 +223,7 @@ namespace AndroidManager_SHW
             }
             FileManagerForm fmf = new FileManagerForm(currentDevice);
             pictureBox_onMobileState_enable(sender);
-            fmf.FormClosed += allFormClosed;
+            fmf.FormClosed += AllFormClosed;
             fmf.ShowDialog();
 
             //----- ezafi -----
@@ -233,7 +238,7 @@ namespace AndroidManager_SHW
             //PackageManager.PM_Form pmrf = new PackageManager.PM_Form(currentDevice);
             PMFormNew pmrf = new PMFormNew(currentDevice);
             pictureBox_onMobileState_enable(sender);
-            pmrf.FormClosed += allFormClosed;
+            pmrf.FormClosed += AllFormClosed;
             pmrf.ShowDialog();
 
             //----- ezafi -----
@@ -244,7 +249,7 @@ namespace AndroidManager_SHW
         {
             Setting.SettingNewForm stf = new Setting.SettingNewForm();
             pictureBox_onMobileState_enable(sender);
-            stf.FormClosed += allFormClosed;
+            stf.FormClosed += AllFormClosed;
             stf.ShowDialog();
         }
         private void button_shutdown_Click(object sender, EventArgs e)
@@ -302,7 +307,7 @@ namespace AndroidManager_SHW
         {
             pictureBox_onMobileState.Visible = false;
         }
-        private void allFormClosed(object sender, FormClosedEventArgs e)
+        private void AllFormClosed(object sender, FormClosedEventArgs e)
         {
             pictureBox_onMobileState.Visible = false;
         }
@@ -496,7 +501,7 @@ namespace AndroidManager_SHW
             backgroundWorker_installApk.RunWorkerAsync();
         }
 
-        private void backgroundWorker_installApk_DoWork(object sender, DoWorkEventArgs e)
+        private void BackgroundWorker_installApk_DoWork(object sender, DoWorkEventArgs e)
         {
 
             ListStateInstalledApk = new List<string[]>();
@@ -687,7 +692,7 @@ namespace AndroidManager_SHW
             button_state.BackgroundImage = AndroidManager_SHW.Properties.Resources.infoh;
         }
 
-        private void backgroundWorker_reconnectDevice_DoWork(object sender, DoWorkEventArgs e)
+        private void BackgroundWorker_reconnectDevice_DoWork(object sender, DoWorkEventArgs e)
         {
             string cmdadb = "";
 
@@ -703,7 +708,7 @@ namespace AndroidManager_SHW
             ExternalMethod.AdbCommand(cmdadb);
         }
 
-        private void backgroundWorker_reconnectDevice_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        private void BackgroundWorker_reconnectDevice_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             if (EnterButtonReconnect)
             {
@@ -728,6 +733,22 @@ namespace AndroidManager_SHW
         private void panel_upLeftSide_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void backgroundWorker_getIconApk_DoWork(object sender, DoWorkEventArgs e)
+        {
+            List<string> directoriesDevice = new List<string>(Directory.GetDirectories(Option.MainPath+"\\"+Option.MainLabelDirectoryName));
+            string addressPackagePath;
+            foreach (string directoryName in directoriesDevice)
+            {
+                addressPackagePath = directoryName + "\\" + Option.DirNameBackupApk;
+                if (!Directory.Exists(addressPackagePath))
+                {
+                    continue;
+                }
+               
+                ApkProccess.ExtractIconProccess(Option.IconPathProp, addressPackagePath);
+            }
         }
 
         private void button_state_MouseLeave(object sender, EventArgs e)

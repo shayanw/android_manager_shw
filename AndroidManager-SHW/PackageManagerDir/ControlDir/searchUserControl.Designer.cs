@@ -59,8 +59,8 @@
             this.textBox_search.Size = new System.Drawing.Size(224, 24);
             this.textBox_search.TabIndex = 1;
             this.textBox_search.TextChanged += new System.EventHandler(this.textBox_search_TextChanged);
-            this.textBox_search.Enter += new System.EventHandler(this.textBox_search_Enter);
-            this.textBox_search.Leave += new System.EventHandler(this.textBox_search_Leave);
+            this.textBox_search.Enter += new System.EventHandler(this.TextBox_search_Enter);
+            this.textBox_search.Leave += new System.EventHandler(this.TextBox_search_Leave);
             // 
             // panel_textBox
             // 

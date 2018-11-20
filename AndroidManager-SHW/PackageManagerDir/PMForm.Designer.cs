@@ -450,8 +450,8 @@
             this.textBox_search.TabIndex = 3;
             this.textBox_search.Text = "Search Now •••";
             this.textBox_search.Enter += new System.EventHandler(this.textBox_search_Enter);
-            this.textBox_search.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_search_KeyDown);
-            this.textBox_search.Leave += new System.EventHandler(this.textBox_search_Leave);
+            this.textBox_search.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox_search_KeyDown);
+            this.textBox_search.Leave += new System.EventHandler(this.TextBox_search_Leave);
             // 
             // panel3
             // 
@@ -574,7 +574,7 @@
             this.backgroundWorker_installPackages.WorkerReportsProgress = true;
             this.backgroundWorker_installPackages.WorkerSupportsCancellation = true;
             this.backgroundWorker_installPackages.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker_installPackages_DoWork);
-            this.backgroundWorker_installPackages.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker_installPackages_ProgressChanged);
+            this.backgroundWorker_installPackages.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.BackgroundWorker_installPackages_ProgressChanged);
             this.backgroundWorker_installPackages.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker_installPackages_RunWorkerCompleted);
             // 
             // backgroundWorker_backupPackages
