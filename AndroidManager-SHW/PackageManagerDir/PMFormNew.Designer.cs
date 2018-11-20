@@ -161,6 +161,9 @@
             this.panel_sdcardInstall.Name = "panel_sdcardInstall";
             this.panel_sdcardInstall.Size = new System.Drawing.Size(387, 132);
             this.panel_sdcardInstall.TabIndex = 0;
+            this.panel_sdcardInstall.DragDrop += new System.Windows.Forms.DragEventHandler(this.panel_phoneInstall_DragDrop);
+            this.panel_sdcardInstall.DragEnter += new System.Windows.Forms.DragEventHandler(this.panel_phoneInstall_DragEnter);
+            this.panel_sdcardInstall.DragLeave += new System.EventHandler(this.panel_phoneInstall_DragLeave);
             // 
             // label1
             // 

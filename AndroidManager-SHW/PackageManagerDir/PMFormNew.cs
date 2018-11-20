@@ -26,6 +26,7 @@ namespace AndroidManager_SHW.PackageManagerDir
 
         Queue<string[]> QueueControlNameVersionString;
         Queue<string> QueueApksFullNameForInstall;
+        Queue<bool> QueueApksIsOnPhoneForInstall;
         #endregion
 
         public PMFormNew(DeviceData device)
@@ -35,6 +36,7 @@ namespace AndroidManager_SHW.PackageManagerDir
             am = new ApkManager(Device);
             QueueControlNameVersionString = new Queue<string[]>();
             QueueApksFullNameForInstall = new Queue<string>();
+            QueueApksIsOnPhoneForInstall = new Queue<bool>();
             ListControl = ListSelectedControl = new List<Control>();
             MyPackages = new List<KeyValuePair<string, string>>();
             RefreshFlowLayoutPanel();
@@ -406,7 +408,7 @@ namespace AndroidManager_SHW.PackageManagerDir
                 fileFullName = QueueApksFullNameForInstall.Dequeue();
                 count++;
 
-                if (am.InstallApk(fileFullName))
+                if (am.InstallApk(fileFullName,QueueApksIsOnPhoneForInstall.Dequeue()))
                 {
                     backgroundWorker_installApk.ReportProgress(count, new string[] { fileFullName, "Successfull" });
 
@@ -427,8 +429,9 @@ namespace AndroidManager_SHW.PackageManagerDir
 
         private void backgroundWorker_installApk_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            label_status.Text = "Finished...";
-            panel_phoneInstall.BackgroundImage = AndroidManager_SHW.Properties.Resources.internalMemory;
+            label_status.Text = label_status.Text+" | Finished...";
+            sdcardInstallState("unbussy");
+            phoneInstallState("unbussy");
         }
         #endregion
 
@@ -436,26 +439,57 @@ namespace AndroidManager_SHW.PackageManagerDir
         #region phoneInstall_Drag&Drop
         private void panel_phoneInstall_DragEnter(object sender, DragEventArgs e)
         {
+            
             if (e.Data.GetDataPresent(DataFormats.FileDrop, false))
             {
                 e.Effect = DragDropEffects.All;
-                panel_phoneInstall.BackColor = Color.FromKnownColor(KnownColor.GradientActiveCaption);
-                panel_phoneInstall.BackgroundImage = AndroidManager_SHW.Properties.Resources.dropDown_PM;
+
+                #region Select Phone Or Sdcard
+                Control currentCTRL = (Control)sender;
+                if (currentCTRL.Name== "panel_phoneInstall")
+                {
+                    phoneInstallState("dragEnter");
+                }
+                else
+                {
+                    //fix background on sdcard
+                    sdcardInstallState("dragEnter");
+                }
+                #endregion
+
             }
             else
                 e.Effect = DragDropEffects.None;
         }
 
+        #region DragDropInstall
         private void panel_phoneInstall_DragDrop(object sender, DragEventArgs e)
         {
+            #region Select Phone Or Sdcard
+            Control currentCTRL = (Control)sender;
+            if (currentCTRL.Name == "panel_phoneInstall")
+            {
+                installOnPhone_DragDrop_M(e);
+            }
+            else
+            {
+                installOnSdcard_DragDrop_M(e);
+            }
+            #endregion
+        }
+
+        private void installOnPhone_DragDrop_M(DragEventArgs e)
+        {
             string[] files = (string[])e.Data.GetData(DataFormats.FileDrop, false);
-            panel_phoneInstall.BackColor = Color.FromKnownColor(KnownColor.ActiveCaption);
-            
+
+            panel_phoneInstall.BackColor = Color.FromKnownColor(KnownColor.GradientInactiveCaption);
+
             foreach (string tmpFile in files)
             {
                 if (tmpFile.ToLower().Contains(".apk"))
                 {
                     QueueApksFullNameForInstall.Enqueue(tmpFile);
+                    QueueApksIsOnPhoneForInstall.Enqueue(true);
                 }
             }
             if (backgroundWorker_installApk.IsBusy)
@@ -466,25 +500,89 @@ namespace AndroidManager_SHW.PackageManagerDir
             {
                 if (QueueApksFullNameForInstall.Count == 0)
                 {
-                    panel_phoneInstall.BackgroundImage = AndroidManager_SHW.Properties.Resources.internalMemory;
-                    panel_phoneInstall.BackColor = Color.FromKnownColor(KnownColor.ActiveCaption);
+                    phoneInstallState();
                     return;
                 }
                 label_status.Text = "installing Package...";
                 backgroundWorker_installApk.RunWorkerAsync();
                 panel_phoneInstall.BackgroundImage = AndroidManager_SHW.Properties.Resources.install_PM;
             }
-           
         }
+        private void installOnSdcard_DragDrop_M(DragEventArgs e)
+        {
+            string[] files = (string[])e.Data.GetData(DataFormats.FileDrop, false);
 
- 
+            panel_sdcardInstall.BackColor = Color.FromKnownColor(KnownColor.Control);
+
+            foreach (string tmpFile in files)
+            {
+                if (tmpFile.ToLower().Contains(".apk"))
+                {
+                    QueueApksFullNameForInstall.Enqueue(tmpFile);
+                    QueueApksIsOnPhoneForInstall.Enqueue(false);
+                }
+            }
+            if (backgroundWorker_installApk.IsBusy)
+            {
+                return;
+            }
+            else
+            {
+                if (QueueApksFullNameForInstall.Count == 0)
+                {
+                    sdcardInstallState();
+                    return;
+                }
+                label_status.Text = "installing Package...";
+                backgroundWorker_installApk.RunWorkerAsync();
+                panel_sdcardInstall.BackgroundImage = AndroidManager_SHW.Properties.Resources.install_PM;
+            }
+        }
+        #endregion
         private void panel_phoneInstall_DragLeave(object sender, EventArgs e)
         {
+
             if (!backgroundWorker_installApk.IsBusy)
             {
-                panel_phoneInstall.BackgroundImage = AndroidManager_SHW.Properties.Resources.internalMemory;
-                panel_phoneInstall.BackColor= Color.FromKnownColor(KnownColor.ActiveCaption);
+                Control currentCTRL = (Control)sender;
+                if (currentCTRL.Name == "panel_phoneInstall")
+                {
+                    phoneInstallState();
+                }
+                else
+                {
+                    sdcardInstallState();
+                }
+
             }
+        }
+        private void phoneInstallState(string state="unbussy")
+        {
+            if (state == "unbussy")
+            {
+                panel_phoneInstall.BackgroundImage = AndroidManager_SHW.Properties.Resources.internalMemory;
+                panel_phoneInstall.BackColor = Color.FromKnownColor(KnownColor.ActiveCaption);
+            }
+            else if (state == "dragEnter")
+            {
+                panel_phoneInstall.BackgroundImage = AndroidManager_SHW.Properties.Resources.install_PM;
+                panel_phoneInstall.BackColor = Color.FromKnownColor(KnownColor.Lavender);
+            }
+
+        }
+        private void sdcardInstallState(string state = "unbussy")
+        {
+            if (state == "unbussy")
+            {
+                panel_sdcardInstall.BackgroundImage = AndroidManager_SHW.Properties.Resources.exteralMemory;
+                panel_sdcardInstall.BackColor = Color.FromKnownColor(KnownColor.ControlDark);
+            }
+            else if (state == "dragEnter")
+            {
+                panel_sdcardInstall.BackgroundImage = AndroidManager_SHW.Properties.Resources.install_PM;
+                panel_sdcardInstall.BackColor = Color.FromKnownColor(KnownColor.Lavender);
+            }
+
         }
         #endregion
 
