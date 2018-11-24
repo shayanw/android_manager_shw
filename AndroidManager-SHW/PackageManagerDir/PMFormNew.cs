@@ -23,7 +23,8 @@ namespace AndroidManager_SHW.PackageManagerDir
         List<KeyValuePair<string, string>> MyPackages;
         int TotalPackage, PackageProccessCounter;
         List<Control> ListControl, ListSelectedControl;
-
+        List<apkPackageUserControl> apkControls;
+        List<apkPackageUserControl> searchApkControls;
         Queue<string[]> QueueControlNameVersionString;
         Queue<string> QueueApksFullNameForInstall;
         Queue<bool> QueueApksIsOnPhoneForInstall;
@@ -62,6 +63,7 @@ namespace AndroidManager_SHW.PackageManagerDir
         #region backgroundWorker_flowLayoutPanel
         private void backgroundWorker_flowLayoutPanel_DoWork(object sender, DoWorkEventArgs e)
         {
+            apkControls = new List<apkPackageUserControl>();
             string[] NameVersion;
             PM = new SharpAdbClient.DeviceCommands.PackageManager(Device);
 
@@ -110,6 +112,7 @@ namespace AndroidManager_SHW.PackageManagerDir
         private void backgroundWorker_addControlFLP_DoWork(object sender, DoWorkEventArgs e)
         {
             string[] str;
+
             apkPackageUserControl tmpApuc;
             while (QueueControlNameVersionString.Count>0)
             {
@@ -131,11 +134,14 @@ namespace AndroidManager_SHW.PackageManagerDir
                 tmpApuc= new apkPackageUserControl(str[0], str[1], backcolor);
                 tmpApuc.removePackageClick += TmpApuc_removePackageClick;
                 tmpApuc.backupPackageClick += TmpApuc_backupPackageClick;
+
+                apkControls.Add(tmpApuc);
                 backgroundWorker_addControlFLP.ReportProgress(1, tmpApuc);
             }
         }
         private void backgroundWorker_addControlFLP_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
+            apkControls.Add((apkPackageUserControl)e.UserState);
             flowLayoutPanel_packages.Controls.Add((apkPackageUserControl)e.UserState);
         }
         private void BackgroundWorker_addControlFLP_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -187,7 +193,7 @@ namespace AndroidManager_SHW.PackageManagerDir
         #region searchUC
         private void searchUserControl_TextChangedEvent(object sender, EventArgs e)
         {
-            return;
+
         }
         #endregion
 
@@ -556,6 +562,32 @@ namespace AndroidManager_SHW.PackageManagerDir
 
             }
         }
+
+        private void searchUserControl_ClickSearchButtonEvent(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(searchUserControl.SearchTextProp) || searchUserControl.SearchTextProp== searchUserControl.DefaultTextProp)
+            {
+                flowLayoutPanel_packages.Controls.AddRange(apkControls.ToArray());
+                return;
+            }
+         
+            try
+            {
+                searchApkControls = apkControls.Where(a => a.PackageNameProp.Contains(searchUserControl.SearchTextProp)).ToList();
+                flowLayoutPanel_packages.Controls.Clear();
+                flowLayoutPanel_packages.Controls.AddRange(searchApkControls.ToArray());
+            }
+            catch (Exception)
+            {
+                flowLayoutPanel_packages.Controls.AddRange(apkControls.ToArray());
+            }
+        }
+
+        private void searchUserControl_TextChangedEvent_1(object sender, EventArgs e)
+        {
+            return;
+        }
+
         private void phoneInstallState(string state="unbussy")
         {
             if (state == "unbussy")

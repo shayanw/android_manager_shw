@@ -319,10 +319,10 @@
             this.searchUserControl.DefaultTextProp = "Search Package...";
             this.searchUserControl.Location = new System.Drawing.Point(528, 12);
             this.searchUserControl.Name = "searchUserControl";
-            this.searchUserControl.SearchTextProp = null;
             this.searchUserControl.Size = new System.Drawing.Size(250, 27);
             this.searchUserControl.TabIndex = 6;
-            this.searchUserControl.TextChangedEvent += new System.EventHandler(this.searchUserControl_TextChangedEvent);
+            this.searchUserControl.TextChangedEvent += new System.EventHandler(this.searchUserControl_TextChangedEvent_1);
+            this.searchUserControl.ClickSearchButtonEvent += new System.EventHandler(this.searchUserControl_ClickSearchButtonEvent);
             // 
             // PMFormNew
             // 

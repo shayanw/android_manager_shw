@@ -13,11 +13,12 @@ namespace AndroidManager_SHW.PackageManagerDir.ControlDir
     public partial class searchUserControl : UserControl
     {
         public event EventHandler TextChangedEvent;
+        public event EventHandler ClickSearchButtonEvent;
 
         string DefaultText="Search Package...";
         bool isDefault;
         public string DefaultTextProp { get { return DefaultText; } set { DefaultText = value; } }
-        public string SearchTextProp { get; set; }
+        public string SearchTextProp { get { return textBox_search.Text; }}
 
         
 
@@ -26,7 +27,10 @@ namespace AndroidManager_SHW.PackageManagerDir.ControlDir
             InitializeComponent();
             EnterDefaultState();
         }
-
+        private void button_search_Click(object sender, EventArgs e)
+        {
+            ClickSearchButtonEvent(this, e);
+        }
         private void textBox_search_TextChanged(object sender, EventArgs e)
         {
             if (!isDefault)
@@ -40,6 +44,7 @@ namespace AndroidManager_SHW.PackageManagerDir.ControlDir
             if (isDefault)
             {
                 LeaveDefaultState();
+
             }
         }
         private void TextBox_search_Leave(object sender, EventArgs e)
@@ -61,6 +66,14 @@ namespace AndroidManager_SHW.PackageManagerDir.ControlDir
             isDefault = false;
             textBox_search.Text = "";
             textBox_search.ForeColor = Color.Black;
+        }
+
+        private void textBox_search_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode==Keys.Enter)
+            {
+                button_search_Click(sender, e);
+            }
         }
     }
 }
