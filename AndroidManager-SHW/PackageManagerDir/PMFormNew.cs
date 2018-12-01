@@ -8,8 +8,6 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AndroidManager_SHW.PackageManagerDir
@@ -191,9 +189,29 @@ namespace AndroidManager_SHW.PackageManagerDir
         #endregion
 
         #region searchUC
+        private void searchUserControl_ClickSearchButtonEvent(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(searchUserControl.SearchTextProp) || searchUserControl.SearchTextProp == searchUserControl.DefaultTextProp)
+            {
+                flowLayoutPanel_packages.Controls.AddRange(apkControls.ToArray());
+                return;
+            }
+
+            try
+            {
+                searchApkControls = apkControls.Where(a => a.PackageNameProp.Contains(searchUserControl.SearchTextProp)).ToList();
+                flowLayoutPanel_packages.Controls.Clear();
+                flowLayoutPanel_packages.Controls.AddRange(searchApkControls.ToArray());
+            }
+            catch (Exception)
+            {
+                flowLayoutPanel_packages.Controls.AddRange(apkControls.ToArray());
+            }
+        }
+
         private void searchUserControl_TextChangedEvent(object sender, EventArgs e)
         {
-
+            return;
         }
         #endregion
 
@@ -561,31 +579,6 @@ namespace AndroidManager_SHW.PackageManagerDir
                 }
 
             }
-        }
-
-        private void searchUserControl_ClickSearchButtonEvent(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(searchUserControl.SearchTextProp) || searchUserControl.SearchTextProp== searchUserControl.DefaultTextProp)
-            {
-                flowLayoutPanel_packages.Controls.AddRange(apkControls.ToArray());
-                return;
-            }
-         
-            try
-            {
-                searchApkControls = apkControls.Where(a => a.PackageNameProp.Contains(searchUserControl.SearchTextProp)).ToList();
-                flowLayoutPanel_packages.Controls.Clear();
-                flowLayoutPanel_packages.Controls.AddRange(searchApkControls.ToArray());
-            }
-            catch (Exception)
-            {
-                flowLayoutPanel_packages.Controls.AddRange(apkControls.ToArray());
-            }
-        }
-
-        private void searchUserControl_TextChangedEvent_1(object sender, EventArgs e)
-        {
-            return;
         }
 
         private void phoneInstallState(string state="unbussy")

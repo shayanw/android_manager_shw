@@ -54,19 +54,21 @@
             this.label_fm_showFileSize = new System.Windows.Forms.Label();
             this.panel_filemanagerTitle = new System.Windows.Forms.Panel();
             this.label_filemanager = new System.Windows.Forms.Label();
-            this.panel_platformToolsContent = new System.Windows.Forms.Panel();
+            this.panel_packageManagerContent = new System.Windows.Forms.Panel();
             this.textBox_platformToolsPath = new System.Windows.Forms.TextBox();
             this.label_platformToolsPath = new System.Windows.Forms.Label();
             this.button_platformToolsPath = new System.Windows.Forms.Button();
-            this.panel_platformToolsTitle = new System.Windows.Forms.Panel();
+            this.panel_packageManagerTitle = new System.Windows.Forms.Panel();
             this.label_platformTools = new System.Windows.Forms.Label();
-            this.panel_backupContent = new System.Windows.Forms.Panel();
+            this.panel_pathsContent = new System.Windows.Forms.Panel();
             this.textBox_backupPath = new System.Windows.Forms.TextBox();
+            this.button_PMTheme12 = new System.Windows.Forms.Button();
             this.button_keepLatestApk = new System.Windows.Forms.Button();
             this.label_backupPath = new System.Windows.Forms.Label();
             this.button_backupPath = new System.Windows.Forms.Button();
+            this.label_PMTheme = new System.Windows.Forms.Label();
             this.label_pm_keepLatestApk = new System.Windows.Forms.Label();
-            this.panel_backupTitle = new System.Windows.Forms.Panel();
+            this.panel_pathsTitle = new System.Windows.Forms.Panel();
             this.label_backup = new System.Windows.Forms.Label();
             this.saveFileDialog_path = new System.Windows.Forms.SaveFileDialog();
             this.folderBrowserDialog_path = new System.Windows.Forms.FolderBrowserDialog();
@@ -80,10 +82,10 @@
             this.panel_saveResetSetting.SuspendLayout();
             this.panel_filemanagerContent.SuspendLayout();
             this.panel_filemanagerTitle.SuspendLayout();
-            this.panel_platformToolsContent.SuspendLayout();
-            this.panel_platformToolsTitle.SuspendLayout();
-            this.panel_backupContent.SuspendLayout();
-            this.panel_backupTitle.SuspendLayout();
+            this.panel_packageManagerContent.SuspendLayout();
+            this.panel_packageManagerTitle.SuspendLayout();
+            this.panel_pathsContent.SuspendLayout();
+            this.panel_pathsTitle.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel_main
@@ -91,12 +93,12 @@
             this.panel_main.Controls.Add(this.panel_deviceBackupContent);
             this.panel_main.Controls.Add(this.panel_deviceBackupTitle);
             this.panel_main.Controls.Add(this.panel_saveResetSetting);
+            this.panel_main.Controls.Add(this.panel_packageManagerContent);
+            this.panel_main.Controls.Add(this.panel_packageManagerTitle);
             this.panel_main.Controls.Add(this.panel_filemanagerContent);
             this.panel_main.Controls.Add(this.panel_filemanagerTitle);
-            this.panel_main.Controls.Add(this.panel_platformToolsContent);
-            this.panel_main.Controls.Add(this.panel_platformToolsTitle);
-            this.panel_main.Controls.Add(this.panel_backupContent);
-            this.panel_main.Controls.Add(this.panel_backupTitle);
+            this.panel_main.Controls.Add(this.panel_pathsContent);
+            this.panel_main.Controls.Add(this.panel_pathsTitle);
             this.panel_main.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel_main.Location = new System.Drawing.Point(0, 0);
             this.panel_main.Name = "panel_main";
@@ -108,9 +110,9 @@
             this.panel_deviceBackupContent.Controls.Add(this.dataGridView_Device);
             this.panel_deviceBackupContent.Controls.Add(this.panel_buttonDGV);
             this.panel_deviceBackupContent.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel_deviceBackupContent.Location = new System.Drawing.Point(0, 475);
+            this.panel_deviceBackupContent.Location = new System.Drawing.Point(0, 486);
             this.panel_deviceBackupContent.Name = "panel_deviceBackupContent";
-            this.panel_deviceBackupContent.Size = new System.Drawing.Size(482, 278);
+            this.panel_deviceBackupContent.Size = new System.Drawing.Size(482, 267);
             this.panel_deviceBackupContent.TabIndex = 11;
             // 
             // dataGridView_Device
@@ -171,7 +173,7 @@
             this.dataGridView_Device.RowHeadersVisible = false;
             this.dataGridView_Device.RowTemplate.Height = 24;
             this.dataGridView_Device.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView_Device.Size = new System.Drawing.Size(482, 233);
+            this.dataGridView_Device.Size = new System.Drawing.Size(482, 222);
             this.dataGridView_Device.TabIndex = 3;
             this.dataGridView_Device.DoubleClick += new System.EventHandler(this.button_openFolderBackup_Click);
             this.dataGridView_Device.KeyUp += new System.Windows.Forms.KeyEventHandler(this.dataGridView_Device_KeyUp);
@@ -220,7 +222,7 @@
             this.panel_buttonDGV.Controls.Add(this.button_openFolderBackup);
             this.panel_buttonDGV.Controls.Add(this.button_deleteDeviceBackup);
             this.panel_buttonDGV.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel_buttonDGV.Location = new System.Drawing.Point(0, 233);
+            this.panel_buttonDGV.Location = new System.Drawing.Point(0, 222);
             this.panel_buttonDGV.Name = "panel_buttonDGV";
             this.panel_buttonDGV.Size = new System.Drawing.Size(482, 45);
             this.panel_buttonDGV.TabIndex = 2;
@@ -260,7 +262,7 @@
             // 
             this.panel_deviceBackupTitle.Controls.Add(this.label_deviceBackup);
             this.panel_deviceBackupTitle.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel_deviceBackupTitle.Location = new System.Drawing.Point(0, 445);
+            this.panel_deviceBackupTitle.Location = new System.Drawing.Point(0, 456);
             this.panel_deviceBackupTitle.Name = "panel_deviceBackupTitle";
             this.panel_deviceBackupTitle.Size = new System.Drawing.Size(482, 30);
             this.panel_deviceBackupTitle.TabIndex = 10;
@@ -283,7 +285,7 @@
             this.panel_saveResetSetting.Controls.Add(this.button_save);
             this.panel_saveResetSetting.Controls.Add(this.button_reset);
             this.panel_saveResetSetting.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel_saveResetSetting.Location = new System.Drawing.Point(0, 400);
+            this.panel_saveResetSetting.Location = new System.Drawing.Point(0, 411);
             this.panel_saveResetSetting.Name = "panel_saveResetSetting";
             this.panel_saveResetSetting.Size = new System.Drawing.Size(482, 45);
             this.panel_saveResetSetting.TabIndex = 9;
@@ -325,9 +327,10 @@
             this.panel_filemanagerContent.Controls.Add(this.label_fm_showHiddenFile);
             this.panel_filemanagerContent.Controls.Add(this.label_fm_showFileSize);
             this.panel_filemanagerContent.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel_filemanagerContent.Location = new System.Drawing.Point(0, 278);
+            this.panel_filemanagerContent.Location = new System.Drawing.Point(0, 171);
+            this.panel_filemanagerContent.Margin = new System.Windows.Forms.Padding(40, 20, 20, 40);
             this.panel_filemanagerContent.Name = "panel_filemanagerContent";
-            this.panel_filemanagerContent.Size = new System.Drawing.Size(482, 122);
+            this.panel_filemanagerContent.Size = new System.Drawing.Size(482, 102);
             this.panel_filemanagerContent.TabIndex = 5;
             // 
             // button_showHiddenFile
@@ -337,7 +340,7 @@
             this.button_showHiddenFile.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button_showHiddenFile.FlatAppearance.BorderSize = 0;
             this.button_showHiddenFile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_showHiddenFile.Location = new System.Drawing.Point(160, 56);
+            this.button_showHiddenFile.Location = new System.Drawing.Point(160, 43);
             this.button_showHiddenFile.Name = "button_showHiddenFile";
             this.button_showHiddenFile.Size = new System.Drawing.Size(48, 48);
             this.button_showHiddenFile.TabIndex = 14;
@@ -351,7 +354,7 @@
             this.button_showFileSize.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button_showFileSize.FlatAppearance.BorderSize = 0;
             this.button_showFileSize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_showFileSize.Location = new System.Drawing.Point(237, 18);
+            this.button_showFileSize.Location = new System.Drawing.Point(237, 5);
             this.button_showFileSize.Name = "button_showFileSize";
             this.button_showFileSize.Size = new System.Drawing.Size(48, 48);
             this.button_showFileSize.TabIndex = 15;
@@ -361,7 +364,7 @@
             // label_fm_showHiddenFile
             // 
             this.label_fm_showHiddenFile.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_fm_showHiddenFile.Location = new System.Drawing.Point(13, 69);
+            this.label_fm_showHiddenFile.Location = new System.Drawing.Point(13, 56);
             this.label_fm_showHiddenFile.Name = "label_fm_showHiddenFile";
             this.label_fm_showHiddenFile.Size = new System.Drawing.Size(142, 23);
             this.label_fm_showHiddenFile.TabIndex = 12;
@@ -370,7 +373,7 @@
             // label_fm_showFileSize
             // 
             this.label_fm_showFileSize.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_fm_showFileSize.Location = new System.Drawing.Point(13, 31);
+            this.label_fm_showFileSize.Location = new System.Drawing.Point(13, 18);
             this.label_fm_showFileSize.Name = "label_fm_showFileSize";
             this.label_fm_showFileSize.Size = new System.Drawing.Size(227, 23);
             this.label_fm_showFileSize.TabIndex = 13;
@@ -380,7 +383,7 @@
             // 
             this.panel_filemanagerTitle.Controls.Add(this.label_filemanager);
             this.panel_filemanagerTitle.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel_filemanagerTitle.Location = new System.Drawing.Point(0, 248);
+            this.panel_filemanagerTitle.Location = new System.Drawing.Point(0, 141);
             this.panel_filemanagerTitle.Name = "panel_filemanagerTitle";
             this.panel_filemanagerTitle.Size = new System.Drawing.Size(482, 30);
             this.panel_filemanagerTitle.TabIndex = 4;
@@ -394,24 +397,25 @@
             this.label_filemanager.Name = "label_filemanager";
             this.label_filemanager.Size = new System.Drawing.Size(482, 30);
             this.label_filemanager.TabIndex = 1;
-            this.label_filemanager.Text = "Filemanager Option";
+            this.label_filemanager.Text = "File manager";
             this.label_filemanager.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // panel_platformToolsContent
+            // panel_packageManagerContent
             // 
-            this.panel_platformToolsContent.Controls.Add(this.textBox_platformToolsPath);
-            this.panel_platformToolsContent.Controls.Add(this.label_platformToolsPath);
-            this.panel_platformToolsContent.Controls.Add(this.button_platformToolsPath);
-            this.panel_platformToolsContent.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel_platformToolsContent.Location = new System.Drawing.Point(0, 182);
-            this.panel_platformToolsContent.Name = "panel_platformToolsContent";
-            this.panel_platformToolsContent.Size = new System.Drawing.Size(482, 66);
-            this.panel_platformToolsContent.TabIndex = 3;
+            this.panel_packageManagerContent.Controls.Add(this.label_pm_keepLatestApk);
+            this.panel_packageManagerContent.Controls.Add(this.label_PMTheme);
+            this.panel_packageManagerContent.Controls.Add(this.button_keepLatestApk);
+            this.panel_packageManagerContent.Controls.Add(this.button_PMTheme12);
+            this.panel_packageManagerContent.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel_packageManagerContent.Location = new System.Drawing.Point(0, 303);
+            this.panel_packageManagerContent.Name = "panel_packageManagerContent";
+            this.panel_packageManagerContent.Size = new System.Drawing.Size(482, 108);
+            this.panel_packageManagerContent.TabIndex = 3;
             // 
             // textBox_platformToolsPath
             // 
             this.textBox_platformToolsPath.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_platformToolsPath.Location = new System.Drawing.Point(170, 17);
+            this.textBox_platformToolsPath.Location = new System.Drawing.Point(170, 64);
             this.textBox_platformToolsPath.Name = "textBox_platformToolsPath";
             this.textBox_platformToolsPath.Size = new System.Drawing.Size(249, 27);
             this.textBox_platformToolsPath.TabIndex = 12;
@@ -419,7 +423,7 @@
             // label_platformToolsPath
             // 
             this.label_platformToolsPath.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_platformToolsPath.Location = new System.Drawing.Point(13, 21);
+            this.label_platformToolsPath.Location = new System.Drawing.Point(13, 68);
             this.label_platformToolsPath.Name = "label_platformToolsPath";
             this.label_platformToolsPath.Size = new System.Drawing.Size(151, 23);
             this.label_platformToolsPath.TabIndex = 13;
@@ -431,7 +435,7 @@
             this.button_platformToolsPath.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
             this.button_platformToolsPath.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_platformToolsPath.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_platformToolsPath.Location = new System.Drawing.Point(425, 18);
+            this.button_platformToolsPath.Location = new System.Drawing.Point(425, 65);
             this.button_platformToolsPath.Name = "button_platformToolsPath";
             this.button_platformToolsPath.Size = new System.Drawing.Size(44, 27);
             this.button_platformToolsPath.TabIndex = 14;
@@ -439,14 +443,14 @@
             this.button_platformToolsPath.UseVisualStyleBackColor = false;
             this.button_platformToolsPath.Click += new System.EventHandler(this.button_platformToolsPath_Click);
             // 
-            // panel_platformToolsTitle
+            // panel_packageManagerTitle
             // 
-            this.panel_platformToolsTitle.Controls.Add(this.label_platformTools);
-            this.panel_platformToolsTitle.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel_platformToolsTitle.Location = new System.Drawing.Point(0, 152);
-            this.panel_platformToolsTitle.Name = "panel_platformToolsTitle";
-            this.panel_platformToolsTitle.Size = new System.Drawing.Size(482, 30);
-            this.panel_platformToolsTitle.TabIndex = 2;
+            this.panel_packageManagerTitle.Controls.Add(this.label_platformTools);
+            this.panel_packageManagerTitle.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel_packageManagerTitle.Location = new System.Drawing.Point(0, 273);
+            this.panel_packageManagerTitle.Name = "panel_packageManagerTitle";
+            this.panel_packageManagerTitle.Size = new System.Drawing.Size(482, 30);
+            this.panel_packageManagerTitle.TabIndex = 2;
             // 
             // label_platformTools
             // 
@@ -457,21 +461,22 @@
             this.label_platformTools.Name = "label_platformTools";
             this.label_platformTools.Size = new System.Drawing.Size(482, 30);
             this.label_platformTools.TabIndex = 1;
-            this.label_platformTools.Text = "platform-tools\'s path";
+            this.label_platformTools.Text = "Package manager";
             this.label_platformTools.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // panel_backupContent
+            // panel_pathsContent
             // 
-            this.panel_backupContent.Controls.Add(this.textBox_backupPath);
-            this.panel_backupContent.Controls.Add(this.button_keepLatestApk);
-            this.panel_backupContent.Controls.Add(this.label_backupPath);
-            this.panel_backupContent.Controls.Add(this.button_backupPath);
-            this.panel_backupContent.Controls.Add(this.label_pm_keepLatestApk);
-            this.panel_backupContent.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel_backupContent.Location = new System.Drawing.Point(0, 30);
-            this.panel_backupContent.Name = "panel_backupContent";
-            this.panel_backupContent.Size = new System.Drawing.Size(482, 122);
-            this.panel_backupContent.TabIndex = 1;
+            this.panel_pathsContent.Controls.Add(this.textBox_platformToolsPath);
+            this.panel_pathsContent.Controls.Add(this.label_platformToolsPath);
+            this.panel_pathsContent.Controls.Add(this.textBox_backupPath);
+            this.panel_pathsContent.Controls.Add(this.button_platformToolsPath);
+            this.panel_pathsContent.Controls.Add(this.label_backupPath);
+            this.panel_pathsContent.Controls.Add(this.button_backupPath);
+            this.panel_pathsContent.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel_pathsContent.Location = new System.Drawing.Point(0, 30);
+            this.panel_pathsContent.Name = "panel_pathsContent";
+            this.panel_pathsContent.Size = new System.Drawing.Size(482, 111);
+            this.panel_pathsContent.TabIndex = 1;
             // 
             // textBox_backupPath
             // 
@@ -481,6 +486,20 @@
             this.textBox_backupPath.Size = new System.Drawing.Size(300, 27);
             this.textBox_backupPath.TabIndex = 12;
             // 
+            // button_PMTheme12
+            // 
+            this.button_PMTheme12.BackColor = System.Drawing.Color.Transparent;
+            this.button_PMTheme12.BackgroundImage = global::AndroidManager_SHW.Properties.Resources.toggleOff;
+            this.button_PMTheme12.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button_PMTheme12.FlatAppearance.BorderSize = 0;
+            this.button_PMTheme12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_PMTheme12.Location = new System.Drawing.Point(307, 53);
+            this.button_PMTheme12.Name = "button_PMTheme12";
+            this.button_PMTheme12.Size = new System.Drawing.Size(48, 48);
+            this.button_PMTheme12.TabIndex = 16;
+            this.button_PMTheme12.UseVisualStyleBackColor = false;
+            this.button_PMTheme12.Click += new System.EventHandler(this.button_PMTheme12_Click);
+            // 
             // button_keepLatestApk
             // 
             this.button_keepLatestApk.BackColor = System.Drawing.Color.Transparent;
@@ -488,7 +507,7 @@
             this.button_keepLatestApk.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button_keepLatestApk.FlatAppearance.BorderSize = 0;
             this.button_keepLatestApk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_keepLatestApk.Location = new System.Drawing.Point(292, 58);
+            this.button_keepLatestApk.Location = new System.Drawing.Point(307, 10);
             this.button_keepLatestApk.Name = "button_keepLatestApk";
             this.button_keepLatestApk.Size = new System.Drawing.Size(48, 48);
             this.button_keepLatestApk.TabIndex = 16;
@@ -518,23 +537,32 @@
             this.button_backupPath.UseVisualStyleBackColor = false;
             this.button_backupPath.Click += new System.EventHandler(this.button_backupPath_Click);
             // 
+            // label_PMTheme
+            // 
+            this.label_PMTheme.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_PMTheme.Location = new System.Drawing.Point(13, 66);
+            this.label_PMTheme.Name = "label_PMTheme";
+            this.label_PMTheme.Size = new System.Drawing.Size(288, 23);
+            this.label_PMTheme.TabIndex = 15;
+            this.label_PMTheme.Text = "Packagemanager(Theme 1 / Theme 2):\r\n\r\n:\r\n";
+            // 
             // label_pm_keepLatestApk
             // 
             this.label_pm_keepLatestApk.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_pm_keepLatestApk.Location = new System.Drawing.Point(13, 71);
+            this.label_pm_keepLatestApk.Location = new System.Drawing.Point(13, 23);
             this.label_pm_keepLatestApk.Name = "label_pm_keepLatestApk";
-            this.label_pm_keepLatestApk.Size = new System.Drawing.Size(286, 23);
+            this.label_pm_keepLatestApk.Size = new System.Drawing.Size(288, 23);
             this.label_pm_keepLatestApk.TabIndex = 15;
             this.label_pm_keepLatestApk.Text = "just Keep Latest Version apk\'s Backup:";
             // 
-            // panel_backupTitle
+            // panel_pathsTitle
             // 
-            this.panel_backupTitle.Controls.Add(this.label_backup);
-            this.panel_backupTitle.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel_backupTitle.Location = new System.Drawing.Point(0, 0);
-            this.panel_backupTitle.Name = "panel_backupTitle";
-            this.panel_backupTitle.Size = new System.Drawing.Size(482, 30);
-            this.panel_backupTitle.TabIndex = 0;
+            this.panel_pathsTitle.Controls.Add(this.label_backup);
+            this.panel_pathsTitle.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel_pathsTitle.Location = new System.Drawing.Point(0, 0);
+            this.panel_pathsTitle.Name = "panel_pathsTitle";
+            this.panel_pathsTitle.Size = new System.Drawing.Size(482, 30);
+            this.panel_pathsTitle.TabIndex = 0;
             // 
             // label_backup
             // 
@@ -545,7 +573,7 @@
             this.label_backup.Name = "label_backup";
             this.label_backup.Size = new System.Drawing.Size(482, 30);
             this.label_backup.TabIndex = 1;
-            this.label_backup.Text = "backup\'s path";
+            this.label_backup.Text = "Paths";
             this.label_backup.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // folderBrowserDialog_path
@@ -583,12 +611,11 @@
             this.panel_saveResetSetting.ResumeLayout(false);
             this.panel_filemanagerContent.ResumeLayout(false);
             this.panel_filemanagerTitle.ResumeLayout(false);
-            this.panel_platformToolsContent.ResumeLayout(false);
-            this.panel_platformToolsContent.PerformLayout();
-            this.panel_platformToolsTitle.ResumeLayout(false);
-            this.panel_backupContent.ResumeLayout(false);
-            this.panel_backupContent.PerformLayout();
-            this.panel_backupTitle.ResumeLayout(false);
+            this.panel_packageManagerContent.ResumeLayout(false);
+            this.panel_packageManagerTitle.ResumeLayout(false);
+            this.panel_pathsContent.ResumeLayout(false);
+            this.panel_pathsContent.PerformLayout();
+            this.panel_pathsTitle.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -596,19 +623,19 @@
         #endregion
 
         private System.Windows.Forms.Panel panel_main;
-        private System.Windows.Forms.Panel panel_backupTitle;
+        private System.Windows.Forms.Panel panel_pathsTitle;
         private System.Windows.Forms.Label label_backup;
-        private System.Windows.Forms.Panel panel_backupContent;
+        private System.Windows.Forms.Panel panel_pathsContent;
         private System.Windows.Forms.TextBox textBox_backupPath;
         private System.Windows.Forms.Button button_keepLatestApk;
         private System.Windows.Forms.Label label_backupPath;
         private System.Windows.Forms.Button button_backupPath;
         private System.Windows.Forms.Label label_pm_keepLatestApk;
-        private System.Windows.Forms.Panel panel_platformToolsContent;
+        private System.Windows.Forms.Panel panel_packageManagerContent;
         private System.Windows.Forms.TextBox textBox_platformToolsPath;
         private System.Windows.Forms.Label label_platformToolsPath;
         private System.Windows.Forms.Button button_platformToolsPath;
-        private System.Windows.Forms.Panel panel_platformToolsTitle;
+        private System.Windows.Forms.Panel panel_packageManagerTitle;
         private System.Windows.Forms.Label label_platformTools;
         private System.Windows.Forms.Panel panel_filemanagerTitle;
         private System.Windows.Forms.Label label_filemanager;
@@ -635,5 +662,7 @@
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog_path;
         private System.ComponentModel.BackgroundWorker backgroundWorker_refreshDGV;
         private System.ComponentModel.BackgroundWorker backgroundWorker_KeepLatestApkBackup;
+        private System.Windows.Forms.Button button_PMTheme12;
+        private System.Windows.Forms.Label label_PMTheme;
     }
 }

@@ -32,7 +32,7 @@ namespace AndroidManager_SHW
         ApkManager AM;
         string lastLableState;
         string stateMessage;
-        string versionProgramm = "0.99.89 Beta";
+        string versionProgramm = "1.01 Beta";
         #endregion
 
         #region Constructor
@@ -236,14 +236,26 @@ namespace AndroidManager_SHW
                 return;
             }
             //PackageManager.PM_Form pmrf = new PackageManager.PM_Form(currentDevice);
-            PMFormNew pmrf = new PMFormNew(currentDevice);
-            pictureBox_onMobileState_enable(sender);
-            pmrf.FormClosed += AllFormClosed;
-            pmrf.ShowDialog();
+            if (Option.IsPMTheme1)
+            {
+                PackageManager.PMForm pmrf = new PackageManager.PMForm(currentDevice);
+                pictureBox_onMobileState_enable(sender);
+                pmrf.FormClosed += AllFormClosed;
+                pmrf.ShowDialog();
 
-            //----- ezafi -----
-            childForms.Add(pmrf);
+                //----- ezafi -----
+                childForms.Add(pmrf);
+            }
+            else
+            {
+                PMFormNew pmrf = new PMFormNew(currentDevice);
+                pictureBox_onMobileState_enable(sender);
+                pmrf.FormClosed += AllFormClosed;
+                pmrf.ShowDialog();
 
+                //----- ezafi -----
+                childForms.Add(pmrf);
+            }
         }
         private void button_setting_Click(object sender, EventArgs e)
         {

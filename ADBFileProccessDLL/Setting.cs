@@ -12,6 +12,7 @@ namespace ADBProccessDLL
         public bool isKeepLatestApk;
         public bool isShowSizeFM;
         public bool isShowHiddenFile;
+        public bool isPMTheme1;
         public Setting()
         {
             try
@@ -91,6 +92,19 @@ namespace ADBProccessDLL
                             Option.IsKeepLatestApk = isKeepLatestApk;
                         }
                     }
+                    else if (tmp.Contains("isPMTheme1:"))
+                    {
+                        isPMTheme1 = Convert.ToBoolean(tmp.Replace("isPMTheme1:", ""));
+
+                        if (string.IsNullOrEmpty(isPMTheme1.ToString()))
+                        {
+                            isPMTheme1 = Option.IsPMTheme1;
+                        }
+                        else
+                        {
+                            Option.IsPMTheme1 = isPMTheme1;
+                        }
+                    }
 
                 }
                 sr.Close();
@@ -102,6 +116,7 @@ namespace ADBProccessDLL
                 isShowSizeFM = Option.IsShowSizeFM;
                 isShowHiddenFile = Option.IsShowHiddenFile;
                 isKeepLatestApk = Option.IsKeepLatestApk;
+                isPMTheme1 = Option.IsPMTheme1;
             }
         }
 
@@ -189,7 +204,10 @@ namespace ADBProccessDLL
 
             Option.IsKeepLatestApk = isKeepLatestApk;
             sw.WriteLine("isKeepLatestApk:" + isKeepLatestApk);
-            
+
+            Option.IsPMTheme1 = isPMTheme1;
+            sw.WriteLine("isPMTheme1:" + isPMTheme1);
+
             sw.Close();
         }
 

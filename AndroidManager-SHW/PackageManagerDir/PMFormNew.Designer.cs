@@ -40,6 +40,7 @@
             this.panel_bottomProgress = new System.Windows.Forms.Panel();
             this.label_status = new System.Windows.Forms.Label();
             this.panel_top = new System.Windows.Forms.Panel();
+            this.searchUserControl = new AndroidManager_SHW.PackageManagerDir.ControlDir.searchUserControl();
             this.button_backup = new System.Windows.Forms.Button();
             this.button_unistall = new System.Windows.Forms.Button();
             this.panel_fill = new System.Windows.Forms.Panel();
@@ -51,7 +52,6 @@
             this.backgroundWorker_KeepLatestApkBackup = new System.ComponentModel.BackgroundWorker();
             this.backgroundWorker_installApk = new System.ComponentModel.BackgroundWorker();
             this.backgroundWorker_setIcon = new System.ComponentModel.BackgroundWorker();
-            this.searchUserControl = new AndroidManager_SHW.PackageManagerDir.ControlDir.searchUserControl();
             this.panel_bottom.SuspendLayout();
             this.panel_phoneInstall.SuspendLayout();
             this.panel_sdcardInstall.SuspendLayout();
@@ -130,9 +130,9 @@
             this.panel_phoneInstall.BackgroundImage = global::AndroidManager_SHW.Properties.Resources.internalMemory;
             this.panel_phoneInstall.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.panel_phoneInstall.Controls.Add(this.label2);
-            this.panel_phoneInstall.Location = new System.Drawing.Point(7, 9);
+            this.panel_phoneInstall.Location = new System.Drawing.Point(16, 7);
             this.panel_phoneInstall.Name = "panel_phoneInstall";
-            this.panel_phoneInstall.Size = new System.Drawing.Size(387, 132);
+            this.panel_phoneInstall.Size = new System.Drawing.Size(371, 131);
             this.panel_phoneInstall.TabIndex = 0;
             this.panel_phoneInstall.DragDrop += new System.Windows.Forms.DragEventHandler(this.panel_phoneInstall_DragDrop);
             this.panel_phoneInstall.DragEnter += new System.Windows.Forms.DragEventHandler(this.panel_phoneInstall_DragEnter);
@@ -142,7 +142,7 @@
             // 
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(3, 91);
+            this.label2.Location = new System.Drawing.Point(-5, 90);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(384, 31);
             this.label2.TabIndex = 0;
@@ -157,9 +157,9 @@
             this.panel_sdcardInstall.BackgroundImage = global::AndroidManager_SHW.Properties.Resources.exteralMemory;
             this.panel_sdcardInstall.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.panel_sdcardInstall.Controls.Add(this.label1);
-            this.panel_sdcardInstall.Location = new System.Drawing.Point(400, 9);
+            this.panel_sdcardInstall.Location = new System.Drawing.Point(404, 7);
             this.panel_sdcardInstall.Name = "panel_sdcardInstall";
-            this.panel_sdcardInstall.Size = new System.Drawing.Size(387, 132);
+            this.panel_sdcardInstall.Size = new System.Drawing.Size(371, 131);
             this.panel_sdcardInstall.TabIndex = 0;
             this.panel_sdcardInstall.DragDrop += new System.Windows.Forms.DragEventHandler(this.panel_phoneInstall_DragDrop);
             this.panel_sdcardInstall.DragEnter += new System.Windows.Forms.DragEventHandler(this.panel_phoneInstall_DragEnter);
@@ -169,7 +169,7 @@
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(0, 91);
+            this.label1.Location = new System.Drawing.Point(-8, 90);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(384, 31);
             this.label1.TabIndex = 0;
@@ -211,6 +211,18 @@
             this.panel_top.Name = "panel_top";
             this.panel_top.Size = new System.Drawing.Size(792, 49);
             this.panel_top.TabIndex = 10;
+            // 
+            // searchUserControl
+            // 
+            this.searchUserControl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.searchUserControl.BackColor = System.Drawing.SystemColors.Window;
+            this.searchUserControl.DefaultTextProp = "Search Package...";
+            this.searchUserControl.Location = new System.Drawing.Point(528, 12);
+            this.searchUserControl.Name = "searchUserControl";
+            this.searchUserControl.Size = new System.Drawing.Size(250, 27);
+            this.searchUserControl.TabIndex = 6;
+            this.searchUserControl.TextChangedEvent += new System.EventHandler(this.searchUserControl_TextChangedEvent);
+            this.searchUserControl.ClickSearchButtonEvent += new System.EventHandler(this.searchUserControl_ClickSearchButtonEvent);
             // 
             // button_backup
             // 
@@ -311,18 +323,6 @@
             // backgroundWorker_setIcon
             // 
             this.backgroundWorker_setIcon.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker_setIcon_DoWork);
-            // 
-            // searchUserControl
-            // 
-            this.searchUserControl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.searchUserControl.BackColor = System.Drawing.SystemColors.Window;
-            this.searchUserControl.DefaultTextProp = "Search Package...";
-            this.searchUserControl.Location = new System.Drawing.Point(528, 12);
-            this.searchUserControl.Name = "searchUserControl";
-            this.searchUserControl.Size = new System.Drawing.Size(250, 27);
-            this.searchUserControl.TabIndex = 6;
-            this.searchUserControl.TextChangedEvent += new System.EventHandler(this.searchUserControl_TextChangedEvent_1);
-            this.searchUserControl.ClickSearchButtonEvent += new System.EventHandler(this.searchUserControl_ClickSearchButtonEvent);
             // 
             // PMFormNew
             // 

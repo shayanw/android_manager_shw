@@ -13,9 +13,11 @@ namespace AndroidManager_SHW.Setting
     {
         ADBProccessDLL.Setting st;
         List<deviceSettingBackup> dsbl;
+        List<string> ListChangedItems;
         public SettingNewForm()
         {
             InitializeComponent();
+            ListChangedItems = new List<string>();
             st = new ADBProccessDLL.Setting();
 
             textBox_backupPath.Text = st.backupPath;
@@ -33,6 +35,7 @@ namespace AndroidManager_SHW.Setting
                 buttonToggleProccess(ref button_showFileSize, ref st.isShowSizeFM);
                 buttonToggleProccess(ref button_showHiddenFile, ref st.isShowHiddenFile);
                 buttonToggleProccess(ref button_keepLatestApk, ref st.isKeepLatestApk);
+                buttonToggleProccess(ref button_PMTheme12, ref st.isPMTheme1);
                 if (st.isKeepLatestApk)
                 {
                     backgroundWorker_KeepLatestApkBackup.RunWorkerAsync();
@@ -68,45 +71,63 @@ namespace AndroidManager_SHW.Setting
         }
         private void button_save_Click(object sender, EventArgs e)
         {
+            bool IsChangeAnyThing = false;
+            if (ListChangedItems.Count==0)
+            {
+                return;
+            }
+            foreach (string changedItem in ListChangedItems)
+            {
+                switch (changedItem)
+                {
+                    case "backupPath":
+                        if (!st.changeBackupPath(textBox_backupPath.Text))
+                        {
+                            MessageBox.Show("backup address is Not Valid !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        else
+                        {
+                            IsChangeAnyThing = true;
+                        }
+                        break;
+                    case "platformToolsPath":
+                        if (!st.changePlatformToolsPath(textBox_platformToolsPath.Text))
+                        {
+                            MessageBox.Show("Platform-tools address is Not Valid !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        else
+                        {
+                            IsChangeAnyThing = true;
+                        }
+                        break;
+                    case "keepLatestApk":
+                        IsChangeAnyThing = true;
+                        if (st.isKeepLatestApk)
+                        {
+                            backgroundWorker_KeepLatestApkBackup.RunWorkerAsync();
+                        }
+                        break;
+                    default:
+                        IsChangeAnyThing = true;
+                        break;
+                }
+            }
             try
             {
-                if (st.changeBackupPath(textBox_backupPath.Text) || st.changePlatformToolsPath(textBox_platformToolsPath.Text))
+                if (IsChangeAnyThing)
                 {
-                    if (textBox_backupPath.Text == Option.MainPath && textBox_platformToolsPath.Text == Option.PlatformToolsPath && st.isShowSizeFM == Option.IsShowSizeFM && st.isShowHiddenFile == Option.IsShowHiddenFile && st.isKeepLatestApk == Option.IsKeepLatestApk)
-                    {
-                        return;
-                    }
                     st.saveChanged();
                     RefreshDataGridView();
                     button_save.BackColor = Color.WhiteSmoke;
                     button_reset.BackColor = Color.LightPink;
-                    if (st.isKeepLatestApk)
-                    {
-                        backgroundWorker_KeepLatestApkBackup.RunWorkerAsync();
-                    }
                     MessageBox.Show("Save Successfully", "info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                 }
-                else
-                {
-                    if (!st.changeBackupPath(textBox_backupPath.Text))
-                    {
-                        MessageBox.Show("backup address is Not Valid !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    else
-                    {
-                        MessageBox.Show("Platform-tools address is Not Valid !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    
-                }
-
             }
             catch
             {
                 MessageBox.Show("Something is Wrong !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-
+            ListChangedItems.Clear();
         }
 
         private void button_backupPath_Click(object sender, EventArgs e)
@@ -114,6 +135,7 @@ namespace AndroidManager_SHW.Setting
             if (folderBrowserDialog_path.ShowDialog() == DialogResult.OK)
             {
                 textBox_backupPath.Text = folderBrowserDialog_path.SelectedPath;
+                ListChangedItems.Add("backupPath");
             }
         }
         private void button_reset_Click(object sender, EventArgs e)
@@ -212,6 +234,7 @@ namespace AndroidManager_SHW.Setting
         private void button_showFileSize_Click(object sender, EventArgs e)
         {
             buttonToggleProccess(ref button_showFileSize, ref st.isShowSizeFM, true);
+            ListChangedItems.Add("showFileSize");
         }
 
         private void backgroundWorker_refreshDGV_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -222,14 +245,21 @@ namespace AndroidManager_SHW.Setting
         private void button_showHiddenFile_Click(object sender, EventArgs e)
         {
             buttonToggleProccess(ref button_showHiddenFile, ref st.isShowHiddenFile, true);
+            ListChangedItems.Add("showHiddenFile");
         }
 
 
         private void button_keepLatestApk_Click(object sender, EventArgs e)
         {
             buttonToggleProccess(ref button_keepLatestApk, ref st.isKeepLatestApk, true);
+            ListChangedItems.Add("keepLatestApk");
         }
 
+        private void button_PMTheme12_Click(object sender, EventArgs e)
+        {
+            buttonToggleProccess(ref button_PMTheme12, ref st.isPMTheme1, true);
+            ListChangedItems.Add("PMTheme12");
+        }
         private void backgroundWorker_refreshDGV_DoWork(object sender, DoWorkEventArgs e)
         {
             dsbl = new List<deviceSettingBackup>();
@@ -260,6 +290,7 @@ namespace AndroidManager_SHW.Setting
             if (folderBrowserDialog_path.ShowDialog() == DialogResult.OK)
             {
                 textBox_platformToolsPath.Text = folderBrowserDialog_path.SelectedPath;
+                ListChangedItems.Add("platformToolsPath");
             }
         }
 
@@ -281,5 +312,7 @@ namespace AndroidManager_SHW.Setting
                 ExternalMethod.KeepLatestVersionApkBackup(tmpPathBackup);
             }
         }
+
+
     }
 }
