@@ -53,7 +53,7 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>if_android_1220337.ico</ApplicationIcon>
+    <ApplicationIcon>mobile.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <DebugSymbols>true</DebugSymbols>
@@ -299,6 +299,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="if_android_1220337.ico" />
+    <Content Include="mobile.ico" />
     <None Include="Resources\install_PM.png" />
     <None Include="Resources\dropDown_PM.png" />
     <None Include="Resources\backup20_UC.png" />
