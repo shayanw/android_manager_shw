@@ -101,6 +101,12 @@
     <Compile Include="PackageManagerDir\ControlDir\apkPackageUserControl.Designer.cs">
       <DependentUpon>apkPackageUserControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="PackageManagerDir\ControlDir\apkStateInstallUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PackageManagerDir\ControlDir\apkStateInstallUserControl.Designer.cs">
+      <DependentUpon>apkStateInstallUserControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="PackageManagerDir\ControlDir\searchUserControl.cs">
       <SubType>UserControl</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -184,6 +190,9 @@
     </Compile>
     <EmbeddedResource Include="PackageManagerDir\ControlDir\apkPackageUserControl.resx">
       <DependentUpon>apkPackageUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PackageManagerDir\ControlDir\apkStateInstallUserControl.resx">
+      <DependentUpon>apkStateInstallUserControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PackageManagerDir\ControlDir\searchUserControl.resx">
       <DependentUpon>searchUserControl.cs</DependentUpon>
@@ -300,6 +309,19 @@
   <ItemGroup>
     <Content Include="if_android_1220337.ico" />
     <Content Include="mobile.ico" />
+    <None Include="Resources\stateWait_mini1.png" />
+    <None Include="Resources\stateSuccess_mini1.png" />
+    <None Include="Resources\stateFail_mini1.png" />
+    <None Include="Resources\memorySD_mini1.png" />
+    <None Include="Resources\memoryPhone_mini1.png" />
+    <None Include="Resources\right_panel.png" />
+    <None Include="Resources\left_panel.png" />
+    <None Include="Resources\stateWait_mini.png" />
+    <None Include="Resources\stateFail_mini.png" />
+    <None Include="Resources\memorySD_mini.png" />
+    <None Include="Resources\stateSuccess_mini.png" />
+    <None Include="Resources\memoryPhone_mini.png" />
+    <None Include="Resources\iconfinder_mobile4_216670.png" />
     <None Include="Resources\install_PM.png" />
     <None Include="Resources\dropDown_PM.png" />
     <None Include="Resources\backup20_UC.png" />

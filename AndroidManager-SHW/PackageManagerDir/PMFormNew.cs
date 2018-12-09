@@ -1,5 +1,6 @@
 ﻿using ADBProccessDLL;
 using AndroidManager_SHW.FileManager.Control;
+using AndroidManager_SHW.PackageManagerDir.ControlDir;
 using SharpAdbClient;
 using System;
 using System.Collections.Generic;
@@ -26,6 +27,7 @@ namespace AndroidManager_SHW.PackageManagerDir
         Queue<string[]> QueueControlNameVersionString;
         Queue<string> QueueApksFullNameForInstall;
         Queue<bool> QueueApksIsOnPhoneForInstall;
+        bool IsShowDetailsPanel;
         #endregion
 
         public PMFormNew(DeviceData device)
@@ -38,6 +40,7 @@ namespace AndroidManager_SHW.PackageManagerDir
             QueueApksIsOnPhoneForInstall = new Queue<bool>();
             ListControl = ListSelectedControl = new List<Control>();
             MyPackages = new List<KeyValuePair<string, string>>();
+            IsShowDetailsPanel = false;
             RefreshFlowLayoutPanel();
             
         }
@@ -347,6 +350,7 @@ namespace AndroidManager_SHW.PackageManagerDir
         private void backgroundWorker_unistallPackages_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             panel_bottomProgress.Visible = false;
+            label_status.Text = progressBar_Load.Maximum + " Packages Unistalled ";
             //RefreshDataGridView();
         }
         #endregion
@@ -434,12 +438,12 @@ namespace AndroidManager_SHW.PackageManagerDir
 
                 if (am.InstallApk(fileFullName,QueueApksIsOnPhoneForInstall.Dequeue()))
                 {
-                    backgroundWorker_installApk.ReportProgress(count, new string[] { fileFullName, "Successfull" });
+                    backgroundWorker_installApk.ReportProgress(count, new string[] { fileFullName, "1" });
 
                 }
                 else
                 {
-                    backgroundWorker_installApk.ReportProgress(count, new string[] { fileFullName, "fail" });
+                    backgroundWorker_installApk.ReportProgress(count, new string[] { fileFullName, "0" });
                 }
 
             }
@@ -448,12 +452,36 @@ namespace AndroidManager_SHW.PackageManagerDir
         private void backgroundWorker_installApk_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             string[] tmpstrarry = (string[])e.UserState;
-            label_status.Text = "installing " + tmpstrarry[0] + " " + tmpstrarry[1];
+            if (tmpstrarry[1]=="1")
+            {
+                label_status.Text = "installing " + tmpstrarry[0] + " successed";
+                foreach (apkStateInstallUserControl item in flowLayoutPanel_stateInstall.Controls)
+                {
+                    if (tmpstrarry[0].Contains(item.nameApkProp))
+                    {
+                        item.stateInstallProp = 1;
+                        return;
+                    }
+                }
+            }
+            else
+            {
+                label_status.Text = "installing " + tmpstrarry[0] + "  failed";
+                foreach (apkStateInstallUserControl item in flowLayoutPanel_stateInstall.Controls)
+                {
+                    if (tmpstrarry[0].Contains(item.nameApkProp))
+                    {
+                        item.stateInstallProp = 0;
+                        return;
+                    }
+                }
+            }
+            
         }
 
         private void backgroundWorker_installApk_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            label_status.Text = label_status.Text+" | Finished...";
+            label_status.Text ="Finished...";
             sdcardInstallState("unbussy");
             phoneInstallState("unbussy");
         }
@@ -514,6 +542,8 @@ namespace AndroidManager_SHW.PackageManagerDir
                 {
                     QueueApksFullNameForInstall.Enqueue(tmpFile);
                     QueueApksIsOnPhoneForInstall.Enqueue(true);
+                    apkStateInstallUserControl apiuc = new apkStateInstallUserControl(tmpFile, true);
+                        flowLayoutPanel_stateInstall.Controls.Add(apiuc);
                 }
             }
             if (backgroundWorker_installApk.IsBusy)
@@ -528,6 +558,10 @@ namespace AndroidManager_SHW.PackageManagerDir
                     return;
                 }
                 label_status.Text = "installing Package...";
+                if (!IsShowDetailsPanel)
+                {
+                    button_showDetails_Click(new object(), new EventArgs());
+                }
                 backgroundWorker_installApk.RunWorkerAsync();
                 panel_phoneInstall.BackgroundImage = AndroidManager_SHW.Properties.Resources.install_PM;
             }
@@ -544,6 +578,9 @@ namespace AndroidManager_SHW.PackageManagerDir
                 {
                     QueueApksFullNameForInstall.Enqueue(tmpFile);
                     QueueApksIsOnPhoneForInstall.Enqueue(false);
+                    apkStateInstallUserControl apiuc = new apkStateInstallUserControl(tmpFile, false);
+                    flowLayoutPanel_stateInstall.Controls.Add(apiuc);
+                    
                 }
             }
             if (backgroundWorker_installApk.IsBusy)
@@ -558,6 +595,10 @@ namespace AndroidManager_SHW.PackageManagerDir
                     return;
                 }
                 label_status.Text = "installing Package...";
+                if (!IsShowDetailsPanel)
+                {
+                    button_showDetails_Click(new object(), new EventArgs());
+                }
                 backgroundWorker_installApk.RunWorkerAsync();
                 panel_sdcardInstall.BackgroundImage = AndroidManager_SHW.Properties.Resources.install_PM;
             }
@@ -578,6 +619,24 @@ namespace AndroidManager_SHW.PackageManagerDir
                     sdcardInstallState();
                 }
 
+            }
+        }
+
+        private void button_showDetails_Click(object sender, EventArgs e)
+        {
+            if (IsShowDetailsPanel)
+            {
+                button_showDetails.BackgroundImage = AndroidManager_SHW.Properties.Resources.right_panel;
+                panel_rightSideStatus.Visible = false;
+                IsShowDetailsPanel = false;
+                this.Width = this.Width - panel_rightSideStatus.Width;
+            }
+            else
+            {
+                button_showDetails.BackgroundImage = AndroidManager_SHW.Properties.Resources.left_panel;
+                panel_rightSideStatus.Visible = true;
+                IsShowDetailsPanel = true;
+                this.Width = this.Width + panel_rightSideStatus.Width;
             }
         }
 

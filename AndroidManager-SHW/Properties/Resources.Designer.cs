@@ -463,6 +463,36 @@ namespace AndroidManager_SHW.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap left_panel {
+            get {
+                object obj = ResourceManager.GetObject("left_panel", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap memoryPhone_mini {
+            get {
+                object obj = ResourceManager.GetObject("memoryPhone_mini", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap memorySD_mini {
+            get {
+                object obj = ResourceManager.GetObject("memorySD_mini", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap mobileDebugging {
             get {
                 object obj = ResourceManager.GetObject("mobileDebugging", resourceCulture);
@@ -603,6 +633,16 @@ namespace AndroidManager_SHW.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap right_panel {
+            get {
+                object obj = ResourceManager.GetObject("right_panel", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap search {
             get {
                 object obj = ResourceManager.GetObject("search", resourceCulture);
@@ -686,6 +726,36 @@ namespace AndroidManager_SHW.Properties {
         internal static System.Drawing.Bitmap soft8h {
             get {
                 object obj = ResourceManager.GetObject("soft8h", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap stateFail_mini {
+            get {
+                object obj = ResourceManager.GetObject("stateFail_mini", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap stateSuccess_mini {
+            get {
+                object obj = ResourceManager.GetObject("stateSuccess_mini", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap stateWait_mini {
+            get {
+                object obj = ResourceManager.GetObject("stateWait_mini", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
